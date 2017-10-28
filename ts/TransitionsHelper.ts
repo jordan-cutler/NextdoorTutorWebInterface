@@ -12,6 +12,8 @@ class TransitionsHelper {
         TransitionsHelper.openLoginPage();
     }
 
+    // For all the methods that start with "open", you need to hide all other singletons and single out and show the one you want to appear.
+
     public static openLoginPage() {
         Navbar.hide();
         // Not entirely sure why we need to wait, but without it, you'll have to hit the sign out button twice, or once then refresh the page.
