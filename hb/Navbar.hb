@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav id="Navbar" class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -15,10 +15,10 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <!-- Empty for now -->
+                    <button id="Login-signOutButton" type="button" class="btn btn-warning">Sign Out</button>
                 </li>
             </ul>
         </div>
