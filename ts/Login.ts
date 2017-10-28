@@ -9,21 +9,6 @@ class Login {
      */
     private static readonly NAME = "Login";
     private static readonly SIGNINROUTE = "/user/loginWithGoogle";
-    /**
-     * Track if the Singleton has been initialized
-     */
-    private static isInit = false;
-
-    /**
-    * Initialize the Login singleton.  
-    * This needs to be called from any public static method, to ensure that the 
-    * Singleton is initialized before use.
-    */
-    private static init() {
-        if (!Login.isInit) {
-            Login.isInit = true;
-        }
-    }
 
     public static hide() {
         $("#" + Login.NAME).remove();
@@ -56,8 +41,6 @@ class Login {
     }
 
     public static refresh() {
-        // Make sure the singleton is initialized
-        Login.init();
         Login.hide();
 
         // TODO: Check silent login route. If logged in, move to page after login. If not, show login screen.

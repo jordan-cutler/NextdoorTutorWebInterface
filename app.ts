@@ -2,6 +2,5 @@
 /// <reference path="ts/Login.ts" />
 
 $(document).ready(function () {
-    Navbar.refresh();
     Login.refresh();
 });

@@ -7,28 +7,14 @@
  */
 
 class Navbar {
-    /**
-     * Track if the Singleton has been initialized
-     */
-    private static isInit = false;
 
     /**
      * The name of the DOM entry associated with Navbar
      */
     private static readonly NAME = "Navbar";
 
-    private static init() {
-        if (!Navbar.isInit) {
-            Navbar.isInit = true;
-        }
-    }
-
     public static hide() {
         $("#" + Navbar.NAME).remove();
-    }
-
-    public static refresh() {
-        Navbar.init();
     }
 
     public static show() {

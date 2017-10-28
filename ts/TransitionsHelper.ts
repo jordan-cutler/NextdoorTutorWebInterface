@@ -15,7 +15,7 @@ class TransitionsHelper {
     public static openLoginPage() {
         Navbar.hide();
         // Not entirely sure why we need to wait, but without it, you'll have to hit the sign out button twice, or once then refresh the page.
-        let millisecondsToWait = 250;
+        let millisecondsToWait = 100;
         setTimeout(function() {
             Login.refresh();
         }, millisecondsToWait);
