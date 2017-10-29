@@ -12,14 +12,20 @@
             <!-- Clicking the brand refreshes the page -->
             <!-- TODO: Change NextdoorTutor to logo -->
             <a class="navbar-brand" href="/">NextdoorTutor</a>
+
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
+            {{#if user}}
                 <li>
-                    <button id="Login-signOutButton" type="button" class="btn btn-warning">Sign Out</button>
+                    <h5>Welcome, {{user._userName}}</h5>
                 </li>
+                <li>
+                    <button id="Navbar-signOutButton" type="button" class="btn btn-warning">Sign Out</button>
+                </li>
+            {{/if}}
             </ul>
         </div>
     </div>

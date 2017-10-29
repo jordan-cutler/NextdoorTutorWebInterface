@@ -1,4 +1,6 @@
 class HttpRequestUtil {
+    // TODO: Check how to make it so when this utility is used, we just get the User sessionToken and userId as default, that way all other requests that call these methods don't have to pass those two things every time
+
     public static GetRequest(route: string, params: object, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
         HttpRequestUtil.doAjaxCall("GET", route, params, successFunction, errorFunction);
     }
@@ -9,7 +11,7 @@ class HttpRequestUtil {
 
     private static doAjaxCall(method: string, route: string, params: object, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
         $.ajax(
-            Constants.APPLICATIONURL + route,
+            route,
             {
                 type: method,
                 processData: true,

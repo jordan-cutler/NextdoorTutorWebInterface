@@ -9,13 +9,15 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" /> -->
     <meta name="google-signin-client_id" content="66818467629-8egqjjtg6obnmqbhgfu13qob5he5k4l5.apps.googleusercontent.com">
 
-    <script src="https://apis.google.com/js/platform.js?onload=onGoogleCallback"></script>
+
     <title>NextdoorTutor</title>
     <script src="assets/javascripts/jquery.min.js"></script>
     <script src="assets/javascripts/handlebars.min.js"></script>
     <script src="assets/javascripts/bootstrap.min.js"></script>
     <script src="assets/javascripts/templates.js"></script>
     <script src="assets/javascripts/app.js"></script>
+
+    <script src="https://apis.google.com/js/platform.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
     <link rel="stylesheet" href="assets/stylesheets/app.css" />
@@ -25,12 +27,9 @@
 </head>
 
 <body role="document">
+    <div id="indexNav"></div>
+    <div class="indexMain" id="indexMain"></div>
 
 </body>
-<script>
-    window.onGoogleCallback = function() {
-        gapi.load('auth2', initGoogleApi);
-    }
-</script>
 
 </html>

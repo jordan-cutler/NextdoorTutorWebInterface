@@ -1,4 +1,4 @@
-/// <reference path="TransitionsHelper.ts" />
+/// <reference path="User.ts" />
 
 /**
  * The Navbar Singleton is the navigation bar at the top of the page.  Through 
@@ -9,16 +9,25 @@
 class Navbar {
 
     /**
-     * The name of the DOM entry associated with Navbar
+     * The userName of the DOM entry associated with Navbar
      */
     private static readonly NAME = "Navbar";
 
-    public static hide() {
-        $("#" + Navbar.NAME).remove();
+    public static init(user: any) {
+        if (user != null) {
+            $("#indexNav").html(Handlebars.templates[Navbar.NAME + ".hb"]({
+                user: user
+            }));
+
+            $("#" + Navbar.NAME + "-signOutButton").click(Navbar.onLogoutClick);
+        }
+        else {
+            $("#indexNav").html(Handlebars.templates[Navbar.NAME + ".hb"]({}));
+        }
     }
 
-    public static show() {
-        $("body").prepend(Handlebars.templates[Navbar.NAME + ".hb"]({}));
-        $("#Login-signOutButton").click(TransitionsHelper.logOut);
+    public static onLogoutClick() {
+        Login.logout();
     }
+
 }

@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"outFile": "../NextdoorTutorServer/public/javascripts/app.js",
+		"strict": true
+	},
+	"files": [
+		"app.ts"
+	]
+}

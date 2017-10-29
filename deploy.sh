@@ -40,8 +40,8 @@ cp -R font-awesome-4.7.0 $PUBLICFOLDER/$STYLESHEETSFOLDER
 cp -R swagger-ui $PUBLICFOLDER/$SWAGGERFOLDER
 
 # step 4: compile TypeScript files
-node_modules/typescript/bin/tsc app.ts --strict --outFile $PUBLICFOLDER/$JAVASCRIPTSFOLDER/app.js
-
+#node_modules/typescript/bin/tsc app.ts --strict --outFile $PUBLICFOLDER/$JAVASCRIPTSFOLDER/app.js
+tsc -p .
 # step 5: copy css files
 cp app.css $PUBLICFOLDER/$STYLESHEETSFOLDER/app.css
 for s in ${SINGLETONS[@]}
