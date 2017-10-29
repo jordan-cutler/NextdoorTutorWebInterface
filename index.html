@@ -27,5 +27,10 @@
 <body role="document">
 
 </body>
+<script>
+    window.onGoogleCallback = function() {
+        gapi.load('auth2', initGoogleApi);
+    }
+</script>
 
 </html>

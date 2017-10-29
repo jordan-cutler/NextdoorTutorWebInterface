@@ -5,10 +5,8 @@ class TransitionsHelper {
     // TODO: Need some function that allows us to pass the hide function NOT TO CALL of all the singletons.
 
     public static logOut() {
-        gapi.auth2.getAuthInstance().signOut();
         Constants.setUserId("");
         Constants.setUserToken("");
-
         TransitionsHelper.openLoginPage();
     }
 
@@ -20,6 +18,9 @@ class TransitionsHelper {
         let millisecondsToWait = 100;
         setTimeout(function() {
             Login.refresh();
+            // For some reason we need to call getAuthInstance once the button is present on the screen, which would happen after we reload the login page.
+            // TODO: sometimes when we hit the sign out button, it shows us the login screen but then logs us back in again because auth2 is undefined. Need to make it so we actually sign out every time the sign out button is hit.
+            gapi.auth2.getAuthInstance().signOut();
         }, millisecondsToWait);
     }
 
