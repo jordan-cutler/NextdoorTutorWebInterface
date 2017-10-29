@@ -50,6 +50,9 @@ class Login {
 
     public static show() {
         $("body").append(Handlebars.templates[Login.NAME + ".hb"]({}));
+        if (gapi == undefined) {
+            gapi.load('auth2', initGoogleApi)
+        }
         gapi.signin2.render('googleSignIn', {onsuccess: Login.onSignIn});
     }
 }
