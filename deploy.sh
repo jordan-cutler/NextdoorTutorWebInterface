@@ -12,7 +12,7 @@ JAVASCRIPTSFOLDER=javascripts
 HTMLFOLDER=html
 IMAGESFOLDER=images
 STYLESHEETSFOLDER=stylesheets
-
+SWAGGERFOLDER=swagger-ui
 # This is the folder that we used with the Spark.staticFileLocation command
 WEBFOLDERNAME=Web
 
@@ -37,6 +37,7 @@ cp node_modules/handlebars/dist/handlebars.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLD
 cp node_modules/bootstrap/dist/js/bootstrap.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 cp node_modules/bootstrap/dist/css/bootstrap.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
 cp -R font-awesome-4.7.0 $PUBLICFOLDER/$STYLESHEETSFOLDER
+cp -R swagger-ui $PUBLICFOLDER/$SWAGGERFOLDER
 
 # step 4: compile TypeScript files
 node_modules/typescript/bin/tsc app.ts --strict --outFile $PUBLICFOLDER/$JAVASCRIPTSFOLDER/app.js
