@@ -9,6 +9,7 @@ class Login {
      */
     private static readonly NAME = "Login";
     private static readonly SIGNINROUTE = "/user/loginWithGoogle";
+    private static readonly SILENTLOGINROUTE = "/user/silentLogin";
 
     public static hide() {
         $("#" + Login.NAME).remove();
@@ -43,8 +44,8 @@ class Login {
     public static refresh() {
         Login.hide();
 
-        // TODO: Check silent login route. If logged in, move to page after login. If not, show login screen.
-        Login.show();
+        HttpRequestUtil.PostRequest(Login.SILENTLOGINROUTE, { token: Constants.getUserToken(), user_id: Constants.getUserId() },
+            TransitionsHelper.openMainPage, Login.show);
     }
 
     public static show() {
