@@ -58,7 +58,7 @@ class Login {
             HttpRequestUtil.EMPTYFUNCTION, HttpRequestUtil.EMPTYFUNCTION);
         // THIS LINE MUST COME AFTER THE POST REQUEST TO SIGN OUT
         User.destroyUser();
-        signOut();
+        signOut(null);
     }
 
 }
