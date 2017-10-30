@@ -30,6 +30,7 @@ class Login {
         user.sessionToken = data.sessionToken;
         user.profilePhotoUrl = data.profilePhotoUrl;
         Navbar.init(user);
+        // TODO: When we figure out what the next thing we want to show is, we'll probably call some [NextPageName].init, but for now we're just setting the html to empty
         $("#indexMain").html("");
     }
 
