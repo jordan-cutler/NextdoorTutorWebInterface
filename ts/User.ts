@@ -14,23 +14,23 @@ class User {
         return User._loggedUser;
     }
 
-    static get email() {
+    static email() {
         return User._loggedUser._email;
     }
 
-    static get userName(): string {
+    static userName(): string {
         return User._loggedUser._userName;
     }
 
-    static get user_id(): string {
+    static userId(): string {
         return User._loggedUser._user_id;
     }
 
-    static get sessionToken(): string {
+    static sessionToken(): string {
         return User._loggedUser._sessionToken;
     }
 
-    static get profilePhotoUrl(): string {
+    static profilePhotoUrl(): string {
         return User._loggedUser._profilePhotoUrl;
     }
 
@@ -42,7 +42,7 @@ class User {
         User._loggedUser._userName = value;
     }
 
-    set user_id(value: string) {
+    set userId(value: string) {
         User._loggedUser._user_id = value;
     }
 

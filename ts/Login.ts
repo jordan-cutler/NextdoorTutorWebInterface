@@ -9,6 +9,7 @@ class Login {
      */
     private static readonly NAME = "Login";
     private static readonly SIGNINROUTE = "/user/loginWithGoogle";
+    private static readonly SIGNOUTROUTE = "/user/logout";
 
     private static onSignIn(googleUser: GoogleUser) {
         let profile = googleUser.getBasicProfile();
@@ -25,7 +26,7 @@ class Login {
         let user = User.getUser();
         user.email = data.email;
         user.userName = data.name;
-        user.user_id = data.userId;
+        user.userId = data.userId;
         user.sessionToken = data.sessionToken;
         user.profilePhotoUrl = data.profilePhotoUrl;
         Navbar.init(user);
@@ -44,6 +45,10 @@ class Login {
     }
 
     public static logout() {
+        HttpRequestUtil.PostRequest(Login.SIGNOUTROUTE,
+            { userId: User.userId(), sessionToken: User.sessionToken()},
+            HttpRequestUtil.EMPTYFUNCTION, HttpRequestUtil.EMPTYFUNCTION);
+        // THIS LINE MUST COME AFTER THE POST REQUEST TO SIGN OUT
         User.destroyUser();
         signOut();
     }
