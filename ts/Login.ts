@@ -34,6 +34,7 @@ class Login {
     }
 
     private static onSignInBackendResponseError(data: any) {
+        // TODO: Change this to some nice error message that says something like.. "Something went wrong, try logging in again"
         window.alert("error when verifying you " + JSON.stringify(data));
         signOut();
     }
