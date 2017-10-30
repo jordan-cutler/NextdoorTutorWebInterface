@@ -17,7 +17,7 @@ class Login {
         let idToken = googleUser.getAuthResponse().id_token;
         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
-        HttpRequestUtil.PostRequest(Login.SIGNINROUTE, { token: idToken },
+        HttpRequestUtil.PostRequest(Login.SIGNINROUTE, { idToken: idToken },
             Login.onSignInBackendResponseSuccess, Login.onSignInBackendResponseError);
     }
 
