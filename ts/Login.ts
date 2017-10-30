@@ -4,9 +4,7 @@
 import GoogleUser = gapi.auth2.GoogleUser;
 
 class Login {
-    /**
-     * The userName of the DOM entry associated with Login
-     */
+
     private static readonly NAME = "Login";
     private static readonly SIGNINROUTE = "/user/loginWithGoogle";
     private static readonly SIGNOUTROUTE = "/user/logout";
@@ -16,7 +14,7 @@ class Login {
         console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
         // send this to backend, and get an ok response saying it was verified.
         let idToken = googleUser.getAuthResponse().id_token;
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        console.log('Email: ' + profile.getEmail());
 
         HttpRequestUtil.PostRequest(Login.SIGNINROUTE, { idToken: idToken },
             Login.onSignInBackendResponseSuccess, Login.onSignInBackendResponseError);
@@ -48,7 +46,7 @@ class Login {
 
     public static logout() {
         HttpRequestUtil.PostRequest(Login.SIGNOUTROUTE,
-            { userId: User.userId(), sessionToken: User.sessionToken()},
+            { userId: User.userId(), sessionToken: User.sessionToken() },
             HttpRequestUtil.EMPTYFUNCTION, HttpRequestUtil.EMPTYFUNCTION);
         // THIS LINE MUST COME AFTER THE POST REQUEST TO SIGN OUT
         User.destroyUser();
