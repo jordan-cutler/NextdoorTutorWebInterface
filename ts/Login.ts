@@ -34,12 +34,20 @@ class Login {
 
     private static onSignInBackendResponseError(data: any) {
         // TODO: Change this to some nice error message that says something like.. "Something went wrong, try logging in again"
+        // To do this, pass some data to signOut, which then gets passed to Login.init and passes that to the handlebars template.
+        // Currently the handlebars template does not support taking any data, but that's what we need to add.. the ability to pass an object with the field "alert"
         window.alert("error when verifying you " + JSON.stringify(data));
-        signOut();
+        signOut(null/* insert some data here when you update handlebars template */);
     }
 
-    public static init() {
+    public static init(data: any) {
         Navbar.init(null);
+        /*
+        TODO: Uncomment when you update the handlebars template to show this data. Also delete the other $("#indexMain").html line below the commented portion.
+         $("#indexMain").html(Handlebars.templates['login.hb']({
+            alert: data
+         }));
+         */
         $("#indexMain").html(Handlebars.templates[Login.NAME + ".hb"]({}));
         gapi.signin2.render('googleSignIn', { onsuccess: Login.onSignIn });
     }

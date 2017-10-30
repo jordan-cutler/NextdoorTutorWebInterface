@@ -2,12 +2,12 @@
 /// <reference path="ts/Login.ts" />
 
 $(document).ready(function () {
-    Login.init();
+    Login.init(null);
 });
 
-function signOut() {
+function signOut(data: any) {
     let auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-        Login.init();
+        Login.init(data);
     });
 }
