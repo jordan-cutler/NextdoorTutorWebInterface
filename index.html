@@ -9,11 +9,11 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" /> -->
     <meta name="google-signin-client_id" content="66818467629-8egqjjtg6obnmqbhgfu13qob5he5k4l5.apps.googleusercontent.com">
 
-    <!--TODO: Add Materialize CSS and use either instead of bootstrap or along with bootstrap (possibly dangerous to use with bootstrap) -->
     <title>NextdoorTutor</title>
     <script src="assets/javascripts/jquery.min.js"></script>
     <script src="assets/javascripts/handlebars.min.js"></script>
-    <script src="assets/javascripts/bootstrap.min.js"></script>
+    <!--<script src="assets/javascripts/bootstrap.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="assets/javascripts/templates.js"></script>
     <script src="assets/javascripts/app.js"></script>
 
@@ -22,14 +22,16 @@
     <link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
     <link rel="stylesheet" href="assets/stylesheets/app.css" />
     <link href="assets/stylesheets/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet">
-
+    <!--<link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 </head>
 
-<body role="document">
-    <div id="indexNav"></div>
-    <div class="indexMain" id="indexMain"></div>
-
+<body>
+    <!-- TODO(kyle): Figure out if we want to do class container or not. if we do, there are margins on left and right side.-->
+    <div class="container">
+        <div id="indexNav"></div>
+        <div class="indexMain" id="indexMain"></div>
+    </div>
 </body>
 
 </html>

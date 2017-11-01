@@ -1,32 +1,14 @@
-<nav id="Navbar" class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
-                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <!-- Clicking the brand refreshes the page -->
-            <!-- TODO: Change NextdoorTutor to logo -->
-            <a class="navbar-brand" href="/">NextdoorTutor</a>
-
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-            {{#if user}}
-                <li>
-                    <h5>Welcome, {{user._userName}}</h5>
-                </li>
-                <li>
-                    <button id="Navbar-signOutButton" type="button" class="btn btn-warning">Sign Out</button>
-                </li>
-            {{/if}}
-            </ul>
-        </div>
+<!-- Materialize navbars here http://materializecss.com/navbar.html -->
+<nav id="Navbar">
+    <div class="nav-wrapper">
+        <!-- TODO(kyle): Change NextdoorTutor to logo. I think there's a navbar setup at the link at the top of the page that allows you to include a logo -->
+        <a href="#" class="brand-logo">NextdoorTutor</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        {{#if user}}
+            <!-- TODO(kyle), for some reason, it displays the name on the line below Welcome. But we want welcome, name to be on same line. -->
+            <li><h5>Welcome, <a href="#">{{user._userName}}</a></h5></li>
+            <li><a id="Navbar-signOutButton" class="waves-effect waves-light btn">Sign Out</a></li>
+        {{/if}}
+        </ul>
     </div>
 </nav>

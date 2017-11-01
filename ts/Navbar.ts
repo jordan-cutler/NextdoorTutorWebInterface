@@ -6,6 +6,7 @@ class Navbar {
 
     public static init(user: any) {
         if (user != null) {
+            // TODO (alam): Only pass in the user's first name, this way we say Welcome, Jordan. Instead of Welcome, Jordan Alam. Make sure you update the hb file to handle the change.
             $("#indexNav").html(Handlebars.templates[Navbar.NAME + ".hb"]({
                 user: user
             }));
