@@ -5,13 +5,15 @@
         <a href="#" class="brand-logo">NextdoorTutor</a>
         <ul class="right hide-on-med-and-down">
         {{#if user}}
-            <!-- TODO(kyle), for some reason, it displays the name on the line below Welcome. But we want welcome, name to be on same line. -->
+            <li>
+                <a id="Navbar-tutorAClassButton" href="#!">Tutor A Class</a>
+            </li>
             <li>
                 <a href="#!">
                     <i class="small material-icons left">account_circle</i>{{user._userName}}
                 </a>
             </li>
-            <li><a id="Navbar-signOutButton" class="waves-effect waves-light btn">Sign Out</a></li>
+            <li><a id="Navbar-signOutButton">Sign Out</a></li>
         {{/if}}
         </ul>
     </div>

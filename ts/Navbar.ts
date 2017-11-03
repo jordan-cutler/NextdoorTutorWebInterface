@@ -1,4 +1,5 @@
 /// <reference path="User.ts" />
+/// <reference path="CoursesToTutor.ts" />
 
 class Navbar {
 
@@ -12,6 +13,7 @@ class Navbar {
             }));
 
             $("#" + Navbar.NAME + "-signOutButton").click(Navbar.onLogoutClick);
+            $("#" + Navbar.NAME + "-tutorAClassButton").click(Navbar.onTutorAClassClick);
         }
         else {
             $("#indexNav").html(Handlebars.templates[Navbar.NAME + ".hb"]({}));
@@ -20,6 +22,10 @@ class Navbar {
 
     public static onLogoutClick() {
         Login.logout();
+    }
+
+    public static onTutorAClassClick() {
+        CoursesToTutor.init();
     }
 
 }

@@ -1,6 +1,6 @@
 <div class="collection with-header">
     <div class="collection-header">
-        <h4>Tutors are available for the following courses</h4>
+        <h4>Select the course you would like to tutor</h4>
     </div>
 
     {{#each courses}}
