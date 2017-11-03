@@ -4,8 +4,8 @@
     </li>
 
     {{#each courses}}
-    <li class="collection-item">
-        <div>{{this.courseNumber}}<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div>
+    <li>
+        <a href="#!" class="collection-item">{{this.courseNumber}}</a>
     </li>
     {{/each}}
 </ul>
