@@ -2,14 +2,17 @@
 <nav id="Navbar">
     <div class="nav-wrapper">
         <!-- TODO(kyle): Change NextdoorTutor to logo. I think there's a navbar setup at the link at the top of the page that allows you to include a logo -->
-        <a href="#" class="brand-logo">NextdoorTutor</a>
+        <a id="Navbar-logo" href="#" class="brand-logo">NextdoorTutor</a>
         <ul class="right hide-on-med-and-down">
         {{#if user}}
             <li>
-                <a id="Navbar-tutorAClassButton" href="#!">Tutor A Class</a>
+                <a id="Navbar-findATutorButton" href="#">Find a tutor</a>
             </li>
             <li>
-                <a href="#!">
+                <a id="Navbar-tutorAClassButton" href="#">Tutor a class</a>
+            </li>
+            <li>
+                <a href="#">
                     <i class="small material-icons left">account_circle</i>{{user._userName}}
                 </a>
             </li>

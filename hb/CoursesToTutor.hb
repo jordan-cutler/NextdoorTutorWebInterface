@@ -4,6 +4,6 @@
     </div>
 
     {{#each courses}}
-        <a href="#!" class="collection-item">{{this.courseNumber}}</a>
+        <a href="#" class="collection-item">{{this.courseNumber}}</a>
     {{/each}}
 </div>
