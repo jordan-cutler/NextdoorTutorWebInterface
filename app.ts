@@ -1,5 +1,6 @@
 /// <reference path="ts/Navbar.ts" />
 /// <reference path="ts/Login.ts" />
+/// <reference path="ts/CoursesWithTutors.ts" />
 
 $(document).ready(function () {
     Login.init(null);

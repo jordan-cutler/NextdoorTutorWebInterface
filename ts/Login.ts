@@ -29,7 +29,7 @@ class Login {
         user.profilePhotoUrl = data.profilePhotoUrl;
         Navbar.init(user);
         // TODO(alam): When we figure out what the next thing we want to show is, we'll probably call some [NextPageName].init, but for now we're just setting the html to empty
-        $("#indexMain").html("");
+        CoursesWithTutors.init();
     }
 
     private static onSignInBackendResponseError(data: any) {
@@ -55,7 +55,7 @@ class Login {
 
     public static logout() {
         HttpRequestUtil.PostRequest(Login.SIGNOUTROUTE,
-            { userId: User.userId(), sessionToken: User.sessionToken() },
+            HttpRequestUtil.getSessionInfoJson(),
             HttpRequestUtil.EMPTYFUNCTION, HttpRequestUtil.EMPTYFUNCTION);
         // THIS LINE MUST COME AFTER THE POST REQUEST TO SIGN OUT
         User.destroyUser();
