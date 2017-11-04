@@ -12,7 +12,7 @@
                 <a id="Navbar-tutorAClassButton" href="#">Tutor a class</a>
             </li>
             <li>
-                <a href="#">
+                <a id="Navbar-profileButton" href="#">
                     <i class="small material-icons left">account_circle</i>{{user._userName}}
                 </a>
             </li>

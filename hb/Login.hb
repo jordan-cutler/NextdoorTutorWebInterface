@@ -3,6 +3,8 @@ TODO(kyle): This login hb file is set to the value of indexMain (visible in inde
 just the google sign in button. Do we want to include the navbar or do we want to hide it? Can probably look at some other sites
 welcome pages to see how they do it and do a simpler version of that.
 Potentially it could be the logo centered with the google sign in button right below it.
+
+EXAMPLE PAGE: http://demo.geekslabs.com/materialize/v2.3/layout03/user-login.html
 -->
 <div id="Login-body" class="container">
     <div class="row">
@@ -12,3 +14,6 @@ Potentially it could be the logo centered with the google sign in button right b
         </div>
     </div>
 </div>
+
+<!-- TODO(kyle): When we have terms of service, use this link to see modal examples using materialize. http://demo.geekslabs.com/materialize/v2.3/layout03/ui-modals.html#
+We can do something like: By signing in through Google, you are agreeing to the below TOS -->

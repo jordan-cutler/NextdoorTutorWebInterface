@@ -1,6 +1,7 @@
 /// <reference path="User.ts" />
 /// <reference path="CoursesToTutor.ts" />
 /// <reference path="CoursesWithTutors.ts" />
+/// <reference path="Profile.ts" />
 
 class Navbar {
 
@@ -17,6 +18,7 @@ class Navbar {
             $("#" + Navbar.NAME + "-tutorAClassButton").click(Navbar.onTutorAClassClick);
             $("#" + Navbar.NAME + "-logo").click(Navbar.onHomeClick);
             $("#" + Navbar.NAME + "-findATutorButton").click(Navbar.onHomeClick);
+            $("#" + Navbar.NAME + "-profileButton").click(Navbar.onProfileClick);
         }
         else {
             $("#indexNav").html(Handlebars.templates[Navbar.NAME + ".hb"]({}));
@@ -33,6 +35,10 @@ class Navbar {
 
     public static onHomeClick() {
         CoursesWithTutors.init();
+    }
+
+    public static onProfileClick() {
+        Profile.init();
     }
 
 }
