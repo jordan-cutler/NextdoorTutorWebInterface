@@ -18,7 +18,7 @@ class CoursesWithTutors {
     private static getCoursesArrayFromJson(coursesJsonResponse: any) {
         let courses: Course[] = [];
         coursesJsonResponse.forEach(function(courseJson: any) {
-            let course: Course = new Course(courseJson.courseNumber);
+            let course: Course = new Course(courseJson.courseNumber, courseJson.title);
             courses.push(course);
         });
         return courses;
