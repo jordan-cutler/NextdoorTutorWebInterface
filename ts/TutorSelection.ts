@@ -7,43 +7,63 @@ class TutorSelection {
 
     public static init(courseNumber: string) {
         HttpRequestUtil.GetRequest(TutorSelection.GETUTORSFORCOURSEROUTE,
-            { courseNumber: courseNumber, userId: User.userId(), sessionToken: User.sessionToken() },
-            TutorSelection.onGetTutorsForCourseSuccess, TutorSelection.onGetTutorsForCourseError
+            {courseNumber: courseNumber, userId: User.userId(), sessionToken: User.sessionToken()},
+            function (data: any) {
+                TutorSelection.showTutors(data, courseNumber);
+            },
+            TutorSelection.onGetTutorsForCourseError
         );
     }
 
     /*
-    Response in this form:
+     Response in this form:
      [
-        {
-             "userId": "string",
-             "email": "string",
-             "name": "string",
-             "profilePhotoUrl": "string",
-             "hourlyRate": 0,
-             "courseNumber": "string",
-             "grade": "string",
-             "instructor": "string",
-             "pastExperience": "string",
-             "notes": "string"
-        }
+     {
+     "userId": "string",
+     "email": "string",
+     "name": "string",
+     "profilePhotoUrl": "string",
+     "hourlyRate": 0,
+     "courseNumber": "string",
+     "grade": "string",
+     "instructor": "string",
+     "pastExperience": "string",
+     "notes": "string"
+     }
      ]
      Put all of them in Tutor objects similar to how Course was used and pass
      data to handlebars file
      */
-    private static onGetTutorsForCourseSuccess(data: any) {
+    private static showTutors(data: any, courseNumber: string) {
         let tutors: Tutor[] = TutorSelection.getTutorsArrayFromJsonData(data);
         $("#indexMain").html(Handlebars.templates[TutorSelection.NAME + ".hb"]({
-            tutors: tutors
+            tutors: tutors,
+            courseNumber: courseNumber
         }));
         // TODO: Add event handlers for each of these tutors to pull up their info
     }
 
-    private static getTutorsArrayFromJsonData(data: any) {
+    private static getTutorsArrayFromJsonData(tutorsJsonResponse: any) {
         let tutors: Tutor[] = [];
 
-        // TODO: Code to parse json data into an array of tutors
-
+        tutorsJsonResponse.forEach(function (tutorJson: any) {
+            let userId: string = tutorJson.userId;
+            let email: string = tutorJson.email;
+            let name: string = tutorJson.name;
+            let profilePhotoUrl: string = tutorJson.profilePhotoUrl;
+            let hourlyRate: number = Number(tutorJson.hourlyRate);
+            let courseNumber: string = tutorJson.courseNumber;
+            let grade: string = tutorJson.grade;
+            let instructor: string = tutorJson.instructor;
+            let pastExperience: string = tutorJson.pastExperience;
+            let notes: string = tutorJson.notes;
+            let tutor: Tutor =
+                new Tutor(
+                    userId, email, name, profilePhotoUrl, hourlyRate, courseNumber,
+                    grade, instructor, pastExperience, notes
+                );
+            tutors.push(tutor);
+        });
         return tutors;
     }
 
