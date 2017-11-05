@@ -9,14 +9,27 @@ class Login {
     private static readonly SIGNINROUTE = "/user/loginWithGoogle";
     private static readonly SIGNOUTROUTE = "/user/logout";
 
-    private static onSignIn(googleUser: GoogleUser) {
-        let profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        // send this to backend, and get an ok response saying it was verified.
-        let idToken = googleUser.getAuthResponse().id_token;
-        console.log('Email: ' + profile.getEmail());
+    public static init(data: any) {
+        Navbar.init(null);
+        $("#indexMain").html(Handlebars.templates[Login.NAME + ".hb"](data));
+        gapi.signin2.render('googleSignIn', {onsuccess: Login.onSignIn});
+    }
 
-        HttpRequestUtil.PostRequest(Login.SIGNINROUTE, { idToken: idToken },
+    private static onSignIn(googleUser: GoogleUser) {
+        let idToken = googleUser.getAuthResponse().id_token;
+        /**
+         * TODO multi-line
+         * Right now, cant figure out how to fix this issue where when you sign in with a non lehigh domain,
+         * then we sign you out, and you click the button, it automatically picks that same account and signs you
+         * in again, putting you in an infinite loop and locking you out
+         */
+
+        /*if (googleUser.getHostedDomain() != "lehigh.edu") {
+            signOut(null);
+            //Materialize.toast("Please ensure you sign in using an @lehigh.edu domain", 4000, 'rounded');
+        }*/
+        // send this to backend, and get an ok response saying it was verified.
+        HttpRequestUtil.PostRequest(Login.SIGNINROUTE, {idToken: idToken},
             Login.onSignInBackendResponseSuccess, Login.onSignInBackendResponseError);
     }
 
@@ -32,14 +45,7 @@ class Login {
     }
 
     private static onSignInBackendResponseError(data: any) {
-        let message = { alert: "There was an error when verifying your login. Please refresh the page and try again. " };
-        signOut(message);
-    }
-
-    public static init(data: any) {
-        Navbar.init(null);
-        $("#indexMain").html(Handlebars.templates[Login.NAME + ".hb"](data));
-        gapi.signin2.render('googleSignIn', { onsuccess: Login.onSignIn });
+        signOut({ alert: "Error occurred when signing you in. Please refresh and try again. Make sure to use an @lehigh.edu domain."});
     }
 
     public static logout() {
