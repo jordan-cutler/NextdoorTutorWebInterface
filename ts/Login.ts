@@ -10,7 +10,7 @@ class Login {
     private static readonly SIGNOUTROUTE = "/user/logout";
 
     public static init(data: any) {
-        Navbar.init(null);
+        //Navbar.init(null);
         $("#indexMain").html(Handlebars.templates[Login.NAME + ".hb"](data));
         gapi.signin2.render('googleSignIn', {onsuccess: Login.onSignIn});
     }
@@ -53,6 +53,7 @@ class Login {
             HttpRequestUtil.getSessionInfoJson(),
             HttpRequestUtil.EMPTYFUNCTION, HttpRequestUtil.EMPTYFUNCTION);
         // THIS LINE MUST COME AFTER THE POST REQUEST TO SIGN OUT
+        $("#indexNav").html("");
         User.destroyUser();
         signOut(null);
     }
