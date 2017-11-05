@@ -5,6 +5,7 @@ welcome pages to see how they do it and do a simpler version of that.
 Potentially it could be the logo centered with the google sign in button right below it.
 
 EXAMPLE PAGE: http://demo.geekslabs.com/materialize/v2.3/layout03/user-login.html
+More ideas here: https://www.uplabs.com/web
 -->
 <div id="Login-body" class="container">
     <div class="row">
