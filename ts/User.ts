@@ -2,7 +2,7 @@ class User {
 
     private _email: string = "";
     private _userName: string = "";
-    private _user_id: string = "";
+    private _userId: string = "";
     private _sessionToken: string = "";
     private _profilePhotoUrl: string = "";
     private static _loggedUser: any = null;
@@ -23,7 +23,7 @@ class User {
     }
 
     static userId(): string {
-        return User._loggedUser._user_id;
+        return User._loggedUser._userId;
     }
 
     static sessionToken(): string {
@@ -43,7 +43,7 @@ class User {
     }
 
     set userId(value: string) {
-        User._loggedUser._user_id = value;
+        User._loggedUser._userId = value;
     }
 
     set sessionToken(value: string) {

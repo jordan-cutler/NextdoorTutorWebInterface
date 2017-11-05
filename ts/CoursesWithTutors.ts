@@ -1,4 +1,6 @@
 /// <reference path="Course.ts" />
+/// <reference path="TutorSelection.ts" />
+
 class CoursesWithTutors {
 
     private static readonly NAME = "CoursesWithTutors";
@@ -28,7 +30,11 @@ class CoursesWithTutors {
         $("#indexMain").html(Handlebars.templates[CoursesWithTutors.NAME + ".hb"]({
             courses: courses
         }));
+        $("." + CoursesWithTutors.NAME + "-clickToGoToTutorSelection").click(CoursesWithTutors.clickCourse);
     }
 
-
+    private static clickCourse() {
+        let courseNumber: string = $(this).data("course_number");
+        TutorSelection.init(courseNumber);
+    }
 }

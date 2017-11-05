@@ -1,3 +1,5 @@
+/// <reference path="TutorApplication.ts" />
+
 class CoursesToTutor {
     private static readonly NAME = "CoursesToTutor";
     private static readonly COURSESTOTUTORROUTE = "/api/courses";
@@ -27,5 +29,11 @@ class CoursesToTutor {
         $("#indexMain").html(Handlebars.templates[CoursesToTutor.NAME + ".hb"]({
             courses: courses
         }));
+        $("." + CoursesToTutor.NAME + "-clickToTutor").click(CoursesToTutor.clickCourse);
+    }
+
+    private static clickCourse() {
+        let courseNumber: string = $(this).data("course_number");
+        TutorApplication.init(courseNumber);
     }
 }

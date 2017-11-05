@@ -4,6 +4,8 @@
     </div>
 
     {{#each courses}}
-        <a href="#" class="collection-item">{{this.courseNumber}} {{this.title}}</a>
+        <a href="#" class="collection-item CoursesWithTutors-clickToGoToTutorSelection" data-course_number="{{this.courseNumber}}">
+            {{this.courseNumber}} {{this.title}}
+        </a>
     {{/each}}
 </div>

@@ -28,28 +28,17 @@ class Login {
         user.sessionToken = data.sessionToken;
         user.profilePhotoUrl = data.profilePhotoUrl;
         Navbar.init(user);
-        // TODO(alam): When we figure out what the next thing we want to show is, we'll probably call some [NextPageName].init, but for now we're just setting the html to empty
         CoursesWithTutors.init();
     }
 
     private static onSignInBackendResponseError(data: any) {
-        // TODO(alam): Change this to some nice error message that says something like.. "Something went wrong, try logging in again"
-        // To do this, pass some data to signOut, which then gets passed to Login.init and passes that to the handlebars template.
-        // Currently the handlebars template does not support taking any data, but that's what we need to add.. the ability to pass an object with the field "alert"
-        // which kyle will then have an "if statement" in the handlebars template that prints that alert at the login page if you pass him one
-        window.alert("error when verifying you " + JSON.stringify(data));
-        signOut(null/* insert some data here when you update handlebars template */);
+        let message = { alert: "There was an error when verifying your login. Please refresh the page and try again. " };
+        signOut(message);
     }
 
     public static init(data: any) {
         Navbar.init(null);
-        /*
-        TODO(alam): Uncomment when you update the handlebars template to show this data. Also delete the other $("#indexMain").html line below the commented portion.
-         $("#indexMain").html(Handlebars.templates['login.hb']({
-            alert: data
-         }));
-         */
-        $("#indexMain").html(Handlebars.templates[Login.NAME + ".hb"]({}));
+        $("#indexMain").html(Handlebars.templates[Login.NAME + ".hb"](data));
         gapi.signin2.render('googleSignIn', { onsuccess: Login.onSignIn });
     }
 

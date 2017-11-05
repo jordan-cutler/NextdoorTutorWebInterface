@@ -7,6 +7,9 @@ Potentially it could be the logo centered with the google sign in button right b
 EXAMPLE PAGE: http://demo.geekslabs.com/materialize/v2.3/layout03/user-login.html
 More ideas here: https://www.uplabs.com/web
 -->
+<!--TODO(kyle) We pass either null or an object with the field "alert" which contains a string containing a message on error. Add
+ a line that does an if handlebars check for alert, and if there is one, we have some alert that comes up containing the message.
+  You can see how it works in Login.ts in onSignInBackendResponseError method -->
 <div id="Login-body" class="container">
     <div class="row">
         <!-- TODO(kyle): Google sign in button is currently right below Navbar. Obviously will want to move it to a nicer place on the page at some point.-->
