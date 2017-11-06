@@ -1,6 +1,6 @@
 <div class="z-depth-5 collection with-header">
     <div class="collection-header">
-        <h4>Tutors are available for the following courses</h4>
+        <h4 class="condensed light">Tutors are available for the following courses</h4>
     </div>
 
     {{#each courses}}
