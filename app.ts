@@ -4,6 +4,7 @@
 
 $(document).ready(function () {
     Login.init(null);
+    $(".button-collapse").sideNav();
 });
 
 function signOut(data: any) {

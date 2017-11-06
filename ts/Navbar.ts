@@ -14,11 +14,12 @@ class Navbar {
                 user: user
             }));
 
-            $("#" + Navbar.NAME + "-signOutButton").click(Navbar.onLogoutClick);
-            $("#" + Navbar.NAME + "-tutorAClassButton").click(Navbar.onTutorAClassClick);
-            $("#" + Navbar.NAME + "-logo").click(Navbar.onHomeClick);
-            $("#" + Navbar.NAME + "-findATutorButton").click(Navbar.onHomeClick);
-            $("#" + Navbar.NAME + "-profileButton").click(Navbar.onProfileClick);
+            $("." + Navbar.NAME + "-signOutButton").click(Navbar.onLogoutClick);
+            $("." + Navbar.NAME + "-tutorAClassButton").click(Navbar.onTutorAClassClick);
+            $("." + Navbar.NAME + "-logo").click(Navbar.onHomeClick);
+            $("." + Navbar.NAME + "-findATutorButton").click(Navbar.onHomeClick);
+            $("." + Navbar.NAME + "-profileButton").click(Navbar.onProfileClick);
+            $(".button-collapse").sideNav();
         }
         else {
             $("#indexNav").html(Handlebars.templates[Navbar.NAME + ".hb"]({}));
@@ -27,18 +28,22 @@ class Navbar {
 
     public static onLogoutClick() {
         Login.logout();
+        $(".button-collapse").sideNav('hide');
     }
 
     public static onTutorAClassClick() {
         CoursesToTutor.init();
+        $(".button-collapse").sideNav('hide');
     }
 
     public static onHomeClick() {
         CoursesWithTutors.init();
+        $(".button-collapse").sideNav('hide');
     }
 
     public static onProfileClick() {
         Profile.init();
+        $(".button-collapse").sideNav('hide');
     }
 
 }
