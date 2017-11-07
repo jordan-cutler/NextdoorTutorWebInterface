@@ -7,6 +7,8 @@ class TutorApplication {
         $("#indexMain").html(Handlebars.templates[TutorApplication.NAME + ".hb"]({
             courseNumber: courseNumber
         }));
+        $('select').material_select();
+        $('input.character-count').characterCounter();
         // TODO: Once a button is added to submit, attach it to event handler to add tutor
 
     }
