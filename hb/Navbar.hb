@@ -11,7 +11,7 @@
             </li>
 
             <li>
-                <a class="Navbar-tutorAClassButton" href="#">Tutor a class</a>
+                <a class="Navbar-tutorAClassButton" href="#">Become a Tutor</a>
             </li>
 
             <li>
