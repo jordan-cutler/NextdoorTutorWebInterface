@@ -14,9 +14,9 @@ class Navbar {
                 user: user
             }));
 
+            $("#" + Navbar.NAME + "-logo").click(Navbar.onHomeClick);
             $("." + Navbar.NAME + "-signOutButton").click(Navbar.onLogoutClick);
             $("." + Navbar.NAME + "-tutorAClassButton").click(Navbar.onTutorAClassClick);
-            $("#" + Navbar.NAME + "-logo").click(Navbar.onHomeClick);
             $("." + Navbar.NAME + "-findATutorButton").click(Navbar.onHomeClick);
             $("." + Navbar.NAME + "-profileButton").click(Navbar.onProfileClick);
             $(".button-collapse").sideNav();
