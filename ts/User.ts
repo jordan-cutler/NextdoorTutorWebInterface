@@ -4,7 +4,8 @@ class User {
     private _userName: string = "";
     private _userId: string = "";
     private _sessionToken: string = "";
-    private _profilePhotoUrl: string = "";
+    private _profilePhotoId: string = "";
+    private _bio: string = "";
     private static _loggedUser: any = null;
 
     static getUser() {
@@ -30,8 +31,22 @@ class User {
         return User._loggedUser._sessionToken;
     }
 
-    static profilePhotoUrl(): string {
-        return User._loggedUser._profilePhotoUrl;
+    static profilePhotoId(): string {
+        return User._loggedUser._profilePhotoId;
+    }
+
+    static bio(): string {
+        return User._loggedUser._bio;
+    }
+
+    static setFields(user: User, sessionToken: string,
+                     email: string, name: string, id: string, profilePhotoId: string, bio: string) {
+        user.sessionToken = sessionToken;
+        user.email = email;
+        user.userName = name;
+        user.userId = id;
+        user.profilePhotoId = profilePhotoId;
+        user.bio = bio;
     }
 
     set email(value: string) {
@@ -50,8 +65,12 @@ class User {
         User._loggedUser._sessionToken = value;
     }
 
-    set profilePhotoUrl(value: string) {
-        User._loggedUser._profilePhotoUrl = value;
+    set profilePhotoId(value: string) {
+        User._loggedUser._profilePhotoId = value;
+    }
+
+    set bio(value: string) {
+        User._loggedUser._bio = value;
     }
 
     static destroyUser() {

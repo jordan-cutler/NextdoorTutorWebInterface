@@ -22,7 +22,7 @@ class TutorSelection {
      "userId": "string",
      "email": "string",
      "name": "string",
-     "profilePhotoUrl": "string",
+     "profilePhotoId": "string",
      "hourlyRate": 0,
      "courseNumber": "string",
      "grade": "string",
@@ -50,7 +50,7 @@ class TutorSelection {
             let userId: string = tutorJson.userId;
             let email: string = tutorJson.email;
             let name: string = tutorJson.name;
-            let profilePhotoUrl: string = tutorJson.profilePhotoUrl;
+            let profilePhotoUrl: string = tutorJson.profilePhotoId;
             let hourlyRate: number = Number(tutorJson.hourlyRate);
             let courseNumber: string = tutorJson.courseNumber;
             let grade: string = tutorJson.grade;

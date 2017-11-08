@@ -35,11 +35,16 @@ class Login {
 
     private static onSignInBackendResponseSuccess(data: any) {
         let user = User.getUser();
-        user.email = data.email;
-        user.userName = data.name;
-        user.userId = data.userId;
-        user.sessionToken = data.sessionToken;
-        user.profilePhotoUrl = data.profilePhotoUrl;
+        let userObjectJson = data.user;
+        User.setFields(
+            user,
+            data.sessionToken,
+            userObjectJson.email,
+            userObjectJson.name,
+            userObjectJson.userId,
+            userObjectJson.profilePhotoId,
+            userObjectJson.bio
+        );
         Navbar.init(user);
         CoursesWithTutors.init();
     }
