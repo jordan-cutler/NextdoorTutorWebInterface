@@ -1,6 +1,5 @@
 <!-- Currently given courseNumber as data. Can ask for more if you need it -->
 
-
 <div class="card blue-grey darken-1">
     <div class="card-content white-text">
         <div class="row">
@@ -61,6 +60,9 @@
                 </div>
             </div>
         </div>
-
     </div>
+    <button id="TutorApplication-Submit" type="submit" class="btn waves-effect waves-light">Submit
+        <i class="material-icons right">send</i>
+    </button>
+
 </div>
