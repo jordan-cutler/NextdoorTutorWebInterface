@@ -26,9 +26,13 @@ class CoursesToTutor {
     }
 
     private static setHandlebarsTemplate(courses: Course[]) {
-        $("#indexMain").html(Handlebars.templates[CoursesToTutor.NAME + ".hb"]({
-            courses: courses
-        }));
+        if (courses.length == 0) {
+            // TODO: Add CourseNotFoundPage
+        } else {
+            $("#indexMain").html(Handlebars.templates[CoursesToTutor.NAME + ".hb"]({
+                courses: courses
+            }));
+        }
         $("." + CoursesToTutor.NAME + "-clickToTutor").click(CoursesToTutor.clickCourse);
     }
 

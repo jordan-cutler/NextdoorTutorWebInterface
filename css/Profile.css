@@ -1,3 +1,9 @@
 #Profile-Book-Tutor-Action {
     visibility:hidden
 }
+
+#Profile-Photo {
+    height: 100px;
+    margin: 5px 5px 5px 5px;
+    border-radius: 5%;
+}
