@@ -58,17 +58,19 @@ class TutorApplication {
         console.log("notes = " + notes);
 
 
-        let tutorData = {userId, hourlyRate, courseNumber, grade, instructor, pastExperience, notes, sessionToken}; // empty object for now until we can get all the data needed
+        let tutorData = {userId: userId, hourlyRate: hourlyRate, courseNumber: courseNumber, grade: grade, instructor: instructor, pastExperience: pastExperience, notes: notes, sessionToken: sessionToken}; // empty object for now until we can get all the data needed
 
         HttpRequestUtil.GetRequest(TutorApplication.ADDTUTORROUTE, tutorData,
             TutorApplication.onSubmitApplicationSuccess, TutorApplication.onSubmitApplicationError);
     }
 
     private static onSubmitApplicationSuccess(data: any) {
-
+        console.log("success");
+        console.log(data);
     }
 
     private static onSubmitApplicationError(data: any) {
-
+        console.log("error");
+        console.log(data);
     }
 }
