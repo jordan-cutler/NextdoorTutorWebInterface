@@ -1,12 +1,14 @@
-<!-- Currently given courseNumber as data. Can ask for more if you need it -->
-
-
-<div class="card blue-grey darken-1">
+<div class="card blue-grey darken-3">
     <div class="card-content white-text">
+        <div class="row">
+            <div class="col s12">
+                <h4 class="card-title condensed light">Fill out your Tutor Profile for {{courseNumber}}</h4>
+            </div>
+        </div>
+
         <div class="row">
 
         </div>
-
         <div class="row">
             <div class="col s12">
                 <label for="hourlyRate">Hourly Rate</label>
