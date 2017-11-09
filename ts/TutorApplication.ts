@@ -2,25 +2,35 @@ class TutorApplication {
 
     private static readonly NAME = "TutorApplication";
     private static readonly ADDTUTORROUTE = "/api/tutors/add";
-    private static courseNum: string;
+    private static readonly COURSESTOTUTORROUTE = "/api/courses";
 
-    public static init(courseNumber: string) {
-        TutorApplication.courseNum = courseNumber;
+    public static init() {
+        HttpRequestUtil.GetRequest(TutorApplication.COURSESTOTUTORROUTE, HttpRequestUtil.getSessionInfoJson(),
+            function(data: any) {
+                let courses = Course.CourseJsonArrayToCourseModelArray(data);
+                TutorApplication.displayApplication(courses);
+            },
+            function(data: any) {
+                window.alert("Failed to retrieve courses available for tutoring.");
+            }
+        )
+    }
+
+    private static displayApplication(courses: Course[]) {
         $("#indexMain").html(Handlebars.templates[TutorApplication.NAME + ".hb"]({
-            courseNumber: courseNumber
+            courses: courses
         }));
         $('select').material_select();
         $('input.character-count').characterCounter();
-        // TODO: Once a button is added to submit, attach it to event handler to add tutor
         $("#" + TutorApplication.NAME + "-Submit").click(TutorApplication.submitApplication);
     }
+
     private static submitApplication() {
-        console.log(TutorApplication.courseNum);
         let userId: string = User.userId();
         let sessionToken: string = User.sessionToken();
         let hourlyRateString: string = $("#hourlyRateOutput").val();
         let hourlyRate: number = Number(hourlyRateString.substring(1, hourlyRateString.length - 3));    // Removes the $ and /hr from the string.
-        let courseNumber: string = TutorApplication.courseNum;
+        let courseNumber: string = $("#" + TutorApplication.NAME + "-course option:selected").text();
         let grade: string = $("#" + TutorApplication.NAME + "-grade option:selected").text();
         let instructor: string = $("#" + TutorApplication.NAME + "-instructor").val();
         let pastExperience: string = $("#" + TutorApplication.NAME + "-Application-Experience").val();

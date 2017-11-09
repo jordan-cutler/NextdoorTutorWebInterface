@@ -11,6 +11,17 @@
         </div>
         <form class="col s12">
             <div class="row">
+                <div class="input-field col s12">
+                    <select id="TutorApplication-course">
+                        <option value="" disabled selected>N/A</option>
+                        {{#each courses}}
+                            <option value="">{{this._courseNumber}}</option>
+                        {{/each}}
+                    </select>
+                    <label for="TutorApplication-course">Course to tutor</label>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col s12">
                     <label for="hourlyRate">Hourly Rate</label>
                 </div>

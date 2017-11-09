@@ -1,5 +1,5 @@
 /// <reference path="User.ts" />
-/// <reference path="CoursesToTutor.ts" />
+/// <reference path="TutorApplication.ts" />
 /// <reference path="CoursesWithTutors.ts" />
 /// <reference path="Profile.ts" />
 
@@ -32,7 +32,7 @@ class Navbar {
     }
 
     public static onTutorAClassClick() {
-        CoursesToTutor.init();
+        TutorApplication.init();
         $(".button-collapse").sideNav('hide');
     }
 
