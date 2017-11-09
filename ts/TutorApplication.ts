@@ -60,7 +60,7 @@ class TutorApplication {
 
         let tutorData = {userId: userId, hourlyRate: hourlyRate, courseNumber: courseNumber, grade: grade, instructor: instructor, pastExperience: pastExperience, notes: notes, sessionToken: sessionToken}; // empty object for now until we can get all the data needed
 
-        HttpRequestUtil.GetRequest(TutorApplication.ADDTUTORROUTE, tutorData,
+        HttpRequestUtil.PostRequest(TutorApplication.ADDTUTORROUTE, tutorData,
             TutorApplication.onSubmitApplicationSuccess, TutorApplication.onSubmitApplicationError);
     }
 
