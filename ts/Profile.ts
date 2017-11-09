@@ -11,7 +11,7 @@ class Profile {
         $("#indexMain").html(Handlebars.templates[Profile.NAME + ".hb"]({
             user: User.getUser(),
             // TODO: Don't make this request if profile photo id is null
-            profilePhotoRoute: Profile.GETPROFILEPICTUREROUTE + "/" + User.userId() + "?userId=" + User.userId() + "&sessionToken=" + User.sessionToken()
+            profilePhotoUrl: Profile.GETPROFILEPICTUREROUTE + "/" + User.userId() + "?userId=" + User.userId() + "&sessionToken=" + User.sessionToken()
         }));
 
         $('.modal').modal();
