@@ -10,27 +10,23 @@ class Login {
     private static readonly SIGNOUTROUTE = "/user/logout";
 
     public static init(data: any) {
-        //Navbar.init(null);
         $("#indexMain").html(Handlebars.templates[Login.NAME + ".hb"](data));
         gapi.signin2.render('googleSignIn', {onsuccess: Login.onSignIn});
     }
 
     private static onSignIn(googleUser: GoogleUser) {
         let idToken = googleUser.getAuthResponse().id_token;
-        /**
-         * TODO multi-line
-         * Right now, cant figure out how to fix this issue where when you sign in with a non lehigh domain,
-         * then we sign you out, and you click the button, it automatically picks that same account and signs you
-         * in again, putting you in an infinite loop and locking you out
-         */
 
-        /*if (googleUser.getHostedDomain() != "lehigh.edu") {
+        if (googleUser.getHostedDomain() != "lehigh.edu") {
             signOut(null);
-            //Materialize.toast("Please ensure you sign in using an @lehigh.edu domain", 4000, 'rounded');
-        }*/
+            Materialize.toast("Please ensure you sign in using an @lehigh.edu domain", 4000, 'rounded');
+        }
+        else {
+            HttpRequestUtil.PostRequest(Login.SIGNINROUTE, {idToken: idToken},
+                Login.onSignInBackendResponseSuccess, Login.onSignInBackendResponseError);
+        }
         // send this to backend, and get an ok response saying it was verified.
-        HttpRequestUtil.PostRequest(Login.SIGNINROUTE, {idToken: idToken},
-            Login.onSignInBackendResponseSuccess, Login.onSignInBackendResponseError);
+
     }
 
     private static onSignInBackendResponseSuccess(data: any) {
@@ -50,7 +46,7 @@ class Login {
     }
 
     private static onSignInBackendResponseError(data: any) {
-        signOut({ alert: "Error occurred when signing you in. Please refresh and try again. Make sure to use an @lehigh.edu domain."});
+        signOut({alert: "Error occurred when signing you in. Please refresh and try again. Make sure to use an @lehigh.edu domain."});
     }
 
     public static logout() {
