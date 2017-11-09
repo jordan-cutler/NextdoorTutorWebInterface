@@ -16,7 +16,8 @@
             <div class="row">
                 <!-- TODO: Consider using ionRange instead. http://ionden.com/a/plugins/ion.rangeSlider/en.html -->
                 <div class="range-field col s10">
-                    <input id="hourlyRate" type="range" value="20" min="0" max="50" oninput="hourlyRateOutput.value = '$' + hourlyRate.value + '/hr'"/>
+                    <input id="hourlyRate" type="range" value="20" min="0" max="50"
+                           oninput="hourlyRateOutput.value = '$' + hourlyRate.value + '/hr'"/>
                 </div>
                 <div class="col s2">
                     <output id="hourlyRateOutput">$20/hr</output>
@@ -50,7 +51,8 @@
 
         <div class="row">
             <div class="input-field col s12">
-                <input id="TutorApplication-Application-Experience" type="text" class="validate character-count" data-length="141"/>
+                <input id="TutorApplication-Application-Experience" type="text" class="validate character-count"
+                       data-length="141"/>
                 <label for="TutorApplication-Application-Experience">Past Experience</label>
             </div>
         </div>
@@ -66,7 +68,8 @@
 
         <div class="row">
             <div class="col s3 offset-s9">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <button id="TutorApplication-Submit" class="btn waves-effect waves-light" type="submit" name="action">
+                    Submit
                     <i class="material-icons right">send</i>
                 </button>
             </div>
