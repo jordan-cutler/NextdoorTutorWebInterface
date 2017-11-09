@@ -2,7 +2,7 @@
     <div class="card-content white-text">
         <div class="row">
             <div class="col s12">
-                <h4 class="card-title condensed light">Fill out your Tutor Profile for {{courseNumber}}</h4>
+                <h4 class="card-title condensed light">Fill out your Tutor Profile</h4>
             </div>
         </div>
 
