@@ -17,7 +17,7 @@ SWAGGERFOLDER=swagger-ui
 WEBFOLDERNAME=Web
 
 # These are all of the singletons in the program
-SINGLETONS=(Login Navbar CoursesWithTutors CoursesToTutor Profile TutorApplication TutorSelection)
+SINGLETONS=(Login Navbar CoursesWithTutors Profile TutorApplication TutorSelection)
 
 # step 1: make sure we have someplace to put everything.  We will delete the
 #         old folder tree, and then make it from scratch

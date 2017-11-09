@@ -8,22 +8,13 @@ class CoursesWithTutors {
     public static init() {
         HttpRequestUtil.GetRequest(CoursesWithTutors.COURSESWITHTUTORSROUTE, HttpRequestUtil.getSessionInfoJson(),
             function(data: any) {
-                let courses = CoursesWithTutors.getCoursesArrayFromJson(data);
+                let courses = Course.CourseJsonArrayToCourseModelArray(data);
                 CoursesWithTutors.setHandlebarsTemplate(courses);
             },
             function(data: any) {
                 window.alert("Failed to retrieve courses with tutors. Please refresh the page and try again.");
             }
         )
-    }
-
-    private static getCoursesArrayFromJson(coursesJsonResponse: any) {
-        let courses: Course[] = [];
-        coursesJsonResponse.forEach(function(courseJson: any) {
-            let course: Course = new Course(courseJson.courseNumber, courseJson.title);
-            courses.push(course);
-        });
-        return courses;
     }
 
     private static setHandlebarsTemplate(courses: Course[]) {
