@@ -15,50 +15,27 @@ class TutorApplication {
         $("#" + TutorApplication.NAME + "-Submit").click(TutorApplication.submitApplication);
     }
     private static submitApplication() {
-
-        /*
-         Data needed:
-         userId,
-         hourlyRate,
-         courseNumber,
-         grade,
-         instructor,
-         pastExperience,
-         notes,
-         sessionToken
-
-         We get all this data from the handlebars template. All of this is input aside from userId and sessionToken
-         */
-        console.log("calling method properly");
         console.log(TutorApplication.courseNum);
-        let userId = User.userId();
-        let sessionToken = User.sessionToken();
-        let hourlyRateString = ($("#hourlyRateOutput").val());
-        let hourlyRate = hourlyRateString.substring(1, hourlyRateString.length - 3);    // Removes the $ and /hr from the string.
-        let courseNumber = TutorApplication.courseNum;
+        let userId: string = User.userId();
+        let sessionToken: string = User.sessionToken();
+        let hourlyRateString: string = $("#hourlyRateOutput").val();
+        let hourlyRate: number = Number(hourlyRateString.substring(1, hourlyRateString.length - 3));    // Removes the $ and /hr from the string.
+        let courseNumber: string = TutorApplication.courseNum;
+        let grade: string = $("#" + TutorApplication.NAME + "-grade option:selected").text();
+        let instructor: string = $("#" + TutorApplication.NAME + "-instructor").val();
+        let pastExperience: string = $("#" + TutorApplication.NAME + "-Application-Experience").val();
+        let notes: string = $("#" + TutorApplication.NAME + "-notes").val();
 
-
-        // Getting the grade form the dropdown
-        let gradeElement = (document.getElementById("TutorApplication-grade")) as HTMLSelectElement;
-        let sel = gradeElement.selectedIndex;
-        let opt = gradeElement.options[sel];
-        let grade = (<HTMLSelectElement>opt).text;  // grade is the plain text (A, A-, B+...)
-
-
-        let instructor = (<HTMLInputElement>document.getElementById("TutorApplication-instructor")).value;
-        let pastExperience = (<HTMLInputElement>document.getElementById("TutorApplication-Application-Experience")).value;
-        //let pastExperience = (<HTMLInputElement>document.getElementById("TutorApplication-Experience")).value;
-        let notes = (<HTMLInputElement>document.getElementById("TutorApplication-notes")).value;
-
-//        let grade = ($(""))
-        console.log(hourlyRate);
-        console.log("Grade = " + grade);
-        console.log("instructor = " + instructor);
-        console.log("exp = " + pastExperience);
-        console.log("notes = " + notes);
-
-
-        let tutorData = {userId: userId, hourlyRate: hourlyRate, courseNumber: courseNumber, grade: grade, instructor: instructor, pastExperience: pastExperience, notes: notes, sessionToken: sessionToken}; // empty object for now until we can get all the data needed
+        let tutorData = {
+            userId: userId,
+            hourlyRate: hourlyRate,
+            courseNumber: courseNumber,
+            grade: grade,
+            instructor: instructor,
+            pastExperience: pastExperience,
+            notes: notes,
+            sessionToken: sessionToken
+        };
 
         HttpRequestUtil.PostRequest(TutorApplication.ADDTUTORROUTE, tutorData,
             TutorApplication.onSubmitApplicationSuccess, TutorApplication.onSubmitApplicationError);
