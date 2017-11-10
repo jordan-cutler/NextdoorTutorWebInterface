@@ -9,10 +9,10 @@
         <div class="row">
 
         </div>
-        <form class="col s12">
+        <form name="TutorApplication-form" class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="TutorApplication-course" required>
+                    <select id="TutorApplication-course">
                         <option value="" disabled selected>N/A</option>
                         {{#each courses}}
                             <option value="">{{this._courseNumber}}</option>
@@ -37,8 +37,8 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="TutorApplication-grade" required>
-                        <option value="" disabled selected>N/A</option>
+                    <select id="TutorApplication-grade">
+                        <option value="" disabled selected>Haven't Taken</option>
                         <option value="1">A</option>
                         <option value="2">A-</option>
                         <option value="3">B+</option>

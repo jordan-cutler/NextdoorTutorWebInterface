@@ -32,7 +32,14 @@ class TutorApplication {
         let hourlyRateString: string = $("#hourlyRateOutput").val();
         let hourlyRate: number = Number(hourlyRateString.substring(1, hourlyRateString.length - 3));    // Removes the $ and /hr from the string.
         let courseNumber: string = $("#" + TutorApplication.NAME + "-course option:selected").text();
+        if (courseNumber == "N/A") {
+            Materialize.toast("Please select a class to tutor before submitting.", 2000);
+            return;
+        }
         let grade: string = $("#" + TutorApplication.NAME + "-grade option:selected").text();
+        if (grade == "Haven't Taken") {
+            grade = null;
+        }
         let instructor: string = $("#" + TutorApplication.NAME + "-instructor").val();
         let pastExperience: string = $("#" + TutorApplication.NAME + "-Application-Experience").val();
         let notes: string = $("#" + TutorApplication.NAME + "-notes").val();
