@@ -12,7 +12,7 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="TutorApplication-course">
+                    <select id="TutorApplication-course" required>
                         <option value="" disabled selected>N/A</option>
                         {{#each courses}}
                             <option value="">{{this._courseNumber}}</option>
@@ -37,7 +37,7 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="TutorApplication-grade">
+                    <select id="TutorApplication-grade" required>
                         <option value="" disabled selected>N/A</option>
                         <option value="1">A</option>
                         <option value="2">A-</option>
@@ -54,8 +54,8 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="TutorApplication-instructor" type="text" class="validate character-count"
-                           data-length="141">
+                    <input id="TutorApplication-instructor" type="text" class="character-count validate"
+                           data-length="141" maxlength="141">
                     <label for="TutorApplication-instructor">Instructor</label>
                 </div>
             </div>
@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <input id="TutorApplication-Application-Experience" type="text" class="validate character-count"
-                           data-length="141"/>
+                           data-length="141" maxlength="141"/>
                     <label for="TutorApplication-Application-Experience">Past Experience</label>
                 </div>
             </div>
@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <input id="TutorApplication-notes" type="text" class="validate character-count"
-                           data-length="141">
+                           data-length="141" maxlength="141">
                     <label for="TutorApplication-notes">Other notes</label>
                 </div>
             </div>
