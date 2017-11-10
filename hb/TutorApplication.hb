@@ -72,11 +72,9 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <div class="row">
-                        <input id="TutorApplication-notes" type="text" class="validate character-count"
-                               data-length="141">
-                        <label for="TutorApplication-notes">Other notes</label>
-                    </div>
+                    <input id="TutorApplication-notes" type="text" class="validate character-count"
+                           data-length="141">
+                    <label for="TutorApplication-notes">Other notes</label>
                 </div>
             </div>
 
