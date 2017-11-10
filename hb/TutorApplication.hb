@@ -21,19 +21,17 @@
                     <label for="TutorApplication-course">Course to tutor</label>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col s12">
                     <label for="hourlyRate">Hourly Rate</label>
                 </div>
-                <div class="row">
-                    <!-- TODO: Consider using ionRange instead. http://ionden.com/a/plugins/ion.rangeSlider/en.html -->
-                    <div class="range-field col s10">
-                        <input id="hourlyRate" type="range" value="20" min="0" max="50"
-                               oninput="hourlyRateOutput.value = '$' + hourlyRate.value + '/hr'"/>
-                    </div>
-                    <div class="col s2">
-                        <output id="hourlyRateOutput">$20/hr</output>
-                    </div>
+                <div class="range-field col s11">
+                    <input id="hourlyRate" type="range" value="20" min="0" max="50"
+                           oninput="hourlyRateOutput.value = '$' + hourlyRate.value + '/hr'"/>
+                </div>
+                <div class="col s1">
+                    <output id="hourlyRateOutput">$20/hr</output>
                 </div>
             </div>
 
@@ -72,11 +70,9 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <div class="row">
-                        <input id="TutorApplication-notes" type="text" class="validate character-count"
-                               data-length="141">
-                        <label for="TutorApplication-notes">Other notes</label>
-                    </div>
+                    <input id="TutorApplication-notes" type="text" class="validate character-count"
+                           data-length="141">
+                    <label for="TutorApplication-notes">Other notes</label>
                 </div>
             </div>
 

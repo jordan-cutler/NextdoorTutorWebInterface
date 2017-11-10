@@ -2,10 +2,11 @@ class TutorApplication {
 
     private static readonly NAME = "TutorApplication";
     private static readonly ADDTUTORROUTE = "/api/tutors/add";
-    private static readonly COURSESTOTUTORROUTE = "/api/courses";
+    private static readonly COURSESUSERHASNTTUTOREDBEFOREROUTE = "/api/courses/notTutoring";
 
     public static init() {
-        HttpRequestUtil.GetRequest(TutorApplication.COURSESTOTUTORROUTE, HttpRequestUtil.getSessionInfoJson(),
+        HttpRequestUtil.GetRequest(TutorApplication.COURSESUSERHASNTTUTOREDBEFOREROUTE + "/" + User.userId(),
+            HttpRequestUtil.getSessionInfoJson(),
             function(data: any) {
                 let courses = Course.CourseJsonArrayToCourseModelArray(data);
                 TutorApplication.displayApplication(courses);
