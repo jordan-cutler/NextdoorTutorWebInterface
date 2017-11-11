@@ -15,8 +15,7 @@ More ideas here: https://www.uplabs.com/web
                         <!--<img class="center center-align" id="Login-Full-Logo"-->
                              <!--src="assets/images/FinalLogo8.png" alt="Nextdoor Tutor Logo"/>-->
                     <!--</div>-->
-                    <h2 id="Login-logoText" class="card-title orange-text center"
-                          style="font-family: Helvetica; font-weight: 600;">NextdoorTutor</h2>
+                    <h1 id="Login-logoText" class="card-title orange-text center">NextdoorTutor</h1>
                     <div class="g-signin2" id="googleSignIn"></div>
                 </div>
                 <div class="card-action">
