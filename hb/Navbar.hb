@@ -2,7 +2,7 @@
 <nav id="Navbar">
     <div class="z-depth-4 nav-wrapper white black-text">
 
-        <a id="Navbar-logo" href="#" class="brand-logo logo"><img src="assets/images/FinalLogo4.png" alt="NextdoorTutor"></a>
+        <a id="Navbar-logo" href="#" class="brand-logo logo"><img src="assets/images/FinalLogo8.png" alt="NextdoorTutor"></a>
         {{#if user}}
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">

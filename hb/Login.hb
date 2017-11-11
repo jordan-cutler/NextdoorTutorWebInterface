@@ -10,8 +10,13 @@ More ideas here: https://www.uplabs.com/web
     <div class="row">
         <div class="col s8 offset-s2">
             <div class="card white hoverable">
-                <div class="card-content white-text">
-                    <img class ="responsive-img" id="Login-Full-Logo" src="assets/images/FinalLogo5.png" alt="Nextdoor Tutor Logo"/>
+                <div class="card-content">
+                    <div class="card-image">
+                        <img class="center center-align" id="Login-Full-Logo"
+                             src="assets/images/FinalLogo8.png" alt="Nextdoor Tutor Logo"/>
+                    </div>
+                    <h2 id="Login-logoText" class="card-title orange-text center"
+                          style="font-family: Helvetica; font-weight: 600;">NextdoorTutor</h2>
                     <div class="g-signin2" id="googleSignIn"></div>
                 </div>
                 <div class="card-action">
@@ -20,7 +25,8 @@ More ideas here: https://www.uplabs.com/web
                             <a href="https://xkcd.com/501/" class="s4">Terms &amp; Conditions</a>
                         </div>
                         <div class="col s6 center-align">
-                            <a href="https://www.google.com/search?q=cute+cat+picture&ie=utf-8&oe=utf-8" class="s4">Cute Cat Picture</a>
+                            <a href="https://www.google.com/search?q=cute+cat+picture&ie=utf-8&oe=utf-8" class="s4">Cute
+                                Cat Picture</a>
                         </div>
                     </div>
                 </div>
