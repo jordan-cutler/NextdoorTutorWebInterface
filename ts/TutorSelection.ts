@@ -38,7 +38,7 @@ class TutorSelection {
      */
     private static showTutors(data: any, courseNumber: string) {
         TutorSelection.setTutors(TutorSelection.getTutorsArrayFromJsonData(data));
-        $("#indexMain").html(Handlebars.templates[TutorSelection.NAME + ".hb"]({
+        $("#CoursesWithTutors-TutorList").html(Handlebars.templates[TutorSelection.NAME + ".hb"]({
             tutors: TutorSelection.getTutors(),
             courseNumber: courseNumber
         }));

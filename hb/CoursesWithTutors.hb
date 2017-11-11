@@ -1,11 +1,11 @@
-<div class="z-depth-5 collection with-header">
-    <div class="collection-header">
-        <h4 class="condensed light">Tutors are available for the following courses</h4>
+<div class="card blue-grey darken-1">
+    <div class="card-content white-text">
+            <div class="input-field">
+                <i class="material-icons prefix">search</i>
+                <input type="text" id="CoursesWithTutors-search" class="autocomplete">
+                <label for="autocomplete-input">Search the course you'd like a tutor for</label>
+            </div>
     </div>
-
-    {{#each courses}}
-        <a href="#" class="collection-item CoursesWithTutors-clickToGoToTutorSelection" data-course_number="{{this.courseNumber}}">
-            {{this.courseNumber}} {{this.title}}
-        </a>
-    {{/each}}
 </div>
+
+<div id="CoursesWithTutors-TutorList"></div>
