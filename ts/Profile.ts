@@ -4,6 +4,7 @@ class Profile {
     private static readonly NAME = "Profile";
     private static readonly SENDPROFILEPICTUREROUTE = "/api/drive/upload/profilePhoto";
     private static readonly GETPROFILEPICTUREROUTE = "/api/drive/download/profilePhoto";
+    private static readonly GETCOURSESUSERISTUTORINGROUTE = "/api/courses/tutoring";
 
     // Returns a unique url so the browser doesn't cache the previous image if someone just uploaded a new one
     private static getNewProfilePhotoUrl(userId: string, sessionToken: string) {
@@ -12,16 +13,27 @@ class Profile {
     }
 
     public static init() {
-        //TODO: Also send data about what classes you have tutored for.
-        //TODO: Allow user to remove themselves from tutoring for a class
+        HttpRequestUtil.GetRequest(Profile.GETCOURSESUSERISTUTORINGROUTE + "/" + User.userId(),
+            HttpRequestUtil.getSessionInfoJson(), Profile.onSuccessfulRetrievalOfCoursesUserIsTutoring,
+            function(data) { console.log("failed to retrieve courses user is tutoring")}
+        );
+    }
+
+    private static onSuccessfulRetrievalOfCoursesUserIsTutoring(data: any) {
+        let coursesUserIsTutoring: Course[] = Course.CourseJsonArrayToCourseModelArray(data);
+        let profilePhotoUrl: string = "";
+        // Only make the request to get the url if we know they have a picture
+        if (User.profilePhotoId() != null && User.profilePhotoId() != "") {
+            profilePhotoUrl = Profile.getNewProfilePhotoUrl(User.userId(), User.sessionToken());
+        }
         $("#indexMain").html(Handlebars.templates[Profile.NAME + ".hb"]({
             user: User.getUser(),
-            // TODO: Don't make this request if profile photo id is null
-            profilePhotoUrl: Profile.getNewProfilePhotoUrl(User.userId(), User.sessionToken())
+            profilePhotoUrl: profilePhotoUrl,
+            courses: coursesUserIsTutoring
         }));
-
         $('.modal').modal();
         $("#" + Profile.NAME + "-FileUploadInput").change(Profile.onProfilePhotoUploadChange);
+        //TODO: Allow user to remove themselves from tutoring for a class
     }
 
     private static onProfilePhotoUploadChange() {

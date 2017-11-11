@@ -165,27 +165,3 @@ Data Expected as:
         </div>
     </div>
 </div>
-<!--
-                        <div class="row">
-                            <form class="col s12">
-                                <label>Maximum file upload size 5MB.</label>
-                                <div class="file-field input-field">
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <div class="btn">
-                                                <span>Upload Profile Picture</span>
-                                                <input type="file"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" type="text"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
--->
