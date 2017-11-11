@@ -10,7 +10,6 @@ class Tutor {
     private _pastExperience: string;
     private _notes: string;
 
-
     constructor(userId: string, email: string, name: string, profilePhotoUrl: string, hourlyRate: number, courseNumber: string, grade: string, instructor: string, pastExperience: string, notes: string) {
         this._userId = userId;
         this._email = email;

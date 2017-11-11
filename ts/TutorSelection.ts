@@ -1,9 +1,11 @@
 /// <reference path="Tutor.ts" />
+/// <reference path="TutorView.ts" />
 
 class TutorSelection {
 
     private static readonly NAME = "TutorSelection";
     private static readonly GETUTORSFORCOURSEROUTE = "/api/tutors/course";
+    private static tutors: Tutor[];
 
     public static init(courseNumber: string) {
         HttpRequestUtil.GetRequest(TutorSelection.GETUTORSFORCOURSEROUTE,
@@ -18,29 +20,35 @@ class TutorSelection {
     /*
      Response in this form:
      [
-     {
-     "userId": "string",
-     "email": "string",
-     "name": "string",
-     "profilePhotoId": "string",
-     "hourlyRate": 0,
-     "courseNumber": "string",
-     "grade": "string",
-     "instructor": "string",
-     "pastExperience": "string",
-     "notes": "string"
-     }
+        {
+            "userId": "string",
+            "email": "string",
+             "name": "string",
+             "profilePhotoId": "string",
+             "hourlyRate": 0,
+             "courseNumber": "string",
+             "grade": "string",
+             "instructor": "string",
+             "pastExperience": "string",
+             "notes": "string"
+        }
      ]
      Put all of them in Tutor objects similar to how Course was used and pass
      data to handlebars file
      */
     private static showTutors(data: any, courseNumber: string) {
-        let tutors: Tutor[] = TutorSelection.getTutorsArrayFromJsonData(data);
+        TutorSelection.setTutors(TutorSelection.getTutorsArrayFromJsonData(data));
         $("#indexMain").html(Handlebars.templates[TutorSelection.NAME + ".hb"]({
-            tutors: tutors,
+            tutors: TutorSelection.getTutors(),
             courseNumber: courseNumber
         }));
-        // TODO: Add event handlers for each of these tutors to pull up their info
+        $("." + TutorSelection.NAME + "-clickToViewTutor").click(TutorSelection.pullUpTutor);
+    }
+
+    private static pullUpTutor() {
+        let indexOfTutorClicked = $(this).data("tutor_index");
+        let tutor = TutorSelection.getTutors()[indexOfTutorClicked];
+        TutorView.init(tutor);
     }
 
     private static getTutorsArrayFromJsonData(tutorsJsonResponse: any) {
@@ -69,5 +77,13 @@ class TutorSelection {
 
     private static onGetTutorsForCourseError(data: any) {
 
+    }
+
+    private static setTutors(tutors: Tutor[]) {
+        TutorSelection.tutors = tutors;
+    }
+
+    private static getTutors() {
+        return TutorSelection.tutors;
     }
 }
