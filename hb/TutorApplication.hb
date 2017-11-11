@@ -1,5 +1,5 @@
-<div class="card blue-grey darken-3">
-    <div class="card-content white-text">
+<div class="card white">
+    <div class="card-content black-text">
         <div class="row">
             <div class="col s12">
                 <h4 class="card-title condensed light">Fill out your Tutor Profile</h4>

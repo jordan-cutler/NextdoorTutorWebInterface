@@ -1,5 +1,5 @@
-<div class="card blue-grey darken-1">
-    <div class="card-content white-text">
+<div class="card white">
+    <div class="card-content black-text">
             <div class="input-field">
                 <i class="material-icons prefix">search</i>
                 <input type="text" id="CoursesWithTutors-search" class="autocomplete">

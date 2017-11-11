@@ -10,15 +10,16 @@ Data Expected as:
     rating: Rating
 }
 -->
-<!-- BEGIN BASIC INFO + ENDORSEMENTS -->
+<!-- BEGIN BASIC INFO -->
 <div class="row">
     <!-- BEGIN BASIC INFO -->
-    <div class="col s8">
-        <div class="card blue-grey lighten-1 horizontal">
+    <div class="col s12">
+        <div class="card white horizontal">
             <div class="card-image">
                 <img class="responsive-img" id="Profile-Photo" src="{{profilePhotoUrl}}" alt="Profile Photo"/>
                 <div class="row">
-                    <div class="col s12 left-align">
+                    <div class="col s12 offset-s1">
+                        <br/>
                         Contact: {{user._email}}
                     </div>
                 </div>
@@ -27,116 +28,61 @@ Data Expected as:
             <div class="card-stacked">
                 <div class="card-content row">
                     <div class="row">
-                        <span class="card-title col s6">{{user._userName}}</span>
+                        <h3 class="card-title col s6 offset-s1">{{user._userName}}</h3>
                         <a class="waves-effect waves-light btn modal-trigger right-align"
                            href="#Profile-UploadPictureModal">Upload Picture</a>
                     </div>
                     <div class="row">
-                        <div class="col s12 center">
-                            <p>{{#if user._bio}}
-                                <br/>Bio: {{user._bio}}
-                            {{else}}
-                                <br/>We don't know much about this person. Pressure them into giving us their life
-                                story!
-                            {{/if}}</p>
+                        <div class="col s12 offset-s1">
+                            <br/>
+                            <p>
+                                {{#if user._bio}}
+                                    Bio: {{user._bio}}
+                                {{else}}
+                                    Click here to tell everyone a bit about yourself!
+                                {{/if}}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div> <!-- END BASIC INFO -->
+</div>
 
-    <!-- BEGIN ENDORSEMENTS -->
-    <div class="col s4">
-        <div class="col s12">
-            <div class="card green lighten-3">
-                <div class="card-content row">
-                    <span class="card-title col s12">{{rating._averageRating}}</span>
-                    <!-- BEGIN LIST OF ENDORSEMENTS -->
-                    {{#each endorsements}}
-                        <div class="row">
-                            <div class="col s12">
-                                <p>{{this._userName}}: {{this._endorsement}}</p>
-                            </div>
-                        </div>
-                    {{/each}} <!-- END LIST OF ENDORSEMENTS -->
-
-                    <!-- BEGIN IF NO ENDORSEMENTS -->
-                    {{#unless endorsements}}
-                        <div class="row">
-                            <div class="col s12">
-                                <div class="card">
-                                    <div class="card-content center-align">
-                                        <p>You do not have any endorsements... yet!</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {{/unless}} <!-- END IF NO ENDORSEMENTS -->
-                </div>
+<div class="row">
+    <div class="col s8">
+        <div class="z-depth-5 collection with-header">
+            <div class="collection-header">
+                <h4 class="condensed light">Courses you're tutoring</h4>
             </div>
-        </div> <!-- END ENDORSEMENTS -->
-    </div>
-</div> <!-- END BASIC INFO + ENDORSEMENTS -->
 
-
-<!-- BEGIN LIST OF COURSES PERSON IS TUTORING -->
-{{#each courses}}
-    <div class="row">
-        <div class="col s2">
-            <div class="card red lighten-2">
-                <div class="card-content">
-                    <p>|</p>
-                </div>
-            </div>
-        </div>
-        <div class="col s8">
-            <div class="card">
-                <a href="#" class="collection-item CoursesWithTutors-clickToGoToTutorSelection"
-                   data-course_number="{{this.courseNumber}}">
+            {{#each courses}}
+                <a href="#" class="collection-item">
                     {{this.courseNumber}} {{this.title}}
                 </a>
-                <div id="Profile-Book-Tutor-Action" class="card-action">
-                    <a href="#">Book This Tutor</a>
-                </div>
-            </div>
-        </div>
-        <div class="col s2">
-            <div class="card red lighten-2">
-                <div class="card-content">
-                    <p class="right-align">|</p>
-                </div>
-            </div>
+            {{/each}}
         </div>
     </div>
-{{/each}} <!-- END LIST OF COURSES PERSON IS TUTORING -->
 
-<!-- BEGIN IF PERSON IS NOT TUTORING ANY COURSES -->
-{{#unless courses}}
-    <div class="row">
-        <div class="col s2">
-            <div class="card red lighten-2">
-                <div class="card-content">
-                    <p>|</p>
-                </div>
+    <div class="col s4">
+        <div class="card white">
+            <div class="card-content row">
+                <span class="card-title col s12">Endorsements</span>
+                <!-- BEGIN LIST OF ENDORSEMENTS -->
+                {{#each endorsements}}
+                    <div class="row">
+                        <div class="col s12">
+                            <p>{{this._userName}}: {{this._endorsement}}</p>
+                        </div>
+                    </div>
+                {{/each}} <!-- END LIST OF ENDORSEMENTS -->
             </div>
         </div>
-        <div class="col s8">
-            <div class="card">
-                <div class="card-content center-align">
-                    <p>You are not tutoring any classes... yet!</p>
-                </div>
-            </div>
-        </div>
-        <div class="col s2">
-            <div class="card red lighten-2">
-                <div class="card-content">
-                    <p class="right-align">|</p>
-                </div>
-            </div>
-        </div>
-    </div>
-{{/unless}} <!-- END IF PERSON IS NOT TUTORING ANY COURSES -->
+    </div> <!-- END ENDORSEMENTS -->
+</div>
+<!-- BEGIN LIST OF COURSES PERSON IS TUTORING -->
+
 
 <div id="Profile-UploadPictureModal" class="modal">
     <div class="modal-content">

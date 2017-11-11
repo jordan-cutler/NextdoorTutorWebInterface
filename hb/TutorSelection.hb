@@ -1,6 +1,6 @@
 <div class="z-depth-5 collection with-header">
     <div class="collection-header">
-        <h4>Select a tutor for {{courseNumber}}</h4>
+        <h4 class="condensed light">Select a tutor for {{courseNumber}}</h4>
     </div>
 
     {{#each tutors}}

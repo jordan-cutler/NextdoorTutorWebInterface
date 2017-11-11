@@ -9,7 +9,7 @@ More ideas here: https://www.uplabs.com/web
     {{/if}}
     <div class="row">
         <div class="col s8 offset-s2">
-            <div class="card blue-grey darken-1 hoverable">
+            <div class="card white hoverable">
                 <div class="card-content white-text">
                     <img class ="responsive-img" id="Login-Full-Logo" src="assets/images/FinalLogo5.png" alt="Nextdoor Tutor Logo"/>
                     <div class="g-signin2" id="googleSignIn"></div>
