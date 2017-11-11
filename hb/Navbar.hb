@@ -1,8 +1,10 @@
 <!-- Materialize navbars here http://materializecss.com/navbar.html -->
-<nav id="Navbar">
+<nav class="white" id="Navbar">
     <div class="z-depth-4 nav-wrapper white black-text">
 
-        <a id="Navbar-logo" href="#" class="brand-logo logo"><img src="assets/images/FinalLogo8.png" alt="NextdoorTutor"></a>
+        <a id="Navbar-logo" href="#" class="brand-logo orange-text">NextdoorTutor
+            <!--<img src="assets/images/FinalLogoNavbar.png" alt="NextdoorTutor">-->
+        </a>
         {{#if user}}
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">

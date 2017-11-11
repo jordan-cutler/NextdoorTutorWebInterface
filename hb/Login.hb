@@ -11,10 +11,10 @@ More ideas here: https://www.uplabs.com/web
         <div class="col s8 offset-s2">
             <div class="card white hoverable">
                 <div class="card-content">
-                    <div class="card-image">
-                        <img class="center center-align" id="Login-Full-Logo"
-                             src="assets/images/FinalLogo8.png" alt="Nextdoor Tutor Logo"/>
-                    </div>
+                    <!--<div class="card-image">-->
+                        <!--<img class="center center-align" id="Login-Full-Logo"-->
+                             <!--src="assets/images/FinalLogo8.png" alt="Nextdoor Tutor Logo"/>-->
+                    <!--</div>-->
                     <h2 id="Login-logoText" class="card-title orange-text center"
                           style="font-family: Helvetica; font-weight: 600;">NextdoorTutor</h2>
                     <div class="g-signin2" id="googleSignIn"></div>

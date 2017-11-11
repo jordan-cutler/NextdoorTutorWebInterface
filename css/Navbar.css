@@ -1,8 +1,18 @@
-.brand-logo img {
-    margin-left: 10%;
-    height: 60px;
+/*.brand-logo img {*/
+    /*margin-left: 10%;*/
+    /*height: 50px;*/
+/*}*/
+
+.logo {
+    display: inline-block;
+    height: 100%;
 }
 
-nav {
-    background-color: white !important;
+.logo>img {
+    vertical-align: middle;
+}
+
+#Navbar-logo {
+    margin-left: 1%;
+    font-family: Helvetica, sans-serif;
 }
