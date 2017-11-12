@@ -18,10 +18,10 @@
             <div class="col s7">
                 <span>{{this._name}}</span>
             </div>
-            <button class="btn waves-effect waves-light TutorSelection-bookTutorButton col s3" type="submit"
-                    data-tutor_index="{{@index}}">Book This Tutor
+            <a href="mailto:{{this._email}}" class="btn waves-effect waves-light TutorSelection-bookTutorButton col s3" type="submit"
+                    data-tutor_index="{{@index}}">Book Tutor
                 <i class="material-icons right">contact_mail</i>
-            </button>
+            </a>
         </div>
         <div class="collapsible-body">
             {{#if_all this._instructor this._grade}}
@@ -30,7 +30,8 @@
             {{/if_all}}
             <span><b>Past Experience:</b> {{this._pastExperience}}<br></span>
             <span><b>Other Notes:</b> {{this._notes}}<br></span>
-            <span><b>Hourly Wage:</b> ${{this.hourlyRate}}<br></span>
+            <span><b>Hourly Wage:</b> ${{this._hourlyRate}}<br></span>
+            <span><b>Contact:</b> {{this._email}}<br></span>
         </div>
     </li>
     {{/each}}
