@@ -69,9 +69,9 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="TutorApplication-Application-Experience" type="text" class="validate character-count"
+                    <input id="TutorApplication-pastExperience" type="text" class="validate character-count"
                            data-length="141" maxlength="141"/>
-                    <label for="TutorApplication-Application-Experience">Past Experience</label>
+                    <label for="TutorApplication-pasExperience">Past Experience</label>
                 </div>
             </div>
 
@@ -85,7 +85,7 @@
 
             <div class="row">
                 <div class="col s3 offset-s9">
-                    <button id="TutorApplication-Submit" class="btn waves-effect waves-light orange" type="submit"
+                    <button id="TutorApplication-submit" class="btn waves-effect waves-light orange" type="submit"
                             name="action">
                         Submit <i class="material-icons right">send</i>
                     </button>

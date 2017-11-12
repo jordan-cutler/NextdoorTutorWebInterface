@@ -15,18 +15,15 @@ class Login {
     }
 
     private static onSignIn(googleUser: GoogleUser) {
-        let idToken = googleUser.getAuthResponse().id_token;
-
         if (googleUser.getHostedDomain() != "lehigh.edu") {
             signOut(null);
             Materialize.toast("Please ensure you sign in using an @lehigh.edu domain", 4000, 'rounded');
         }
         else {
+            let idToken = googleUser.getAuthResponse().id_token;
             HttpRequestUtil.PostRequest(Login.SIGNINROUTE, {idToken: idToken},
                 Login.onSignInBackendResponseSuccess, Login.onSignInBackendResponseError);
         }
-        // send this to backend, and get an ok response saying it was verified.
-
     }
 
     private static onSignInBackendResponseSuccess(data: any) {

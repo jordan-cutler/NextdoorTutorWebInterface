@@ -7,8 +7,8 @@ class TutorSelection {
     private static readonly GETUTORSFORCOURSEROUTE = "/api/tutors/course";
     private static tutors: Tutor[];
 
-    private static profileImagesSelector = "." + TutorSelection.NAME + "-profileImg";
-    private static imagePreloadersSelector = "." + TutorSelection.NAME + "-imagePreloader";
+    private static readonly ProfileImagesSelector = "." + TutorSelection.NAME + "-profileImg";
+    private static readonly ImagePreloadersSelector = "." + TutorSelection.NAME + "-imagePreloader";
 
     public static init(courseNumber: string) {
         HttpRequestUtil.GetRequest(TutorSelection.GETUTORSFORCOURSEROUTE,
@@ -27,9 +27,9 @@ class TutorSelection {
             tutors: TutorSelection.getTutors(),
             courseNumber: courseNumber
         }));
-        $(TutorSelection.profileImagesSelector).hide();
+        $(TutorSelection.ProfileImagesSelector).hide();
         TutorSelection.setImageSrcAttributesForProfilePictures();
-        ImageUtil.hideImagesUntilLoaded(TutorSelection.imagePreloadersSelector, TutorSelection.profileImagesSelector);
+        ImageUtil.hideImagesUntilLoaded(TutorSelection.ImagePreloadersSelector, TutorSelection.ProfileImagesSelector);
         TutorSelection.setEventHandlers();
     }
 
@@ -38,7 +38,7 @@ class TutorSelection {
     }
 
     private static setImageSrcAttributesForProfilePictures() {
-        $(TutorSelection.profileImagesSelector).each(function (index: number, elem: any) {
+        $(TutorSelection.ProfileImagesSelector).each(function (index: number, elem: any) {
             $(elem).attr("src",
                 ImageUtil.getNewProfilePhotoUrl($(elem).data("tutor_id"), User.sessionToken(), User.userId())
             );

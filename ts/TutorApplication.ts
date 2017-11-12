@@ -1,50 +1,54 @@
 class TutorApplication {
-
     private static readonly NAME = "TutorApplication";
     private static readonly ADDTUTORROUTE = "/api/tutors/add";
     private static readonly COURSESUSERHASNTTUTOREDBEFOREROUTE = "/api/courses/notTutoring";
+    private static readonly SubmitApplicationButtonSelector = "#" + TutorApplication.NAME + "-submit";
+    private static readonly CoursesDropDownSelector = "#" + TutorApplication.NAME + "-course";
+    private static readonly HasTakenCourseCheckboxSelector = "#" + TutorApplication.NAME + "-hasTakenCourseSwitch";
+    private static readonly CoursesDropDownSelectedSelector = TutorApplication.CoursesDropDownSelector + " option:selected";
+    private static readonly GradeDropdownSelectedSelector = "#" + TutorApplication.NAME + "-grade option:selected";
+    private static readonly InstructorInputSelector = "#" + TutorApplication.NAME + "-instructor";
+    private static readonly PastExperienceInputSelector = "#" + TutorApplication.NAME + "-pastExperience";
+    private static readonly OtherNotesInputSelector = "#" + TutorApplication.NAME + "-notes";
+
+    private static readonly GradeRowSelector = "#" + TutorApplication.NAME + "-gradeRow";
+    private static readonly InstructorRowSelector = "#" + TutorApplication.NAME + "-instructorRow";
 
     public static init() {
         HttpRequestUtil.GetRequest(TutorApplication.COURSESUSERHASNTTUTOREDBEFOREROUTE + "/" + User.userId(),
             HttpRequestUtil.getSessionInfoJson(),
-            function(data: any) {
-                let courses = Course.CourseJsonArrayToCourseModelArray(data);
-                TutorApplication.displayApplication(courses);
-            },
+            TutorApplication.onGetCoursesUserHasntTutoredBeforeSuccess,
             function(data: any) {
                 window.alert("Failed to retrieve courses available for tutoring.");
             }
         )
     }
 
+    private static onGetCoursesUserHasntTutoredBeforeSuccess(data: any) {
+        let courses = Course.CourseJsonArrayToCourseModelArray(data);
+        TutorApplication.displayApplication(courses);
+        TutorApplication.setEventHandlers();
+    }
+
     private static displayApplication(courses: Course[]) {
         $("#indexMain").html(Handlebars.templates[TutorApplication.NAME + ".hb"]({
             courses: courses
         }));
-        $('select').material_select();
-        $('input.character-count').characterCounter();
-        $("#" + TutorApplication.NAME + "-Submit").click(TutorApplication.submitApplication);
-        $("#" + TutorApplication.NAME + "-course").change(TutorApplication.enableHasTakenClassSwitch);
-        $("#" + TutorApplication.NAME + "-hasTakenCourseSwitch").on("change", TutorApplication.hideOrShowTakenCourseInputs);
     }
 
     private static submitApplication() {
         let userId: string = User.userId();
         let sessionToken: string = User.sessionToken();
-        let hourlyRateString: string = $("#hourlyRateOutput").val();
-        let hourlyRate: number = Number(hourlyRateString.substring(1, hourlyRateString.length - 3));    // Removes the $ and /hr from the string.
-        let courseNumber: string = $("#" + TutorApplication.NAME + "-course option:selected").text();
+        let hourlyRate: number = Number($("#hourlyRate").val());
+        let courseNumber: string = $(TutorApplication.CoursesDropDownSelectedSelector).text();
         if (courseNumber == "N/A") {
             Materialize.toast("Please select a class to tutor before submitting.", 2000);
             return;
         }
-        let grade: string = $("#" + TutorApplication.NAME + "-grade option:selected").text();
-        if (grade == "Haven't Taken") {
-            grade = null;
-        }
-        let instructor: string = $("#" + TutorApplication.NAME + "-instructor").val();
-        let pastExperience: string = $("#" + TutorApplication.NAME + "-Application-Experience").val();
-        let notes: string = $("#" + TutorApplication.NAME + "-notes").val();
+        let grade: string = $(TutorApplication.GradeDropdownSelectedSelector).text();
+        let instructor: string = $(TutorApplication.InstructorInputSelector).val();
+        let pastExperience: string = $(TutorApplication.PastExperienceInputSelector).val();
+        let notes: string = $(TutorApplication.OtherNotesInputSelector).val();
 
         let tutorData = {
             userId: userId,
@@ -72,7 +76,7 @@ class TutorApplication {
     }
 
     private static enableHasTakenClassSwitch() {
-        $("#" + TutorApplication.NAME + "-hasTakenCourseSwitch").prop("disabled", false);
+        $(TutorApplication.HasTakenCourseCheckboxSelector).prop("disabled", false);
     }
 
     private static hideOrShowTakenCourseInputs() {
@@ -84,12 +88,20 @@ class TutorApplication {
     }
 
     private static showTakenCourseInputs() {
-        $("#" + TutorApplication.NAME + "-gradeRow").show();
-        $("#" + TutorApplication.NAME + "-instructorRow").show();
+        $(TutorApplication.GradeRowSelector).show();
+        $(TutorApplication.InstructorRowSelector).show();
     }
 
     private static hideTakenCourseInputs() {
-        $("#" + TutorApplication.NAME + "-gradeRow").hide();
-        $("#" + TutorApplication.NAME + "-instructorRow").hide();
+        $(TutorApplication.GradeRowSelector).hide();
+        $(TutorApplication.InstructorRowSelector).hide();
+    }
+
+    private static setEventHandlers() {
+        $('select').material_select();
+        $('input.character-count').characterCounter();
+        $(TutorApplication.SubmitApplicationButtonSelector).click(TutorApplication.submitApplication);
+        $(TutorApplication.CoursesDropDownSelector).change(TutorApplication.enableHasTakenClassSwitch);
+        $(TutorApplication.HasTakenCourseCheckboxSelector).change(TutorApplication.hideOrShowTakenCourseInputs);
     }
 }

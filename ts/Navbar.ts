@@ -6,24 +6,31 @@
 class Navbar {
 
     private static readonly NAME = "Navbar";
+    private static readonly LogoSelector = "#" + Navbar.NAME + "-logo";
+    private static readonly SignOutButtonSelector = "." + Navbar.NAME + "-signOutButton";
+    private static readonly TutorAClassButtonSelector = "." + Navbar.NAME + "-tutorAClassButton";
+    private static readonly FindATutorButtonSelector = "." + Navbar.NAME + "-findATutorButton";
+    private static readonly ProfileButtonSelector = "." + Navbar.NAME + "-profileButton";
 
     public static init(user: any) {
         if (user != null) {
-            // TODO (alam): Only pass in the user's first name, this way we say Welcome, Jordan. Instead of Welcome, Jordan Alam. Make sure you update the hb file to handle the change.
             $("#indexNav").html(Handlebars.templates[Navbar.NAME + ".hb"]({
                 user: user
             }));
-
-            $("#" + Navbar.NAME + "-logo").click(Navbar.onHomeClick);
-            $("." + Navbar.NAME + "-signOutButton").click(Navbar.onLogoutClick);
-            $("." + Navbar.NAME + "-tutorAClassButton").click(Navbar.onTutorAClassClick);
-            $("." + Navbar.NAME + "-findATutorButton").click(Navbar.onHomeClick);
-            $("." + Navbar.NAME + "-profileButton").click(Navbar.onProfileClick);
-            $(".button-collapse").sideNav();
+            Navbar.setEventHandlers();
         }
         else {
             $("#indexNav").html(Handlebars.templates[Navbar.NAME + ".hb"]({}));
         }
+    }
+
+    private static setEventHandlers() {
+        $(Navbar.LogoSelector).click(Navbar.onHomeClick);
+        $(Navbar.SignOutButtonSelector).click(Navbar.onLogoutClick);
+        $(Navbar.TutorAClassButtonSelector).click(Navbar.onTutorAClassClick);
+        $(Navbar.FindATutorButtonSelector).click(Navbar.onHomeClick);
+        $(Navbar.ProfileButtonSelector).click(Navbar.onProfileClick);
+        $(".button-collapse").sideNav();
     }
 
     public static onLogoutClick() {

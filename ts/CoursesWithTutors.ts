@@ -5,39 +5,49 @@ class CoursesWithTutors {
 
     private static readonly NAME = "CoursesWithTutors";
     private static readonly COURSESWITHTUTORSROUTE = "/api/courses/haveTutors";
+    private static readonly SearchBarSelector = "#" + CoursesWithTutors.NAME + "-search";
+
     public static init() {
         HttpRequestUtil.GetRequest(CoursesWithTutors.COURSESWITHTUTORSROUTE, HttpRequestUtil.getSessionInfoJson(),
-            function(data: any) {
-                let courses = Course.CourseJsonArrayToCourseModelArray(data);
-                CoursesWithTutors.setHandlebarsTemplate(courses);
-            },
+            CoursesWithTutors.onGetCoursesWithTutorsSuccess,
             function(data: any) {
                 window.alert("Failed to retrieve courses with tutors. Please refresh the page and try again.");
             }
         )
     }
 
-    private static setHandlebarsTemplate(courses: Course[]) {
+    private static onGetCoursesWithTutorsSuccess(data: any) {
+        let courses = Course.CourseJsonArrayToCourseModelArray(data);
+        CoursesWithTutors.setHandlebarsTemplate();
+        CoursesWithTutors.initializeSearchBar(courses);
+    }
+
+    private static setHandlebarsTemplate() {
         $("#indexMain").html(Handlebars.templates[CoursesWithTutors.NAME + ".hb"]({}));
-        let searchObj = { };
+    }
+
+    private static initializeSearchBar(courses: Course[]) {
+        let searchObj: object = { }; // will contain the info we pass to autocomplete so we can populate the search bar
         courses.forEach(function(course: Course) {
-             searchObj[course.courseNumber + " " + course.title] = null;
+            CoursesWithTutors.addCourseToSearchObject(course, searchObj);
         });
-        $("#" + CoursesWithTutors.NAME + "-search").autocomplete({
+        $(CoursesWithTutors.SearchBarSelector).autocomplete({
             data: searchObj,
             limit: 15, // The max amount of results that can be shown at once. Default: Infinity.
+            // execute when someone clicks a selection
             onAutocomplete: function(course) {
                 let courseNumber = course.split(" ")[0];
-                TutorSelection.init(courseNumber);
-                // Callback function when value is autocompleted.
+                CoursesWithTutors.showListOfTutorsForCourseNumber(courseNumber);
             },
             minLength: 0, // The minimum length of the input for the autocomplete to start. Default: 1.
         });
-        $("." + CoursesWithTutors.NAME + "-clickToGoToTutorSelection").click(CoursesWithTutors.clickCourse);
     }
 
-    private static clickCourse() {
-        let courseNumber: string = $(this).data("course_number");
+    private static addCourseToSearchObject(course: Course, searchObject: object) {
+        searchObject[course.courseNumber + " " + course.title] = null;
+    }
+
+    private static showListOfTutorsForCourseNumber(courseNumber: string) {
         TutorSelection.init(courseNumber);
     }
 }

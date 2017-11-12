@@ -16,7 +16,7 @@ Data Expected as:
     <div class="col s12">
         <div class="card white horizontal">
             <div class="card-image">
-                <img class="responsive-img" id="Profile-Photo" src="{{profilePhotoUrl}}" alt="Profile Photo"/>
+                <img class="responsive-img" id="Profile-profilePhoto" src="{{profilePhotoRoute}}" alt="Profile Photo"/>
                 <div class="row">
                     <div class="col s12 offset-s1">
                         <br/>
@@ -84,7 +84,7 @@ Data Expected as:
 <!-- BEGIN LIST OF COURSES PERSON IS TUTORING -->
 
 
-<div id="Profile-UploadPictureModal" class="modal">
+<div id="Profile-uploadPictureModal" class="modal">
     <div class="modal-content">
         <h4>Upload Profile Picture</h4>
         <div class="row">
@@ -95,7 +95,7 @@ Data Expected as:
                         <div class="col s12">
                             <div class="btn orange">
                                 <span>Upload Profile Picture</span>
-                                <input id="Profile-FileUploadInput" type="file"/>
+                                <input id="Profile-fileUploadInput" type="file"/>
                             </div>
                         </div>
                     </div>
