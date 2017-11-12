@@ -24,6 +24,8 @@ class TutorApplication {
         $('select').material_select();
         $('input.character-count').characterCounter();
         $("#" + TutorApplication.NAME + "-Submit").click(TutorApplication.submitApplication);
+        $("#" + TutorApplication.NAME + "-course").change(TutorApplication.enableHasTakenClassSwitch);
+        $("#" + TutorApplication.NAME + "-hasTakenCourseSwitch").on("change", TutorApplication.hideOrShowTakenCourseInputs);
     }
 
     private static submitApplication() {
@@ -67,5 +69,27 @@ class TutorApplication {
     private static onSubmitApplicationError(data: any) {
         console.log("error");
         console.log(data);
+    }
+
+    private static enableHasTakenClassSwitch() {
+        $("#" + TutorApplication.NAME + "-hasTakenCourseSwitch").prop("disabled", false);
+    }
+
+    private static hideOrShowTakenCourseInputs() {
+        if ($(this).is(':checked')) {
+            TutorApplication.showTakenCourseInputs();
+        } else {
+            TutorApplication.hideTakenCourseInputs();
+        }
+    }
+
+    private static showTakenCourseInputs() {
+        $("#" + TutorApplication.NAME + "-gradeRow").show();
+        $("#" + TutorApplication.NAME + "-instructorRow").show();
+    }
+
+    private static hideTakenCourseInputs() {
+        $("#" + TutorApplication.NAME + "-gradeRow").hide();
+        $("#" + TutorApplication.NAME + "-instructorRow").hide();
     }
 }

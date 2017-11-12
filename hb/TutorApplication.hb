@@ -36,10 +36,17 @@
             </div>
 
             <div class="row">
+                <div class="col s12">
+                    <input type="checkbox" id="TutorApplication-hasTakenCourseSwitch" checked="checked" disabled="disabled" />
+                    <label for="TutorApplication-hasTakenCourseSwitch">Have taken course before</label>
+                </div>
+            </div>
+
+            <div id="TutorApplication-gradeRow" class="row">
                 <div class="input-field col s12">
                     <select id="TutorApplication-grade">
-                        <option value="" disabled selected>Haven't Taken</option>
-                        <option value="1">A</option>
+                        <!--<option value="" disabled selected>Haven't Taken</option>-->
+                        <option value="1" selected>A</option>
                         <option value="2">A-</option>
                         <option value="3">B+</option>
                         <option value="4">B</option>
@@ -52,7 +59,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div id="TutorApplication-instructorRow" class="row">
                 <div class="input-field col s12">
                     <input id="TutorApplication-instructor" type="text" class="character-count validate"
                            data-length="141" maxlength="141">
