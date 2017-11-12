@@ -1,4 +1,4 @@
-<div class="card white">
+<div class="card white z-depth-3">
     <div class="card-content black-text">
             <div class="input-field">
                 <i class="material-icons prefix">search</i>

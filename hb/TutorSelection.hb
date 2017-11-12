@@ -1,10 +1,10 @@
-<div class="z-depth-5 collection with-header">
+<div class="z-depth-3 collection with-header">
     <div class="collection-header">
         <h4 class="condensed light">Select a tutor for {{courseNumber}}</h4>
     </div>
 </div>
 
-<ul class="collapsible" data-collapsible="expandable">
+<ul class="collapsible z-depth-3" data-collapsible="expandable">
     {{#each tutors}}
     <li>
         <div class="row collapsible-header valign-wrapper">
@@ -24,7 +24,7 @@
             <div class="col s7">
                 <span>{{this._name}}</span>
             </div>
-            <button class="btn waves-effect waves-light TutorSelection-clickToViewTutor col s3" type="submit"
+            <button class="btn waves-effect waves-light TutorSelection-bookTutorButton col s3" type="submit"
                     data-tutor_index="{{@index}}">Book This Tutor
                 <i class="material-icons right">contact_mail</i>
             </button>

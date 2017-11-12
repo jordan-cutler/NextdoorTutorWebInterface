@@ -25,7 +25,7 @@ class TutorSelection {
             tutors: TutorSelection.getTutors(),
             courseNumber: courseNumber
         }));
-        $("." + TutorSelection.NAME + "-clickToViewTutor").click(TutorSelection.pullUpTutor);
+        $("." + TutorSelection.NAME + "-bookTutorButton").click(TutorSelection.bookTutor);
         let imageClassSelector = "." + TutorSelection.NAME + "-profileImg";
         $(imageClassSelector).hide();
         $('.collapsible').collapsible();
@@ -37,10 +37,8 @@ class TutorSelection {
         ImageUtil.hideImagesUntilLoaded("." + TutorSelection.NAME + "-imagePreloader", imageClassSelector);
     }
 
-    private static pullUpTutor() {
-        let indexOfTutorClicked = $(this).data("tutor_index");
-        let tutor = TutorSelection.getTutors()[indexOfTutorClicked];
-        TutorView.init(tutor);
+    private static bookTutor() {
+
     }
 
     private static onGetTutorsForCourseError(data: any) {
