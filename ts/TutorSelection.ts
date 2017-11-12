@@ -38,11 +38,20 @@ class TutorSelection {
      */
     private static showTutors(data: any, courseNumber: string) {
         TutorSelection.setTutors(TutorSelection.getTutorsArrayFromJsonData(data));
+        TutorSelection.handlebarsAddIfAll();
         $("#CoursesWithTutors-TutorList").html(Handlebars.templates[TutorSelection.NAME + ".hb"]({
             tutors: TutorSelection.getTutors(),
             courseNumber: courseNumber
         }));
         $("." + TutorSelection.NAME + "-clickToViewTutor").click(TutorSelection.pullUpTutor);
+        $('.collapsible').collapsible();
+        $('.TutorSelection-profileImg').each(function (index: number, elem: any) {
+            $(elem).attr("src",
+                TutorSelection.getNewProfilePhotoUrl(
+                    $(elem).data("tutor_id"), User.sessionToken(), User.userId()
+                )
+            )
+        });
     }
 
     private static pullUpTutor() {
@@ -85,5 +94,28 @@ class TutorSelection {
 
     private static getTutors() {
         return TutorSelection.tutors;
+    }
+
+    private static handlebarsAddIfAll() {
+        Handlebars.registerHelper('if_all', function () {
+            var args = [].slice.apply(arguments);
+            var opts = args.pop();
+
+            var fn = opts.fn;
+            for (var i = 0; i < args.length; ++i) {
+                if (args[i])
+                    continue;
+                fn = opts.inverse;
+                break;
+            }
+            return fn(this);
+        });
+    }
+
+    // Returns a unique url so the browser doesn't cache the previous image if someone just uploaded a new one
+    private static getNewProfilePhotoUrl(userId: string, sessionToken: string, askerId: string) {
+        //TODO: Extract this route into an image helper
+        return Profile.GETPROFILEPICTUREROUTE + "/" + userId +
+            "?userId=" + askerId + "&sessionToken=" + sessionToken + "&time=" + new Date().getTime();
     }
 }

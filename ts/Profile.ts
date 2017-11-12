@@ -8,6 +8,7 @@ class Profile {
 
     // Returns a unique url so the browser doesn't cache the previous image if someone just uploaded a new one
     private static getNewProfilePhotoUrl(userId: string, sessionToken: string) {
+        //TODO: Extract this route into an image helper
         return Profile.GETPROFILEPICTUREROUTE + "/" + User.userId() +
             "?userId=" + userId + "&sessionToken=" + sessionToken + "&time=" + new Date().getTime();
     }
