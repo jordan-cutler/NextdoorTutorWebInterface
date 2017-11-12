@@ -1,5 +1,6 @@
 /// <reference path="Tutor.ts" />
 /// <reference path="TutorView.ts" />
+/// <reference path="ImageUtil.ts" />
 
 class TutorSelection {
 
@@ -17,62 +18,29 @@ class TutorSelection {
         );
     }
 
-    /*
-     Response in this form:
-     [
-        {
-            "userId": "string",
-            "email": "string",
-             "name": "string",
-             "profilePhotoId": "string",
-             "hourlyRate": 0,
-             "courseNumber": "string",
-             "grade": "string",
-             "instructor": "string",
-             "pastExperience": "string",
-             "notes": "string"
-        }
-     ]
-     Put all of them in Tutor objects similar to how Course was used and pass
-     data to handlebars file
-     */
     private static showTutors(data: any, courseNumber: string) {
-        TutorSelection.setTutors(TutorSelection.getTutorsArrayFromJsonData(data));
+        TutorSelection.setTutors(Tutor.TutorJsonArrayToTutorModel(data));
+        TutorSelection.handlebarsAddIfAll();
         $("#CoursesWithTutors-TutorList").html(Handlebars.templates[TutorSelection.NAME + ".hb"]({
             tutors: TutorSelection.getTutors(),
             courseNumber: courseNumber
         }));
         $("." + TutorSelection.NAME + "-clickToViewTutor").click(TutorSelection.pullUpTutor);
+        let imageClassSelector = "." + TutorSelection.NAME + "-profileImg";
+        $(imageClassSelector).hide();
+        $('.collapsible').collapsible();
+        $('.TutorSelection-profileImg').each(function (index: number, elem: any) {
+            $(elem).attr("src",
+                ImageUtil.getNewProfilePhotoUrl($(elem).data("tutor_id"), User.sessionToken(), User.userId())
+            );
+        });
+        ImageUtil.hideImagesUntilLoaded("." + TutorSelection.NAME + "-imagePreloader", imageClassSelector);
     }
 
     private static pullUpTutor() {
         let indexOfTutorClicked = $(this).data("tutor_index");
         let tutor = TutorSelection.getTutors()[indexOfTutorClicked];
         TutorView.init(tutor);
-    }
-
-    private static getTutorsArrayFromJsonData(tutorsJsonResponse: any) {
-        let tutors: Tutor[] = [];
-
-        tutorsJsonResponse.forEach(function (tutorJson: any) {
-            let userId: string = tutorJson.userId;
-            let email: string = tutorJson.email;
-            let name: string = tutorJson.name;
-            let profilePhotoUrl: string = tutorJson.profilePhotoId;
-            let hourlyRate: number = Number(tutorJson.hourlyRate);
-            let courseNumber: string = tutorJson.courseNumber;
-            let grade: string = tutorJson.grade;
-            let instructor: string = tutorJson.instructor;
-            let pastExperience: string = tutorJson.pastExperience;
-            let notes: string = tutorJson.notes;
-            let tutor: Tutor =
-                new Tutor(
-                    userId, email, name, profilePhotoUrl, hourlyRate, courseNumber,
-                    grade, instructor, pastExperience, notes
-                );
-            tutors.push(tutor);
-        });
-        return tutors;
     }
 
     private static onGetTutorsForCourseError(data: any) {
@@ -86,4 +54,21 @@ class TutorSelection {
     private static getTutors() {
         return TutorSelection.tutors;
     }
+
+    private static handlebarsAddIfAll() {
+        Handlebars.registerHelper('if_all', function () {
+            let args = [].slice.apply(arguments);
+            let opts = args.pop();
+
+            let fn = opts.fn;
+            for (let i = 0; i < args.length; ++i) {
+                if (args[i])
+                    continue;
+                fn = opts.inverse;
+                break;
+            }
+            return fn(this);
+        });
+    }
+
 }
