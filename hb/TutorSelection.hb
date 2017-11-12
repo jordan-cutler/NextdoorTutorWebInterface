@@ -1,9 +1,3 @@
-<div class="z-depth-3 collection with-header">
-    <div class="collection-header">
-        <h4 class="condensed light">Select a tutor for {{courseNumber}}</h4>
-    </div>
-</div>
-
 <ul class="collapsible z-depth-3" data-collapsible="expandable">
     {{#each tutors}}
     <li>
@@ -31,12 +25,12 @@
         </div>
         <div class="collapsible-body">
             {{#if_all this._instructor this._grade}}
-            <span>Grade: {{this._grade}}<br></span>
-            <span>Instructor: {{this._instructor}}<br></span>
+                <span><b>Grade:</b> {{this._grade}}<br></span>
+                <span><b>Instructor:</b> {{this._instructor}}<br></span>
             {{/if_all}}
-            <span>Past Experience: {{this._pastExperience}}<br></span>
-            <span>Other Notes: {{this._notes}}<br></span>
-            <span>Hourly Wage: ${{this.hourlyRate}}<br></span>
+            <span><b>Past Experience:</b> {{this._pastExperience}}<br></span>
+            <span><b>Other Notes:</b> {{this._notes}}<br></span>
+            <span><b>Hourly Wage:</b> ${{this.hourlyRate}}<br></span>
         </div>
     </li>
     {{/each}}
