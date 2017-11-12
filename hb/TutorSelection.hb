@@ -8,7 +8,19 @@
     {{#each tutors}}
     <li>
         <div class="row collapsible-header valign-wrapper">
-            <img class="TutorSelection-profileImg col s2" src="#" alt="Profile Image Error" data-tutor_id="{{this._userId}}">
+            <!-- Preloader for image -->
+            <div class="preloader-wrapper active TutorSelection-imagePreloader">
+                <div class="spinner-layer spinner-red-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+                </div>
+            </div>
+            <img class="TutorSelection-profileImg col s2" src="#" alt="No profile picture" data-tutor_id="{{this._userId}}">
             <div class="col s7">
                 <span>{{this._name}}</span>
             </div>
@@ -25,7 +37,6 @@
             <span>Past Experience: {{this._pastExperience}}<br></span>
             <span>Other Notes: {{this._notes}}<br></span>
             <span>Hourly Wage: ${{this.hourlyRate}}<br></span>
-            <h6>Picture: </h6> <!-- THIS IS THE ID of the photo that we make a GET for-->
         </div>
     </li>
     {{/each}}

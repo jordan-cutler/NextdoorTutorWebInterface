@@ -1,17 +1,10 @@
 /// <reference path="HttpRequestUtil.ts" />
+/// <reference path="ImageUtil.ts" />
 
 class Profile {
     private static readonly NAME = "Profile";
     private static readonly SENDPROFILEPICTUREROUTE = "/api/drive/upload/profilePhoto";
-    private static readonly GETPROFILEPICTUREROUTE = "/api/drive/download/profilePhoto";
     private static readonly GETCOURSESUSERISTUTORINGROUTE = "/api/courses/tutoring";
-
-    // Returns a unique url so the browser doesn't cache the previous image if someone just uploaded a new one
-    private static getNewProfilePhotoUrl(userId: string, sessionToken: string) {
-        //TODO: Extract this route into an image helper
-        return Profile.GETPROFILEPICTUREROUTE + "/" + User.userId() +
-            "?userId=" + userId + "&sessionToken=" + sessionToken + "&time=" + new Date().getTime();
-    }
 
     public static init() {
         HttpRequestUtil.GetRequest(Profile.GETCOURSESUSERISTUTORINGROUTE + "/" + User.userId(),
@@ -25,7 +18,7 @@ class Profile {
         let profilePhotoUrl: string = "";
         // Only make the request to get the url if we know they have a picture
         if (User.profilePhotoId() != null && User.profilePhotoId() != "") {
-            profilePhotoUrl = Profile.getNewProfilePhotoUrl(User.userId(), User.sessionToken());
+            profilePhotoUrl = ImageUtil.getNewProfilePhotoUrlForCurrentUser(User.userId(), User.sessionToken());
         }
         $("#indexMain").html(Handlebars.templates[Profile.NAME + ".hb"]({
             user: User.getUser(),
@@ -55,6 +48,6 @@ class Profile {
     }
 
     private static onSuccessfulProfilePhotoUpload(data: any) {
-        $("#" + Profile.NAME + "-Photo").attr('src', Profile.getNewProfilePhotoUrl(User.userId(), User.sessionToken()));
+        $("#" + Profile.NAME + "-Photo").attr('src', ImageUtil.getNewProfilePhotoUrlForCurrentUser(User.userId(), User.sessionToken()));
     }
 }
