@@ -85,7 +85,7 @@
 
             <div class="row">
                 <div class="col s3 offset-s9">
-                    <button id="TutorApplication-Submit" class="btn waves-effect waves-light" type="submit"
+                    <button id="TutorApplication-Submit" class="btn waves-effect waves-light orange" type="submit"
                             name="action">
                         Submit <i class="material-icons right">send</i>
                     </button>

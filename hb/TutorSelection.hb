@@ -18,7 +18,7 @@
             <div class="col s7">
                 <span>{{this._name}}</span>
             </div>
-            <a href="mailto:{{this._email}}" class="btn waves-effect waves-light TutorSelection-bookTutorButton col s3" type="submit"
+            <a href="mailto:{{this._email}}" class="btn waves-effect waves-light orange TutorSelection-bookTutorButton col s3" type="submit"
                     data-tutor_index="{{@index}}">Book Tutor
                 <i class="material-icons right">contact_mail</i>
             </a>

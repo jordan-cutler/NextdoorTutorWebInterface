@@ -20,7 +20,7 @@ Data Expected as:
                 <div class="row">
                     <div class="col s12 offset-s1">
                         <br/>
-                        Contact: {{user._email}}
+                        <b>Contact:</b> {{user._email}}
                     </div>
                 </div>
                 <!--<i class="large material-icons col s2">account_circle</i>-->
@@ -29,7 +29,7 @@ Data Expected as:
                 <div class="card-content row">
                     <div class="row">
                         <h3 class="card-title col s6 offset-s1">{{user._userName}}</h3>
-                        <a class="waves-effect waves-light btn modal-trigger right-align"
+                        <a class="waves-effect waves-light orange btn modal-trigger right-align"
                            href="#Profile-UploadPictureModal">Upload Picture</a>
                     </div>
                     <div class="row">
@@ -93,7 +93,7 @@ Data Expected as:
                 <div class="file-field input-field">
                     <div class="row">
                         <div class="col s12">
-                            <div class="btn">
+                            <div class="btn orange">
                                 <span>Upload Profile Picture</span>
                                 <input id="Profile-FileUploadInput" type="file"/>
                             </div>
