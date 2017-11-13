@@ -14,7 +14,7 @@ Data Expected as:
 <div class="row">
     <!-- BEGIN BASIC INFO -->
     <div class="col s12">
-        <div class="card white horizontal">
+        <div class="z-depth-3 card white horizontal">
             <div class="card-image">
                 <img class="responsive-img" id="Profile-profilePhoto" src="{{profilePhotoRoute}}" alt="Profile Photo"/>
                 <div class="row">
@@ -52,9 +52,9 @@ Data Expected as:
 
 <div class="row">
     <div class="col s8">
-        <ul class="z-depth-5 collection with-header">
+        <ul class="z-depth-3 collection with-header">
             <li class="collection-header">
-                <h4 class="condensed light">Courses you're tutoring</h4>
+                <h5 class="condensed light">Courses you're tutoring</h5>
             </li>
 
             {{#each courses}}
@@ -66,9 +66,9 @@ Data Expected as:
     </div>
 
     <div class="col s4">
-        <div class="card white">
+        <div class="z-depth-3 card white">
             <div class="card-content row">
-                <span class="card-title col s12">Endorsements</span>
+                <span class="condensed light card-title col s12">Endorsements</span>
                 <!-- BEGIN LIST OF ENDORSEMENTS -->
                 {{#each endorsements}}
                     <div class="row">
@@ -86,7 +86,7 @@ Data Expected as:
 
 <div id="Profile-uploadPictureModal" class="modal">
     <div class="modal-content">
-        <h4>Upload Profile Picture</h4>
+        <h4>Say hi to the camera!</h4>
         <div class="row">
             <form class="col s12">
                 <label>Maximum file upload size 5MB.</label>

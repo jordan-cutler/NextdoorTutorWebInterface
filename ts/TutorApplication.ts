@@ -40,15 +40,31 @@ class TutorApplication {
         let userId: string = User.userId();
         let sessionToken: string = User.sessionToken();
         let hourlyRate: number = Number($("#hourlyRate").val());
-        let courseNumber: string = $(TutorApplication.CoursesDropDownSelectedSelector).text();
-        if (courseNumber == "N/A") {
-            Materialize.toast("Please select a class to tutor before submitting.", 2000);
+        let courseNumber: string = $(TutorApplication.CoursesDropDownSelectedSelector).text().split(" ")[0];
+        if (TutorApplication.courseNotSelected(courseNumber)) {
+            Materialize.toast("Select a class to tutor before submitting.", 3000);
             return;
         }
-        let grade: string = $(TutorApplication.GradeDropdownSelectedSelector).text();
-        let instructor: string = $(TutorApplication.InstructorInputSelector).val();
+        let grade: string = "";
+        let instructor: string = "";
+
+        if (TutorApplication.userHasTakenClassBefore()) {
+            grade = $(TutorApplication.GradeDropdownSelectedSelector).text();
+            instructor = $(TutorApplication.InstructorInputSelector).val();
+            if (TutorApplication.gradeNotSelected(grade)) {
+                Materialize.toast("Let us know your grade before submitting", 3000);
+                return;
+            }
+
+            if (TutorApplication.instructorNotSelected(instructor)) {
+                Materialize.toast("Let us know who your professor was before submitting.", 3000);
+                return;
+            }
+        }
+
         let pastExperience: string = $(TutorApplication.PastExperienceInputSelector).val();
         let notes: string = $(TutorApplication.OtherNotesInputSelector).val();
+
 
         let tutorData = {
             userId: userId,
@@ -62,12 +78,11 @@ class TutorApplication {
         };
 
         HttpRequestUtil.PostRequest(TutorApplication.ADDTUTORROUTE, tutorData,
-            TutorApplication.onSubmitApplicationSuccess, TutorApplication.onSubmitApplicationError);
-    }
-
-    private static onSubmitApplicationSuccess(data: any) {
-        console.log("success");
-        console.log(data);
+            function(data: any) {
+                Materialize.toast("Thanks for becoming a " + courseNumber + " tutor!", 3000);
+                CoursesWithTutors.init();
+            },
+            TutorApplication.onSubmitApplicationError);
     }
 
     private static onSubmitApplicationError(data: any) {
@@ -75,12 +90,28 @@ class TutorApplication {
         console.log(data);
     }
 
+    private static courseNotSelected(courseNumber: string) {
+        return courseNumber == "N/A" || courseNumber == null;
+    }
+
+    private static gradeNotSelected(grade: string) {
+        return grade == "" || grade == null;
+    }
+
+    private static instructorNotSelected(instructor: string) {
+        return instructor == "" || instructor == null;
+    }
+
     private static enableHasTakenClassSwitch() {
         $(TutorApplication.HasTakenCourseCheckboxSelector).prop("disabled", false);
     }
 
+    private static userHasTakenClassBefore() {
+        return $(TutorApplication.HasTakenCourseCheckboxSelector).is(":checked");
+    }
+
     private static hideOrShowTakenCourseInputs() {
-        if ($(this).is(':checked')) {
+        if (TutorApplication.userHasTakenClassBefore()) {
             TutorApplication.showTakenCourseInputs();
         } else {
             TutorApplication.hideTakenCourseInputs();
