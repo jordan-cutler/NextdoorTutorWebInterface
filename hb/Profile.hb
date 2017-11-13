@@ -52,17 +52,17 @@ Data Expected as:
 
 <div class="row">
     <div class="col s8">
-        <ul class="z-depth-3 collection with-header">
-            <li class="collection-header">
+        <div class="z-depth-3 collection with-header">
+            <div class="collection-header">
                 <h5 class="condensed light">Courses you're tutoring</h5>
-            </li>
+            </div>
 
             {{#each courses}}
-                <li class="collection-item">
+                <a href="#" data-courseNumber="{{this.courseNumber}}" class="Profile-courseUserIsTutoring collection-item">
                     {{this.courseNumber}} {{this.title}}
-                </li>
+                </a>
             {{/each}}
-        </ul>
+        </div>
     </div>
 
     <div class="col s4">
@@ -84,6 +84,8 @@ Data Expected as:
 <!-- BEGIN LIST OF COURSES PERSON IS TUTORING -->
 
 
+
+<!-- Upload Picture Modal-->
 <div id="Profile-uploadPictureModal" class="modal">
     <div class="modal-content">
         <h4>Say hi to the camera!</h4>

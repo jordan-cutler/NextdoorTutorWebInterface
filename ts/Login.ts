@@ -1,13 +1,12 @@
 /// <reference path="HttpRequestUtil.ts" />
 /// <reference path="User.ts" />
+/// <reference path="UserApiUtil.ts" />
 
 import GoogleUser = gapi.auth2.GoogleUser;
 
 class Login {
 
     private static readonly NAME = "Login";
-    private static readonly SIGNINROUTE = "/user/loginWithGoogle";
-    private static readonly SIGNOUTROUTE = "/user/logout";
 
     public static init(data: any) {
         $("#indexMain").html(Handlebars.templates[Login.NAME + ".hb"](data));
@@ -21,8 +20,7 @@ class Login {
         }
         else {
             let idToken = googleUser.getAuthResponse().id_token;
-            HttpRequestUtil.PostRequest(Login.SIGNINROUTE, {idToken: idToken},
-                Login.onSignInBackendResponseSuccess, Login.onSignInBackendResponseError);
+            UserApiUtil.signInUser(idToken, Login.onSignInBackendResponseSuccess, Login.onSignInBackendResponseError);
         }
     }
 
@@ -47,9 +45,7 @@ class Login {
     }
 
     public static logout() {
-        HttpRequestUtil.PostRequest(Login.SIGNOUTROUTE,
-            HttpRequestUtil.getSessionInfoJson(),
-            HttpRequestUtil.EMPTYFUNCTION, HttpRequestUtil.EMPTYFUNCTION);
+        UserApiUtil.signOutUser(HttpRequestUtil.EMPTYFUNCTION, HttpRequestUtil.EMPTYFUNCTION);
         // THIS LINE MUST COME AFTER THE POST REQUEST TO SIGN OUT
         $("#indexNav").html("");
         User.destroyUser();

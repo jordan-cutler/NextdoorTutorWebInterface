@@ -1,18 +1,19 @@
 /// <reference path="Tutor.ts" />
 /// <reference path="ImageUtil.ts" />
+/// <reference path="TutorApiUtil.ts" />
 
 class TutorSelection {
 
     private static readonly NAME = "TutorSelection";
-    private static readonly GETUTORSFORCOURSEROUTE = "/api/tutors/course";
+
     private static tutors: Tutor[];
 
     private static readonly ProfileImagesSelector = "." + TutorSelection.NAME + "-profileImg";
     private static readonly ImagePreloadersSelector = "." + TutorSelection.NAME + "-imagePreloader";
 
     public static init(courseNumber: string) {
-        HttpRequestUtil.GetRequest(TutorSelection.GETUTORSFORCOURSEROUTE,
-            {courseNumber: courseNumber, userId: User.userId(), sessionToken: User.sessionToken()},
+        TutorApiUtil.getTutorsForCourse(
+            courseNumber,
             function (data: any) {
                 TutorSelection.showTutors(data, courseNumber);
             },

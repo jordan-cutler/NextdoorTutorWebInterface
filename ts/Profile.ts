@@ -1,17 +1,20 @@
 /// <reference path="HttpRequestUtil.ts" />
 /// <reference path="ImageUtil.ts" />
+/// <reference path="Course.ts" />
+/// <reference path="CourseApiUtil.ts" />
 
 class Profile {
     private static readonly NAME = "Profile";
-    private static readonly GETCOURSESUSERISTUTORINGROUTE = "/api/courses/tutoring";
 
     private static readonly FileUploadInputSelector = "#" + Profile.NAME + "-fileUploadInput";
     private static readonly UploadPictureModalSelector = "#" + Profile.NAME + "-uploadPictureModal";
     private static readonly ProfilePhotoSelector = "#" + Profile.NAME + "-profilePhoto";
+    private static readonly CourseUserIsTutoringSelector = "#" + Profile.NAME + "-courseUserIsTutoring";
 
     public static init() {
-        HttpRequestUtil.GetRequest(Profile.GETCOURSESUSERISTUTORINGROUTE + "/" + User.userId(),
-            HttpRequestUtil.getSessionInfoJson(), Profile.onSuccessfulRetrievalOfCoursesUserIsTutoring,
+        CourseApiUtil.getCoursesUserIsTutoring(
+            User.userId(),
+            Profile.onSuccessfulRetrievalOfCoursesUserIsTutoring,
             function(data) { console.log("failed to retrieve courses user is tutoring")}
         );
     }
@@ -52,9 +55,14 @@ class Profile {
         $(Profile.ProfilePhotoSelector).attr('src', ImageUtil.getNewProfilePhotoUrlForCurrentUser(User.userId(), User.sessionToken()));
     }
 
+    private static onCourseUserIsTutoringClick() {
+
+    }
+
     private static setEventHandlers() {
         $('.modal').modal();
         $(Profile.FileUploadInputSelector).change(Profile.onProfilePhotoUploadChange);
+        $(Profile.CourseUserIsTutoringSelector).click(Profile.onCourseUserIsTutoringClick);
     }
 
     private static closeUploadFileModal() {

@@ -1,19 +1,18 @@
 /// <reference path="Course.ts" />
 /// <reference path="TutorSelection.ts" />
+/// <reference path="CourseApiUtil.ts" />
 
 class CoursesWithTutors {
 
     private static readonly NAME = "CoursesWithTutors";
-    private static readonly COURSESWITHTUTORSROUTE = "/api/courses/haveTutors";
     private static readonly SearchBarSelector = "#" + CoursesWithTutors.NAME + "-search";
 
     public static init() {
-        HttpRequestUtil.GetRequest(CoursesWithTutors.COURSESWITHTUTORSROUTE, HttpRequestUtil.getSessionInfoJson(),
+        CourseApiUtil.getCoursesWithTutors(
             CoursesWithTutors.onGetCoursesWithTutorsSuccess,
             function(data: any) {
                 window.alert("Failed to retrieve courses with tutors. Please refresh the page and try again.");
-            }
-        )
+            });
     }
 
     private static onGetCoursesWithTutorsSuccess(data: any) {

@@ -1,7 +1,9 @@
+/// <reference path="TutorApiUtil.ts" />
+/// <reference path="CourseApiUtil.ts" />
+
 class TutorApplication {
     private static readonly NAME = "TutorApplication";
-    private static readonly ADDTUTORROUTE = "/api/tutors/add";
-    private static readonly COURSESUSERHASNTTUTOREDBEFOREROUTE = "/api/courses/notTutoring";
+
     private static readonly SubmitApplicationButtonSelector = "#" + TutorApplication.NAME + "-submit";
     private static readonly CoursesDropDownSelector = "#" + TutorApplication.NAME + "-course";
     private static readonly HasTakenCourseCheckboxSelector = "#" + TutorApplication.NAME + "-hasTakenCourseSwitch";
@@ -15,13 +17,12 @@ class TutorApplication {
     private static readonly InstructorRowSelector = "#" + TutorApplication.NAME + "-instructorRow";
 
     public static init() {
-        HttpRequestUtil.GetRequest(TutorApplication.COURSESUSERHASNTTUTOREDBEFOREROUTE + "/" + User.userId(),
-            HttpRequestUtil.getSessionInfoJson(),
+        CourseApiUtil.getCoursesCurrentUserHasntTutoredBefore(
             TutorApplication.onGetCoursesUserHasntTutoredBeforeSuccess,
-            function(data: any) {
+            function (data: any) {
                 window.alert("Failed to retrieve courses available for tutoring.");
             }
-        )
+        );
     }
 
     private static onGetCoursesUserHasntTutoredBeforeSuccess(data: any) {
@@ -65,20 +66,8 @@ class TutorApplication {
         let pastExperience: string = $(TutorApplication.PastExperienceInputSelector).val();
         let notes: string = $(TutorApplication.OtherNotesInputSelector).val();
 
-
-        let tutorData = {
-            userId: userId,
-            hourlyRate: hourlyRate,
-            courseNumber: courseNumber,
-            grade: grade,
-            instructor: instructor,
-            pastExperience: pastExperience,
-            notes: notes,
-            sessionToken: sessionToken
-        };
-
-        HttpRequestUtil.PostRequest(TutorApplication.ADDTUTORROUTE, tutorData,
-            function(data: any) {
+        TutorApiUtil.addTutor(userId, hourlyRate, courseNumber, grade, instructor, pastExperience, notes, sessionToken,
+            function (data: any) {
                 Materialize.toast("Thanks for becoming a " + courseNumber + " tutor!", 3000);
                 CoursesWithTutors.init();
             },
