@@ -1,9 +1,5 @@
 class HttpRequestUtil {
 
-    // used for headers
-    public static readonly CONTENT_LENGTH = "Content-Length";
-    public static readonly AUTHORIZATION = "Authorization";
-
     public static readonly EMPTYFUNCTION = function() {};
     public static getSessionInfoJson() {
         return { userId: User.userId(), sessionToken: User.sessionToken() };

@@ -30,7 +30,7 @@ Data Expected as:
                     <div class="row">
                         <h3 class="card-title col s6 offset-s1">{{user._userName}}</h3>
                         <a class="waves-effect waves-light orange btn modal-trigger right-align"
-                           href="#Profile-UploadPictureModal">Upload Picture</a>
+                           href="#Profile-uploadPictureModal">Upload Picture</a>
                     </div>
                     <div class="row">
                         <div class="col s12 offset-s1">
@@ -52,17 +52,17 @@ Data Expected as:
 
 <div class="row">
     <div class="col s8">
-        <div class="z-depth-5 collection with-header">
-            <div class="collection-header">
+        <ul class="z-depth-5 collection with-header">
+            <li class="collection-header">
                 <h4 class="condensed light">Courses you're tutoring</h4>
-            </div>
+            </li>
 
             {{#each courses}}
-                <a href="#" class="collection-item">
+                <li class="collection-item">
                     {{this.courseNumber}} {{this.title}}
-                </a>
+                </li>
             {{/each}}
-        </div>
+        </ul>
     </div>
 
     <div class="col s4">

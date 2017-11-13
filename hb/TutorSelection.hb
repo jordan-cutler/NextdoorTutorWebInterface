@@ -18,10 +18,12 @@
             <div class="col s7">
                 <span>{{this._name}}</span>
             </div>
-            <a href="mailto:{{this._email}}" id="TutorSelection-bookTutorButton" class="btn waves-effect waves-light orange col s3" type="submit"
-                    data-tutor_index="{{@index}}">Book Tutor
-                <i class="material-icons right">contact_mail</i>
-            </a>
+            <a id="TutorSelection-bookTutorButton" class="btn tooltipped" data-position="top" data-delay="50"
+               data-tooltip="Contact them at {{this._email}}">Book Tutor <i class="material-icons right">contact_mail</i></a>
+            <!--<a href="mailto:{{this._email}}" id="TutorSelection-bookTutorButton" class="btn waves-effect waves-light orange col s3" type="submit"-->
+                    <!--data-tutor_index="{{@index}}">Book Tutor-->
+                <!--<i class="material-icons right">contact_mail</i>-->
+            <!--</a>-->
         </div>
         <div class="collapsible-body">
             {{#if_all this._instructor this._grade}}

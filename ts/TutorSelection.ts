@@ -47,6 +47,7 @@ class TutorSelection {
 
     private static setEventHandlers() {
         $('.collapsible').collapsible();
+        $('.tooltipped').tooltip({delay: 50});
     }
 
     private static setTutors(tutors: Tutor[]) {

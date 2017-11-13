@@ -3,7 +3,6 @@
 
 class Profile {
     private static readonly NAME = "Profile";
-    private static readonly SENDPROFILEPICTUREROUTE = "/api/drive/upload/profilePhoto";
     private static readonly GETCOURSESUSERISTUTORINGROUTE = "/api/courses/tutoring";
 
     private static readonly FileUploadInputSelector = "#" + Profile.NAME + "-fileUploadInput";
@@ -40,17 +39,12 @@ class Profile {
     private static onProfilePhotoUploadChange() {
         let input: HTMLInputElement = <HTMLInputElement>document.getElementById(Profile.NAME + "-fileUploadInput");
         let fileInput: File = input.files[0];
-        $.ajax({
-            url: Profile.SENDPROFILEPICTUREROUTE + "/" + User.userId(),
-            method: 'POST',
-            data: fileInput,
-            processData: false,  // tell jQuery not to process the data as a string
-            contentType: fileInput.type,
-            headers: {"Authorization": User.sessionToken()},
-            success: Profile.onSuccessfulProfilePhotoUpload,
+        ImageUtil.uploadProfilePictureToServer(
+            fileInput,
+            Profile.onSuccessfulProfilePhotoUpload,
             // TODO: Add error function
-            error: HttpRequestUtil.EMPTYFUNCTION
-        });
+            HttpRequestUtil.EMPTYFUNCTION
+        );
         Profile.closeUploadFileModal();
     }
 
