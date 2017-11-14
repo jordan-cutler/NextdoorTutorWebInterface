@@ -40,15 +40,12 @@
 
             <!-- TODO: This does not align properly on the right side-->
             <div class="col s6">
-                <button id="EditCourseModal-submit" class="btn waves-effect waves-light orange center" type="submit"
+                <button id="EditCourseModal-applyChanges" class="btn waves-effect waves-light orange center" type="submit"
                         name="action">
                     Apply Changes <i class="material-icons right">done</i>
                 </button>
             </div>
 
-            <!--<div class="col s5 offset-s5">-->
-                <!---->
-            <!--</div>-->
         </div>
     </div>
 </div>

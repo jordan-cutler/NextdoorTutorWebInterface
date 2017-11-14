@@ -34,4 +34,28 @@ class HttpRequestUtil {
             }
         );
     }
+
+    public static DeleteRequest(route: string, params: object, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
+        $.ajax({
+            url: route,
+            type: "DELETE",
+            data: JSON.stringify(params),
+            contentType: "application/json",
+            dataType: "json",
+            success: successFunction,
+            error: errorFunction
+        })
+    }
+
+    public static PutRequest(route: string, params: object, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
+        $.ajax({
+            url: route,
+            type: "PUT",
+            data: JSON.stringify(params),
+            contentType: "application/json",
+            dataType: "json",
+            success: successFunction,
+            error: errorFunction
+        })
+    }
 }
