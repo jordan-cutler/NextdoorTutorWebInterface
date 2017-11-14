@@ -20,12 +20,12 @@ More ideas here: https://www.uplabs.com/web
                 </div>
                 <div class="card-action">
                     <div class="row valign-wrapper">
-                        <div class="col s6 center-align">
-                            <a href="https://xkcd.com/501/" class="s4">Terms &amp; Conditions</a>
+                        <div class="col s6 center">
+                            <a href="https://xkcd.com/501/" class="s4 center-align">Terms &amp; Conditions</a>
                         </div>
-                        <div class="col s6 center-align">
-                            <a href="https://www.google.com/search?q=cute+cat+picture&ie=utf-8&oe=utf-8" class="s4">Cute
-                                Cat Picture</a>
+                        <div class="col s6 center">
+                            <a href="https://www.google.com/search?q=cute+cat+picture&ie=utf-8&oe=utf-8" class="s4 center-align">
+                                Cute Cat Picture</a>
                         </div>
                     </div>
                 </div>

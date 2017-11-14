@@ -32,15 +32,15 @@
 
         <div class="row">
 
-            <div class="col s6">
-                <button id="EditCourseModal-stopTutoring" class="btn waves-effect waves-light red center" type="submit" name="action">
+            <div class="col s6 center">
+                <button id="EditCourseModal-stopTutoring" class="btn waves-effect waves-light red" type="submit" name="action">
                     Stop Tutoring Course <i class="material-icons left">clear</i>
                 </button>
             </div>
 
             <!-- TODO: This does not align properly on the right side-->
-            <div class="col s6">
-                <button id="EditCourseModal-applyChanges" class="btn waves-effect waves-light orange center" type="submit"
+            <div class="col s6 center">
+                <button id="EditCourseModal-applyChanges" class="btn waves-effect waves-light orange" type="submit"
                         name="action">
                     Apply Changes <i class="material-icons right">done</i>
                 </button>

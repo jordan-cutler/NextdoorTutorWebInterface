@@ -11,6 +11,14 @@ class Profile {
     private static readonly ProfilePhotoSelector = "#" + Profile.NAME + "-profilePhoto";
     private static readonly CourseUserIsTutoringSelector = "." + Profile.NAME + "-courseUserIsTutoring";
 
+    // Modal selectors
+    private static readonly EditCourseModalSelector = "#EditCourseModal-courseEditModal";
+    private static readonly StopTutoringCourseButtonSelector = "#EditCourseModal-stopTutoring";
+    private static readonly ApplyChangesToCourseButtonSelector = "#EditCourseModal-applyChanges";
+    private static readonly HourlyRateInputSelector = "#hourlyRate";
+    private static readonly PastExperienceInputSelector = "#EditCourseModal-pastExperience";
+    private static readonly NotesInputSelector = "#EditCourseModal-notes";
+
     public static init() {
         CourseApiUtil.getCoursesUserIsTutoring(
             User.userId(),
@@ -73,37 +81,48 @@ class Profile {
         $("#indexModal").html(Handlebars.templates["EditCourseModal.hb"]({
             tutor: tutor
         }));
+        Profile.setModalEventHandlers(tutor.courseNumber);
+    }
+
+    private static onStopTutoringCourseClick(courseNumber: string) {
+        TutorApiUtil.removeCurrentUserFromCourseTutor(
+            courseNumber,
+            function (data: any) {
+                Materialize.toast("Successfully removed you from tutoring " + courseNumber + ".", 3000);
+                Profile.init();
+            },
+            function (data: any) {
+                Materialize.toast("Failed to remove you as a tutor for the course. Try again soon.", 3000);
+            }
+        )
+    }
+
+    private static onApplyChangesToCourseClick(courseNumber: string, updatedHourlyRate: number, updatedPastExperience: string, updatedNotes: string) {
+        TutorApiUtil.updateTutorAsCurrentUser(
+            courseNumber, updatedHourlyRate, updatedPastExperience, updatedNotes,
+            function(data: any) {
+                $(Profile.EditCourseModalSelector).modal('close');
+                Materialize.toast("Successfully edited your tutor profile for " + courseNumber, 3000);
+            },
+            function(data: any) {
+                Materialize.toast("Failed to update your tutor profile. Try again soon.", 3000);
+            }
+        )
+    }
+
+    private static setModalEventHandlers(courseNumber: string) {
         $('.modal').modal();
         $('select').material_select();
         $('input.character-count').characterCounter();
-        $("#EditCourseModal-courseEditModal").modal('open');
-        $("#EditCourseModal-stopTutoring").click(function () {
-            TutorApiUtil.removeCurrentUserFromCourseTutor(
-                tutor.courseNumber,
-                function (data: any) {
-                    $("#EditCourseModal-courseEditModal").modal('close');
-                    Materialize.toast("Successfully removed you from tutoring " + tutor.courseNumber + ".", 3000);
-                    Profile.init();
-                },
-                function (data: any) {
-                    Materialize.toast("Failed to remove you as a tutor for the course. Try again soon.", 3000);
-                }
-            )
+        $(Profile.EditCourseModalSelector).modal('open');
+        $(Profile.StopTutoringCourseButtonSelector).click(function () {
+            Profile.onStopTutoringCourseClick(courseNumber);
         });
-        $("#EditCourseModal-applyChanges").click(function () {
-            let updatedHourlyRate = Number($("#hourlyRate").val());
-            let updatedPastExperience = $("#EditCourseModal-pastExperience").val();
-            let updatedNotes = $("#EditCourseModal-notes").val();
-            TutorApiUtil.updateTutorAsCurrentUser(
-                tutor.courseNumber, updatedHourlyRate, updatedPastExperience, updatedNotes,
-                function(data: any) {
-                    $("#EditCourseModal-courseEditModal").modal('close');
-                    Materialize.toast("Successfully edited your tutor profile for " + tutor.courseNumber, 3000);
-                },
-                function(data: any) {
-                    Materialize.toast("Failed to update your tutor profile. Try again soon.", 3000);
-                }
-            )
+        $(Profile.ApplyChangesToCourseButtonSelector).click(function () {
+            let updatedHourlyRate = Number($(Profile.HourlyRateInputSelector).val());
+            let updatedPastExperience = $(Profile.PastExperienceInputSelector).val();
+            let updatedNotes = $(Profile.NotesInputSelector).val();
+            Profile.onApplyChangesToCourseClick(courseNumber, updatedHourlyRate, updatedPastExperience, updatedNotes);
         });
         Materialize.updateTextFields();
     }
