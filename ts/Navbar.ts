@@ -37,22 +37,18 @@ class Navbar {
 
     public static onLogoutClick() {
         Login.logout();
-        //$(".button-collapse").sideNav('hide');
     }
 
     public static onTutorAClassClick() {
         TutorApplication.init();
-        //$(".button-collapse").sideNav('hide');
     }
 
     public static onHomeClick() {
         CoursesWithTutors.init();
-        //$(".button-collapse").sideNav('hide');
     }
 
     public static onProfileClick() {
         Profile.init();
-        //$(".button-collapse").sideNav('hide');
     }
 
 }

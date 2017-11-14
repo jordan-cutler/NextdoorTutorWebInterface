@@ -6,7 +6,7 @@
             <!--<img src="assets/images/FinalLogoNavbar.png" alt="NextdoorTutor">-->
         </a>
         {{#if user}}
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a href="#" data-activates="Navbar-sideNav" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li>
                 <a class="Navbar-findATutorButton black-text" href="#">Find a tutor</a>
@@ -27,7 +27,7 @@
             </li>
         </ul>
 
-        <ul class="side-nav" id="mobile-demo">
+        <ul class="side-nav" id="Navbar-sideNav">
             <li>
                 <a class="Navbar-findATutorButton" href="#">Find a tutor</a>
             </li>
