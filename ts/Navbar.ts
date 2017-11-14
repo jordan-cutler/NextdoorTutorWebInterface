@@ -30,27 +30,29 @@ class Navbar {
         $(Navbar.TutorAClassButtonSelector).click(Navbar.onTutorAClassClick);
         $(Navbar.FindATutorButtonSelector).click(Navbar.onHomeClick);
         $(Navbar.ProfileButtonSelector).click(Navbar.onProfileClick);
-        $(".button-collapse").sideNav();
+        $(".button-collapse").sideNav({
+            closeOnClick: true
+        });
     }
 
     public static onLogoutClick() {
         Login.logout();
-        $(".button-collapse").sideNav('hide');
+        //$(".button-collapse").sideNav('hide');
     }
 
     public static onTutorAClassClick() {
         TutorApplication.init();
-        $(".button-collapse").sideNav('hide');
+        //$(".button-collapse").sideNav('hide');
     }
 
     public static onHomeClick() {
         CoursesWithTutors.init();
-        $(".button-collapse").sideNav('hide');
+        //$(".button-collapse").sideNav('hide');
     }
 
     public static onProfileClick() {
         Profile.init();
-        $(".button-collapse").sideNav('hide');
+        //$(".button-collapse").sideNav('hide');
     }
 
 }

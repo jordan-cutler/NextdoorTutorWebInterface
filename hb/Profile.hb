@@ -51,7 +51,7 @@ Data Expected as:
 </div>
 
 <div class="row">
-    <div class="col s8">
+    <div class="col s12 m8">
         <div class="z-depth-3 collection with-header">
             <div class="collection-header">
                 <h5 class="condensed light">Courses you're tutoring</h5>
@@ -65,7 +65,7 @@ Data Expected as:
         </div>
     </div>
 
-    <div class="col s4">
+    <div class="col s12 m4">
         <div class="z-depth-3 card white">
             <div class="card-content row">
                 <span class="condensed light card-title col s12">Endorsements</span>
