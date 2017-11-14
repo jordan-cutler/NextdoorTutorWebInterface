@@ -5,11 +5,11 @@
             <div class="col s12">
                 <label for="hourlyRate">Hourly Rate</label>
             </div>
-            <div class="range-field col s11">
+            <div class="range-field col s10 m11">
                 <input id="hourlyRate" type="range" value="{{tutor._hourlyRate}}" min="0" max="50"
                        oninput="hourlyRateOutput.value = '$' + hourlyRate.value + '/hr'"/>
             </div>
-            <div class="col s1">
+            <div class="col s2 m1">
                 <output id="hourlyRateOutput">${{tutor._hourlyRate}}/hr</output>
             </div>
         </div>
@@ -32,17 +32,17 @@
 
         <div class="row">
 
-            <div class="col s6 center">
-                <button id="EditCourseModal-stopTutoring" class="btn waves-effect waves-light red" type="submit" name="action">
-                    Stop Tutoring Course <i class="material-icons left">clear</i>
-                </button>
+            <div class="col s12 m6 center">
+                <a id="EditCourseModal-stopTutoring" class="btn waves-effect waves-light red" type="submit" name="action">
+                    Stop Tutoring Course <i class="material-icons right">clear</i>
+                </a>
             </div>
 
-            <div class="col s6 center">
-                <button id="EditCourseModal-applyChanges" class="btn waves-effect waves-light orange" type="submit"
+            <div class="col s12 m6 center">
+                <a id="EditCourseModal-applyChanges" class="btn waves-effect waves-light orange" type="submit"
                         name="action">
                     Apply Changes <i class="material-icons right">done</i>
-                </button>
+                </a>
             </div>
 
         </div>
