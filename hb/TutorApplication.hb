@@ -26,11 +26,11 @@
                 <div class="col s12">
                     <label for="hourlyRate">Hourly Rate</label>
                 </div>
-                <div class="range-field col s11">
+                <div class="range-field col s10 m11">
                     <input id="hourlyRate" type="range" value="20" min="0" max="50"
                            oninput="hourlyRateOutput.value = '$' + hourlyRate.value + '/hr'"/>
                 </div>
-                <div class="col s1">
+                <div class="col s2 m1">
                     <output id="hourlyRateOutput">$20/hr</output>
                 </div>
             </div>
@@ -80,7 +80,7 @@
             </div>
 
             <div class="row">
-                <div class="col s3 offset-s8 m3 offset-m9">
+                <div class="col s6 offset-s6 m3 offset-m9">
                     <button id="TutorApplication-submit" class="btn waves-effect waves-light orange" type="submit"
                             name="action">
                         Submit <i class="material-icons right">send</i>

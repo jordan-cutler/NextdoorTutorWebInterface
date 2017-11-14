@@ -38,7 +38,6 @@
                 </button>
             </div>
 
-            <!-- TODO: This does not align properly on the right side-->
             <div class="col s6 center">
                 <button id="EditCourseModal-applyChanges" class="btn waves-effect waves-light orange" type="submit"
                         name="action">
