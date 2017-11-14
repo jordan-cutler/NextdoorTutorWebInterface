@@ -9,7 +9,8 @@ class TutorApplication {
     private static readonly CoursesDropDownSelector = "#" + TutorApplication.NAME + "-course";
     private static readonly HasTakenCourseCheckboxSelector = "#" + TutorApplication.NAME + "-hasTakenCourseSwitch";
     private static readonly CoursesDropDownSelectedSelector = TutorApplication.CoursesDropDownSelector + " option:selected";
-    private static readonly GradeDropdownSelectedSelector = "#" + TutorApplication.NAME + "-grade option:selected";
+    private static readonly GradeDropdownSelector = "#" + TutorApplication.NAME + "-grade";
+    private static readonly GradeDropdownSelectedSelector = TutorApplication.GradeDropdownSelector + " option:selected";
     private static readonly InstructorInputSelector = "#" + TutorApplication.NAME + "-instructor";
     private static readonly PastExperienceInputSelector = "#" + TutorApplication.NAME + "-pastExperience";
     private static readonly OtherNotesInputSelector = "#" + TutorApplication.NAME + "-notes";
@@ -37,6 +38,7 @@ class TutorApplication {
             courses: courses,
             grades: Grade.VALID_GRADES
         }));
+        TutorApplication.setSelectedItemOnGradeDropdown("B+");
     }
 
     private static submitApplication() {
@@ -129,5 +131,9 @@ class TutorApplication {
         $(TutorApplication.SubmitApplicationButtonSelector).click(TutorApplication.submitApplication);
         $(TutorApplication.CoursesDropDownSelector).change(TutorApplication.enableHasTakenClassSwitch);
         $(TutorApplication.HasTakenCourseCheckboxSelector).change(TutorApplication.hideOrShowTakenCourseInputs);
+    }
+
+    private static setSelectedItemOnGradeDropdown(grade: string) {
+        $(TutorApplication.GradeDropdownSelector).val(grade);
     }
 }
