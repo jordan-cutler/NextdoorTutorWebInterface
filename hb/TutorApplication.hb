@@ -37,7 +37,8 @@
 
             <div class="row">
                 <div class="col s12">
-                    <input type="checkbox" id="TutorApplication-hasTakenCourseSwitch" checked="checked" disabled="disabled" />
+                    <input type="checkbox" id="TutorApplication-hasTakenCourseSwitch" checked="checked"
+                           disabled="disabled"/>
                     <label for="TutorApplication-hasTakenCourseSwitch">Have taken course before</label>
                 </div>
             </div>
@@ -46,14 +47,9 @@
                 <div class="input-field col s12">
                     <select id="TutorApplication-grade">
                         <!--<option value="" disabled selected>Haven't Taken</option>-->
-                        <option value="1" selected>A</option>
-                        <option value="2">A-</option>
-                        <option value="3">B+</option>
-                        <option value="4">B</option>
-                        <option value="5">B-</option>
-                        <option value="6">C+</option>
-                        <option value="7">C</option>
-                        <option value="8">C-</option>
+                        {{#each grades}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/each}}
                     </select>
                     <label for="TutorApplication-grade">Your letter grade</label>
                 </div>

@@ -58,7 +58,7 @@ Data Expected as:
             </div>
 
             {{#each courses}}
-                <a href="#" data-courseNumber="{{this.courseNumber}}" class="Profile-courseUserIsTutoring collection-item">
+                <a href="#" data-course_number="{{this.courseNumber}}" class="Profile-courseUserIsTutoring collection-item">
                     {{this.courseNumber}} {{this.title}}
                 </a>
             {{/each}}
@@ -82,8 +82,6 @@ Data Expected as:
     </div> <!-- END ENDORSEMENTS -->
 </div>
 <!-- BEGIN LIST OF COURSES PERSON IS TUTORING -->
-
-
 
 <!-- Upload Picture Modal-->
 <div id="Profile-uploadPictureModal" class="modal">

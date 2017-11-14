@@ -1,5 +1,6 @@
 /// <reference path="TutorApiUtil.ts" />
 /// <reference path="CourseApiUtil.ts" />
+/// <reference path="Grade.ts" />
 
 class TutorApplication {
     private static readonly NAME = "TutorApplication";
@@ -33,7 +34,8 @@ class TutorApplication {
 
     private static displayApplication(courses: Course[]) {
         $("#indexMain").html(Handlebars.templates[TutorApplication.NAME + ".hb"]({
-            courses: courses
+            courses: courses,
+            grades: Grade.VALID_GRADES
         }));
     }
 
@@ -46,6 +48,9 @@ class TutorApplication {
             Materialize.toast("Select a class to tutor before submitting.", 3000);
             return;
         }
+        let pastExperience: string = $(TutorApplication.PastExperienceInputSelector).val();
+        let notes: string = $(TutorApplication.OtherNotesInputSelector).val();
+
         let grade: string = "";
         let instructor: string = "";
 
@@ -56,15 +61,16 @@ class TutorApplication {
                 Materialize.toast("Let us know your grade before submitting", 3000);
                 return;
             }
+            if (!Grade.isGradeValid(grade)) {
+                Materialize.toast("Grade is invalid", 3000);
+                return;
+            }
 
             if (TutorApplication.instructorNotSelected(instructor)) {
                 Materialize.toast("Let us know who your professor was before submitting.", 3000);
                 return;
             }
         }
-
-        let pastExperience: string = $(TutorApplication.PastExperienceInputSelector).val();
-        let notes: string = $(TutorApplication.OtherNotesInputSelector).val();
 
         TutorApiUtil.addTutor(userId, hourlyRate, courseNumber, grade, instructor, pastExperience, notes, sessionToken,
             function (data: any) {

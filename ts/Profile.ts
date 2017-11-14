@@ -9,7 +9,7 @@ class Profile {
     private static readonly FileUploadInputSelector = "#" + Profile.NAME + "-fileUploadInput";
     private static readonly UploadPictureModalSelector = "#" + Profile.NAME + "-uploadPictureModal";
     private static readonly ProfilePhotoSelector = "#" + Profile.NAME + "-profilePhoto";
-    private static readonly CourseUserIsTutoringSelector = "#" + Profile.NAME + "-courseUserIsTutoring";
+    private static readonly CourseUserIsTutoringSelector = "." + Profile.NAME + "-courseUserIsTutoring";
 
     public static init() {
         CourseApiUtil.getCoursesUserIsTutoring(
@@ -56,7 +56,26 @@ class Profile {
     }
 
     private static onCourseUserIsTutoringClick() {
+        let courseNumber = $(this).data("course_number");
+        TutorApiUtil.getTutorById(
+            User.userId(), courseNumber,
+            Profile.loadCourseUserIsTutoringModal,
+            function(data: any) {
+                Materialize.toast("An error occurred when trying to gather your info on that course. Please try again a bit later.", 3000)
+            }
+        )
+    }
 
+    private static loadCourseUserIsTutoringModal(tutorJson: any) {
+        let tutor = Tutor.TutorJsonToTutorModel(tutorJson);
+        $("#indexModal").html(Handlebars.templates["EditCourseModal.hb"]({
+            tutor: tutor
+        }));
+        $('.modal').modal();
+        $('select').material_select();
+        $('input.character-count').characterCounter();
+        $("#EditCourseModal-courseEditModal").modal('open');
+        Materialize.updateTextFields();
     }
 
     private static setEventHandlers() {
