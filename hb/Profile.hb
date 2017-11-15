@@ -1,6 +1,3 @@
-<!--TODO(kyle): make profile page look nice and include basic info / what classes they are tutoring
-Can probably get some ideas from here: http://demo.geekslabs.com/materialize/v2.3/layout03/user-profile-page.html
--->
 <!--
 Data Expected as:
 {
@@ -15,12 +12,15 @@ Data Expected as:
     <!-- BEGIN BASIC INFO -->
     <div class="col s12">
         <div class="card white horizontal">
-            <div class="card-image">
-                <img class="responsive-img" id="Profile-Photo" src="{{profilePhotoUrl}}" alt="Profile Photo"/>
-                <div class="row">
-                    <div class="col s12 offset-s1">
+            <div class="card-image col s3">
+                <a class="modal-trigger" href="#Profile-UploadPictureModal">
+                    <img class="responsive-img" id="Profile-Photo" src="{{profilePhotoUrl}}" alt="Profile Photo"/>
+                </a>
+                <div class="row center">
+                    <div class="col s12">
                         <br/>
-                        Contact: {{user._email}}
+                        <!--TODO: Make it so when people click on the email, it is copied into their cmd+c or crtl+c-->
+                        Contact: <span class="Profile-Underline">{{user._email}}</span>
                     </div>
                 </div>
                 <!--<i class="large material-icons col s2">account_circle</i>-->
@@ -28,9 +28,7 @@ Data Expected as:
             <div class="card-stacked">
                 <div class="card-content row">
                     <div class="row">
-                        <h3 class="card-title col s6 offset-s1">{{user._userName}}</h3>
-                        <a class="waves-effect waves-light btn modal-trigger right-align"
-                           href="#Profile-UploadPictureModal">Upload Picture</a>
+                        <h3 class="card-title col s6 offset-s1 Profile-Underline">{{user._userName}}</h3>
                     </div>
                     <div class="row">
                         <div class="col s12 offset-s1">

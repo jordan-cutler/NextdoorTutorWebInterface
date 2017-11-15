@@ -3,8 +3,10 @@
 }
 
 #Profile-Photo {
-    height: 100px;
-    width: 160px;
-    margin: 15px;
+    margin-top: 11.25px;
     border-radius: 5%;
+}
+
+.Profile-Underline {
+    border-bottom: 1px solid #000;
 }
