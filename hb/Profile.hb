@@ -16,14 +16,19 @@ Data Expected as:
     <div class="col s12">
         <div class="z-depth-3 card white horizontal">
             <div class="card-image">
-                <img class="responsive-img" id="Profile-profilePhoto" src="{{profilePhotoRoute}}" alt="Profile Photo"/>
+                {{#if profilePhotoRoute}}
+                    <img class="responsive-img" id="Profile-profilePhoto" src="{{profilePhotoRoute}}"
+                         alt="Profile Photo"/>
+                {{else}}
+                    <i class="large material-icons col s2">account_circle</i>
+                {{/if}}
                 <div class="row">
                     <div class="col s12 offset-s1">
                         <br/>
                         <b>Contact:</b> {{user._email}}
                     </div>
                 </div>
-                <!--<i class="large material-icons col s2">account_circle</i>-->
+
             </div>
             <div class="card-stacked">
                 <div class="card-content row">

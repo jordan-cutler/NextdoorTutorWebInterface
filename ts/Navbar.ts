@@ -33,6 +33,7 @@ class Navbar {
         $(".button-collapse").sideNav({
             closeOnClick: true
         });
+        $('ul.tabs').tabs();
     }
 
     public static onLogoutClick() {

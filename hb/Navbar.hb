@@ -1,6 +1,6 @@
 <!-- Materialize navbars here http://materializecss.com/navbar.html -->
 <nav class="white" id="Navbar">
-    <div class="z-depth-4 nav-wrapper white black-text">
+    <div class="nav-wrapper z-depth-4 white black-text">
 
         <a id="Navbar-logo" href="#" class="brand-logo orange-text">NextdoorTutor
             <!--<img src="assets/images/FinalLogoNavbar.png" alt="NextdoorTutor">-->
