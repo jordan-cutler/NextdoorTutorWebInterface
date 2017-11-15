@@ -10,12 +10,12 @@ class Calendar {
             header: false,
             defaultView: 'agendaWeek',
             editable: true,
-            minTime:"7:00:00",
-            maxTime:"22:00:00",
-            slotDuration: '00:30:00',
+            minTime: moment.duration("7:00:00"),
+            maxTime: moment.duration("22:00:00"),
+            slotDuration: moment.duration('00:30:00'),
             aspectRatio: 2,
             height:"auto",
-            scrollTime:'10:00:00',
+            scrollTime:moment.duration('10:00:00'),
             timeFormat: '',
             allDaySlot:false,
             eventLimit: true,
@@ -23,20 +23,20 @@ class Calendar {
             events: [
                 {
                     title: 'Available',
-                    start: '16:00:00',
-                    end: '18:00:00',
+                    start: moment.duration('16:00:00'),
+                    end: moment.duration('18:00:00'),
                     dow: [0, 3, 5]
                 },
                 {
                     title: 'Available',
-                    start: '10:30:00',
-                    end: '12:30:00',
+                    start: moment.duration('10:30:00'),
+                    end: moment.duration('12:30:00'),
                     dow: [1, 2, 6]
                 },
                 {
                     title: 'Available',
-                    start: '07:00:00',
-                    end: '09:00:00',
+                    start: moment.duration('07:00:00'),
+                    end: moment.duration('09:00:00'),
                     dow: [4]
                 }
             ]

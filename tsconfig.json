@@ -5,6 +5,7 @@
 		"strict": true
 	},
 	"files": [
-		"app.ts"
+		"app.ts",
+		"moment.d.ts"
 	]
 }
