@@ -23,8 +23,13 @@
             </li>
 
             <li>
+                <a class="Navbar-calendar black-text"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+            </li>
+
+            <li>
                 <a class="Navbar-signOutButton black-text">Sign Out</a>
             </li>
+
         </ul>
 
         <ul class="side-nav" id="Navbar-sideNav">

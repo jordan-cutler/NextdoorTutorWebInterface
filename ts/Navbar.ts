@@ -2,6 +2,7 @@
 /// <reference path="TutorApplication.ts" />
 /// <reference path="CoursesWithTutors.ts" />
 /// <reference path="Profile.ts" />
+/// <reference path="Calendar.ts" />
 
 class Navbar {
 
@@ -11,6 +12,7 @@ class Navbar {
     private static readonly TutorAClassButtonSelector = "." + Navbar.NAME + "-tutorAClassButton";
     private static readonly FindATutorButtonSelector = "." + Navbar.NAME + "-findATutorButton";
     private static readonly ProfileButtonSelector = "." + Navbar.NAME + "-profileButton";
+    private static readonly CalendarButtonSelector = "." + Navbar.NAME + "-calendar";
 
     public static init(user: any) {
         if (user != null) {
@@ -30,26 +32,31 @@ class Navbar {
         $(Navbar.TutorAClassButtonSelector).click(Navbar.onTutorAClassClick);
         $(Navbar.FindATutorButtonSelector).click(Navbar.onHomeClick);
         $(Navbar.ProfileButtonSelector).click(Navbar.onProfileClick);
+        $(Navbar.CalendarButtonSelector).click(Navbar.onCalendarClick);
         $(".button-collapse").sideNav({
             closeOnClick: true
         });
         $('ul.tabs').tabs();
     }
 
-    public static onLogoutClick() {
+    private static onLogoutClick() {
         Login.logout();
     }
 
-    public static onTutorAClassClick() {
+    private static onTutorAClassClick() {
         TutorApplication.init();
     }
 
-    public static onHomeClick() {
+    private static onHomeClick() {
         CoursesWithTutors.init();
     }
 
-    public static onProfileClick() {
+    private static onProfileClick() {
         Profile.init();
+    }
+
+    private static onCalendarClick() {
+        Calendar.init();
     }
 
 }
