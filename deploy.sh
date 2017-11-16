@@ -25,7 +25,6 @@ rm -rf $PUBLICFOLDER
 mkdir $PUBLICFOLDER
 mkdir $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 mkdir $PUBLICFOLDER/$HTMLFOLDER
-mkdir $PUBLICFOLDER/$IMAGESFOLDER
 mkdir $PUBLICFOLDER/$STYLESHEETSFOLDER
 
 # step 2: update our npm dependencies
@@ -59,4 +58,4 @@ done
 cp index.html $PUBLICFOLDER/$HTMLFOLDER
 
 #step 8: copy images
-cp -R images/ $PUBLICFOLDER/$IMAGESFOLDER
+cp -R images $PUBLICFOLDER
