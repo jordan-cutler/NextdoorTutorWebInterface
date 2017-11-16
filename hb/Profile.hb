@@ -1,6 +1,3 @@
-<!--TODO(kyle): make profile page look nice and include basic info / what classes they are tutoring
-Can probably get some ideas from here: http://demo.geekslabs.com/materialize/v2.3/layout03/user-profile-page.html
--->
 <!--
 Data Expected as:
 {
@@ -15,27 +12,29 @@ Data Expected as:
     <!-- BEGIN BASIC INFO -->
     <div class="col s12">
         <div class="z-depth-3 card white horizontal">
-            <div class="card-image">
+            <div class="card-image col s3">
                 {{#if profilePhotoRoute}}
-                    <img class="responsive-img" id="Profile-profilePhoto" src="{{profilePhotoRoute}}"
-                         alt="Profile Photo"/>
+                    <a class="modal-trigger" href="#Profile-uploadPictureModal">
+                        <img class="responsive-img" id="Profile-profilePhoto" src="{{profilePhotoRoute}}"
+                             alt="Profile Photo"/>
+                    </a>
                 {{else}}
-                    <i class="large material-icons col s2">account_circle</i>
+                    <a class="modal-trigger" href="#Profile-uploadPictureModal">
+                        <i class="large material-icons col s2">account_circle</i>
+                    </a>
                 {{/if}}
                 <div class="row">
-                    <div class="col s12 offset-s1">
+                    <div class="col s12">
                         <br/>
-                        <b>Contact:</b> {{user._email}}
+                        <!--TODO: Make it so when people click on the email, it is copied into their cmd+c or crtl+c-->
+                        <b class="Profile-underline">Contact:</b> {{user._email}}
                     </div>
                 </div>
-
             </div>
             <div class="card-stacked">
                 <div class="card-content row">
                     <div class="row">
                         <h3 class="card-title col s6 offset-s1">{{user._userName}}</h3>
-                        <a class="waves-effect waves-light orange btn modal-trigger right-align"
-                           href="#Profile-uploadPictureModal">Upload Picture</a>
                     </div>
                     <div class="row">
                         <div class="col s12 offset-s1">
@@ -63,7 +62,8 @@ Data Expected as:
             </div>
 
             {{#each courses}}
-                <a href="#" data-course_number="{{this.courseNumber}}" class="Profile-courseUserIsTutoring collection-item">
+                <a href="#" data-course_number="{{this.courseNumber}}"
+                   class="Profile-courseUserIsTutoring collection-item">
                     {{this.courseNumber}} {{this.title}}
                 </a>
             {{/each}}
