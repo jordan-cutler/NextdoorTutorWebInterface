@@ -77,6 +77,7 @@ class TutorApplication {
         TutorApiUtil.addTutor(userId, hourlyRate, courseNumber, grade, instructor, pastExperience, notes, sessionToken,
             function (data: any) {
                 Materialize.toast("Thanks for becoming a " + courseNumber + " tutor!", 3000);
+                setTimeout(1);
                 CoursesWithTutors.init();
             },
             TutorApplication.onSubmitApplicationError);
