@@ -1,8 +1,10 @@
+let moment: any;
 class Calendar {
-
     private static readonly NAME = "Calendar";
     private static readonly DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     private static readonly CalendarCardContentSelector = "#" + Calendar.NAME + "-calendar";
+
+
 
     public static init() {
         $("#indexMain").html(Handlebars.templates[Calendar.NAME + ".hb"]({}));
@@ -29,13 +31,13 @@ class Calendar {
                 },
                 {
                     title: 'Available',
-                    start: moment.duration('10:30:00'),
+                    start: moment.duration('11:00:00'),
                     end: moment.duration('12:30:00'),
                     dow: [1, 2, 6]
                 },
                 {
                     title: 'Available',
-                    start: moment.duration('07:00:00'),
+                    start: moment.duration('08:00:00'),
                     end: moment.duration('09:00:00'),
                     dow: [4]
                 }

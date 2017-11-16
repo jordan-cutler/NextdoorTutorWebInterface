@@ -12,6 +12,7 @@ JAVASCRIPTSFOLDER=javascripts
 HTMLFOLDER=html
 IMAGESFOLDER=images
 STYLESHEETSFOLDER=stylesheets
+FONTSFOLDER=fonts
 SWAGGERFOLDER=swagger-ui
 # This is the folder that we used with the Spark.staticFileLocation command
 WEBFOLDERNAME=Web
@@ -34,8 +35,18 @@ npm update
 # step 3: copy jQuery, Handlebars, and Bootstrap files
 cp node_modules/jquery/dist/jquery.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 cp node_modules/handlebars/dist/handlebars.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
-cp node_modules/bootstrap/dist/js/bootstrap.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
-cp node_modules/bootstrap/dist/css/bootstrap.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
+# bootstrap unused at the moment
+#cp node_modules/bootstrap/dist/js/bootstrap.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
+#cp node_modules/bootstrap/dist/css/bootstrap.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
+cp node_modules/materialize-css/dist/js/materialize.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
+cp node_modules/materialize-css/dist/css/materialize.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
+cp -R fonts/ $PUBLICFOLDER/$FONTSFOLDER
+cp node_modules/moment/min/moment-with-locales.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
+cp node_modules/fullcalendar/dist/fullcalendar.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
+cp node_modules/fullcalendar/dist/fullcalendar.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
+cp node_modules/fullcalendar/dist/fullcalendar.print.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
+cp jquery-ui/jquery-ui.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
+cp jquery-ui/jquery-ui.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 cp -R font-awesome-4.7.0 $PUBLICFOLDER/$STYLESHEETSFOLDER
 cp -R swagger-ui $PUBLICFOLDER/$SWAGGERFOLDER
 
