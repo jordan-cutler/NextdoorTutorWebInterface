@@ -27,7 +27,7 @@ Data Expected as:
                     <div class="col s12">
                         <br/>
                         <!--TODO: Make it so when people click on the email, it is copied into their cmd+c or crtl+c-->
-                        <b class="Profile-underline">Contact:</b> {{user._email}}
+                        <b><u>Contact:</u></b> {{user._email}}
                     </div>
                 </div>
             </div>
