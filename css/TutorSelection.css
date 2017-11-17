@@ -1,12 +1,12 @@
 .TutorSelection-profileImg {
-    border-radius: 100%;
+    border-radius: 5%;
     padding: 0px !important;
     height: 100px !important;
-    width: 100px !important;
+    width: 153.33px !important;
 }
 
 .TutorSelection-imagePreloader {
     padding: 0px !important;
     height: 100px !important;
-    width: 100px !important;
+    width: 153.33px !important;
 }
