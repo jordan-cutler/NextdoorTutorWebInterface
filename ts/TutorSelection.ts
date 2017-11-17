@@ -61,7 +61,8 @@ class TutorSelection {
 
     // Register handlebars helper to validate multiple fields existing
     private static handlebarsAddIfAll() {
-        Handlebars.registerHelper('if_all', function () {
+        // Taken from https://stackoverflow.com/questions/14839375/boolean-logic-within-a-handlebars-template
+        Handlebars.registerHelper('if_all', function() {
             let args = [].slice.apply(arguments);
             let opts = args.pop();
 

@@ -41,12 +41,11 @@ cp node_modules/handlebars/dist/handlebars.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLD
 cp node_modules/materialize-css/dist/js/materialize.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 cp node_modules/materialize-css/dist/css/materialize.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
 cp -R fonts/ $PUBLICFOLDER/$FONTSFOLDER
-cp node_modules/moment/min/moment-with-locales.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
+cp node_modules/moment/min/moment.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 cp node_modules/fullcalendar/dist/fullcalendar.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 cp node_modules/fullcalendar/dist/fullcalendar.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
 cp node_modules/fullcalendar/dist/fullcalendar.print.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
-cp jquery-ui/jquery-ui.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
-cp jquery-ui/jquery-ui.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
+cp -R jquery-ui $PUBLICFOLDER
 cp -R font-awesome-4.7.0 $PUBLICFOLDER/$STYLESHEETSFOLDER
 cp -R swagger-ui $PUBLICFOLDER/$SWAGGERFOLDER
 

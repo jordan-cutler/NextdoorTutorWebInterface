@@ -32,3 +32,12 @@ thead.fc-head{
 .fc-content{
     text-align: center;
 }
+
+.Calendar-dismissIcon {
+    position: inherit;
+    color: #ff4f46;
+    font-size: 20px;
+    top: 0;
+    right: 0;
+    z-index: 11;
+}

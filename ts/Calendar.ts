@@ -1,14 +1,15 @@
 let moment: any;
+
 class Calendar {
     private static readonly NAME = "Calendar";
-    private static readonly DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    private static readonly CalendarCardContentSelector = "#" + Calendar.NAME + "-calendar";
+    private static readonly CalendarSelector = "#" + Calendar.NAME + "-calendar";
+    private static readonly DismissIconSelector = "." + Calendar.NAME + "-dismissIcon";
 
-
+    private static maxId: number = -1;
 
     public static init() {
         $("#indexMain").html(Handlebars.templates[Calendar.NAME + ".hb"]({}));
-        $(Calendar.CalendarCardContentSelector).fullCalendar({
+        $(Calendar.CalendarSelector).fullCalendar({
             header: false,
             defaultView: 'agendaWeek',
             editable: true,
@@ -16,32 +17,50 @@ class Calendar {
             maxTime: moment.duration("22:00:00"),
             slotDuration: moment.duration('00:30:00'),
             aspectRatio: 2,
-            height:"auto",
-            scrollTime:moment.duration('10:00:00'),
+            height: "auto",
+            scrollTime: moment.duration('10:00:00'),
             timeFormat: '',
-            allDaySlot:false,
+            allDaySlot: false,
             eventLimit: true,
             columnFormat: 'dddd',
-            events: [
-                {
+            events: [],
+            eventRender: function (event, element) {
+                element.append(
+                    '<i class="fa fa-times ' + Calendar.DismissIconSelector.substr(1) +
+                    '" data-event_id=' + event.id + ' aria-hidden="true"></i>'
+                );
+                element.click(function (clickEvent) {
+                    if ($(clickEvent.target).is(Calendar.DismissIconSelector)) {
+                        let id = $(clickEvent.target).data('event_id');
+                        $(Calendar.CalendarSelector).fullCalendar('removeEvents', [id]);
+                    }
+                });
+            },
+            dayClick: function (date: any, jsEvent) {
+                let eventObject = {
+                    id: Calendar.generateNewUniqueId(),
                     title: 'Available',
-                    start: moment.duration('16:00:00'),
-                    end: moment.duration('18:00:00'),
-                    dow: [0, 3, 5]
-                },
-                {
-                    title: 'Available',
-                    start: moment.duration('11:00:00'),
-                    end: moment.duration('12:30:00'),
-                    dow: [1, 2, 6]
-                },
-                {
-                    title: 'Available',
-                    start: moment.duration('08:00:00'),
-                    end: moment.duration('09:00:00'),
-                    dow: [4]
-                }
-            ]
+                    start: date.format()
+                };
+                $(Calendar.CalendarSelector).fullCalendar('renderEvent', eventObject, true);
+
+            }
         });
+    }
+
+    private static generateNewUniqueId() {
+        if (Calendar.maxId != -1) {
+            let newMaxId = Calendar.maxId + 1;
+            Calendar.maxId = newMaxId;
+            return newMaxId;
+        }
+        let eventArray = $(Calendar.CalendarSelector).fullCalendar('clientEvents');
+        let highest = -1;
+        $.each(eventArray, function (index, event) {
+            if (event.id > highest) highest = event.id;
+        });
+        let newMaxId = highest + 1;
+        Calendar.maxId = newMaxId;
+        return newMaxId;
     }
 }
