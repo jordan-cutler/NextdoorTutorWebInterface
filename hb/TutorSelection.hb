@@ -18,10 +18,11 @@
             <div class="col s7">
                 <span>{{this._name}}</span>
             </div>
-            <a id="TutorSelection-bookTutorButton" class="btn tooltipped" data-position="top" data-delay="50"
-               data-tooltip="Contact them at {{this._email}}">
+            <button id="TutorSelection-bookTutorButton" class="btn tooltipped"
+                    data-clipboard-text="{{this._email}}" data-position="top" data-delay="50"
+                    data-tooltip="Contact them at {{this._email}}">
                 Book Tutor <i class="material-icons right">contact_mail</i>
-            </a>
+            </button>
         </div>
         <div class="collapsible-body">
             {{#if_all this._instructor this._grade}}

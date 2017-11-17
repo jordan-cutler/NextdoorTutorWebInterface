@@ -10,6 +10,7 @@ class TutorSelection {
 
     private static readonly ProfileImagesSelector = "." + TutorSelection.NAME + "-profileImg";
     private static readonly ImagePreloadersSelector = "." + TutorSelection.NAME + "-imagePreloader";
+    private static readonly BookTutorButtonSelector = "#" + TutorSelection.NAME + "-bookTutorButton";
 
     public static init(courseNumber: string) {
         TutorApiUtil.getTutorsForCourse(
@@ -22,6 +23,7 @@ class TutorSelection {
     }
 
     private static showTutors(data: any, courseNumber: string) {
+        new Clipboard(".btn");
         TutorSelection.setTutors(Tutor.TutorJsonArrayToTutorModel(data));
         TutorSelection.handlebarsAddIfAll(); // Register handlebars function before we add the template
         $("#CoursesWithTutors-TutorList").html(Handlebars.templates[TutorSelection.NAME + ".hb"]({
@@ -49,6 +51,9 @@ class TutorSelection {
     private static setEventHandlers() {
         $('.collapsible').collapsible();
         $('.tooltipped').tooltip({delay: 50});
+        $(TutorSelection.BookTutorButtonSelector).click(function() {
+            Materialize.toast("Email copied to clipboard!", 2000);
+        });
     }
 
     private static setTutors(tutors: Tutor[]) {

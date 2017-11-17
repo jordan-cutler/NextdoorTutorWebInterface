@@ -33,6 +33,7 @@ npm update
 # step 3: copy jQuery, Handlebars, and Bootstrap files
 cp node_modules/jquery/dist/jquery.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 cp node_modules/handlebars/dist/handlebars.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
+cp node_modules/clipboard/dist/clipboard.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 cp node_modules/bootstrap/dist/js/bootstrap.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 cp node_modules/bootstrap/dist/css/bootstrap.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
 cp -R font-awesome-4.7.0 $PUBLICFOLDER/$STYLESHEETSFOLDER
