@@ -24,7 +24,7 @@ Data Expected as:
                         <a class="modal-trigger" href="#Profile-uploadPictureModal">
                             <img alt="" class="media__image" src="{{profilePhotoRoute}}" />
                             <div class="media__body">
-                                <p>Upload Profile Picture</p>
+                                <h6>Upload Profile Picture</h6>
                             </div>
                         </a>
                     </div>
