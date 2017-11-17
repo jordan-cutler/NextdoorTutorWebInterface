@@ -26,10 +26,9 @@ class CoursesWithTutors {
     }
 
     private static initializeSearchBar(courses: Course[]) {
-        let searchObj: any = { }; // will contain the info we pass to autocomplete so we can populate the search bar
+        let searchObj: { [courseNumberAndTitleCombo: string]: null; } = { }; // will contain the info we pass to autocomplete so we can populate the search bar
         courses.forEach(function(course: Course) {
             searchObj[course.courseNumber + " " + course.title] = null;
-            //CoursesWithTutors.addCourseToSearchObject(course, searchObj);
         });
         $(CoursesWithTutors.SearchBarSelector).autocomplete({
             data: searchObj,
@@ -41,10 +40,6 @@ class CoursesWithTutors {
             },
             minLength: 0, // The minimum length of the input for the autocomplete to start. Default: 1.
         });
-    }
-
-    private static addCourseToSearchObject(course: Course, searchObject: object) {
-
     }
 
     private static showListOfTutorsForCourseNumber(courseNumber: string) {
