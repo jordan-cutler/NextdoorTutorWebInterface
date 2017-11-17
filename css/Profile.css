@@ -4,13 +4,3 @@
     width: 230px;
     border-radius: 5%;
 }
-
-#toast-container {
-    position: fixed !important;
-    top: 20vh !important;
-    bottom: 70vh !important;
-    left: 35vw !important;
-    right: 35vw !important;
-    width: 30vw !important;
-    height: 10vh !important;
-}

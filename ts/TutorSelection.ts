@@ -9,7 +9,7 @@ class TutorSelection {
     private static tutors: Tutor[];
 
     private static readonly ProfileImagesSelector = "." + TutorSelection.NAME + "-profileImg";
-    private static readonly ImagePreloadersSelector = "." + TutorSelection.NAME + "-imagePreloader";
+    private static readonly ImagePreloadersSelector = ".preloader-wrapper";
 
     public static init(courseNumber: string) {
         TutorApiUtil.getTutorsForCourse(
