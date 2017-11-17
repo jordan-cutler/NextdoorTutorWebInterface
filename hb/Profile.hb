@@ -14,10 +14,24 @@ Data Expected as:
         <div class="z-depth-3 card white horizontal">
             <div class="card-image col s3">
                 {{#if profilePhotoRoute}}
-                    <a class="modal-trigger" href="#Profile-uploadPictureModal">
-                        <img class="responsive-img" id="Profile-profilePhoto" src="{{profilePhotoRoute}}"
-                             alt="Profile Photo"/>
-                    </a>
+                    <!--
+                     Examples:
+                     The below example is taken from here: https://jsfiddle.net/Venugopal/e0u4sow1/1/
+                     http://jsfiddle.net/6Mt3Q/
+                     https://codepen.io/felicia/pen/qKhJt
+                     -->
+                    <div id="Profile-profilePhoto" class="media">
+                        <a class="modal-trigger" href="#Profile-uploadPictureModal">
+                            <img alt="" class="media__image" src="{{profilePhotoRoute}}" />
+                            <div class="media__body">
+                                <h6>Upload Profile Picture</h6>
+                            </div>
+                        </a>
+                    </div>
+                    <!--<a class="modal-trigger" href="#Profile-uploadPictureModal">-->
+                        <!--<img class="responsive-img" id="Profile-profilePhoto" src="{{profilePhotoRoute}}"-->
+                             <!--alt="Profile Photo"/>-->
+                    <!--</a>-->
                 {{else}}
                     <a class="modal-trigger" href="#Profile-uploadPictureModal">
                         <i class="large material-icons col s2">account_circle</i>
@@ -27,7 +41,7 @@ Data Expected as:
                     <div class="col s12">
                         <br/>
                         <!--TODO: Make it so when people click on the email, it is copied into their cmd+c or crtl+c-->
-                        <b><u>Contact:</u></b> {{user._email}}
+                        <b><u>Contact:</u></b>{{user._email}}
                     </div>
                 </div>
             </div>
@@ -49,6 +63,9 @@ Data Expected as:
                         </div>
                     </div>
                 </div>
+                <!--<div class="card-action">-->
+                    <!--<b><u>Contact:</u></b> <u>{{user._email}}</u>-->
+                <!--</div>-->
             </div>
         </div>
     </div> <!-- END BASIC INFO -->
