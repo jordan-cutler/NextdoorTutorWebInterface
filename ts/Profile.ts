@@ -10,7 +10,7 @@ class Profile {
     private static readonly ProfilePhotoSelector = "#" + Profile.NAME + "-profilePhoto";
     private static readonly CourseUserIsTutoringSelector = "." + Profile.NAME + "-courseUserIsTutoring";
     private static readonly EmailContactSelector = "#" + Profile.NAME + "-emailContact";
-
+    private static readonly UploadPictureLinkSelector = "#" + Profile.NAME + "-uploadPictureLink";
     // Modal selectors
     private static readonly EditCourseModalSelector = "#EditCourseModal-courseEditModal";
     private static readonly StopTutoringCourseButtonSelector = "#EditCourseModal-stopTutoring";
@@ -134,7 +134,7 @@ class Profile {
             Materialize.toast("Email copied!", 1000);
         });
         $(Profile.FileUploadInputSelector).change(Profile.onProfilePhotoUploadChange);
-        $("#Profile-uploadPictureLink").click(function(e){
+        $(Profile.UploadPictureLinkSelector).click(function(e){
             e.preventDefault();
             $(Profile.FileUploadInputSelector).trigger('click');
         });
