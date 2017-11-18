@@ -51,7 +51,7 @@ class TutorSelection {
         $('.collapsible').collapsible();
         $('.tooltipped').tooltip({delay: 50});
         $(TutorSelection.BookTutorButtonSelector).click(function() {
-            Materialize.toast("Email copied to clipboard!", 2000);
+            Materialize.toast("Email copied!", 2000);
         });
     }
 
