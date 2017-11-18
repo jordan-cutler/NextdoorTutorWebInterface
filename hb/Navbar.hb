@@ -55,7 +55,7 @@
                 </li>
 
                 <li>
-                    <a class="Navbar-calendar">Calendar <i class="fa fa-calendar" aria-hidden="true"></i></a>
+                    <a class="Navbar-calendar">Calendar</a>
                 </li>
 
                 <li>
