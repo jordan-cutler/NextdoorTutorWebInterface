@@ -35,11 +35,10 @@ class Profile {
         let profilePhotoRoute: string = "";
         // Only make the request to get the url if we know they have a picture
         if (User.profilePhotoId() != null && User.profilePhotoId() != "") {
-            profilePhotoRoute = ImageUtil.getNewProfilePhotoUrlForCurrentUser(User.userId(), User.sessionToken());
+            profilePhotoRoute = ImageUtil.getNewProfilePhotoUrlForCurrentUser();
         }
         Profile.showProfile(User.getUser(), profilePhotoRoute, coursesUserIsTutoring);
         Profile.setMainEventHandlers();
-        //TODO: Allow user to remove themselves from tutoring for a class
     }
 
     private static showProfile(user: User, profilePhotoRoute: string, coursesUserIsTutoring: Course[]) {
@@ -64,7 +63,7 @@ class Profile {
     }
 
     private static onSuccessfulProfilePhotoUpload(data: any) {
-        $(Profile.ProfilePhotoSelector).attr('src', ImageUtil.getNewProfilePhotoUrlForCurrentUser(User.userId(), User.sessionToken()));
+        $(Profile.ProfilePhotoSelector).attr('src', ImageUtil.getNewProfilePhotoUrlForCurrentUser());
     }
 
     private static onCourseUserIsTutoringClick() {

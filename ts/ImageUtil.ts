@@ -18,8 +18,8 @@ class ImageUtil {
     }
 
     // Returns a unique url so the browser doesn't cache the previous image if someone just uploaded a new one
-    public static getNewProfilePhotoUrlForCurrentUser(userId: string, sessionToken: string) {
-        return ImageUtil.GETPROFILEPICTUREROUTE + "/" + User.userId() + ImageUtil.generateNewQueryString(userId, sessionToken);
+    public static getNewProfilePhotoUrlForCurrentUser() {
+        return ImageUtil.GETPROFILEPICTUREROUTE + "/" + User.userId() + ImageUtil.generateNewQueryString(User.userId(), User.sessionToken());
     }
 
     // Returns a unique url so the browser doesn't cache the previous image if someone just uploaded a new one
