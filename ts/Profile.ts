@@ -11,6 +11,9 @@ class Profile {
     private static readonly CourseUserIsTutoringSelector = "." + Profile.NAME + "-courseUserIsTutoring";
     private static readonly EmailContactSelector = "#" + Profile.NAME + "-emailContact";
     private static readonly UploadPictureLinkSelector = "#" + Profile.NAME + "-uploadPictureLink";
+    private static readonly PreloaderSelector = "#" + Profile.NAME + "-preloader";
+    private static readonly ProfileImageContainerSelector = "#" + Profile.NAME + "-profileImageContainer";
+
     // Modal selectors
     private static readonly EditCourseModalSelector = "#EditCourseModal-courseEditModal";
     private static readonly StopTutoringCourseButtonSelector = "#EditCourseModal-stopTutoring";
@@ -47,6 +50,7 @@ class Profile {
             profilePhotoRoute: profilePhotoRoute,
             courses: coursesUserIsTutoring
         }));
+        ImageUtil.hideImagesUntilLoaded(Profile.PreloaderSelector, Profile.ProfileImageContainerSelector);
     }
 
     private static onProfilePhotoUploadChange() {

@@ -27,10 +27,11 @@ class ImageUtil {
         return ImageUtil.GETPROFILEPICTUREROUTE + "/" + userId + ImageUtil.generateNewQueryString(askerId, sessionToken);
     }
 
-    public static hideImagesUntilLoaded(preloaderClassName: string, imagesClassName: string) {
+    public static hideImagesUntilLoaded(preloaderSelector: string, imagesSelector: string) {
+        $(imagesSelector).hide();
         setTimeout(function() {
-            $(preloaderClassName).hide();
-            $(imagesClassName).show();
+            $(preloaderSelector).hide();
+            $(imagesSelector).show();
         }, 1700);
     }
 

@@ -10,7 +10,7 @@ class TutorSelection {
 
     private static readonly ProfileImagesSelector = "." + TutorSelection.NAME + "-profileImg";
     private static readonly BookTutorButtonSelector = "#" + TutorSelection.NAME + "-bookTutorButton";
-    private static readonly ImagePreloadersSelector = ".preloader-wrapper";
+    private static readonly ImagePreloadersSelector = "." + TutorSelection.NAME + "-preloader";
 
     public static init(courseNumber: string) {
         TutorApiUtil.getTutorsForCourse(
@@ -30,7 +30,6 @@ class TutorSelection {
             tutors: TutorSelection.getTutors(),
             courseNumber: courseNumber
         }));
-        $(TutorSelection.ProfileImagesSelector).hide();
         TutorSelection.setImageSrcAttributesForProfilePictures();
         ImageUtil.hideImagesUntilLoaded(TutorSelection.ImagePreloadersSelector, TutorSelection.ProfileImagesSelector);
         TutorSelection.setEventHandlers();

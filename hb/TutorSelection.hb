@@ -3,7 +3,7 @@
     <li>
         <div class="row collapsible-header valign-wrapper">
             <!-- Preloader for image -->
-                <div class="preloader-wrapper big active">
+                <div class="preloader-wrapper big active TutorSelection-preloader">
                     <div class="spinner-layer spinner-red-only">
                         <div class="circle-clipper left">
                             <div class="circle"></div>

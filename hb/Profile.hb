@@ -6,12 +6,23 @@
             <div class="card-image col s12 m4 valign-wrapper">
 
                 <!--
-                 Examples:
                  The below example is taken from here: https://jsfiddle.net/Venugopal/e0u4sow1/1/
+                 Other Examples:
                  http://jsfiddle.net/6Mt3Q/
                  https://codepen.io/felicia/pen/qKhJt
                  -->
-                <div class="media">
+                <div id="Profile-preloader" class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-red-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                    </div>
+                </div>
+                <div id="Profile-profileImageContainer" class="media">
                     <a id="Profile-uploadPictureLink" href="#">
                         {{#if profilePhotoRoute}}
                             <img id="Profile-profilePhoto" alt="Failed to load profile picture" class="media__image" src="{{profilePhotoRoute}}"/>
