@@ -10,6 +10,7 @@ class Profile {
     private static readonly UploadPictureModalSelector = "#" + Profile.NAME + "-uploadPictureModal";
     private static readonly ProfilePhotoSelector = "#" + Profile.NAME + "-profilePhoto";
     private static readonly CourseUserIsTutoringSelector = "." + Profile.NAME + "-courseUserIsTutoring";
+    private static readonly EmailContactSelector = "#" + Profile.NAME + "-emailContact";
 
     // Modal selectors
     private static readonly EditCourseModalSelector = "#EditCourseModal-courseEditModal";
@@ -42,6 +43,7 @@ class Profile {
     }
 
     private static showProfile(user: User, profilePhotoRoute: string, coursesUserIsTutoring: Course[]) {
+        new Clipboard(Profile.EmailContactSelector);
         $("#indexMain").html(Handlebars.templates[Profile.NAME + ".hb"]({
             user: user,
             profilePhotoRoute: profilePhotoRoute,
@@ -131,6 +133,9 @@ class Profile {
         $('.modal').modal();
         $(Profile.FileUploadInputSelector).change(Profile.onProfilePhotoUploadChange);
         $(Profile.CourseUserIsTutoringSelector).click(Profile.onCourseUserIsTutoringClick);
+        $(Profile.EmailContactSelector).click(function() {
+            Materialize.toast("Email copied!", 1000);
+        });
     }
 
     private static closeUploadFileModal() {

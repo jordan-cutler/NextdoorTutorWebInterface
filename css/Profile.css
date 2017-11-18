@@ -1,17 +1,13 @@
-#Profile-profilePhoto {
-    margin-top: 11.25px;
-    height: 150px;
-    width: 230px;
-    border-radius: 5%;
-}
-
 .media {
     display: inline-block;
     position: relative;
     vertical-align: top;
 }
 
-.media__image { display: block; }
+.media__image {
+    display: block;
+    border-radius: 5% !important;
+}
 
 .media__body {
     background: rgba(41, 128, 185, 0.7);
@@ -28,6 +24,7 @@
     right: 0;
     -webkit-transition: 0.6s;
     transition: 0.6s;
+    border-radius: 5% !important;
 }
 
 .media__body:hover { opacity: 1; }

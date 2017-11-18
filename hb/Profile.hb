@@ -1,58 +1,34 @@
-<!--
-Data Expected as:
-{
-    user: User,
-    courses: Course[],
-    endorsements: Endorsement[],
-    rating: Rating
-}
--->
 <!-- BEGIN BASIC INFO -->
 <div class="row">
     <!-- BEGIN BASIC INFO -->
     <div class="col s12">
         <div class="z-depth-3 card white horizontal">
-            <div class="card-image col s3">
-                {{#if profilePhotoRoute}}
-                    <!--
-                     Examples:
-                     The below example is taken from here: https://jsfiddle.net/Venugopal/e0u4sow1/1/
-                     http://jsfiddle.net/6Mt3Q/
-                     https://codepen.io/felicia/pen/qKhJt
-                     -->
-                    <div id="Profile-profilePhoto" class="media">
-                        <a class="modal-trigger" href="#Profile-uploadPictureModal">
-                            <img alt="" class="media__image" src="{{profilePhotoRoute}}" />
-                            <div class="media__body">
-                                <h6>Upload Profile Picture</h6>
-                            </div>
-                        </a>
-                    </div>
-                    <!--<a class="modal-trigger" href="#Profile-uploadPictureModal">-->
-                        <!--<img class="responsive-img" id="Profile-profilePhoto" src="{{profilePhotoRoute}}"-->
-                             <!--alt="Profile Photo"/>-->
-                    <!--</a>-->
-                {{else}}
+            <div class="card-image col s4 valign-wrapper">
+
+                <!--
+                 Examples:
+                 The below example is taken from here: https://jsfiddle.net/Venugopal/e0u4sow1/1/
+                 http://jsfiddle.net/6Mt3Q/
+                 https://codepen.io/felicia/pen/qKhJt
+                 -->
+                <div class="media">
                     <a class="modal-trigger" href="#Profile-uploadPictureModal">
-                        <i class="large material-icons col s2">account_circle</i>
+                        {{#if profilePhotoRoute}}
+                            <img alt="Failed to load profile picture" class="media__image" src="{{profilePhotoRoute}}"/>
+                        {{else}}
+                            <i class="large material-icons col s2">account_circle</i>
+                        {{/if}}
                     </a>
-                {{/if}}
-                <div class="row">
-                    <div class="col s12">
-                        <br/>
-                        <!--TODO: Make it so when people click on the email, it is copied into their cmd+c or crtl+c-->
-                        <b><u>Contact:</u></b>{{user._email}}
+                    <div class="media__body">
+                        <h6>Upload Profile Picture</h6>
                     </div>
                 </div>
             </div>
             <div class="card-stacked">
-                <div class="card-content row">
+                <div class="card-content">
+                    <h3 class="card-title">{{user._userName}}</h3>
                     <div class="row">
-                        <h3 class="card-title col s6 offset-s1">{{user._userName}}</h3>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 offset-s1">
-                            <br/>
+                        <div class="col s12">
                             <p>
                                 {{#if user._bio}}
                                     Bio: {{user._bio}}
@@ -63,9 +39,12 @@ Data Expected as:
                         </div>
                     </div>
                 </div>
-                <!--<div class="card-action">-->
-                    <!--<b><u>Contact:</u></b> <u>{{user._email}}</u>-->
-                <!--</div>-->
+                <div class="card-action">
+                    <!--&lt;!&ndash;TODO: Make it so when people click on the email, it is copied into their cmd+c or crtl+c&ndash;&gt;-->
+                    <a id="Profile-emailContact" href="#" data-clipboard-text="{{user._email}}">
+                        <b><u>Contact:</u></b> {{user._email}}
+                    </a>
+                </div>
             </div>
         </div>
     </div> <!-- END BASIC INFO -->
