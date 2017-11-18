@@ -40,7 +40,6 @@
                     </div>
                 </div>
                 <div class="card-action">
-                    <!--&lt;!&ndash;TODO: Make it so when people click on the email, it is copied into their cmd+c or crtl+c&ndash;&gt;-->
                     <a id="Profile-emailContact" href="#" data-clipboard-text="{{user._email}}">
                         <b><u>Contact:</u></b> {{user._email}}
                     </a>
