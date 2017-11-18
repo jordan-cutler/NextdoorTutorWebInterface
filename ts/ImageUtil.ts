@@ -29,6 +29,7 @@ class ImageUtil {
 
     public static hideImagesUntilLoaded(preloaderSelector: string, imagesSelector: string) {
         $(imagesSelector).hide();
+        $(preloaderSelector).show();
         setTimeout(function() {
             $(preloaderSelector).hide();
             $(imagesSelector).show();

@@ -50,7 +50,10 @@ class Profile {
             profilePhotoRoute: profilePhotoRoute,
             courses: coursesUserIsTutoring
         }));
-        ImageUtil.hideImagesUntilLoaded(Profile.PreloaderSelector, Profile.ProfileImageContainerSelector);
+        // Give them a preloader if they have an image we're loading
+        if (profilePhotoRoute != "") {
+            ImageUtil.hideImagesUntilLoaded(Profile.PreloaderSelector, Profile.ProfileImageContainerSelector);
+        }
     }
 
     private static onProfilePhotoUploadChange() {
@@ -67,6 +70,7 @@ class Profile {
 
     private static onSuccessfulProfilePhotoUpload(data: any) {
         $(Profile.ProfilePhotoSelector).attr('src', ImageUtil.getNewProfilePhotoUrlForCurrentUser());
+        ImageUtil.hideImagesUntilLoaded(Profile.PreloaderSelector, Profile.ProfileImageContainerSelector);
     }
 
     private static onCourseUserIsTutoringClick() {
