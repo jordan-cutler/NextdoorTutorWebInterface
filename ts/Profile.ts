@@ -13,8 +13,11 @@ class Profile {
     private static readonly UploadPictureLinkSelector = "#" + Profile.NAME + "-uploadPictureLink";
     private static readonly PreloaderSelector = "#" + Profile.NAME + "-preloader";
     private static readonly ProfileImageContainerSelector = "#" + Profile.NAME + "-profileImageContainer";
+    private static readonly BioSelector = "#" + Profile.NAME + "-bio";
 
     // Modal selectors
+    private static readonly EditBioInputSelector = "#" + Profile.NAME + "-bioTextAreaModal";
+    private static readonly SaveBioButtonSelector = "#" + Profile.NAME + "-saveBioButton";
     private static readonly EditCourseModalSelector = "#EditCourseModal-courseEditModal";
     private static readonly StopTutoringCourseButtonSelector = "#EditCourseModal-stopTutoring";
     private static readonly ApplyChangesToCourseButtonSelector = "#EditCourseModal-applyChanges";
@@ -41,6 +44,7 @@ class Profile {
         }
         Profile.showProfile(User.getUser(), profilePhotoRoute, coursesUserIsTutoring);
         Profile.setMainEventHandlers();
+        Profile.setEditBioTextToCurrentBio();
     }
 
     private static showProfile(user: User, profilePhotoRoute: string, coursesUserIsTutoring: Course[]) {
@@ -110,10 +114,24 @@ class Profile {
             courseNumber, updatedHourlyRate, updatedPastExperience, updatedNotes,
             function(data: any) {
                 $(Profile.EditCourseModalSelector).modal('close');
-                Materialize.toast("Successfully edited your tutor profile for " + courseNumber, 3000);
+                Materialize.toast("Successfully edited your tutor profile for " + courseNumber, 2500);
             },
             function(data: any) {
-                Materialize.toast("Failed to update your tutor profile. Try again soon.", 3000);
+                Materialize.toast("Failed to update your tutor profile. Try again soon.", 2500);
+            }
+        )
+    }
+
+    private static saveBio() {
+        let bio = $(Profile.EditBioInputSelector).val();
+        UserApiUtil.updateBio(
+            bio,
+            function(data) {
+                $(Profile.BioSelector).text(bio);
+                User.getUser().bio = bio;
+            },
+            function(data) {
+                Materialize.toast("Failed to update bio. Try again soon.", 2500);
             }
         )
     }
@@ -137,6 +155,7 @@ class Profile {
 
     private static setMainEventHandlers() {
         $('.modal').modal();
+        $('input.character-count').characterCounter();
         $(Profile.CourseUserIsTutoringSelector).click(Profile.onCourseUserIsTutoringClick);
         $(Profile.EmailContactSelector).click(function() {
             Materialize.toast("Email copied!", 1000);
@@ -146,5 +165,11 @@ class Profile {
             e.preventDefault();
             $(Profile.FileUploadInputSelector).trigger('click');
         });
+        $(Profile.SaveBioButtonSelector).click(Profile.saveBio);
+    }
+
+    private static setEditBioTextToCurrentBio() {
+        $(Profile.EditBioInputSelector).val(User.bio());
+        Materialize.updateTextFields();
     }
 }
