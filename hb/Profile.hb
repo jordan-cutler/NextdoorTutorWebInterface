@@ -3,7 +3,7 @@
     <!-- BEGIN BASIC INFO -->
     <div class="col s12">
         <div class="z-depth-3 card white horizontal">
-            <div class="card-image col s4 valign-wrapper">
+            <div class="card-image col s12 m4 valign-wrapper">
 
                 <!--
                  Examples:
@@ -18,10 +18,10 @@
                         {{else}}
                             <i class="large material-icons col s2">account_circle</i>
                         {{/if}}
-                    </a>
                     <div class="media__body">
                         <h6>Upload Profile Picture</h6>
                     </div>
+                    </a>
                 </div>
             </div>
             <div class="card-stacked">
