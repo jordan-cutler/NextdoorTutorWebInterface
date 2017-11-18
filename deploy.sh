@@ -26,7 +26,6 @@ rm -rf $PUBLICFOLDER
 mkdir $PUBLICFOLDER
 mkdir $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 mkdir $PUBLICFOLDER/$HTMLFOLDER
-mkdir $PUBLICFOLDER/$IMAGESFOLDER
 mkdir $PUBLICFOLDER/$STYLESHEETSFOLDER
 
 # step 2: update our npm dependencies
@@ -46,6 +45,7 @@ cp node_modules/fullcalendar/dist/fullcalendar.min.js $PUBLICFOLDER/$JAVASCRIPTS
 cp node_modules/fullcalendar/dist/fullcalendar.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
 cp node_modules/fullcalendar/dist/fullcalendar.print.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
 cp -R jquery-ui $PUBLICFOLDER
+cp node_modules/clipboard/dist/clipboard.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 cp -R font-awesome-4.7.0 $PUBLICFOLDER/$STYLESHEETSFOLDER
 cp -R swagger-ui $PUBLICFOLDER/$SWAGGERFOLDER
 
@@ -69,4 +69,4 @@ done
 cp index.html $PUBLICFOLDER/$HTMLFOLDER
 
 #step 8: copy images
-cp -R images/ $PUBLICFOLDER/$IMAGESFOLDER
+cp -R images $PUBLICFOLDER

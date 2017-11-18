@@ -7,9 +7,12 @@ class Profile {
     private static readonly NAME = "Profile";
 
     private static readonly FileUploadInputSelector = "#" + Profile.NAME + "-fileUploadInput";
-    private static readonly UploadPictureModalSelector = "#" + Profile.NAME + "-uploadPictureModal";
     private static readonly ProfilePhotoSelector = "#" + Profile.NAME + "-profilePhoto";
     private static readonly CourseUserIsTutoringSelector = "." + Profile.NAME + "-courseUserIsTutoring";
+    private static readonly EmailContactSelector = "#" + Profile.NAME + "-emailContact";
+    private static readonly UploadPictureLinkSelector = "#" + Profile.NAME + "-uploadPictureLink";
+    private static readonly PreloaderSelector = "#" + Profile.NAME + "-preloader";
+    private static readonly ProfileImageContainerSelector = "#" + Profile.NAME + "-profileImageContainer";
 
     // Modal selectors
     private static readonly EditCourseModalSelector = "#EditCourseModal-courseEditModal";
@@ -34,19 +37,23 @@ class Profile {
         let profilePhotoRoute: string = "";
         // Only make the request to get the url if we know they have a picture
         if (User.profilePhotoId() != null && User.profilePhotoId() != "") {
-            profilePhotoRoute = ImageUtil.getNewProfilePhotoUrlForCurrentUser(User.userId(), User.sessionToken());
+            profilePhotoRoute = ImageUtil.getNewProfilePhotoUrlForCurrentUser();
         }
         Profile.showProfile(User.getUser(), profilePhotoRoute, coursesUserIsTutoring);
         Profile.setMainEventHandlers();
-        //TODO: Allow user to remove themselves from tutoring for a class
     }
 
     private static showProfile(user: User, profilePhotoRoute: string, coursesUserIsTutoring: Course[]) {
+        new Clipboard(Profile.EmailContactSelector);
         $("#indexMain").html(Handlebars.templates[Profile.NAME + ".hb"]({
             user: user,
             profilePhotoRoute: profilePhotoRoute,
             courses: coursesUserIsTutoring
         }));
+        // Give them a preloader if they have an image we're loading
+        if (profilePhotoRoute != "") {
+            ImageUtil.hideImagesUntilLoaded(Profile.PreloaderSelector, Profile.ProfileImageContainerSelector);
+        }
     }
 
     private static onProfilePhotoUploadChange() {
@@ -55,14 +62,15 @@ class Profile {
         ImageUtil.uploadProfilePictureToServer(
             fileInput,
             Profile.onSuccessfulProfilePhotoUpload,
-            // TODO: Add error function
-            HttpRequestUtil.EMPTYFUNCTION
+            function(data: any) {
+                Materialize.toast("Failed to upload new profile image. Try again later.", 1500);
+            }
         );
-        Profile.closeUploadFileModal();
     }
 
     private static onSuccessfulProfilePhotoUpload(data: any) {
-        $(Profile.ProfilePhotoSelector).attr('src', ImageUtil.getNewProfilePhotoUrlForCurrentUser(User.userId(), User.sessionToken()));
+        $(Profile.ProfilePhotoSelector).attr('src', ImageUtil.getNewProfilePhotoUrlForCurrentUser());
+        ImageUtil.hideImagesUntilLoaded(Profile.PreloaderSelector, Profile.ProfileImageContainerSelector);
     }
 
     private static onCourseUserIsTutoringClick() {
@@ -129,11 +137,14 @@ class Profile {
 
     private static setMainEventHandlers() {
         $('.modal').modal();
-        $(Profile.FileUploadInputSelector).change(Profile.onProfilePhotoUploadChange);
         $(Profile.CourseUserIsTutoringSelector).click(Profile.onCourseUserIsTutoringClick);
-    }
-
-    private static closeUploadFileModal() {
-        $(Profile.UploadPictureModalSelector).modal('close');
+        $(Profile.EmailContactSelector).click(function() {
+            Materialize.toast("Email copied!", 1000);
+        });
+        $(Profile.FileUploadInputSelector).change(Profile.onProfilePhotoUploadChange);
+        $(Profile.UploadPictureLinkSelector).click(function(e){
+            e.preventDefault();
+            $(Profile.FileUploadInputSelector).trigger('click');
+        });
     }
 }

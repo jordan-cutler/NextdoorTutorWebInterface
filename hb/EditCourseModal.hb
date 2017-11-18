@@ -18,7 +18,7 @@
             <div class="input-field col s12">
                 <input id="EditCourseModal-pastExperience" type="text" class="validate character-count"
                        data-length="141" maxlength="141" value="{{tutor._pastExperience}}"/>
-                <label for="EditCourseModal-pasExperience">Past Experience</label>
+                <label for="EditCourseModal-pastExperience">Past Experience</label>
             </div>
         </div>
 
@@ -39,7 +39,7 @@
             </div>
 
             <div class="col s12 m6 center">
-                <a id="EditCourseModal-applyChanges" class="btn waves-effect waves-light orange" type="submit"
+                <a id="EditCourseModal-applyChanges" class="btn waves-effect waves-light green" type="submit"
                         name="action">
                     Apply Changes <i class="material-icons right">done</i>
                 </a>

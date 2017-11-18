@@ -4,9 +4,6 @@ More ideas here: https://www.uplabs.com/web
 -->
 
 <div id="Login-body" class="container">
-    {{#if alert}}
-        <!--{{alert}} TODO: Make some div that prints out the error message to the user in a nice location. The alert will be a string-->
-    {{/if}}
     <div class="row">
         <div class="col s8 offset-s2">
             <div class="card white hoverable">

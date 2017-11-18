@@ -5,6 +5,7 @@
   "dependencies": {
     "@types/bootstrap": "^3.3.36",
     "@types/fullcalendar": "^3.5.1",
+    "@types/clipboard": "^1.5.35",
     "@types/gapi": "0.0.35",
     "@types/gapi.auth2": "0.0.45",
     "@types/handlebars": "^4.0.36",
@@ -13,6 +14,7 @@
     "@types/materialize-css": "^0.100.2",
     "bootstrap": "^3.3.7",
     "fullcalendar": "^3.7.0",
+    "clipboard": "^1.7.1",
     "handlebars": "^4.0.10",
     "jasmine-core": "^2.8.0",
     "jquery": "^3.2.1",

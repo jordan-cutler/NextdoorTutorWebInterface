@@ -1,44 +1,44 @@
-<!--
-Data Expected as:
-{
-    user: User,
-    courses: Course[],
-    endorsements: Endorsement[],
-    rating: Rating
-}
--->
 <!-- BEGIN BASIC INFO -->
 <div class="row">
     <!-- BEGIN BASIC INFO -->
     <div class="col s12">
         <div class="z-depth-3 card white horizontal">
-            <div class="card-image col s3">
-                {{#if profilePhotoRoute}}
-                    <a class="modal-trigger" href="#Profile-uploadPictureModal">
-                        <img class="responsive-img" id="Profile-profilePhoto" src="{{profilePhotoRoute}}"
-                             alt="Profile Photo"/>
-                    </a>
-                {{else}}
-                    <a class="modal-trigger" href="#Profile-uploadPictureModal">
-                        <i class="large material-icons col s2">account_circle</i>
-                    </a>
-                {{/if}}
-                <div class="row">
-                    <div class="col s12">
-                        <br/>
-                        <!--TODO: Make it so when people click on the email, it is copied into their cmd+c or crtl+c-->
-                        <b><u>Contact:</u></b> {{user._email}}
+            <div class="card-image col s12 m4 valign-wrapper">
+                <!--
+                 The below example is taken from here: https://jsfiddle.net/Venugopal/e0u4sow1/1/
+                 Other Examples:
+                 http://jsfiddle.net/6Mt3Q/
+                 https://codepen.io/felicia/pen/qKhJt
+                 -->
+                <div id="Profile-preloader" class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-red-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
                     </div>
+                    </div>
+                </div>
+                <div id="Profile-profileImageContainer" class="media">
+                    <a id="Profile-uploadPictureLink" href="#">
+                        {{#if profilePhotoRoute}}
+                            <img id="Profile-profilePhoto" alt="Failed to load profile picture" class="media__image" src="{{profilePhotoRoute}}"/>
+                        {{else}}
+                            <i class="large material-icons col s2">account_circle</i>
+                        {{/if}}
+                    <div class="media__body">
+                        <h6>Upload Profile Picture</h6>
+                    </div>
+                    </a>
                 </div>
             </div>
             <div class="card-stacked">
-                <div class="card-content row">
+                <div class="card-content">
+                    <h3 class="card-title">{{user._userName}}</h3>
                     <div class="row">
-                        <h3 class="card-title col s6 offset-s1">{{user._userName}}</h3>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 offset-s1">
-                            <br/>
+                        <div class="col s12">
                             <p>
                                 {{#if user._bio}}
                                     Bio: {{user._bio}}
@@ -48,6 +48,11 @@ Data Expected as:
                             </p>
                         </div>
                     </div>
+                </div>
+                <div class="card-action">
+                    <a id="Profile-emailContact" href="#" data-clipboard-text="{{user._email}}">
+                        <b><u>Contact:</u></b> {{user._email}}
+                    </a>
                 </div>
             </div>
         </div>
@@ -87,32 +92,4 @@ Data Expected as:
     </div> <!-- END ENDORSEMENTS -->
 </div>
 <!-- BEGIN LIST OF COURSES PERSON IS TUTORING -->
-
-<!-- Upload Picture Modal-->
-<div id="Profile-uploadPictureModal" class="modal">
-    <div class="modal-content">
-        <h4>Say hi to the camera!</h4>
-        <div class="row">
-            <form class="col s12">
-                <label>Maximum file upload size 5MB.</label>
-                <div class="file-field input-field">
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="btn orange">
-                                <span>Upload Profile Picture</span>
-                                <input id="Profile-fileUploadInput" type="file"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<input id="Profile-fileUploadInput" type="file"/>

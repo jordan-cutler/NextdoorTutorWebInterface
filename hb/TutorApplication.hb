@@ -67,7 +67,7 @@
                 <div class="input-field col s12">
                     <input id="TutorApplication-pastExperience" type="text" class="validate character-count"
                            data-length="141" maxlength="141"/>
-                    <label for="TutorApplication-pasExperience">Past Experience</label>
+                    <label for="TutorApplication-pastExperience">Past Experience</label>
                 </div>
             </div>
 

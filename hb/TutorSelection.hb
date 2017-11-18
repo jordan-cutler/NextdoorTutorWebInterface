@@ -3,25 +3,26 @@
     <li>
         <div class="row collapsible-header valign-wrapper">
             <!-- Preloader for image -->
-            <div class="preloader-wrapper active TutorSelection-imagePreloader">
-                <div class="spinner-layer spinner-red-only">
-                    <div class="circle-clipper left">
+                <div class="preloader-wrapper big active TutorSelection-preloader">
+                    <div class="spinner-layer spinner-red-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
                         <div class="circle"></div>
-                    </div><div class="gap-patch">
-                    <div class="circle"></div>
-                </div><div class="circle-clipper right">
-                    <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                    </div>
                 </div>
-                </div>
-            </div>
             <img class="TutorSelection-profileImg col s2" src="#" alt="No profile picture" data-tutor_id="{{this._userId}}">
             <div class="col s7">
                 <span>{{this._name}}</span>
             </div>
-            <a id="TutorSelection-bookTutorButton" class="btn tooltipped" data-position="top" data-delay="50"
-               data-tooltip="Contact them at {{this._email}}">
+            <button id="TutorSelection-bookTutorButton" class="btn tooltipped"
+                    data-clipboard-text="{{this._email}}" data-position="top" data-delay="50"
+                    data-tooltip="Contact them at {{this._email}}">
                 Book Tutor <i class="material-icons right">contact_mail</i>
-            </a>
+            </button>
         </div>
         <div class="collapsible-body">
             {{#if_all this._instructor this._grade}}
