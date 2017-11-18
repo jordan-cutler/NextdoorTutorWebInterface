@@ -12,9 +12,9 @@
                  https://codepen.io/felicia/pen/qKhJt
                  -->
                 <div class="media">
-                    <a class="modal-trigger" href="#Profile-uploadPictureModal">
+                    <a id="Profile-uploadPictureLink" href="#">
                         {{#if profilePhotoRoute}}
-                            <img alt="Failed to load profile picture" class="media__image" src="{{profilePhotoRoute}}"/>
+                            <img id="Profile-profilePhoto" alt="Failed to load profile picture" class="media__image" src="{{profilePhotoRoute}}"/>
                         {{else}}
                             <i class="large material-icons col s2">account_circle</i>
                         {{/if}}
@@ -83,32 +83,4 @@
     </div> <!-- END ENDORSEMENTS -->
 </div>
 <!-- BEGIN LIST OF COURSES PERSON IS TUTORING -->
-
-<!-- Upload Picture Modal-->
-<div id="Profile-uploadPictureModal" class="modal">
-    <div class="modal-content">
-        <h4>Say hi to the camera!</h4>
-        <div class="row">
-            <form class="col s12">
-                <label>Maximum file upload size 5MB.</label>
-                <div class="file-field input-field">
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="btn orange">
-                                <span>Upload Profile Picture</span>
-                                <input id="Profile-fileUploadInput" type="file"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<input id="Profile-fileUploadInput" type="file"/>
