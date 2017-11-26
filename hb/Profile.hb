@@ -14,36 +14,46 @@
                     <div class="spinner-layer spinner-red-only">
                         <div class="circle-clipper left">
                             <div class="circle"></div>
-                        </div><div class="gap-patch">
-                        <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
                     </div>
                 </div>
                 <div id="Profile-profileImageContainer" class="media">
                     <a id="Profile-uploadPictureLink" href="#">
                         {{#if profilePhotoRoute}}
-                            <img id="Profile-profilePhoto" alt="Failed to load profile picture" class="media__image" src="{{profilePhotoRoute}}"/>
+                            <img id="Profile-profilePhoto" alt="Failed to load profile picture" class="media__image"
+                                 src="{{profilePhotoRoute}}"/>
                         {{else}}
                             <i class="large material-icons col s2">account_circle</i>
                         {{/if}}
-                    <div class="media__body">
-                        <h6>Upload Profile Picture</h6>
-                    </div>
+                        <div class="media__body">
+                            <h6>Upload Profile Picture</h6>
+                        </div>
                     </a>
                 </div>
             </div>
             <div class="card-stacked">
                 <div class="card-content">
-                    <h3 class="card-title">{{user._userName}}</h3>
+                    <div class="row">
+                        <div class="col s10">
+                            <h3 class="card-title">{{user._userName}}</h3>
+                        </div>
+                        <div class="col s2 right">
+                            <a class="modal-trigger" href="#Profile-editBioModal"><i class="material-icons">edit</i></a>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col s12">
-                            <p>
+                            <p id="Profile-bio">
                                 {{#if user._bio}}
-                                    Bio: {{user._bio}}
+                                    {{user._bio}}
                                 {{else}}
-                                    Click here to tell everyone a bit about yourself!
+                                    You haven't set your bio yet!
                                 {{/if}}
                             </p>
                         </div>
@@ -84,8 +94,7 @@
                     <div class="row">
                         <div class="col s12">
                             <p>{{this._userName}}: {{this._endorsement}}</p>
-                        </div>
-                    </div>
+                        </div></div>
                 {{/each}} <!-- END LIST OF ENDORSEMENTS -->
             </div>
         </div>
@@ -93,3 +102,23 @@
 </div>
 <!-- BEGIN LIST OF COURSES PERSON IS TUTORING -->
 <input id="Profile-fileUploadInput" type="file"/>
+
+<div id="Profile-editBioModal" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="Profile-bioTextAreaModal" type="text" class="character-count"
+                               data-length="141" maxlength="141">
+                        </input>
+                        <label for="Profile-bioTextAreaModal">Bio</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a id="Profile-saveBioButton" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+    </div>
+</div>
