@@ -26,7 +26,7 @@ class CoursesWithTutors {
     }
 
     private static initializeSearchBar(courses: Course[]) {
-        let searchObj: object = { }; // will contain the info we pass to autocomplete so we can populate the search bar
+        let searchObj: any = { }; // will contain the info we pass to autocomplete so we can populate the search bar
         courses.forEach(function(course: Course) {
             CoursesWithTutors.addCourseToSearchObject(course, searchObj);
         });
@@ -34,7 +34,7 @@ class CoursesWithTutors {
             data: searchObj,
             limit: 15, // The max amount of results that can be shown at once. Default: Infinity.
             // execute when someone clicks a selection
-            onAutocomplete: function(course) {
+            onAutocomplete: function(course: string) {
                 let courseNumber = course.split(" ")[0];
                 CoursesWithTutors.showListOfTutorsForCourseNumber(courseNumber);
             },
@@ -42,7 +42,7 @@ class CoursesWithTutors {
         });
     }
 
-    private static addCourseToSearchObject(course: Course, searchObject: object) {
+    private static addCourseToSearchObject(course: Course, searchObject: any) {
         searchObject[course.courseNumber + " " + course.title] = null;
     }
 

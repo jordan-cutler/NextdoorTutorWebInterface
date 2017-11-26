@@ -62,14 +62,18 @@ class Profile {
 
     private static onProfilePhotoUploadChange() {
         let input: HTMLInputElement = <HTMLInputElement>document.getElementById(Profile.NAME + "-fileUploadInput");
-        let fileInput: File = input.files[0];
-        ImageUtil.uploadProfilePictureToServer(
-            fileInput,
-            Profile.onSuccessfulProfilePhotoUpload,
-            function(data: any) {
-                Materialize.toast("Failed to upload new profile image. Try again later.", 1500);
-            }
-        );
+        let fileInput: File | null | undefined = null;
+        
+        if (input != null && input.files != null && input.files.length >= 1) {
+            fileInput = input.files![0];
+            ImageUtil.uploadProfilePictureToServer(
+                fileInput,
+                Profile.onSuccessfulProfilePhotoUpload,
+                function (data: any) {
+                    Materialize.toast("Failed to upload new profile image. Try again later.", 1500);
+                }
+            );
+        }
     }
 
     private static onSuccessfulProfilePhotoUpload(data: any) {
@@ -112,11 +116,11 @@ class Profile {
     private static onApplyChangesToCourseClick(courseNumber: string, updatedHourlyRate: number, updatedPastExperience: string, updatedNotes: string) {
         TutorApiUtil.updateTutorAsCurrentUser(
             courseNumber, updatedHourlyRate, updatedPastExperience, updatedNotes,
-            function(data: any) {
+            function (data: any) {
                 $(Profile.EditCourseModalSelector).modal('close');
                 Materialize.toast("Successfully edited your tutor profile for " + courseNumber, 2500);
             },
-            function(data: any) {
+            function (data: any) {
                 Materialize.toast("Failed to update your tutor profile. Try again soon.", 2500);
             }
         )
@@ -126,11 +130,11 @@ class Profile {
         let bio = $(Profile.EditBioInputSelector).val();
         UserApiUtil.updateBio(
             bio,
-            function(data) {
+            function (data) {
                 $(Profile.BioSelector).text(bio);
                 User.getUser().bio = bio;
             },
-            function(data) {
+            function (data) {
                 Materialize.toast("Failed to update bio. Try again soon.", 2500);
             }
         )
@@ -157,11 +161,11 @@ class Profile {
         $('.modal').modal();
         $('input.character-count').characterCounter();
         $(Profile.CourseUserIsTutoringSelector).click(Profile.onCourseUserIsTutoringClick);
-        $(Profile.EmailContactSelector).click(function() {
+        $(Profile.EmailContactSelector).click(function () {
             Materialize.toast("Email copied!", 1000);
         });
         $(Profile.FileUploadInputSelector).change(Profile.onProfilePhotoUploadChange);
-        $(Profile.UploadPictureLinkSelector).click(function(e){
+        $(Profile.UploadPictureLinkSelector).click(function (e) {
             e.preventDefault();
             $(Profile.FileUploadInputSelector).trigger('click');
         });

@@ -65,7 +65,7 @@ class TutorSelection {
 
     // Register handlebars helper to validate multiple fields existing
     private static handlebarsAddIfAll() {
-        Handlebars.registerHelper('if_all', function () {
+        Handlebars.registerHelper('if_all', function(this: any) {
             let args = [].slice.apply(arguments);
             let opts = args.pop();
 
@@ -77,7 +77,6 @@ class TutorSelection {
                 break;
             }
 
-            //noinspection TypeScriptValidateTypes
             return fn(this);
         });
     }
