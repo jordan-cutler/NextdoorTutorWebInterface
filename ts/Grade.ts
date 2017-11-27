@@ -22,7 +22,7 @@ class Grade {
     }
 
     public static isGradeValid(grade: string): boolean {
-        return Grade.VALID_GRADES.some(function(element: string, index: number, array: string[]) {
+        return Grade.VALID_GRADES.some(function(element: string) {
             return element === grade;
         });
     }

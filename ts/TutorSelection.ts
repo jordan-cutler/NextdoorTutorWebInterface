@@ -18,7 +18,9 @@ class TutorSelection {
             function (data: any) {
                 TutorSelection.showTutors(data, courseNumber);
             },
-            TutorSelection.onGetTutorsForCourseError
+            function(data: any) {
+                Materialize.toast("Failed to retrieve tutors for that course. Refresh and try again.", 3000);
+            }
         );
     }
 
@@ -33,10 +35,6 @@ class TutorSelection {
         TutorSelection.setImageSrcAttributesForProfilePictures();
         ImageUtil.hideImagesUntilLoaded(TutorSelection.ImagePreloadersSelector, TutorSelection.ProfileImagesSelector);
         TutorSelection.setEventHandlers();
-    }
-
-    private static onGetTutorsForCourseError(data: any) {
-
     }
 
     private static setImageSrcAttributesForProfilePictures() {
