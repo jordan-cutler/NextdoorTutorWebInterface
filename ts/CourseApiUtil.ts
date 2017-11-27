@@ -19,7 +19,7 @@ class CourseApiUtil {
     }
 
     public static getCoursesUserIsTutoring(userId: string, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
-        HttpRequestUtil.GetRequest(CourseApiUtil.GETCOURSESUSERISTUTORINGROUTE + "/" + User.userId(),
+        HttpRequestUtil.GetRequest(CourseApiUtil.GETCOURSESUSERISTUTORINGROUTE + "/" + userId,
             HttpRequestUtil.getSessionInfoJson(), successFunction, errorFunction);
     }
 }
