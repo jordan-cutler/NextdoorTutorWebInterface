@@ -128,6 +128,10 @@ class Profile {
 
     private static saveBio() {
         let bio = $(Profile.EditBioInputSelector).val();
+        if (bio == "") {
+            $(Profile.BioSelector).text("You haven't set your bio yet!");
+            return;
+        }
         UserApiUtil.updateBio(
             bio,
             function (data) {
