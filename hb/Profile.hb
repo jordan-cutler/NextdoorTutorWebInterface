@@ -36,7 +36,7 @@
                                     <img id="Profile-profilePhoto" alt="Failed to load profile picture" class="media__image z-depth-3"
                                          src="{{profilePhotoRoute}}"/>
                                 {{else}}
-                                    <i class="large material-icons col s2">account_circle</i>
+                                    <i class="large material-icons">account_circle</i>
                                 {{/if}}
                                 <div class="media__body">
                                     <h6 class="mobile-hidden">Upload Profile Picture</h6>

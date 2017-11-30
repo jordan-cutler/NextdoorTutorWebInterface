@@ -54,9 +54,13 @@ class Profile {
             profilePhotoRoute: profilePhotoRoute,
             courses: coursesUserIsTutoring
         }));
-        // Give them a preloader if they have an image we're loading
+        // Keep preloader until image is loaded as long as we have an image we need to wait for
         if (profilePhotoRoute != "") {
             ImageUtil.hideImagesUntilLoaded(Profile.PreloaderSelector, Profile.ProfileImageContainerSelector);
+        }
+        // remove the preloader since we're just showing them the alt image
+        else {
+            $(Profile.PreloaderSelector).remove();
         }
     }
 
