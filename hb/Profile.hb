@@ -10,55 +10,63 @@
                  http://jsfiddle.net/6Mt3Q/
                  https://codepen.io/felicia/pen/qKhJt
                  -->
-                <div id="Profile-preloader" class="preloader-wrapper big active">
-                    <div class="spinner-layer spinner-red-only">
-                        <div class="circle-clipper left">
-                            <div class="circle"></div>
-                        </div>
-                        <div class="gap-patch">
-                            <div class="circle"></div>
-                        </div>
-                        <div class="circle-clipper right">
-                            <div class="circle"></div>
-                        </div>
+                <div class="row">
+                    <div class="col s12">
+                        <a class="modal-trigger right" href="#Profile-editBioModal"><i class="material-icons">edit</i></a>
                     </div>
-                </div>
-                <div id="Profile-profileImageContainer" class="media">
-                    <a id="Profile-uploadPictureLink" href="#">
-                        {{#if profilePhotoRoute}}
-                        <img id="Profile-profilePhoto" alt="Failed to load profile picture" class="media__image"
-                             src="{{profilePhotoRoute}}"/>
-                        {{else}}
-                        <i class="large material-icons col s2">account_circle</i>
-                        {{/if}}
-                        <div class="media__body">
-                            <h6>Upload Profile Picture</h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="right">
-                    <a class="modal-trigger" href="#Profile-editBioModal"><i class="material-icons">edit</i></a>
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <div class="col push-s2 s8">
-                            <h3 class="card-title">{{user._userName}}</h3>
+                        <div id="Profile-preloader" class="preloader-wrapper big active center">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col s12">
-                            <p id="Profile-bio">
-                                {{#if user._bio}}
-                                {{user._bio}}
+                        <div id="Profile-profileImageContainer" class="media center">
+                            <a id="Profile-uploadPictureLink" href="#">
+                                {{#if profilePhotoRoute}}
+                                    <img id="Profile-profilePhoto" alt="Failed to load profile picture" class="media__image z-depth-3"
+                                         src="{{profilePhotoRoute}}"/>
                                 {{else}}
-                                You haven't set your bio yet!
+                                    <i class="large material-icons col s2">account_circle</i>
                                 {{/if}}
-                            </p>
+                                <div class="media__body">
+                                    <h6>Upload Profile Picture</h6>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <a id="Profile-emailContact" href="#" data-clipboard-text="{{user._email}}">
-                        <b><u>Contact:</u></b> {{user._email}}
-                    </a>
+                <div class="row">
+                    <div class="col s12">
+                        <h3 id="Profile-userName" class="card-title center">{{user._userName}}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <p id="Profile-bio" class="center">
+                            {{#if user._bio}}
+                                {{user._bio}}
+                            {{else}}
+                                You haven't set your bio yet!
+                            {{/if}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <a id="Profile-emailContact" class="center" href="#" data-clipboard-text="{{user._email}}">
+                            <b>Contact:</b> {{user._email}}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
