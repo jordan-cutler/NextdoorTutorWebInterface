@@ -39,7 +39,7 @@
                                     <i class="large material-icons col s2">account_circle</i>
                                 {{/if}}
                                 <div class="media__body">
-                                    <h6>Upload Profile Picture</h6>
+                                    <h6 class="mobile-hidden">Upload Profile Picture</h6>
                                 </div>
                             </a>
                         </div>
