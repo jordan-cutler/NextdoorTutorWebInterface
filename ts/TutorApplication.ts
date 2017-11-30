@@ -77,15 +77,12 @@ class TutorApplication {
         TutorApiUtil.addTutor(userId, hourlyRate, courseNumber, grade, instructor, pastExperience, notes, sessionToken,
             function (data: any) {
                 Materialize.toast("Thanks for becoming a " + courseNumber + " tutor!", 3000);
-                setTimeout(1);
-                CoursesWithTutors.init();
+                setTimeout(CoursesWithTutors.init(), 100)
             },
-            TutorApplication.onSubmitApplicationError);
-    }
-
-    private static onSubmitApplicationError(data: any) {
-        console.log("error");
-        console.log(data);
+            function(data: any) {
+                Materialize.toast("Could not sign you up at the moment. Please try again later.", 3000);
+            }
+        );
     }
 
     private static courseNotSelected(courseNumber: string) {
