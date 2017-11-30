@@ -2,9 +2,8 @@
 <div class="row">
     <!-- BEGIN BASIC INFO -->
     <div class="col s12">
-        <div class="z-depth-3 card white horizontal">
-            <div class="card-image col s12 m4 valign-wrapper">
-
+        <div class="z-depth-3 card white center">
+            <div class="card-content z-depth-4">
                 <!--
                  The below example is taken from here: https://jsfiddle.net/Venugopal/e0u4sow1/1/
                  Other Examples:
@@ -27,40 +26,36 @@
                 <div id="Profile-profileImageContainer" class="media">
                     <a id="Profile-uploadPictureLink" href="#">
                         {{#if profilePhotoRoute}}
-                            <img id="Profile-profilePhoto" alt="Failed to load profile picture" class="media__image"
-                                 src="{{profilePhotoRoute}}"/>
+                        <img id="Profile-profilePhoto" alt="Failed to load profile picture" class="media__image"
+                             src="{{profilePhotoRoute}}"/>
                         {{else}}
-                            <i class="large material-icons col s2">account_circle</i>
+                        <i class="large material-icons col s2">account_circle</i>
                         {{/if}}
                         <div class="media__body">
                             <h6>Upload Profile Picture</h6>
                         </div>
                     </a>
                 </div>
-            </div>
-            <div class="card-stacked">
-                <div class="card-content">
-                    <div class="row">
-                        <div class="col s10">
+                <div class="right">
+                    <a class="modal-trigger" href="#Profile-editBioModal"><i class="material-icons">edit</i></a>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="col push-s2 s8">
                             <h3 class="card-title">{{user._userName}}</h3>
                         </div>
-                        <div class="col s2 right">
-                            <a class="modal-trigger" href="#Profile-editBioModal"><i class="material-icons">edit</i></a>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col s12">
                             <p id="Profile-bio">
                                 {{#if user._bio}}
-                                    {{user._bio}}
+                                {{user._bio}}
                                 {{else}}
-                                    You haven't set your bio yet!
+                                You haven't set your bio yet!
                                 {{/if}}
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="card-action">
+                <div>
                     <a id="Profile-emailContact" href="#" data-clipboard-text="{{user._email}}">
                         <b><u>Contact:</u></b> {{user._email}}
                     </a>
@@ -78,10 +73,10 @@
             </div>
 
             {{#each courses}}
-                <a href="#" data-course_number="{{this.courseNumber}}"
-                   class="Profile-courseUserIsTutoring collection-item">
-                    {{this.courseNumber}} {{this.title}}
-                </a>
+            <a href="#" data-course_number="{{this.courseNumber}}"
+               class="Profile-courseUserIsTutoring collection-item">
+                {{this.courseNumber}} {{this.title}}
+            </a>
             {{/each}}
         </div>
     </div>
@@ -92,10 +87,11 @@
                 <span class="condensed light card-title col s12">Endorsements</span>
                 <!-- BEGIN LIST OF ENDORSEMENTS -->
                 {{#each endorsements}}
-                    <div class="row">
-                        <div class="col s12">
-                            <p>{{this._userName}}: {{this._endorsement}}</p>
-                        </div></div>
+                <div class="row">
+                    <div class="col s12">
+                        <p>{{this._userName}}: {{this._endorsement}}</p>
+                    </div>
+                </div>
                 {{/each}} <!-- END LIST OF ENDORSEMENTS -->
             </div>
         </div>
@@ -120,6 +116,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a id="Profile-saveBioButton" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+        <a id="Profile-saveBioButton" href="#!"
+           class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
     </div>
 </div>

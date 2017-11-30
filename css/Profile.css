@@ -2,6 +2,23 @@
     display:none;
 }
 
+/*this gets applied to all and then can be overwritten*/
+#Profile-profilePhoto {
+    border-radius: 5%;
+    padding: 0 !important;
+    height: 100px !important;
+    width: 103.33px !important;
+}
+/*this is only for screens larger than the s size, which means m or l*/
+@media only screen and (min-width: 992px) {
+    #Profile-profilePhoto {
+        border-radius: 5%;
+        padding: 0 !important;
+        height: 150px !important;
+        width: 230px !important;
+    }
+}
+
 .media {
     display: inline-block;
     position: relative;
