@@ -55,6 +55,26 @@
                 </div>
             </div>
 
+            <div id=TutorApplication-semesterTaken" class="row">
+                <div class="input-field col s4">
+                    <select id="TutorApplication-semester">
+                        <!--<option value="" disabled selected>Haven't Taken</option>-->
+                        {{#each semesters}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                    <label for="TutorApplication-semester">Term taken</label>
+                </div>
+                <div class="input-field col s4">
+                    <select id="TutorApplication-year">
+                        {{#each years}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                    <label for="TutorApplication-year">Year taken</label>
+                </div>
+            </div>
+
             <div id="TutorApplication-instructorRow" class="row">
                 <div class="input-field col s12">
                     <input id="TutorApplication-instructor" type="text" class="character-count validate"

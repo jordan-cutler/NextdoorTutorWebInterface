@@ -1,6 +1,7 @@
 /// <reference path="TutorApiUtil.ts" />
 /// <reference path="CourseApiUtil.ts" />
 /// <reference path="Grade.ts" />
+/// <reference path="Semester.ts" />
 
 class TutorApplication {
     private static readonly NAME = "TutorApplication";
@@ -11,6 +12,10 @@ class TutorApplication {
     private static readonly CoursesDropDownSelectedSelector = TutorApplication.CoursesDropDownSelector + " option:selected";
     private static readonly GradeDropdownSelector = "#" + TutorApplication.NAME + "-grade";
     private static readonly GradeDropdownSelectedSelector = TutorApplication.GradeDropdownSelector + " option:selected";
+    private static readonly SemesterDropdownSelector = "#" + TutorApplication.NAME + "-semester";
+    private static readonly SemesterDropdownSelectedSelector = TutorApplication.SemesterDropdownSelector + " option:selected";
+    private static readonly YearDropdownSelector = "#" + TutorApplication.NAME + "-year";
+    private static readonly YearDropdownSelectedSelector = TutorApplication.YearDropdownSelector + " option:selected";
     private static readonly InstructorInputSelector = "#" + TutorApplication.NAME + "-instructor";
     private static readonly PastExperienceInputSelector = "#" + TutorApplication.NAME + "-pastExperience";
     private static readonly OtherNotesInputSelector = "#" + TutorApplication.NAME + "-notes";
@@ -36,9 +41,14 @@ class TutorApplication {
     private static displayApplication(courses: Course[]) {
         $("#indexMain").html(Handlebars.templates[TutorApplication.NAME + ".hb"]({
             courses: courses,
-            grades: Grade.VALID_GRADES
+            grades: Grade.VALID_GRADES,
+            semesters: Semester.VALID_SEMESTER,
+            years: Semester.VALID_YEAR
+
         }));
         TutorApplication.setSelectedItemOnGradeDropdown("B+");
+        TutorApplication.setSelectedItemOnSemesterDropdown("Fall");
+        TutorApplication.setSelectedItemOnYearDropdown("2017");
     }
 
     private static submitApplication() {
@@ -54,10 +64,13 @@ class TutorApplication {
         let notes: string = $(TutorApplication.OtherNotesInputSelector).val();
 
         let grade: string = "";
+        let semester: string = "";
+        let year: string = "";
         let instructor: string = "";
 
         if (TutorApplication.userHasTakenClassBefore()) {
             grade = $(TutorApplication.GradeDropdownSelectedSelector).text();
+            semester = $(TutorApplication.SemesterDropdownSelectedSelector).text();
             instructor = $(TutorApplication.InstructorInputSelector).val();
             if (TutorApplication.gradeNotSelected(grade)) {
                 Materialize.toast("Let us know your grade before submitting", 3000);
@@ -65,6 +78,22 @@ class TutorApplication {
             }
             if (!Grade.isGradeValid(grade)) {
                 Materialize.toast("Grade is invalid", 3000);
+                return;
+            }
+            if (TutorApplication.semesterNotSelected(semester)) {
+                Materialize.toast("Let us know when you took the class before submitting", 3000);
+                return;
+            }
+            if (!Semester.isSemesterValid(semester)) {
+                Materialize.toast("Semester is invalid", 3000);
+                return;
+            }
+            if (TutorApplication.yearNotSelected(year)) {
+                Materialize.toast("Let us know the year yout ook the class before submitting", 3000);
+                return;
+            }
+            if(!Semester.isYearValid) {
+                Materialize.toast("Year is invalid", 3000);
                 return;
             }
 
@@ -94,6 +123,14 @@ class TutorApplication {
 
     private static gradeNotSelected(grade: string) {
         return grade == "" || grade == null;
+    }
+
+    private static semesterNotSelected(semester: string) {
+        return semester == "" || semester == null;
+    }
+
+    private static yearNotSelected(year: string) {
+        return year == "" || year == null;
     }
 
     private static instructorNotSelected(instructor: string) {
@@ -136,5 +173,12 @@ class TutorApplication {
 
     private static setSelectedItemOnGradeDropdown(grade: string) {
         $(TutorApplication.GradeDropdownSelector).val(grade);
+    }
+
+    private static setSelectedItemOnSemesterDropdown(semester: string) {
+        $(TutorApplication.SemesterDropdownSelector).val(semester);
+    }
+    private static setSelectedItemOnYearDropdown(year: string) {
+        $(TutorApplication.YearDropdownSelector).val(year);
     }
 }
