@@ -15,7 +15,7 @@
                     <select id="TutorApplication-course">
                         <option value="" disabled selected>N/A</option>
                         {{#each courses}}
-                            <option value="">{{this._courseNumber}} {{this._title}}</option>
+                            <option value="">{{this.courseNumber}} {{this.title}}</option>
                         {{/each}}
                     </select>
                     <label for="TutorApplication-course">Course to tutor</label>

@@ -14,9 +14,11 @@ class Profile {
     private static readonly PreloaderSelector = "#" + Profile.NAME + "-preloader";
     private static readonly ProfileImageContainerSelector = "#" + Profile.NAME + "-profileImageContainer";
     private static readonly BioSelector = "#" + Profile.NAME + "-bio";
+    private static readonly MajorSelector = "#" + Profile.NAME + "-major";
 
     // Modal selectors
     private static readonly EditBioInputSelector = "#" + Profile.NAME + "-bioTextAreaModal";
+    private static readonly EditMajorInputSelector = "#" + Profile.NAME + "-majorTextAreaModal";
     private static readonly SaveBioButtonSelector = "#" + Profile.NAME + "-saveBioButton";
     private static readonly EditCourseModalSelector = "#EditCourseModal-courseEditModal";
     private static readonly StopTutoringCourseButtonSelector = "#EditCourseModal-stopTutoring";
@@ -27,7 +29,7 @@ class Profile {
 
     public static init() {
         CourseApiUtil.getCoursesUserIsTutoring(
-            User.userId(),
+            UserSession.userId(),
             Profile.onSuccessfulRetrievalOfCoursesUserIsTutoring,
             function (data) {
                 console.log("failed to retrieve courses user is tutoring")
@@ -39,10 +41,10 @@ class Profile {
         let coursesUserIsTutoring: Course[] = Course.CourseJsonArrayToCourseModelArray(data);
         let profilePhotoRoute: string = "";
         // Only make the request to get the url if we know they have a picture
-        if (User.profilePhotoId() != null && User.profilePhotoId() != "") {
+        if (UserSession.currentUser().profilePhotoId != null && UserSession.currentUser().profilePhotoId != "") {
             profilePhotoRoute = ImageUtil.getNewProfilePhotoUrlForCurrentUser();
         }
-        Profile.showProfile(User.getUser(), profilePhotoRoute, coursesUserIsTutoring);
+        Profile.showProfile(UserSession.currentUser(), profilePhotoRoute, coursesUserIsTutoring);
         Profile.setMainEventHandlers();
         Profile.setEditBioTextToCurrentBio();
     }
@@ -67,7 +69,7 @@ class Profile {
     private static onProfilePhotoUploadChange() {
         let input: HTMLInputElement = <HTMLInputElement>document.getElementById(Profile.NAME + "-fileUploadInput");
         let fileInput: File | null | undefined = null;
-        
+
         if (input != null && input.files != null && input.files.length >= 1) {
             fileInput = input.files![0];
             ImageUtil.uploadProfilePictureToServer(
@@ -88,7 +90,7 @@ class Profile {
     private static onCourseUserIsTutoringClick() {
         let courseNumber = $(this).data("course_number");
         TutorApiUtil.getTutorById(
-            User.userId(), courseNumber,
+            UserSession.userId(), courseNumber,
             Profile.loadCourseUserIsTutoringModal,
             function (data: any) {
                 Materialize.toast("An error occurred when trying to gather your info on that course. Please try again a bit later.", 3000)
@@ -97,7 +99,7 @@ class Profile {
     }
 
     private static loadCourseUserIsTutoringModal(tutorJson: any) {
-        let tutor = Tutor.TutorJsonToTutorModel(tutorJson);
+        let tutor = Tutor.tutorJsonToTutorModel(tutorJson);
         $("#indexModal").html(Handlebars.templates["EditCourseModal.hb"]({
             tutor: tutor
         }));
@@ -130,22 +132,34 @@ class Profile {
         )
     }
 
-    private static saveBio() {
+    private static saveProfileChanges() {
         let bio = $(Profile.EditBioInputSelector).val();
-        if (bio == "") {
-            $(Profile.BioSelector).text("You haven't set your bio yet!");
-            return;
-        }
-        UserApiUtil.updateBio(
+        let major = $(Profile.EditMajorInputSelector).val();
+        console.log("major = " + major);
+        // https://stackoverflow.com/questions/3709597/wait-until-all-jquery-ajax-requests-are-done
+        $.when(
+            UserApiUtil.updateBio(
             bio,
             function (data) {
-                $(Profile.BioSelector).text(bio);
-                User.getUser().bio = bio;
+                UserSession.currentUser().bio = bio;
             },
             function (data) {
                 Materialize.toast("Failed to update bio. Try again soon.", 2500);
             }
-        )
+        ),
+            UserApiUtil.updateMajor(
+                major,
+                function (data) {
+                    UserSession.currentUser().major = major;
+                },
+                function (data) {
+                    Materialize.toast("Failed to update major. Try again soon.", 2500);
+                }
+            )
+        ).done(function(response1, response2) {
+            Profile.init();
+        });
+        //Profile.init();
     }
 
     private static setModalEventHandlers(courseNumber: string) {
@@ -177,11 +191,11 @@ class Profile {
             e.preventDefault();
             $(Profile.FileUploadInputSelector).trigger('click');
         });
-        $(Profile.SaveBioButtonSelector).click(Profile.saveBio);
+        $(Profile.SaveBioButtonSelector).click(Profile.saveProfileChanges);
     }
 
     private static setEditBioTextToCurrentBio() {
-        $(Profile.EditBioInputSelector).val(User.bio());
+        $(Profile.EditBioInputSelector).val(UserSession.currentUser().bio);
         Materialize.updateTextFields();
     }
 }

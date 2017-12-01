@@ -12,7 +12,7 @@ class Navbar {
     private static readonly FindATutorButtonSelector = "." + Navbar.NAME + "-findATutorButton";
     private static readonly ProfileButtonSelector = "." + Navbar.NAME + "-profileButton";
 
-    public static init(user: any) {
+    public static init(user: User) {
         if (user != null) {
             $("#indexNav").html(Handlebars.templates[Navbar.NAME + ".hb"]({
                 user: user

@@ -20,34 +20,34 @@ class TutorApiUtil {
             sessionToken: sessionToken
         };
 
-        HttpRequestUtil.PostRequest(TutorApiUtil.ADDTUTORROUTE, tutorData, successFunction, errorFunction);
+        return HttpRequestUtil.PostRequest(TutorApiUtil.ADDTUTORROUTE, tutorData, successFunction, errorFunction);
     }
 
     public static getTutorsForCourse(courseNumber: string, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
-        HttpRequestUtil.GetRequest(
+        return HttpRequestUtil.GetRequest(
             TutorApiUtil.GETUTORSFORCOURSEROUTE + "/" + courseNumber,
             HttpRequestUtil.getSessionInfoJson(), successFunction, errorFunction
         );
     }
 
     public static getTutorById(tutorId: string, courseNumber: string, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
-        HttpRequestUtil.GetRequest(
+        return HttpRequestUtil.GetRequest(
             TutorApiUtil.GETTUTORROUTE + "/" + tutorId,
-            {courseNumber: courseNumber, userId: User.userId(), sessionToken: User.sessionToken()},
+            {courseNumber: courseNumber, userId: UserSession.userId(), sessionToken: UserSession.sessionToken()},
             successFunction, errorFunction);
     }
 
     public static removeCurrentUserFromCourseTutor(courseNumber: string, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
-        HttpRequestUtil.DeleteRequest(TutorApiUtil.DELETETUTORROUTE,
-            {courseNumber: courseNumber, userId: User.userId(), sessionToken: User.sessionToken()},
+        return HttpRequestUtil.DeleteRequest(TutorApiUtil.DELETETUTORROUTE,
+            {courseNumber: courseNumber, userId: UserSession.userId(), sessionToken: UserSession.sessionToken()},
             successFunction, errorFunction);
     }
 
     public static updateTutorAsCurrentUser(courseNumber: string, hourlyRate: number, pastExperience: string, notes: string,
                                            successFunction: (data: any) => any, errorFunction: (data: any) => any) {
-        HttpRequestUtil.PutRequest(TutorApiUtil.UPDATETUTORROUTE,
+        return HttpRequestUtil.PutRequest(TutorApiUtil.UPDATETUTORROUTE,
             {
-                userId: User.userId(), sessionToken: User.sessionToken(),
+                userId: UserSession.userId(), sessionToken: UserSession.sessionToken(),
                 courseNumber: courseNumber, hourlyRate: hourlyRate,
                 pastExperience: pastExperience, notes: notes
             },

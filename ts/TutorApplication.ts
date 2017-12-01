@@ -42,8 +42,8 @@ class TutorApplication {
     }
 
     private static submitApplication() {
-        let userId: string = User.userId();
-        let sessionToken: string = User.sessionToken();
+        let userId: string = UserSession.userId();
+        let sessionToken: string = UserSession.sessionToken();
         let hourlyRate: number = Number($("#hourlyRate").val());
         let courseNumber: string = $(TutorApplication.CoursesDropDownSelectedSelector).text().split(" ")[0];
         if (TutorApplication.courseNotSelected(courseNumber)) {

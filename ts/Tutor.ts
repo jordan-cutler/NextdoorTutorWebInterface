@@ -1,8 +1,5 @@
 class Tutor {
-    private _userId: string;
-    private _email: string;
-    private _name: string;
-    private _profilePhotoUrl: string;
+    private _user: User;
     private _hourlyRate: number;
     private _courseNumber: string;
     private _grade: string;
@@ -10,11 +7,8 @@ class Tutor {
     private _pastExperience: string;
     private _notes: string;
 
-    constructor(userId: string, email: string, name: string, profilePhotoUrl: string, hourlyRate: number, courseNumber: string, grade: string, instructor: string, pastExperience: string, notes: string) {
-        this._userId = userId;
-        this._email = email;
-        this._name = name;
-        this._profilePhotoUrl = profilePhotoUrl;
+    constructor(user: User, hourlyRate: number, courseNumber: string, grade: string, instructor: string, pastExperience: string, notes: string) {
+        this._user = user;
         this._hourlyRate = hourlyRate;
         this._courseNumber = courseNumber;
         this._grade = grade;
@@ -25,19 +19,19 @@ class Tutor {
 
 
     get userId(): string {
-        return this._userId;
+        return this._user.userId;
     }
 
     get email(): string {
-        return this._email;
+        return this._user.email;
     }
 
     get name(): string {
-        return this._name;
+        return this._user.userName;
     }
 
-    get profilePhotoUrl(): string {
-        return this._profilePhotoUrl;
+    get major(): string {
+        return this._user.major;
     }
 
     get hourlyRate(): number {
@@ -64,10 +58,10 @@ class Tutor {
         return this._notes;
     }
 
-    public static TutorJsonArrayToTutorModel(tutorsJsonResponse: any) {
+    public static tutorJsonArrayToTutorModel(tutorsJsonResponse: any) {
         let tutors: Tutor[] = [];
         tutorsJsonResponse.forEach(function (tutorJson: any) {
-            let tutor = Tutor.TutorJsonToTutorModel(tutorJson);
+            let tutor = Tutor.tutorJsonToTutorModel(tutorJson);
             tutors.push(tutor);
         });
         return tutors;
@@ -92,11 +86,8 @@ class Tutor {
      Put all of them in Tutor objects similar to how Course was used and pass
      data to handlebars file
      */
-    public static TutorJsonToTutorModel(tutorJson: any) {
-        let userId: string = tutorJson.userId;
-        let email: string = tutorJson.email;
-        let name: string = tutorJson.name;
-        let profilePhotoUrl: string = tutorJson.profilePhotoId;
+    public static tutorJsonToTutorModel(tutorJson: any) {
+        let user: User = User.userJsonToUserModel(tutorJson.user);
         let hourlyRate: number = Number(tutorJson.hourlyRate);
         let courseNumber: string = tutorJson.courseNumber;
         let grade: string = tutorJson.grade;
@@ -104,7 +95,7 @@ class Tutor {
         let pastExperience: string = tutorJson.pastExperience;
         let notes: string = tutorJson.notes;
         return new Tutor(
-                userId, email, name, profilePhotoUrl, hourlyRate, courseNumber,
+                user, hourlyRate, courseNumber,
                 grade, instructor, pastExperience, notes
             );
     }

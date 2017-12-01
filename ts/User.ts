@@ -1,79 +1,87 @@
 class User {
 
+    private _userId: string = "";
     private _email: string = "";
     private _userName: string = "";
-    private _userId: string = "";
-    private _sessionToken: string = "";
     private _profilePhotoId: string = "";
     private _bio: string = "";
-    private static _loggedUser: any = null;
+    private _major: string = "";
+    private _creationDate: Date;
 
-    static getUser() {
-        if (User._loggedUser == null) {
-            User._loggedUser = new User();
-        }
-        return User._loggedUser;
+    constructor(userId: string, email: string, userName: string, profilePhotoId: string, bio: string, major: string, creationDate: Date) {
+        this._userId = userId;
+        this._email = email;
+        this._userName = userName;
+        this._profilePhotoId = profilePhotoId;
+        this._bio = bio;
+        this._major = major;
+        this._creationDate = creationDate;
     }
 
-    static email() {
-        return User._loggedUser._email;
+    get userId(): string {
+        return this._userId;
     }
 
-    static userName(): string {
-        return User._loggedUser._userName;
+    get email() {
+        return this._email;
     }
 
-    static userId(): string {
-        return User._loggedUser._userId;
+    get userName(): string {
+        return this._userName;
     }
 
-    static sessionToken(): string {
-        return User._loggedUser._sessionToken;
+    get profilePhotoId(): string {
+        return this._profilePhotoId;
     }
 
-    static profilePhotoId(): string {
-        return User._loggedUser._profilePhotoId;
+    get bio(): string {
+        return this._bio;
     }
 
-    static bio(): string {
-        return User._loggedUser._bio;
+    get major(): string {
+        return this._major;
     }
 
-    static setFields(user: User, sessionToken: string,
-                     email: string, name: string, id: string, profilePhotoId: string, bio: string) {
-        user.sessionToken = sessionToken;
-        user.email = email;
-        user.userName = name;
-        user.userId = id;
-        user.profilePhotoId = profilePhotoId;
-        user.bio = bio;
+    get creationDate(): Date {
+        return this._creationDate;
     }
 
-    set email(value: string) {
-        User._loggedUser._email = value;
+    set userId(userId: string) {
+        this._userId = userId;
     }
 
-    set userName(value: string) {
-        User._loggedUser._userName = value;
+    set email(email: string) {
+        this._email = email;
     }
 
-    set userId(value: string) {
-        User._loggedUser._userId = value;
+    set userName(userName: string) {
+        this._userName = userName;
     }
 
-    set sessionToken(value: string) {
-        User._loggedUser._sessionToken = value;
+    set profilePhotoId(profilePhotoId: string) {
+        this._profilePhotoId = profilePhotoId;
     }
 
-    set profilePhotoId(value: string) {
-        User._loggedUser._profilePhotoId = value;
+    set bio(bio: string) {
+        this._bio = bio;
     }
 
-    set bio(value: string) {
-        User._loggedUser._bio = value;
+    set major(major: string) {
+        this._major = major;
     }
 
-    static destroyUser() {
-        User._loggedUser = null;
+    set creationDate(creationDate: Date) {
+        this._creationDate = creationDate;
+    }
+
+    public static userJsonToUserModel(userJson: any): User {
+        let userId = userJson.userId;
+        let email = userJson.email;
+        let userName = userJson.name;
+        let profilePhotoId = userJson.profilePhotoId;
+        let bio = userJson.bio;
+        let major = userJson.major;
+        let creationDate = userJson.creationDate;
+        return new User(userId, email, userName, profilePhotoId, bio, major, creationDate);
     }
 }

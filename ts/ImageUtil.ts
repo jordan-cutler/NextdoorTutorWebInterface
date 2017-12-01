@@ -5,13 +5,13 @@ class ImageUtil {
     public static uploadProfilePictureToServer(
         file: File, successFunction: (data: any) => any, errorFunction: (data: any) => any
     ) {
-        $.ajax({
-            url: ImageUtil.POSTPROFILEPICTUREROUTE + "/" + User.userId(),
+        return $.ajax({
+            url: ImageUtil.POSTPROFILEPICTUREROUTE + "/" + UserSession.userId(),
             method: 'POST',
             data: file,
             processData: false,  // tell jQuery not to process the data as a string
             contentType: file.type,
-            headers: {"Authorization": User.sessionToken()},
+            headers: {"Authorization": UserSession.sessionToken()},
             success: successFunction,
             error: errorFunction
         });
@@ -19,7 +19,7 @@ class ImageUtil {
 
     // Returns a unique url so the browser doesn't cache the previous image if someone just uploaded a new one
     public static getNewProfilePhotoUrlForCurrentUser() {
-        return ImageUtil.GETPROFILEPICTUREROUTE + "/" + User.userId() + ImageUtil.generateNewQueryString(User.userId(), User.sessionToken());
+        return ImageUtil.GETPROFILEPICTUREROUTE + "/" + UserSession.userId() + ImageUtil.generateNewQueryString(UserSession.userId(), UserSession.sessionToken());
     }
 
     // Returns a unique url so the browser doesn't cache the previous image if someone just uploaded a new one

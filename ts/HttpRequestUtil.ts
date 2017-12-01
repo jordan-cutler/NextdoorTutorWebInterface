@@ -1,14 +1,16 @@
 class HttpRequestUtil {
 
-    public static readonly EMPTYFUNCTION = function() {};
+    public static readonly EMPTYFUNCTION = function () {
+    };
+
     public static getSessionInfoJson() {
-        return { userId: User.userId(), sessionToken: User.sessionToken() };
+        return {userId: UserSession.userId(), sessionToken: UserSession.sessionToken()};
     }
 
     // TODO: Check how to make it so when this utility is used, we pass the User sessionToken and userId as default on top of everything else, that way all other requests that call these methods don't have to pass those two things every time
 
     public static GetRequest(route: string, params: object, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
-        $.ajax({
+        return $.ajax({
                 url: route,
                 type: "GET",
                 processData: true, // says to convert the "params" passed to query string
@@ -22,7 +24,7 @@ class HttpRequestUtil {
     }
 
     public static PostRequest(route: string, params: object, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
-        $.ajax({
+        return $.ajax({
                 url: route,
                 type: "POST",
                 processData: true,
@@ -36,7 +38,7 @@ class HttpRequestUtil {
     }
 
     public static DeleteRequest(route: string, params: object, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
-        $.ajax({
+        return $.ajax({
             url: route,
             type: "DELETE",
             data: JSON.stringify(params),
@@ -48,7 +50,7 @@ class HttpRequestUtil {
     }
 
     public static PutRequest(route: string, params: object, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
-        $.ajax({
+        return $.ajax({
             url: route,
             type: "PUT",
             data: JSON.stringify(params),
@@ -56,6 +58,6 @@ class HttpRequestUtil {
             dataType: "json",
             success: successFunction,
             error: errorFunction
-        })
+        });
     }
 }

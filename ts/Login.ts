@@ -1,5 +1,5 @@
 /// <reference path="HttpRequestUtil.ts" />
-/// <reference path="User.ts" />
+/// <reference path="UserSession.ts" />
 /// <reference path="UserApiUtil.ts" />
 
 import GoogleUser = gapi.auth2.GoogleUser;
@@ -24,19 +24,10 @@ class Login {
         }
     }
 
-    private static onSignInBackendResponseSuccess(data: any) {
-        let user = User.getUser();
-        let userObjectJson = data.user;
-        User.setFields(
-            user,
-            data.sessionToken,
-            userObjectJson.email,
-            userObjectJson.name,
-            userObjectJson.userId,
-            userObjectJson.profilePhotoId,
-            userObjectJson.bio
-        );
-        Navbar.init(user);
+    private static onSignInBackendResponseSuccess(userSessionJson: any) {
+        let userSession = UserSession.userSessionJsonToUserSessionModel(userSessionJson);
+        UserSession.setLoggedInUser(userSession);
+        Navbar.init(UserSession.currentUser());
         CoursesWithTutors.init();
     }
 
@@ -48,7 +39,7 @@ class Login {
         UserApiUtil.signOutUser(HttpRequestUtil.EMPTYFUNCTION, HttpRequestUtil.EMPTYFUNCTION);
         // THIS LINE MUST COME AFTER THE POST REQUEST TO SIGN OUT
         $("#indexNav").html("");
-        User.destroyUser();
+        //User.destroyUser();
         signOut(null);
     }
 

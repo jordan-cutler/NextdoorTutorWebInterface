@@ -18,7 +18,7 @@
 
                 <li>
                     <a class="Navbar-profileButton black-text" href="#">
-                        <i class="small material-icons left black-text">account_circle</i>{{user._userName}}
+                        <i class="small material-icons left black-text">account_circle</i>{{user.userName}}
                     </a>
                 </li>
 
@@ -33,8 +33,8 @@
                         <div class="background">
                             <img src="assets/images/office.jpg">
                         </div>
-                        <a href="#!name"><span class="white-text name">{{user._userName}}</span></a>
-                        <a href="#!email"><span class="white-text email">{{user._email}}</span></a>
+                        <a href="#!name"><span class="white-text name">{{user.userName}}</span></a>
+                        <a href="#!email"><span class="white-text email">{{user.email}}</span></a>
                     </div>
                 </li>
                 <li>

@@ -26,7 +26,7 @@ class TutorSelection {
 
     private static showTutors(data: any, courseNumber: string) {
         new Clipboard(".btn");
-        TutorSelection.setTutors(Tutor.TutorJsonArrayToTutorModel(data));
+        TutorSelection.setTutors(Tutor.tutorJsonArrayToTutorModel(data));
         TutorSelection.handlebarsAddIfAll(); // Register handlebars function before we add the template
         $("#CoursesWithTutors-TutorList").html(Handlebars.templates[TutorSelection.NAME + ".hb"]({
             tutors: TutorSelection.getTutors(),
@@ -40,7 +40,7 @@ class TutorSelection {
     private static setImageSrcAttributesForProfilePictures() {
         $(TutorSelection.ProfileImagesSelector).each(function (index: number, elem: any) {
             $(elem).attr("src",
-                ImageUtil.getNewProfilePhotoUrl($(elem).data("tutor_id"), User.sessionToken(), User.userId())
+                ImageUtil.getNewProfilePhotoUrl($(elem).data("tutor_id"), UserSession.sessionToken(), UserSession.userId())
             );
         });
     }

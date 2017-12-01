@@ -47,14 +47,14 @@
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <h3 id="Profile-userName" class="card-title center">{{user._userName}}</h3>
+                        <h3 id="Profile-userName" class="card-title center">{{user.userName}}</h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12">
                         <p id="Profile-bio" class="center">
-                            {{#if user._bio}}
-                                {{user._bio}}
+                            {{#if user.bio}}
+                                {{user.bio}}
                             {{else}}
                                 You haven't set your bio yet!
                             {{/if}}
@@ -63,8 +63,19 @@
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <a id="Profile-emailContact" class="center" href="#" data-clipboard-text="{{user._email}}">
-                            <b>Contact:</b> {{user._email}}
+                        <span id="Profile-major">
+                            {{#if user.major}}
+                                {{user.major}}
+                            {{else}}
+                                You haven't set your major yet!
+                            {{/if}}
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <a id="Profile-emailContact" class="center" href="#" data-clipboard-text="{{user.email}}">
+                            <b>Contact:</b> {{user.email}}
                         </a>
                     </div>
                 </div>
@@ -97,7 +108,7 @@
                 {{#each endorsements}}
                 <div class="row">
                     <div class="col s12">
-                        <p>{{this._userName}}: {{this._endorsement}}</p>
+                        <p>{{this.userName}}: {{this.endorsement}}</p>
                     </div>
                 </div>
                 {{/each}} <!-- END LIST OF ENDORSEMENTS -->
@@ -116,8 +127,14 @@
                     <div class="input-field col s12">
                         <input id="Profile-bioTextAreaModal" type="text" class="character-count"
                                data-length="141" maxlength="141">
-                        </input>
                         <label for="Profile-bioTextAreaModal">Bio</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="Profile-majorTextAreaModal" type="text" class="character-count"
+                               data-length="30" maxlength="30">
+                        <label for="Profile-majorTextAreaModal">Major</label>
                     </div>
                 </div>
             </form>
