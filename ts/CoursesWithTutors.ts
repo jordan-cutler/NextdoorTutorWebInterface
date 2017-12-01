@@ -9,20 +9,15 @@ class CoursesWithTutors {
 
     public static init() {
         CourseApiUtil.getCoursesWithTutors(
-            CoursesWithTutors.onGetCoursesWithTutorsSuccess,
+            function(data: any) {
+                $("#indexMain").html(Handlebars.templates[CoursesWithTutors.NAME + ".hb"]({}));
+                let courses = Course.CourseJsonArrayToCourseModelArray(data);
+                CoursesWithTutors.initializeSearchBar(courses);
+                CoursesWithTutors.setEventHandlers();
+            },
             function(data: any) {
                 window.alert("Failed to retrieve courses with tutors. Please refresh the page and try again.");
             });
-    }
-
-    private static onGetCoursesWithTutorsSuccess(data: any) {
-        let courses = Course.CourseJsonArrayToCourseModelArray(data);
-        CoursesWithTutors.setHandlebarsTemplate();
-        CoursesWithTutors.initializeSearchBar(courses);
-    }
-
-    private static setHandlebarsTemplate() {
-        $("#indexMain").html(Handlebars.templates[CoursesWithTutors.NAME + ".hb"]({}));
     }
 
     private static initializeSearchBar(courses: Course[]) {
@@ -43,10 +38,18 @@ class CoursesWithTutors {
     }
 
     private static addCourseToSearchObject(course: Course, searchObject: any) {
-        searchObject[course.courseNumber + " " + course.title] = null;
+        searchObject[course.toString()] = null;
     }
 
     private static showListOfTutorsForCourseNumber(courseNumber: string) {
         TutorSelection.init(courseNumber);
+    }
+
+    private static setEventHandlers() {
+        $(CoursesWithTutors.SearchBarSelector).click(CoursesWithTutors.onSearchBarClick);
+    }
+
+    private static onSearchBarClick() {
+        $(CoursesWithTutors.SearchBarSelector).val("");
     }
 }

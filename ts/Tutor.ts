@@ -17,7 +17,6 @@ class Tutor {
         this._notes = notes;
     }
 
-
     get userId(): string {
         return this._user.userId;
     }

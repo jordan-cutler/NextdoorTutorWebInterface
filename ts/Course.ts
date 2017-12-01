@@ -26,4 +26,8 @@ class Course {
     public static CourseJsonToCourseModel(courseJson: any) {
         return new Course(courseJson.courseNumber, courseJson.title);
     }
+
+    public toString = () : string => {
+        return `${this._courseNumber} ${this._title}`;
+    }
 }
