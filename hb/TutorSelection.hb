@@ -21,10 +21,9 @@
                 <div class="col s7">
                     <span>{{this.name}}</span>
                 </div>
-                <button id="TutorSelection-bookTutorButton" class="btn tooltipped"
-                        data-clipboard-text="{{this.email}}" data-position="top" data-delay="50"
-                        data-tooltip="Contact them at {{this.email}}">
-                    Book Tutor <i class="material-icons right">contact_mail</i>
+                <button class="btn TutorSelection-bookTutorButton"
+                        data-email="{{this.email}}" data-courseNumber="{{this.courseNumber}}" data-tutorName="{{this.name}}">
+                    Email Tutor <i class="material-icons right">contact_mail</i>
                 </button>
             </div>
             <div class="collapsible-body">
@@ -42,7 +41,6 @@
                     <span><b>Major: </b> {{this.major}}<br></span>
                 {{/if}}
                 <span><b>Hourly Wage:</b> ${{this.hourlyRate}}<br></span>
-                <span><b>Contact:</b> {{this.email}}<br></span>
             </div>
         </li>
     {{/each}}

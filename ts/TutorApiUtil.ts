@@ -5,6 +5,7 @@ class TutorApiUtil {
     private static readonly GETTUTORROUTE = "/api/tutors";
     private static readonly DELETETUTORROUTE = "/api/tutors";
     private static readonly UPDATETUTORROUTE = "/api/tutors";
+    private static readonly REQUESTUTORROUTE = "/api/tutors/request";
 
     public static addTutor(userId: string, hourlyRate: number, courseNumber: string, grade: string, instructor: string,
                            pastExperience: string, notes: string, sessionToken: string,
@@ -50,6 +51,16 @@ class TutorApiUtil {
                 userId: UserSession.userId(), sessionToken: UserSession.sessionToken(),
                 courseNumber: courseNumber, hourlyRate: hourlyRate,
                 pastExperience: pastExperience, notes: notes
+            },
+            successFunction, errorFunction
+        );
+    }
+
+    public static sendEmailToTutor(subject: string, message: string, tutorEmail: string, relatedCourse: string, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
+        return HttpRequestUtil.PostRequest(TutorApiUtil.REQUESTUTORROUTE,
+            {
+                userId: UserSession.userId(), sessionToken: UserSession.sessionToken(),
+                subject: subject, message: message, tutorEmail: tutorEmail, relatedCourse: relatedCourse
             },
             successFunction, errorFunction
         );

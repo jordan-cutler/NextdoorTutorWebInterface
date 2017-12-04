@@ -9,8 +9,14 @@ class TutorSelection {
     private static tutors: Tutor[];
 
     private static readonly ProfileImagesSelector = "." + TutorSelection.NAME + "-profileImg";
-    private static readonly BookTutorButtonSelector = "#" + TutorSelection.NAME + "-bookTutorButton";
+    private static readonly BookTutorButtonSelector = "." + TutorSelection.NAME + "-bookTutorButton";
     private static readonly ImagePreloadersSelector = "." + TutorSelection.NAME + "-preloader";
+
+    // Modal selectors
+    private static readonly EmailTutorModalSelector = "#EmailTutorModal-emailTutorModal";
+    private static readonly EmailTutorModalSendButtonSelector = "#EmailTutorModal-sendEmailButton";
+    private static readonly EmailTutorModalSubjectSelector = "#EmailTutorModal-subjectTextAreaModal";
+    private static readonly EmailTutorModalMessageSelector = "#EmailTutorModal-messageTextAreaModal";
 
     public static init(courseNumber: string) {
         TutorApiUtil.getTutorsForCourse(
@@ -47,10 +53,51 @@ class TutorSelection {
 
     private static setEventHandlers() {
         $('.collapsible').collapsible();
-        $('.tooltipped').tooltip({delay: 50});
-        $(TutorSelection.BookTutorButtonSelector).click(function() {
-            Materialize.toast("Email copied!", 2000);
+        $('input.character-count').characterCounter();
+        $('textarea.character-count').characterCounter();
+        $(TutorSelection.BookTutorButtonSelector).click(TutorSelection.loadEmailTutorModal);
+    }
+
+    private static loadEmailTutorModal(event: any) {
+        event.preventDefault();
+        let tutorEmail = $(this).data('email');
+        let tutorName: string = $(this).data('tutorname');
+        let tutorFirstName = tutorName.substring(0, tutorName.indexOf(" "));
+        let courseNumber = $(this).data('coursenumber');
+        let subject = "NextdoorTutor - " + courseNumber;
+        let defaultMessage =
+            `Hi ${tutorFirstName}, \n\n` +
+            `Would you meet up to tutor me for ${courseNumber}? Please email me back with a time that would work well for you. \n\n` +
+            `Best,\n\n` +
+            UserSession.currentUser().userName;
+
+        $("#indexModal").html(Handlebars.templates["EmailTutorModal.hb"]({
+            courseNumber: courseNumber,
+            tutorEmail: tutorEmail,
+            tutorName: tutorFirstName,
+            message: defaultMessage,
+            subject: subject
+        }));
+        $('.modal').modal();
+        $(TutorSelection.EmailTutorModalSelector).modal('open');
+        Materialize.updateTextFields();
+        $(TutorSelection.EmailTutorModalSendButtonSelector).click(function() {
+            let subject = $(TutorSelection.EmailTutorModalSubjectSelector).val();
+            let message = $(TutorSelection.EmailTutorModalMessageSelector).val();
+            TutorSelection.sendEmailToTutor(tutorEmail, courseNumber, subject, message);
         });
+    }
+
+    private static sendEmailToTutor(tutorEmail: string, courseNumber: string, subject: string, message: string) {
+        TutorApiUtil.sendEmailToTutor(
+            subject, message, tutorEmail, courseNumber,
+            function(data: any) {
+                Materialize.toast("Successfully emailed tutor. They will email you back soon if interested.", 3000);
+            },
+            function(data: any) {
+                Materialize.toast("Failed to send email. Please try again soon.", 3000);
+            }
+        );
     }
 
     private static setTutors(tutors: Tutor[]) {
