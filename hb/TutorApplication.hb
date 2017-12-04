@@ -46,7 +46,6 @@
             <div id="TutorApplication-gradeRow" class="row">
                 <div class="input-field col s12">
                     <select id="TutorApplication-grade">
-                        <!--<option value="" disabled selected>Haven't Taken</option>-->
                         {{#each grades}}
                             <option value="{{this}}">{{this}}</option>
                         {{/each}}
@@ -55,10 +54,9 @@
                 </div>
             </div>
 
-            <div id=TutorApplication-semesterTaken" class="row">
+            <div id="TutorApplication-semesterRow" class="row">
                 <div class="input-field col s4">
                     <select id="TutorApplication-semester">
-                        <!--<option value="" disabled selected>Haven't Taken</option>-->
                         {{#each semesters}}
                             <option value="{{this}}">{{this}}</option>
                         {{/each}}

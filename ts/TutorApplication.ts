@@ -22,6 +22,7 @@ class TutorApplication {
 
     private static readonly GradeRowSelector = "#" + TutorApplication.NAME + "-gradeRow";
     private static readonly InstructorRowSelector = "#" + TutorApplication.NAME + "-instructorRow";
+    private static readonly SemesterRowSelector = "#" + TutorApplication.NAME + "-semesterRow";
 
     public static init() {
         CourseApiUtil.getCoursesCurrentUserHasntTutoredBefore(
@@ -42,9 +43,8 @@ class TutorApplication {
         $("#indexMain").html(Handlebars.templates[TutorApplication.NAME + ".hb"]({
             courses: courses,
             grades: Grade.VALID_GRADES,
-            semesters: Semester.VALID_SEMESTER,
-            years: Semester.VALID_YEAR
-
+            semesters: Semester.VALID_SEMESTERS,
+            years: Semester.VALID_YEARS
         }));
         TutorApplication.setSelectedItemOnGradeDropdown("B+");
         TutorApplication.setSelectedItemOnSemesterDropdown("Fall");
@@ -153,11 +153,13 @@ class TutorApplication {
     private static showTakenCourseInputs() {
         $(TutorApplication.GradeRowSelector).show();
         $(TutorApplication.InstructorRowSelector).show();
+        $(TutorApplication.SemesterRowSelector).show();
     }
 
     private static hideTakenCourseInputs() {
         $(TutorApplication.GradeRowSelector).hide();
         $(TutorApplication.InstructorRowSelector).hide();
+        $(TutorApplication.SemesterRowSelector).hide();
     }
 
     private static setEventHandlers() {
