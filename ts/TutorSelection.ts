@@ -105,6 +105,10 @@ class TutorSelection {
     }
 
     private static getTutors() {
+        let tutors: Tutor[] = TutorSelection.tutors;
+        for (let i = 0; i < tutors.length; i++) {
+            console.log(tutors[i]);
+        }
         return TutorSelection.tutors;
     }
 

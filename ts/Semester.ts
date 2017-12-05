@@ -7,17 +7,27 @@ class Semester {
         "Winter"
     ];
 
-    public static readonly VALID_YEARS: string[] = Semester.getValidYears();
+    public static readonly VALID_YEARS: number[] = Semester.getValidYears();
 
     private _semester: string = "";
+    private _year: number;
 
-    constructor(semester: string) {
+    constructor(semester: string, yearTaken: number) {
         this._semester = semester;
+        this._year = yearTaken;
     }
 
-    private static getValidYears(): string[] {
+    get semester(): string {
+        return this._semester;
+    }
+
+    get year(): number {
+        return this._year;
+    }
+
+    private static getValidYears(): number[] {
         let year = (new Date()).getFullYear();
-        return [year.toString(), (year-1).toString(), (year-2).toString(), (year-3).toString(), (year-4).toString()];
+        return [year, (year-1), (year-2), (year-3), (year-4)];
     }
 
     public static isSemesterValid(semester: string): boolean {
@@ -26,8 +36,8 @@ class Semester {
         });
     }
 
-    public static isYearValid(year: string): boolean {
-        return Semester.VALID_YEARS.some(function(element: string, index: number, array: string[]){
+    public static isYearValid(year: number): boolean {
+        return Semester.VALID_YEARS.some(function(element: number, index: number, array: number[]){
             return element === year;
         });
     }

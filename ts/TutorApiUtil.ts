@@ -8,7 +8,8 @@ class TutorApiUtil {
     private static readonly REQUESTUTORROUTE = "/api/tutors/request";
 
     public static addTutor(userId: string, hourlyRate: number, courseNumber: string, grade: string, instructor: string,
-                           pastExperience: string, notes: string, sessionToken: string,
+                           pastExperience: string, notes: string, yearTaken: number | null, semesterTaken: string,
+                           hasTakenCourse: boolean, sessionToken: string,
                            successFunction: (data: any) => any, errorFunction: (data: any) => any) {
         let tutorData = {
             userId: userId,
@@ -18,6 +19,9 @@ class TutorApiUtil {
             instructor: instructor,
             pastExperience: pastExperience,
             notes: notes,
+            yearTaken: yearTaken,
+            semesterTaken: semesterTaken,
+            hasTakenCourse: hasTakenCourse,
             sessionToken: sessionToken
         };
 

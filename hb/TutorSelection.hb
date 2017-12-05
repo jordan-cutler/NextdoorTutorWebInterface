@@ -27,10 +27,15 @@
                 </button>
             </div>
             <div class="collapsible-body">
-                {{#if_all this.instructor this.grade}}
-                    <span><b>Grade:</b> {{this.grade}}<br></span>
-                    <span><b>Instructor:</b> {{this.instructor}}<br></span>
-                {{/if_all}}
+                {{#if this.hasTakenCourse}}
+                    {{#if_all this.instructor this.grade this.semesterTaken}}
+                        <span><b>Grade:</b> {{this.grade}}<br></span>
+                        <span><b>Instructor:</b> {{this.instructor}}<br></span>
+                        <span><b>Semester Taken:</b> {{this.semesterTaken.semester}} {{this.semesterTaken.year}}<br></span>
+                    {{/if_all}}
+                {{else}}
+                    <span><b>This person has not taken this course</b><br></span>
+                {{/if}}
                 {{#if this.pastExperience}}
                     <span><b>Past Experience:</b> {{this.pastExperience}}<br></span>
                 {{/if}}

@@ -65,13 +65,16 @@ class TutorApplication {
 
         let grade: string = "";
         let semester: string = "";
-        let year: string = "";
+        let year: number | null = null;
         let instructor: string = "";
+        let hasTakenCourseBefore: boolean;
 
         if (TutorApplication.userHasTakenClassBefore()) {
             grade = $(TutorApplication.GradeDropdownSelectedSelector).text();
             semester = $(TutorApplication.SemesterDropdownSelectedSelector).text();
             instructor = $(TutorApplication.InstructorInputSelector).val();
+            year = Number($(TutorApplication.YearDropdownSelectedSelector).text());
+            hasTakenCourseBefore = true;
             if (TutorApplication.gradeNotSelected(grade)) {
                 Materialize.toast("Let us know your grade before submitting", 3000);
                 return;
@@ -88,22 +91,21 @@ class TutorApplication {
                 Materialize.toast("Semester is invalid", 3000);
                 return;
             }
-            if (TutorApplication.yearNotSelected(year)) {
-                Materialize.toast("Let us know the year yout ook the class before submitting", 3000);
-                return;
-            }
-            if(!Semester.isYearValid) {
+
+            if(!Semester.isYearValid(year)) {
                 Materialize.toast("Year is invalid", 3000);
                 return;
             }
 
-            if (TutorApplication.instructorNotSelected(instructor)) {
+            if (TutorApplication.instructorNotEntered(instructor)) {
                 Materialize.toast("Let us know who your professor was before submitting.", 3000);
                 return;
             }
+        } else {
+            hasTakenCourseBefore = false;
         }
 
-        TutorApiUtil.addTutor(userId, hourlyRate, courseNumber, grade, instructor, pastExperience, notes, sessionToken,
+        TutorApiUtil.addTutor(userId, hourlyRate, courseNumber, grade, instructor, pastExperience, notes, year, semester, hasTakenCourseBefore, sessionToken,
             function (data: any) {
                 Materialize.toast("Thanks for becoming a " + courseNumber + " tutor!", 3000);
                 setTimeout(CoursesWithTutors.init(), 100)
@@ -126,11 +128,7 @@ class TutorApplication {
         return semester == "" || semester == null;
     }
 
-    private static yearNotSelected(year: string) {
-        return year == "" || year == null;
-    }
-
-    private static instructorNotSelected(instructor: string) {
+    private static instructorNotEntered(instructor: string) {
         return instructor == "" || instructor == null;
     }
 
