@@ -45,6 +45,9 @@
                 {{#if this.major}}
                     <span><b>Major: </b> {{this.major}}<br></span>
                 {{/if}}
+                {{#if this.bio}}
+                    <span><b>Bio: </b> {{this.bio}}<br></span>
+                {{/if}}
                 <span><b>Hourly Wage:</b> ${{this.hourlyRate}}<br></span>
             </div>
         </li>

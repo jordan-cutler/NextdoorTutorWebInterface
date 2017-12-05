@@ -47,6 +47,7 @@ class Profile {
         Profile.showProfile(UserSession.currentUser(), profilePhotoRoute, coursesUserIsTutoring);
         Profile.setMainEventHandlers();
         Profile.setEditBioTextToCurrentBio();
+        Profile.setEditMajorTextToCurrentMajor();
     }
 
     private static showProfile(user: User, profilePhotoRoute: string, coursesUserIsTutoring: Course[]) {
@@ -196,6 +197,11 @@ class Profile {
 
     private static setEditBioTextToCurrentBio() {
         $(Profile.EditBioInputSelector).val(UserSession.currentUser().bio);
+        Materialize.updateTextFields();
+    }
+
+    private static setEditMajorTextToCurrentMajor() {
+        $(Profile.EditMajorInputSelector).val(UserSession.currentUser().major);
         Materialize.updateTextFields();
     }
 }

@@ -39,6 +39,10 @@ class Tutor {
         return this._user.major;
     }
 
+    get bio(): string {
+        return this._user.bio;
+    }
+
     get hourlyRate(): number {
         return this._hourlyRate;
     }
