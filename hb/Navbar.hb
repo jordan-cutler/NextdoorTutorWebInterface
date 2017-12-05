@@ -2,8 +2,9 @@
 <nav class="white" id="Navbar">
     <div class="nav-wrapper z-depth-4 white black-text">
 
-        <a id="Navbar-logo" href="#" class="brand-logo orange-text">NextdoorTutor
-            <!--<img src="assets/images/FinalLogoNavbar.png" alt="NextdoorTutor">-->
+        <a id="Navbar-logo" href="#" class="brand-logo orange-text">
+            <!--NextdoorTutor-->
+            <img id="Navbar-logoImage" class="responsive-img" src="assets/images/NTLogo.png" alt="NextdoorTutor">
         </a>
         {{#if user}}
             <a href="#" data-activates="Navbar-sideNav" class="button-collapse"><i class="material-icons">menu</i></a>
