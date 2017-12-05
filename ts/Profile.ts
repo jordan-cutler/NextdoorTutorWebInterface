@@ -77,7 +77,11 @@ class Profile {
                 fileInput,
                 Profile.onSuccessfulProfilePhotoUpload,
                 function (data: any) {
-                    Materialize.toast("Failed to upload new profile image. Try again later.", 1500);
+                    if (data.responseJSON.description === "Must be less than 5 MB in size") {
+                        Materialize.toast("Please upload a file with size < 5MB", 3000);
+                    } else {
+                        Materialize.toast("Failed to upload new profile image. Try again later.", 3000);
+                    }
                 }
             );
         }
