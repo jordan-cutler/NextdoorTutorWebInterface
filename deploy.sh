@@ -17,7 +17,7 @@ SWAGGERFOLDER=swagger-ui
 WEBFOLDERNAME=Web
 
 # These are all of the singletons in the program
-SINGLETONS=(Login Navbar CoursesWithTutors Profile TutorApplication TutorSelection EditCourseModal EmailTutorModal)
+SINGLETONS=(Login Navbar CoursesWithTutors Profile TutorApplication TutorSelection EditCourseModal EmailTutorModal CropImageModal)
 
 # step 1: make sure we have someplace to put everything.  We will delete the
 #         old folder tree, and then make it from scratch
@@ -36,6 +36,8 @@ cp node_modules/handlebars/dist/handlebars.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLD
 cp node_modules/clipboard/dist/clipboard.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 cp node_modules/bootstrap/dist/js/bootstrap.min.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
 cp node_modules/bootstrap/dist/css/bootstrap.min.css $PUBLICFOLDER/$STYLESHEETSFOLDER
+cp node_modules/cropper/dist/cropper.js $PUBLICFOLDER/$JAVASCRIPTSFOLDER
+cp node_modules/cropper/dist/cropper.css $PUBLICFOLDER/$STYLESHEETSFOLDER
 cp -R font-awesome-4.7.0 $PUBLICFOLDER/$STYLESHEETSFOLDER
 cp -R swagger-ui $PUBLICFOLDER/$SWAGGERFOLDER
 

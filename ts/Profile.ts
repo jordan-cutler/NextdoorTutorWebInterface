@@ -69,22 +69,49 @@ class Profile {
 
     private static onProfilePhotoUploadChange() {
         let input: HTMLInputElement = <HTMLInputElement>document.getElementById(Profile.NAME + "-fileUploadInput");
-        let fileInput: File | null | undefined = null;
+        $("#indexModal").html(Handlebars.templates["CropImageModal.hb"]({}));
+        $('.modal').modal();
+        $('#CropImageModal-editImageModal').modal('open');
 
-        if (input != null && input.files != null && input.files.length >= 1) {
-            fileInput = input.files![0];
-            ImageUtil.uploadProfilePictureToServer(
-                fileInput,
-                Profile.onSuccessfulProfilePhotoUpload,
-                function (data: any) {
-                    if (data.responseJSON.description === "Must be less than 5 MB in size") {
-                        Materialize.toast("Please upload a file with size < 5MB", 3000);
-                    } else {
-                        Materialize.toast("Failed to upload new profile image. Try again later.", 3000);
-                    }
-                }
-            );
-        }
+        let reader = new FileReader();
+        reader.onload = function(e: any) {
+            let $cropImage = $("#CropImageModal-imagePreview");
+            $cropImage.attr('src', e.target.result);
+            ($cropImage as any).cropper({
+                aspectRatio: 1,
+                viewMode: 1,
+                dragMode: 'move',
+                autoCropArea: 0.65,
+                restore: false,
+                guides: false,
+                highlight: false,
+                background: false,
+                cropBoxMovable: false,
+                cropBoxResizable: false,
+                minContainerHeight: 300,
+                minContainerWidth: 200,
+                minCanvasHeight: 200,
+                minCanvasWidth: 200
+            });
+            $("#CropImageModal-saveImageButton").click(function () {
+                ($cropImage as any).cropper('getCroppedCanvas', {
+                    width: 168,
+                    height: 168,
+                }).toBlob(function (blob: Blob) {
+                    ImageUtil.uploadProfilePictureToServer(
+                        blob,
+                        Profile.onSuccessfulProfilePhotoUpload,
+                        function (data: any) {
+                            if (data.responseJSON.description === "Must be less than 5 MB in size") {
+                                Materialize.toast("Please upload a file with size < 5MB", 3000);
+                            } else {
+                                Materialize.toast("Failed to upload new profile image. Try again later.", 3000);
+                            }
+                        });
+                });
+            });
+        };
+        reader.readAsDataURL(input.files![0]);
     }
 
     private static onSuccessfulProfilePhotoUpload(data: any) {
@@ -144,14 +171,14 @@ class Profile {
         // https://stackoverflow.com/questions/3709597/wait-until-all-jquery-ajax-requests-are-done
         $.when(
             UserApiUtil.updateBio(
-            bio,
-            function (data) {
-                UserSession.currentUser().bio = bio;
-            },
-            function (data) {
-                Materialize.toast("Failed to update bio. Try again soon.", 2500);
-            }
-        ),
+                bio,
+                function (data) {
+                    UserSession.currentUser().bio = bio;
+                },
+                function (data) {
+                    Materialize.toast("Failed to update bio. Try again soon.", 2500);
+                }
+            ),
             UserApiUtil.updateMajor(
                 major,
                 function (data) {
@@ -161,7 +188,7 @@ class Profile {
                     Materialize.toast("Failed to update major. Try again soon.", 2500);
                 }
             )
-        ).done(function(response1, response2) {
+        ).done(function (response1, response2) {
             Profile.init();
         });
         //Profile.init();
@@ -191,6 +218,7 @@ class Profile {
         $(Profile.EmailContactSelector).click(function () {
             Materialize.toast("Email copied!", 1000);
         });
+        $(Profile.FileUploadInputSelector).click(function (this: any) { $(this).val('')});
         $(Profile.FileUploadInputSelector).change(Profile.onProfilePhotoUploadChange);
         $(Profile.UploadPictureLinkSelector).click(function (e) {
             e.preventDefault();

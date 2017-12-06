@@ -3,7 +3,7 @@ class ImageUtil {
     private static readonly POSTPROFILEPICTUREROUTE = "/api/drive/upload/profilePhoto";
 
     public static uploadProfilePictureToServer(
-        file: File, successFunction: (data: any) => any, errorFunction: (data: any) => any
+        file: File | Blob, successFunction: (data: any) => any, errorFunction: (data: any) => any
     ) {
         return $.ajax({
             url: ImageUtil.POSTPROFILEPICTUREROUTE + "/" + UserSession.userId(),
