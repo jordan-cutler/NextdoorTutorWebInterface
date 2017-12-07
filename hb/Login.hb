@@ -12,7 +12,9 @@ More ideas here: https://www.uplabs.com/web
                         <img class="center center-align" id="Login-Full-Logo"
                              src="assets/images/NTLogo.png" alt="Nextdoor Tutor Logo"/>
                     </div>
+                    <span class="card-title"></span>
                     <h1 id="Login-logoText" class="card-title orange-text center">NextdoorTutor</h1>
+                    <h6 class="card-title orange-text center"><b>Beta</b></h6>
                     <div id="Login-tagLine" class="center">Save time. Learn more. Start now.</div>
                     <div class="g-signin2" id="googleSignIn"></div>
                 </div>
