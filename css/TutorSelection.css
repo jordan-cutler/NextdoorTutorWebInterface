@@ -2,7 +2,9 @@
     border-radius: 5%;
     padding: 0 !important;
     height: 100px !important;
-    width: 153.33px !important;
+    width: 100px !important;
+    border: 2px solid white !important;
+
 }
 
 .TutorSelection-preloader {

@@ -16,7 +16,7 @@
                         </div>
                     </div>
                 </div>
-                <img class="TutorSelection-profileImg col s2" src="#" alt="No profile picture"
+                <img class="TutorSelection-profileImg col s2 z-depth-2" src="#" alt="No profile picture"
                      data-tutor_id="{{this.userId}}">
                 <div class="col s7">
                     <span>{{this.name}}</span>
