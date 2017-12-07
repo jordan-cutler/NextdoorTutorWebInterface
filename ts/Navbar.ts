@@ -11,6 +11,8 @@ class Navbar {
     private static readonly TutorAClassButtonSelector = "." + Navbar.NAME + "-tutorAClassButton";
     private static readonly FindATutorButtonSelector = "." + Navbar.NAME + "-findATutorButton";
     private static readonly ProfileButtonSelector = "." + Navbar.NAME + "-profileButton";
+    private static readonly SubmitBugButtonSelector = "." + Navbar.NAME + "-submitBugButton";
+    private static readonly SubmitBugModalSelector = "#" + Navbar.NAME + "-submitBugModal";
 
     public static init(user: User) {
         if (user != null) {
@@ -25,11 +27,13 @@ class Navbar {
     }
 
     private static setEventHandlers() {
+        $('.modal').modal();
         $(Navbar.LogoSelector).click(Navbar.onHomeClick);
         $(Navbar.SignOutButtonSelector).click(Navbar.onLogoutClick);
         $(Navbar.TutorAClassButtonSelector).click(Navbar.onTutorAClassClick);
         $(Navbar.FindATutorButtonSelector).click(Navbar.onHomeClick);
         $(Navbar.ProfileButtonSelector).click(Navbar.onProfileClick);
+        $(Navbar.SubmitBugButtonSelector).click(function() { $(Navbar.SubmitBugModalSelector).modal('open')});
         $(".button-collapse").sideNav({
             closeOnClick: true
         });

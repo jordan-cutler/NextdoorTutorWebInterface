@@ -22,7 +22,9 @@
                         <i class="small material-icons left black-text">account_circle</i>{{user.userName}}
                     </a>
                 </li>
-
+                <li>
+                    <a class="Navbar-submitBugButton black-text">Submit Bug</a>
+                </li>
                 <li>
                     <a class="Navbar-signOutButton black-text">Sign Out</a>
                 </li>
@@ -51,9 +53,23 @@
                 </li>
 
                 <li>
+                    <a class="Navbar-submitBugButton black-text" href="#">Submit Bug</a>
+                </li>
+
+                <li>
                     <a class="Navbar-signOutButton">Sign Out</a>
                 </li>
             </ul>
         {{/if}}
     </div>
 </nav>
+
+<div id="Navbar-submitBugModal" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12">
+                <h6>Please send an email to jdc219@lehigh.edu with a description of the bug. <br><br>Thank you and we will fix it as soon as possible!</h6>
+            </div>
+        </div>
+    </div>
+</div>
