@@ -10,10 +10,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12">
+                    <!--<div class="col s12">-->
                         <textarea id="EmailTutorModal-messageTextAreaModal" class="character-count"
                                   data-length="255" maxlength="255" placeholder="Your message to {{tutorName}}">{{message}}</textarea>
-                    </div>
+                    <!--</div>-->
                 </div>
             </form>
         </div>
