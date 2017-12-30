@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <!-- BEGIN CSS CLASSES CREATED -->
+  <head>
+    <style type="text/css">
+      .flex-container{
+        overflow: hidden;
+        display: flex; 
+        flex-direction: row; 
+        justify-content: space-around; 
+        align-items: flex-start;
+        padding-left: 4%;
+        padding-right: 4%;
+        flex: 1;
+      }
+      .container-col{
+         padding-right: 2%; 
+         padding-left: 2%;
+         width: 33%;
+      }
+      .container-col1{
+        padding-right: 2%; 
+         padding-left: 2%;
+         width: 50%;
+      }
+      .btn, .btn1{
+        background-color: white; 
+        color: #fc7c25 !important; 
+        border: 1px solid white; 
+        padding: 3% 4%; 
+        border-radius: 4px; 
+        text-decoration: none; 
+        font-weight: bold;
+      }
+      .btn:hover{
+        background-color: #fc7c25;
+        color: white !important;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        border: 1px solid #fc7c25;
+      }
+      .btn1:hover{
+        background-color: Gray;
+        color: white !important;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        border: 1px solid Gray;
+      }
+      ul{
+        list-style-type: none;
+        position: fixed;
+        top: 0;
+        margin: 0;
+        padding: 8px;
+        padding-right: 2px;
+        width: 100%;
+        overflow: hidden;
+        float: left;
+        background-color: #333;
+      }
+      li a{
+        display: block;
+        padding: 10px;
+        color: white;
+        text-align: center;
+        font-family: sans-serif;
+        text-decoration: none;
+      }
+      li a:hover {
+        border: 0.5px solid #fc7c25;
+        background-color: #fc7c25;
+        border-radius: 4px;
+      }
+      html, body{
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <!-- END CSS CLASSES CREATED -->
+
+  <!-- BEGIN HEADER -->
+  <header>
+    <ul>
+      <li style="float: right; padding-right: 2%;"><a href="#">Log In</a></li>
+      <li style="float: right;"><a href="#">Sign Up</a></li>
+      <li style="float: right;"><a href="#">Finding a Tutor</a></li>
+      <li style="float: right;"><a href="#">Becoming a Tutor</a></li>
+      <li style="float: right;"><a href="#">Home</a></li>
+    </ul>
+  </header>
+  <br><br><br>
+  <!-- END HEADER -->
+
+  <!-- BEGIN HOMEPAGE BODY -->
+  <body style="text-align: center; font-family: sans-serif; color: #333;">
+    <!-- PAGE HEADER -->
+    <br><br><br><img src="images/NTLogo.png" style="height: 25%; width: 25%;">
+    <h1 style="color: #fc7c25; font-size: 35pt;">NextdoorTutor</h1>
+    <h2 style="font-size: 20pt;">Save time. Learn more. Start now.</h2><br><br>
+    
+
+    <!-- WHO WE ARE BLURB -->
+    <div class="container" style="background-color: #fc7c25; padding-bottom: 2%; padding-top: 2%;">
+      <h2 style="color: white; font-size: 28pt;">Who Is NextdoorTutor?</h2>
+      
+      <div class="flex-container">
+        <div class="container-col1" style="align-self: center;">
+          <p style="font-size: 18pt;"><strong>A group of Lehigh University students helping to connect our peers with tutoring services in the Computer Science and Engineering department at Lehigh. <br><br>
+          Sign up today to find or become a tutor! 
+          </strong></p><br>
+          <a href="#" class="btn1">Create an Account</a>
+        </div>
+
+        <div class="container-col1">
+          <img src="images/keep_calm.png" alt="keep_calm" style="height: 400px; width: 320px;">
+        </div>
+      </div>
+    </div>
+  
+    <!-- BEGIN THREE PARALLEL SECTIONS ON BASIC INFO -->
+    <div class="flex-container" style="padding-bottom: 7%; padding-top: 7%;">
+      <div class="container-col">
+        <h3 style="font-size: 16pt;">It Takes Less Than 60 Seconds to Become a Tutor</h3>
+        <p>
+          All you need to do is create an account with NextdoorTutor, fill out a simple form to set your rate and the course you want to tutor, then you're done!
+        </p>
+      </div>
+
+      <div class="container-col">
+        <h3 style="font-size: 16pt;">Select the Tutor You Want</h3>
+        <p>
+          When finding a tutor for a course, you will get a list of tutors with their picture, rate, grade, and any other notes the tutor included.  When you find the perfect tutor, simply select "contact", then create a personalized message to send to your future tutor!
+        </p>
+      </div>
+
+      <div class="container-col">
+        <h3 style="font-size: 16pt;">It's Completely Free to Use!</h3>
+        <p>
+          NextdoorTutor doesn't charge fees to <strong>any</strong> user of the site!  Tutors keep 100% of their money.  We don't charge students to find a tutor, either.
+        </p>
+      </div>
+    </div>
+    <!-- END THREE PARALLEL SECTIONS ON BASIC INFO -->
+
+    <!-- BEGIN GRAY PANEL WITH MORE INFO LINKS -->
+    <div class="container" style="background-color: Gray; padding-top: 1.5%;">
+      <h2 style="color: white; font-size: 28pt;">Join NextdoorTutor Today!</h2>
+
+      <div class="flex-container" style="padding-top: 1%;">
+        <div class="container-col1">
+          <img src="images/office.jpg" alt="office" style="width: 80%; height: 50%;">     
+        </div>
+
+        <div class="container-col1" style="align-self: center; padding-left: 2%;">
+          <h3 style="color: #fc7c25; font-size: 16pt;">Learn more about becoming a tutor.<br>Click the button below!</h3><br>
+          <a href="#" class="btn">Becoming a Tutor</a>
+        </div>
+      </div>
+
+      <div class="flex-container" style="padding-top: 4%; padding-bottom: 3%;">
+        <div class="container-col1" style="align-self: center;">
+          <h3 style="color: #fc7c25; font-size: 16pt;">Learn more about finding a tutor.<br>Click the button below!</h3><br>
+          <a href="#" class="btn">Finding a Tutor</a>
+        </div>
+      
+        <div class="container-col1">
+          <img src="http://img.moneysavingmom.com/wp-content/uploads/2017/05/reportcard640_xcn608b4_5ejlzrg1-630x354.jpg" alt="grade" style="width: 90%; height: 75%;">
+        </div>
+      </div>
+    
+    </div>
+    <!-- END GRAY PANEL WITH MORE INFO LINKS -->
+  </body>
+  <!-- END HOMEPAGE BODY -->
+
+
+  <!-- BEGIN FOOTER -->
+  <footer>
+    <div class="container" style="background-color: #333;">
+      <br>
+
+      <div class="row">
+        <div style="column-count: 2;">
+        
+          <div style="color: white;">Terms and Conditions</div><br>
+
+          <div style="color: white;">About NextdoorTutor</div><br>
+        
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
