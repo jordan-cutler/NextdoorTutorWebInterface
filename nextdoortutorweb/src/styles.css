@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*.iris {*/
+  /*background: url("../images/backgroundshutter.png") no-repeat fixed;*/
+/*}*/
+
+@media only screen and (min-width: 992px) {
+  #toast-container {
+    position: fixed !important;
+    top: 20vh !important;
+    bottom: 70vh !important;
+    left: 35vw !important;
+    right: 35vw !important;
+    width: 30vw !important;
+    height: 10vh !important;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .mobile-hidden {
+    visibility: hidden;
+    display: none;
+  }
+}
