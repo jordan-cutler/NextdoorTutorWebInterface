@@ -25,6 +25,14 @@
         padding-left: 2%;
         width: 50%;
       }
+      .container-col2{
+        padding-right: 2%; 
+        padding-left: 2%;
+        width: 20%;
+      }
+      .container-col3{
+        width: 33%;
+      }
       .btn1{
         background-color: white; 
         color: #fc7c25 !important; 
@@ -76,13 +84,38 @@
         text-decoration: none;
       }
       li a:hover {
-        border: 0.5px solid #fc7c25;
         background-color: #fc7c25;
         border-radius: 4px;
       }
       html, body{
         margin: 0px;
         padding: 0px;
+      }
+      footer{
+        background-color: #333; 
+        padding-bottom: 3%; 
+        padding-top: 3%; 
+      }
+      p{
+        font-size: 18pt; 
+        font-family: Fresca;
+      }
+      h1{
+        color: #fc7c25; 
+        font-size: 38pt; 
+        margin: 0px 0px -5px 0px;
+      }
+      h2{
+        color: #fc7c25; 
+        font-size: 34pt;
+      }
+      h3{
+        font-size: 20pt; 
+        color: #333;
+      }
+      a{
+        text-decoration: none;
+        color: #fc7c25;
       }
     </style>
   </head>
@@ -104,18 +137,18 @@
   <!-- BEGIN HOMEPAGE BODY -->
   <body background="images/background1.jpg" style="text-align: center; font-family: Righteous; color: #333;">
     <!-- LOGO/SLOGAN -->
+    <div style="padding-top: 6%; padding-bottom: 6%;">
+      <img src="images/NTLogo.png" style="height: 25%; width: 25%; margin: 0px 0px -30px 0px;">
+      <h1>NextdoorTutor</h1>
+      <h3>Save time. Learn more. Start now.</h3>
+    </div>
 
-    <img src="images/NTLogo.png" style="height: 25%; width: 25%; padding-top: 4%; margin:0px 0px -30px 0px;">
-    <h1 style="color: #fc7c25; font-size: 35pt;">NextdoorTutor</h1>
-    <h2 style="font-size: 20pt;">Save time. Learn more. Start now.</h2><br><br><br>
-
-
-    <!-- WHAT IS NT BLURB -->
-    <div class="container" style="padding-top: 2%; padding-bottom: 2%; background-color: white;">
-      <h2 style="color: #fc7c25; font-size: 28pt;">Who We Are</h2> 
+    <!-- WHO WE ARE SECTION -->
+    <div class="container" style="padding-top: 3%; padding-bottom: 2%; background-color: white;">
+      <h2 style="margin: 0px 0px -10px 0px;">Who We Are</h2> 
       <div class="flex-container">
-        <div class="container-col1">
-          <p style="font-size: 18pt; font-family: Fresca; align-self: center;"><strong>A service for Lehigh University students to help connect tutors with tutees taking courses in the Computer Science and Engineering department.<br><br> 
+        <div class="container-col1" style="align-self: center;">
+          <p><strong>A service for Lehigh University students to help connect tutors with tutees taking courses in the Computer Science and Engineering department.<br><br> 
           Sign up today to find or become a tutor. 
           </strong></p><br>
           <a href="#" class="btn">Create an Account</a>
@@ -129,7 +162,7 @@
   
     <!-- BECOMING A TUTOR SECTION -->
     <div class="container" style="padding-top: 2%;">
-      <h2 style="font-size: 28pt; color: #fc7c25;">Becoming a Tutor</h2>
+      <h2>Becoming a Tutor</h2>
       <div class="flex-container" style="padding-bottom: 4%;">
         <div class="container-col1">
           <!-- some sort of image -->
@@ -137,35 +170,109 @@
         </div>
 
         <div class="container-col1" style="align-self: center;">
-          <p style="font-size: 18pt; font-family: Fresca;">It takes less than 60 seconds to become a tutor by filling out our simple form.  When a tutee is interested in your tutoring services, you will receive an email, via your Lehigh account, from that student.  You keep 100% of the money made. <br><br> 
-            See how easy it is to tutor a course by clicking <a href="#">here</a>.</p>
+          <p>It takes less than 60 seconds to become a tutor by filling out our simple form.  When a tutee is interested in your tutoring services, you will receive an email, via your Lehigh account, from that student.  You keep 100% of the money made. <br><br> 
+            See how easy it is to tutor a course by clicking <a href="#"><strong>here</strong></a>.</p>
         </div>
       </div>
     </div>
 
-      <!-- FINDING A TUTOR SECTION -->
+    <!-- FINDING A TUTOR SECTION -->
     <div class="container">
-      <h2 style="font-size: 28pt; color: #fc7c25;">Finding a Tutor</h2>
+      <h2>Finding a Tutor</h2>
       <div class="flex-container" style="padding-bottom: 4%;">
         <div class="container-col1" style="align-self: center;">
-          <p style="font-size: 18pt; font-family: Fresca;">Be able to see all available tutors before you commit to one.  You can select a tutor based on criteria that matter to you.  Once you find the perfect tutor, just click "Email Tutor" to set up a session.<br><br> 
-            See how easy it is to find a tutor by clicking <a href="#">here</a>.</p>
+          <p>Be able to see all available tutors before you commit to one.  You can select a tutor based on criteria that matter to you.  Once you find the perfect tutor, just click "Email Tutor" to set up a session.<br><br> 
+            See how easy it is to find a tutor by clicking <a href="#"><strong>here</strong></a>.</p>
         </div>
 
         <div class="container-col1">
           <!-- some sort of image -->
           <img src="images/office.jpg" style="height: 400px; width: 400px;">
         </div>      
-
       </div>
     </div>
 
-    <div class="container" style="background-color: #fc7c25; padding-top: 2%;">
-      <h2 style="color: white; font-size: 28pt;">Meet the Team</h2>
-      <div class="flex-container" style="padding-bottom: 4%;">
+    <!-- MEET THE TEAM SECTION -->
+    <div class="container" style="background-color: #fc7c25; padding-top: 2%; padding-bottom: 4%;">
+      <h2 style="color: white;">Meet the Team</h2>
+      <div class="flex-container" style="padding-bottom: 2%; padding-top: 2%;">
+        <div class="container-col">
+          <img src="images/account_circle_black_180x180.png" style="border-radius: 50%; height: 200px; width: 200px;">
+          <p style="font-size: 16pt; font-family: Righteous;">Jordan Alam<br>
+            <font size="3">insert role/title</font></p>
+        </div>
 
+        <div class="container-col">
+          <img src="images/account_circle_black_180x180.png" style="border-radius: 50%; height: 200px; width: 200px;">
+          <p style="font-size: 16pt; font-family: Righteous;">Stephanie Beddow<br>
+            <font size="3">Lead Designer</font></p>
+        </div>
+
+        <div class="container-col">
+          <img src="images/account_circle_black_180x180.png" style="border-radius: 50%; height: 200px; width: 200px;">
+          <p style="font-size: 16pt; font-family: Righteous;">Kyle Berman<br>
+            <font size="3">insert role/title</font></p>
+        </div>
+      </div>
+
+      <div class="flex-container" style="justify-content: center; padding-bottom: 2%;">
+        <div class="container-col3">
+          <img src="images/account_circle_black_180x180.png" style="border-radius: 50%; height: 200px; width: 200px;">
+          <p style="font-size: 16pt; font-family: Righteous;">Jordan Cutler<br>
+            <font size="3">insert role/title</font></p>
+        </div>
+
+        <div class="container-col3">
+          <img src="images/account_circle_black_180x180.png" style="border-radius: 50%; height: 200px; width: 200px;">
+          <p style="font-size: 16pt; font-family: Righteous;">Robert Smith<br>
+            <font size="3">insert role/title</font></p>
+        </div>
+      </div>
+
+      <p style="color: white; padding-left: 8%; padding-right: 8%;">We are a group of Lehigh University students helping to connect our peers with tutoring services in the Computer Science and Engineering department at Lehigh.</p>
+
+    </div>
+  </body>
+  <!-- END HOMEPAGE BODY -->
+
+
+  <!-- BEGIN FOOTER -->
+  <footer>
+    <div class="flex-container">
+      <div class="container-col">
+        <a href="#" style="color: white; text-decoration: none;">Home</a>
+      </div>
+      <div class="container-col">
+        <a href="#" style="color: white; text-decoration: none;">Terms &amp; Conditions</a>
+      </div>
+      <div class="container-col">
+        <a href="#" style="color: white; text-decoration: none;">Contact Us</a>
       </div>
     </div>
+  </footer>
+  <!-- END FOOTER -->
+</html>
+
+
+
+<!-- <strong>A group of Lehigh University students helping to connect our peers with tutoring services in the Computer Science and Engineering department at Lehigh. <br><br> -->
+
+<!-- #f8863a -->
+
+
+<!-- OLD FOOTER -->
+<!-- <div style="column-count: 1; text-align: left;">
+        <div style="column-count: 1;">
+          <a href="#" style="color: white; text-decoration: none;">Home</a><br><br>
+          <a href="#" style="color: white; text-decoration: none;">Terms &amp; Conditions</a><br><br>
+          <a href="#" style="color: white; text-decoration: none;">Contact Us</a>
+        </div>
+        <div style="column-count: 1;">
+          <a href="#" style="color: white; text-decoration: none;">Contact Us</a><br><br>
+        </div>      
+      </div>
+    </div> -->
+
 
 
 
@@ -222,41 +329,6 @@
     
     </div> -->
     <!-- END GRAY PANEL WITH MORE INFO LINKS -->
-  </body>
-  <!-- END HOMEPAGE BODY -->
-
-
-  <!-- BEGIN FOOTER -->
-  <footer>
-    <div class="container" style="background-color: #333;">
-      <br>
-
-      <div class="row">
-        <div style="column-count: 2;">
-        
-          <div style="color: white;">Terms and Conditions</div><br>
-
-          <div style="color: white;">About NextdoorTutor</div><br>
-        
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!-- END FOOTER -->
-</html>
-
-
-
-<!-- <strong>A group of Lehigh University students helping to connect our peers with tutoring services in the Computer Science and Engineering department at Lehigh. <br><br> -->
-
-<!-- #f8863a -->
-
-
-
-
-
-
-
 
 
 
