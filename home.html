@@ -4,6 +4,14 @@
   <head>
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
+    
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <style type="text/css">
       .flex-container{
         overflow: hidden;
@@ -42,7 +50,7 @@
         text-decoration: none; 
         font-weight: bold;
       }
-      .btn{
+      /*.btn{
         background-color: #fc7c25; 
         color: white !important; 
         border: 1px solid #fc7c25; 
@@ -56,7 +64,7 @@
         color: white !important;
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
         border: 1px solid #fc7c25;
-      }
+      }*/
       .btn1:hover{
         background-color: Gray;
         color: white !important;
@@ -64,24 +72,11 @@
         border: 1px solid Gray;
       }
       ul{
-        list-style-type: none;
-        position: fixed;
-        top: 0;
-        margin: 0;
-        padding: 8px;
-        padding-right: 2px;
-        width: 100%;
-        overflow: hidden;
-        float: left;
         background-color: #333;
       }
       li a{
-        display: block;
-        padding: 10px;
         color: white;
-        text-align: center;
         font-family: Righteous;
-        text-decoration: none;
       }
       li a:hover {
         background-color: #fc7c25;
@@ -94,7 +89,7 @@
       footer{
         background-color: #333; 
         padding-bottom: 3%; 
-        padding-top: 3%; 
+        padding-top: 1%; 
       }
       p{
         font-size: 18pt; 
@@ -121,37 +116,47 @@
   </head>
   <!-- END CSS CLASSES CREATED -->
 
-  <!-- BEGIN HEADER -->
-  <header>
-    <ul>
-      <li style="float: right; padding-right: 2%;"><a href="#">Log In</a></li>
-      <li style="float: right;"><a href="#">Sign Up</a></li>
-      <li style="float: right;"><a href="#">Finding a Tutor</a></li>
-      <li style="float: right;"><a href="#">Becoming a Tutor</a></li>
-      <li style="float: right;"><a href="#">Home</a></li>
-    </ul>
-  </header>
-  <br><br><br>
-  <!-- END HEADER -->
 
   <!-- BEGIN HOMEPAGE BODY -->
   <body background="images/background1.jpg" style="text-align: center; font-family: Righteous; color: #333;">
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <!-- BEGIN HEADER -->
+    <div class="navbar-fixed">
+      <nav style="background-color: #333;">
+        <div class="nav-wrapper">
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#!">Home</a></li>
+            <li><a href="#!">Find a Tutor</a></li>
+            <li><a href="#!">Tutor a Course</a></li>
+            <li><a href="#!">Sign In</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <br><br><br>
+    <!-- END HEADER -->
+
+  
     <!-- LOGO/SLOGAN -->
-    <div style="padding-top: 6%; padding-bottom: 6%;">
+    <div style="padding-top: 3%; padding-bottom: 6%;">
       <img src="images/NTLogo.png" style="height: 25%; width: 25%; margin: 0px 0px -30px 0px;">
       <h1>NextdoorTutor</h1>
       <h3>Save time. Learn more. Start now.</h3>
     </div>
 
     <!-- WHO WE ARE SECTION -->
-    <div class="container" style="padding-top: 3%; padding-bottom: 2%; background-color: white;">
+    <div class="card-panel white" style="padding-top: 3%; padding-bottom: 2%;">
       <h2 style="margin: 0px 0px -10px 0px;">Who We Are</h2> 
       <div class="flex-container">
         <div class="container-col1" style="align-self: center;">
           <p><strong>A service for Lehigh University students to help connect tutors with tutees taking courses in the Computer Science and Engineering department.<br><br> 
           Sign up today to find or become a tutor. 
           </strong></p><br>
-          <a href="#" class="btn">Create an Account</a>
+          <a class="waves-effect waves-light btn" style="background-color: #fc7c25;">Create an Account</a>
+          <!-- <a href="#" class="btn">Create an Account</a> -->
         </div>
 
         <div class="container-col1">
@@ -193,7 +198,7 @@
     </div>
 
     <!-- MEET THE TEAM SECTION -->
-    <div class="container" style="background-color: #fc7c25; padding-top: 2%; padding-bottom: 4%;">
+    <div class="card-panel" style="background-color: #fc7c25; padding-top: 2%; padding-bottom: 4%;">
       <h2 style="color: white;">Meet the Team</h2>
       <div class="flex-container" style="padding-bottom: 2%; padding-top: 2%;">
         <div class="container-col">
@@ -238,7 +243,25 @@
 
   <!-- BEGIN FOOTER -->
   <footer>
-    <div class="flex-container">
+    <div style="column-count: 2; text-align: left; padding-left: 2%; color: white;">
+      <div style="column-count: 1;">  
+        <h4 style="font-size: 14pt;">NextdoorTutor</h4>
+        <p style="font-size: 12pt;">Enter some phrasing here.</p>
+      </div>
+
+      <div style="column-count: 1; padding-top: 4%;">
+        <a href="#" style="color: white; text-decoration: none;">Home</a><br><br>
+        <a href="#" style="color: white; text-decoration: none;">Terms &amp; Conditions</a><br><br>
+        <a href="#" style="color: white; text-decoration: none;">Contact Us</a><br>
+      </div>
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+</html>
+
+
+
+    <!-- <div class="flex-container">
       <div class="container-col">
         <a href="#" style="color: white; text-decoration: none;">Home</a>
       </div>
@@ -248,10 +271,7 @@
       <div class="container-col">
         <a href="#" style="color: white; text-decoration: none;">Contact Us</a>
       </div>
-    </div>
-  </footer>
-  <!-- END FOOTER -->
-</html>
+    </div> -->
 
 
 
