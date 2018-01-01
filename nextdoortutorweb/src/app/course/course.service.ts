@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserSessionService } from '../global/service/user-session.service';
+import { Course } from './course.model';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class CourseService {
@@ -8,26 +11,19 @@ export class CourseService {
   private static readonly COURSESUSERHASNTTUTOREDBEFOREROUTE = '/api/courses/notTutoring';
   private static readonly GETCOURSESUSERISTUTORINGROUTE = '/api/courses/tutoring';
 
-  constructor(private httpClient: HttpClient) {
-
+  constructor(private httpClient: HttpClient, private userSessionService: UserSessionService) {
+  }
+  
+  getCoursesWithTutors(): Observable<Course[]> {
+    return this.httpClient.get<Course[]>(CourseService.COURSESWITHTUTORSROUTE);
   }
 
-  // getCoursesWithTutors(successFunction: (data: any) => any, errorFunction: (data: any) => any) {
-  //   return this.httpClient.get(CourseApiUtil.COURSESWITHTUTORSROUTE, HttpRequestUtil.getSessionInfoJson(),
-  //     successFunction, errorFunction
-  //   )
-  // }
-  //
-  // getCoursesCurrentUserHasntTutoredBefore(
-  //   successFunction: (data: any) => any, errorFunction: (data: any) => any
-  // ) {
-  //   return HttpRequestUtil.GetRequest(CourseApiUtil.COURSESUSERHASNTTUTOREDBEFOREROUTE + "/" + UserSession.userId(),
-  //     HttpRequestUtil.getSessionInfoJson(), successFunction, errorFunction
-  //   );
-  // }
-  //
-  // getCoursesUserIsTutoring(userId: string, successFunction: (data: any) => any, errorFunction: (data: any) => any) {
-  //   return HttpRequestUtil.GetRequest(CourseApiUtil.GETCOURSESUSERISTUTORINGROUTE + "/" + userId,
-  //     HttpRequestUtil.getSessionInfoJson(), successFunction, errorFunction);
-  // }
+  getCoursesCurrentUserHasntTutoredBefore(): Observable<Course[]> {
+    const currentUserId = this.userSessionService.getCurrentUser().userId;
+    return this.httpClient.get<Course[]>(CourseService.COURSESUSERHASNTTUTOREDBEFOREROUTE + '/' + currentUserId);
+  }
+
+  getCoursesUserIsTutoring(userId: string): Observable<Course[]> {
+    return this.httpClient.get<Course[]>(CourseService.GETCOURSESUSERISTUTORINGROUTE + '/' + userId);
+  }
 }

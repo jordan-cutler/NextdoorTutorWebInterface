@@ -1,7 +1,8 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../global/service/auth.service';
-import GoogleAuth = gapi.auth2.GoogleAuth;
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../global/service/auth/auth.service';
+import { UserSessionService } from '../global/service/user-session.service';
+import { CourseService } from '../course/course.service';
+import { Course } from '../course/course.model';
 
 @Component({
   selector: 'app-tutor-search',
@@ -10,21 +11,23 @@ import GoogleAuth = gapi.auth2.GoogleAuth;
 })
 export class TutorsearchComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthService, private zone: NgZone) { }
+  constructor(private authService: AuthService,
+              private userSessionService: UserSessionService,
+              private courseService: CourseService) { }
 
   ngOnInit() {
   }
 
   onSignout() {
-    const auth2: GoogleAuth = this.authService.getAuth();
-    const router = this.router;
-    auth2.signOut().then(() => {
-      this.zone.run(() => {
-        router.navigate(['/']);
-        console.log('signed out');
-      });
-    });
+    this.userSessionService.signOutCurrentUser(this.authService.getAuth());
   }
 
+  callMethod() {
+    this.courseService.getCoursesCurrentUserHasntTutoredBefore().subscribe(
+      (courses: Course[]) => {
+        console.log(courses);
+      }
+    );
+  }
 
 }

@@ -1,3 +1,5 @@
+import { ProfilePageLink } from './profile-page-link.model';
+
 export class User {
 
   private _userId: string;
@@ -6,15 +8,26 @@ export class User {
   private _profilePhotoId: string;
   private _bio: string;
   private _major: string;
+  private _github: ProfilePageLink;
+  private _facebook: ProfilePageLink;
+  private _linkedin: ProfilePageLink;
   private _creationDate: Date;
 
-  constructor(userId: string, email: string, userName: string, profilePhotoId: string, bio: string, major: string, creationDate: Date) {
+  constructor(
+    userId: string, email: string, userName: string,
+    profilePhotoId: string, bio: string, major: string,
+    github: ProfilePageLink, facebook: ProfilePageLink, linkedin: ProfilePageLink,
+    creationDate: Date
+  ) {
     this._userId = userId;
     this._email = email;
     this._userName = userName;
     this._profilePhotoId = profilePhotoId;
     this._bio = bio;
     this._major = major;
+    this._github = github;
+    this._facebook = facebook;
+    this._linkedin = linkedin;
     this._creationDate = creationDate;
   }
 
@@ -40,6 +53,18 @@ export class User {
 
   get major(): string {
     return this._major;
+  }
+
+  get github(): ProfilePageLink {
+    return this._github;
+  }
+
+  get facebook(): ProfilePageLink {
+    return this._facebook;
+  }
+
+  get linkedin(): ProfilePageLink {
+    return this._linkedin;
   }
 
   get creationDate(): Date {
@@ -74,14 +99,14 @@ export class User {
     this._creationDate = creationDate;
   }
 
-  public static userJsonToUserModel(userJson: any): User {
-    const userId = userJson.userId;
-    const email = userJson.email;
-    const userName = userJson.name;
-    const profilePhotoId = userJson.profilePhotoId;
-    const bio = userJson.bio;
-    const major = userJson.major;
-    const creationDate = userJson.creationDate;
-    return new User(userId, email, userName, profilePhotoId, bio, major, creationDate);
-  }
+  // public static userJsonToUserModel(userJson: any): User {
+  //   const userId = userJson.userId;
+  //   const email = userJson.email;
+  //   const userName = userJson.name;
+  //   const profilePhotoId = userJson.profilePhotoId;
+  //   const bio = userJson.bio;
+  //   const major = userJson.major;
+  //   const creationDate = userJson.creationDate;
+  //   return new User(userId, email, userName, profilePhotoId, bio, major, creationDate);
+  // }
 }

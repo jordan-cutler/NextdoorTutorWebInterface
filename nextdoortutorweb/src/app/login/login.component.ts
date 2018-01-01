@@ -1,7 +1,6 @@
-import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../global/service/auth.service';
-import GoogleUser = gapi.auth2.GoogleUser;
+import { AuthService } from '../global/service/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +10,11 @@ import GoogleUser = gapi.auth2.GoogleUser;
 export class LoginComponent implements OnInit {
   @ViewChild('signInButton') signInButtonRef: ElementRef;
 
-  constructor(private router: Router, private authService: AuthService, private zone: NgZone) {
+  constructor(private router: Router, private authService: AuthService) {
   }
 
   ngOnInit() {
-    this.authService.initializeAuthorization(this.signInButtonRef.nativeElement, (googleUser: GoogleUser) => {
-      
+    this.authService.initializeAuthorization(this.signInButtonRef.nativeElement, () => {
       this.router.navigate(['/tutor-search']);
     });
   }
