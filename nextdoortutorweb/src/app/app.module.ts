@@ -1,29 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterializeModule } from 'angular2-materialize';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
-import { GoogleSignInComponent } from 'angular-google-signin';
-import { TutorsearchComponent } from './tutorsearch/tutorsearch.component';
+import { TutorsearchComponent } from './tutor-search/tutor-search.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './global/service/auth.service';
+import { TutorService } from './tutor/tutor.service';
+import { UserService } from './user/user.service';
+import { UserSessionService } from './global/service/user-session.service';
+import { ImageService } from './global/service/image.service';
+import { CourseService } from './course/course.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GoogleSignInComponent,
     TutorsearchComponent,
     LoginComponent
   ],
   imports: [
     BrowserModule,
     MaterializeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, TutorService, UserService, UserSessionService, ImageService, CourseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TutorsearchComponent } from '../tutorsearch/tutorsearch.component';
+import { TutorsearchComponent } from '../tutor-search/tutor-search.component';
 import { LoginComponent } from '../login/login.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'tutorsearch', component: TutorsearchComponent },
+  { path: 'tutor-search', component: TutorsearchComponent },
 ];
 
 @NgModule({

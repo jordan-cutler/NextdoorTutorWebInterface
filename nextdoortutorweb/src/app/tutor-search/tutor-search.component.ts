@@ -1,12 +1,12 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../global/service/auth.service';
 import GoogleAuth = gapi.auth2.GoogleAuth;
 
 @Component({
-  selector: 'app-tutorsearch',
-  templateUrl: './tutorsearch.component.html',
-  styleUrls: ['./tutorsearch.component.css']
+  selector: 'app-tutor-search',
+  templateUrl: './tutor-search.component.html',
+  styleUrls: ['./tutor-search.component.css']
 })
 export class TutorsearchComponent implements OnInit {
 
