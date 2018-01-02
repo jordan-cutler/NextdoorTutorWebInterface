@@ -47,10 +47,5 @@
   </li>
 </ul>
 
-<div *ngIf="contactTutorEmail && contactTutorCourseNumber && contactTutorName">
-  <app-email-tutor-modal
-    [tutorEmail]="contactTutorEmail"
-    [courseNumber]="contactTutorCourseNumber"
-    [tutorName]="contactTutorName"
-  ></app-email-tutor-modal>
-</div>
+<app-email-tutor-modal></app-email-tutor-modal>
+

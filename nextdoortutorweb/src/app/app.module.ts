@@ -23,6 +23,7 @@ import { FindTutorComponent } from './find-tutor/find-tutor.component';
 import { SearchBarComponent } from './find-tutor/search-bar/search-bar.component';
 import { TutorListComponent } from './find-tutor/tutor-list/tutor-list.component';
 import { EmailTutorModalComponent } from './find-tutor/tutor-list/email-tutor-modal/email-tutor-modal.component';
+import { EmailTutorService } from './find-tutor/tutor-list/email-tutor-modal/email-tutor.service';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { EmailTutorModalComponent } from './find-tutor/tutor-list/email-tutor-mo
     UserSessionService,
     ImageService,
     CourseService,
+    EmailTutorService,
     AuthGuard,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],

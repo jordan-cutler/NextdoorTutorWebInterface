@@ -2,6 +2,7 @@ import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Tutor } from '../../tutor/tutor.model';
 import { ImageService } from '../../global/service/image.service';
 import { UserSessionService } from '../../global/service/user-session.service';
+import { EmailTutorService } from './email-tutor-modal/email-tutor.service';
 
 @Component({
   selector: 'app-tutor-list',
@@ -14,11 +15,8 @@ export class TutorListComponent implements OnInit, AfterViewInit {
   currentUserId: string;
   currentUserSessionToken: string;
 
-  contactTutorEmail: string;
-  contactTutorCourseNumber: string;
-  contactTutorName: string;
-
-  constructor(public imageService: ImageService, public userSessionService: UserSessionService) { }
+  constructor(public imageService: ImageService, public userSessionService: UserSessionService,
+              private emailTutorService: EmailTutorService) { }
 
   ngOnInit() {
     this.currentUserSessionToken = this.userSessionService.getCurrentUserSession().sessionToken;
@@ -37,8 +35,11 @@ export class TutorListComponent implements OnInit, AfterViewInit {
   onBookTutor(event: Event, email: string, courseNumber: string, name: string) {
     event.preventDefault();
     event.stopPropagation();
-    this.contactTutorEmail = email;
-    this.contactTutorCourseNumber = courseNumber;
-    this.contactTutorName = name;
+    const emailTutorData: EmailTutorData = {
+      tutorEmail: email,
+      courseNumber: courseNumber,
+      tutorName: name
+    };
+    this.emailTutorService.getEmailTutorModalOpenSubject().next(emailTutorData);
   }
 }
