@@ -78,32 +78,22 @@ export class Tutor {
     return this._hasTakenCourse;
   }
 
-  // can be replaced by map
-  // public static tutorJsonArrayToTutorModel(tutorsJsonResponse: any) {
-  //   const tutors: Tutor[] = [];
-  //   tutorsJsonResponse.forEach(function (tutorJson: any) {
-  //     const tutor = Tutor.tutorJsonToTutorModel(tutorJson);
-  //     tutors.push(tutor);
-  //   });
-  //   return tutors;
-  // }
+  public static tutorJsonToTutorModel(tutorJson: any): Tutor {
+    const user: User = User.userJsonToUserModel(tutorJson.user);
+    const hourlyRate: number = Number(tutorJson.hourlyRate);
+    const courseNumber: string = tutorJson.courseNumber;
+    const grade: string = tutorJson.grade;
+    const instructor: string = tutorJson.instructor;
+    const pastExperience: string = tutorJson.pastExperience;
+    const notes: string = tutorJson.notes;
+    const yearTaken: number = tutorJson.semesterTaken.year;
+    const semester: string = tutorJson.semesterTaken.semester;
+    const semesterTaken: Semester = new Semester(semester, yearTaken);
+    const hasTakenCourse: boolean = tutorJson.hasTakenCourse;
 
-  // public static tutorJsonToTutorModel(tutorJson: any) {
-  //   const user: User = User.userJsonToUserModel(tutorJson.user);
-  //   const hourlyRate: number = Number(tutorJson.hourlyRate);
-  //   const courseNumber: string = tutorJson.courseNumber;
-  //   const grade: string = tutorJson.grade;
-  //   const instructor: string = tutorJson.instructor;
-  //   const pastExperience: string = tutorJson.pastExperience;
-  //   const notes: string = tutorJson.notes;
-  //   const yearTaken: number = tutorJson.semesterTaken.year;
-  //   const semester: string = tutorJson.semesterTaken.semester;
-  //   const semesterTaken: Semester = new Semester(semester, yearTaken);
-  //   const hasTakenCourse: boolean = tutorJson.hasTakenCourse;
-  //
-  //   return new Tutor(
-  //     user, hourlyRate, courseNumber,
-  //     grade, instructor, pastExperience, notes, semesterTaken, hasTakenCourse
-  //   );
-  // }
+    return new Tutor(
+      user, hourlyRate, courseNumber,
+      grade, instructor, pastExperience, notes, semesterTaken, hasTakenCourse
+    );
+  }
 }

@@ -8,6 +8,10 @@ export class ImageService {
   private static readonly GETPROFILEPICTUREROUTE = '/api/drive/download/profilePhoto';
   private static readonly POSTPROFILEPICTUREROUTE = '/api/drive/upload/profilePhoto';
 
+  static generateNewQueryString(userId: string, sessionToken: string) {
+    return '?userId=' + userId + '&sessionToken=' + sessionToken; // + '&time=' + new Date().getTime();
+  }
+
   constructor(private httpClient: HttpClient, private userSessionService: UserSessionService) {
   }
 
@@ -50,9 +54,5 @@ export class ImageService {
     //   $(preloaderSelector).hide();
     //   $(imagesSelector).show();
     // }, 1700);
-  }
-
-  static generateNewQueryString(userId: string, sessionToken: string) {
-    return '?userId=' + userId + '&sessionToken=' + sessionToken + '&time=' + new Date().getTime();
   }
 }

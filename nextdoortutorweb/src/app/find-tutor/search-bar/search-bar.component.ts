@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Course } from '../../course/course.model';
 
 @Component({
@@ -7,9 +7,10 @@ import { Course } from '../../course/course.model';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit, AfterViewInit {
+  @Output() selectedCourseNumberEventEmitter = new EventEmitter<string>();
   @Input() courses: Course[];
   searchBarId: string;
-
+  
   constructor() { }
 
   ngOnInit() {
@@ -31,8 +32,9 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
       data: searchObject,
       limit: 15, // The max amount of results that can be shown at once. Default: Infinity.
       // execute when someone clicks a selection
-      onAutocomplete: function(course: string) {
+      onAutocomplete: (course: string) => {
         const courseNumber = course.split(' ')[0];
+        this.selectedCourseNumberEventEmitter.emit(courseNumber);
         // CoursesWithTutors.showListOfTutorsForCourseNumber(courseNumber);
       },
       minLength: 0, // The minimum length of the input for the autocomplete to start. Default: 1.

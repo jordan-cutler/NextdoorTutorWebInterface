@@ -22,6 +22,7 @@ import { SubmitBugModalComponent } from './navbar/submit-bug-modal/submit-bug-mo
 import { FindTutorComponent } from './find-tutor/find-tutor.component';
 import { SearchBarComponent } from './find-tutor/search-bar/search-bar.component';
 import { TutorListComponent } from './find-tutor/tutor-list/tutor-list.component';
+import { EmailTutorModalComponent } from './find-tutor/tutor-list/email-tutor-modal/email-tutor-modal.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { TutorListComponent } from './find-tutor/tutor-list/tutor-list.component
     SubmitBugModalComponent,
     FindTutorComponent,
     SearchBarComponent,
-    TutorListComponent
+    TutorListComponent,
+    EmailTutorModalComponent
   ],
   imports: [
     BrowserModule,

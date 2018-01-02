@@ -1,4 +1,9 @@
 <div *ngIf="courses">
-  <app-find-tutor-search-bar [courses]="courses"></app-find-tutor-search-bar>
+  <app-find-tutor-search-bar
+    [courses]="courses"
+    (selectedCourseNumberEventEmitter)="onCourseSelect($event)"></app-find-tutor-search-bar>
+</div>
+<div *ngIf="selectedCourseNumber && tutorsForSelectedCourse">
+  <app-tutor-list [tutors]="tutorsForSelectedCourse"></app-tutor-list>
 </div>
 

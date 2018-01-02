@@ -2,6 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Tutor } from './tutor.model';
 
+import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+
 @Injectable()
 export class TutorService {
 
@@ -19,15 +22,24 @@ export class TutorService {
     return this.httpClient.post(TutorService.ADDTUTORROUTE, tutor);
   }
 
-  getTutorsForCourse(courseNumber: string) {
-    return this.httpClient.get(TutorService.GETUTORSFORCOURSEROUTE + '/' + courseNumber);
+  getTutorsForCourse(courseNumber: string): Observable<Tutor[]> {
+    return this.httpClient.get(TutorService.GETUTORSFORCOURSEROUTE + '/' + courseNumber)
+      .map((tutors: any[]) => { return tutors.map((tutor) => {
+              return Tutor.tutorJsonToTutorModel(tutor);
+            }
+          );
+        }
+      );
   }
 
-  getTutorById(tutorId: string, courseNumber: string) {
+  getTutorById(tutorId: string, courseNumber: string): Observable<Tutor> {
     const params = new HttpParams().set('courseNumber', courseNumber);
     return this.httpClient.get(
       TutorService.GETTUTORROUTE + '/' + tutorId,
-      { params: params });
+      { params: params })
+      .map( (tutor) => {
+        return Tutor.tutorJsonToTutorModel(tutor);
+    });
   }
 
   removeCurrentUserFromCourseTutor(courseNumber: string) {
