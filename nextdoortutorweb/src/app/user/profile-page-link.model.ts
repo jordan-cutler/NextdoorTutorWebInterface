@@ -7,7 +7,7 @@ export enum Site {
 export class ProfilePageLink {
   private _link: string;
   private _site: Site;
-  
+
   constructor(link: string, site: Site) {
     this._link = link;
     this._site = site;
@@ -20,5 +20,12 @@ export class ProfilePageLink {
 
   get site(): Site {
     return this._site;
+  }
+
+  public static toModelFromJson(data: any): ProfilePageLink {
+    const link: string = data.link;
+    const siteString: string = data.site;
+    const site: Site = Site[siteString];
+    return new ProfilePageLink(link, site);
   }
 }

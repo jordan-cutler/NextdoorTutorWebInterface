@@ -18,9 +18,9 @@ export class UserSession {
     return this._sessionToken;
   }
 
-  // public static userSessionJsonToUserSessionModel(userSessionJson: any): UserSession {
-  //   const user: User = User.userJsonToUserModel(userSessionJson.user);
-  //   const sessionToken: string = userSessionJson.sessionToken;
-  //   return new UserSession(user, sessionToken);
-  // }
+  public static userSessionJsonToUserSessionModel(userSessionJson: any): UserSession {
+    const user: User = User.userJsonToUserModel(userSessionJson.user);
+    const sessionToken: string = userSessionJson.sessionToken;
+    return new UserSession(user, sessionToken);
+  }
 }

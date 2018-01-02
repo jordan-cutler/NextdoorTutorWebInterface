@@ -1,0 +1,30 @@
+<ul class="side-nav" id="Navbar-sideNav">
+  <li>
+    <div class="user-view">
+      <div class="background">
+        <img src="assets/images/office.jpg">
+      </div>
+      <a><span class="white-text name">{{user.userName}}</span></a>
+      <a><span class="white-text email">{{user.email}}</span></a>
+    </div>
+  </li>
+  <li>
+    <a (click)="navbarComponent.onFindTutorClick()">Find a tutor</a>
+  </li>
+
+  <li>
+    <a (click)="navbarComponent.onTutorACourseClick()">Tutor a class</a>
+  </li>
+
+  <li>
+    <a (click)="navbarComponent.onProfileClick()">Profile</a>
+  </li>
+
+  <li>
+    <a (click)="navbarComponent.onSubmitBugClick()">Submit Bug</a>
+  </li>
+
+  <li>
+    <a (click)="navbarComponent.onSignOutClick()">Sign Out</a>
+  </li>
+</ul>

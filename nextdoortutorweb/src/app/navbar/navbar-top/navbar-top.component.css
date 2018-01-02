@@ -1,0 +1,22 @@
+#Navbar-logoImage {
+  margin-left: 10%;
+  height: 64px;
+}
+
+.logo {
+  display: inline-block;
+  height: 100%;
+}
+
+.logo>img {
+  vertical-align: middle;
+}
+
+#Navbar-logo {
+  margin-left: 1%;
+  font-family: Helvetica, sans-serif;
+}
+
+.button-collapse {
+  color: black !important;
+}

@@ -1,0 +1,25 @@
+<a id="Navbar-logo" class="brand-logo orange-text cursorPointer">
+  <img id="Navbar-logoImage" class="responsive-img" src="assets/images/NTLogo.png" alt="NextdoorTutor">
+</a>
+<a data-activates="Navbar-sideNav" href="#" class="button-collapse"><i class="material-icons">menu</i></a>
+<ul class="right hide-on-med-and-down">
+  <li>
+    <a class="black-text" (click)="navbarComponent.onFindTutorClick()">Find a tutor</a>
+  </li>
+
+  <li>
+    <a class="black-text" (click)="navbarComponent.onTutorACourseClick()">Tutor a course</a>
+  </li>
+
+  <li>
+    <a class="black-text" (click)="navbarComponent.onProfileClick()">
+      <i class="small material-icons left black-text">account_circle</i>{{user.userName}}
+    </a>
+  </li>
+  <li>
+    <a class="black-text" (click)="navbarComponent.onSubmitBugClick()">Submit Bug</a>
+  </li>
+  <li>
+    <a class="black-text" (click)="navbarComponent.onSignOutClick()">Sign Out</a>
+  </li>
+</ul>

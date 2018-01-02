@@ -13,12 +13,10 @@ export class User {
   private _linkedin: ProfilePageLink;
   private _creationDate: Date;
 
-  constructor(
-    userId: string, email: string, userName: string,
-    profilePhotoId: string, bio: string, major: string,
-    github: ProfilePageLink, facebook: ProfilePageLink, linkedin: ProfilePageLink,
-    creationDate: Date
-  ) {
+  constructor(userId: string, email: string, userName: string,
+              profilePhotoId: string, bio: string, major: string,
+              github: ProfilePageLink, facebook: ProfilePageLink, linkedin: ProfilePageLink,
+              creationDate: Date) {
     this._userId = userId;
     this._email = email;
     this._userName = userName;
@@ -99,14 +97,23 @@ export class User {
     this._creationDate = creationDate;
   }
 
-  // public static userJsonToUserModel(userJson: any): User {
-  //   const userId = userJson.userId;
-  //   const email = userJson.email;
-  //   const userName = userJson.name;
-  //   const profilePhotoId = userJson.profilePhotoId;
-  //   const bio = userJson.bio;
-  //   const major = userJson.major;
-  //   const creationDate = userJson.creationDate;
-  //   return new User(userId, email, userName, profilePhotoId, bio, major, creationDate);
-  // }
+  public static userJsonToUserModel(userJson: any): User {
+    const userId = userJson.userId;
+    const email = userJson.email;
+    const userName = userJson.name;
+    const profilePhotoId = userJson.profilePhotoId;
+    const bio = userJson.bio;
+    const major = userJson.major;
+    const github = userJson.github == null ? null : ProfilePageLink.toModelFromJson(userJson.github);
+    const facebook = userJson.facebook == null ? null : ProfilePageLink.toModelFromJson(userJson.facebook);
+    const linkedin = userJson.linkedin == null ? null : ProfilePageLink.toModelFromJson(userJson.linkedin);
+    const creationDate = userJson.creationDate;
+
+    return new User(
+      userId, email, userName,
+      profilePhotoId, bio, major,
+      github, facebook, linkedin,
+      creationDate
+    );
+  }
 }

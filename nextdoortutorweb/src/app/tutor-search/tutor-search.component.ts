@@ -11,15 +11,9 @@ import { Course } from '../course/course.model';
 })
 export class TutorsearchComponent implements OnInit {
 
-  constructor(private authService: AuthService,
-              private userSessionService: UserSessionService,
-              private courseService: CourseService) { }
+  constructor(private courseService: CourseService) { }
 
   ngOnInit() {
-  }
-
-  onSignout() {
-    this.userSessionService.signOutCurrentUser(this.authService.getAuth());
   }
 
   callMethod() {

@@ -16,13 +16,21 @@ import { ImageService } from './global/service/image.service';
 import { CourseService } from './course/course.service';
 import { AuthGuard } from './global/service/auth/auth-guard.service';
 import { AuthInterceptor } from './global/service/auth/auth.interceptor';
+import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarTopComponent } from './navbar/navbar-top/navbar-top.component';
+import { NavbarSideComponent } from './navbar/navbar-side/navbar-side.component';
+import { SubmitBugModalComponent } from './navbar/submit-bug-modal/submit-bug-modal.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TutorsearchComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent,
+    NavbarTopComponent,
+    NavbarSideComponent,
+    SubmitBugModalComponent
   ],
   imports: [
     BrowserModule,
