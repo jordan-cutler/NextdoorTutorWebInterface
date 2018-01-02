@@ -5,7 +5,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
-import { TutorsearchComponent } from './tutor-search/tutor-search.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './global/service/auth/auth.service';
@@ -20,17 +19,22 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarTopComponent } from './navbar/navbar-top/navbar-top.component';
 import { NavbarSideComponent } from './navbar/navbar-side/navbar-side.component';
 import { SubmitBugModalComponent } from './navbar/submit-bug-modal/submit-bug-modal.component';
+import { FindTutorComponent } from './find-tutor/find-tutor.component';
+import { SearchBarComponent } from './find-tutor/search-bar/search-bar.component';
+import { TutorListComponent } from './find-tutor/tutor-list/tutor-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TutorsearchComponent,
     LoginComponent,
     NavbarComponent,
     NavbarTopComponent,
     NavbarSideComponent,
-    SubmitBugModalComponent
+    SubmitBugModalComponent,
+    FindTutorComponent,
+    SearchBarComponent,
+    TutorListComponent
   ],
   imports: [
     BrowserModule,

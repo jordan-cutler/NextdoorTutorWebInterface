@@ -14,8 +14,4 @@ export class Course {
   get title(): string {
     return this._title;
   }
-
-  public toString = (): string => {
-    return `${this._courseNumber} ${this._title}`;
-  }
 }
