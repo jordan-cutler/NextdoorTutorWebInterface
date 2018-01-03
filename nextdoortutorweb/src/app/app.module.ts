@@ -23,12 +23,7 @@ import { SubmitBugModalComponent } from './navbar/submit-bug-modal/submit-bug-mo
 import { PreloaderComponent } from './shared/preloader/preloader.component';
 import { PreloaderService } from './shared/preloader/preloader.service';
 import { SharedModule } from './shared/shared.module';
-import { EmailTutorModalComponent } from './find-tutor/tutor-list/email-tutor-modal/email-tutor-modal.component';
-import { SearchBarComponent } from './find-tutor/search-bar/search-bar.component';
-import { FindTutorComponent } from './find-tutor/find-tutor.component';
-import { TutorListComponent } from './find-tutor/tutor-list/tutor-list.component';
-import { FormsModule } from '@angular/forms';
-import { EmailTutorService } from './find-tutor/tutor-list/email-tutor-modal/email-tutor.service';
+import { FindTutorModule } from './find-tutor/find-tutor.module';
 
 @NgModule({
   declarations: [
@@ -38,11 +33,7 @@ import { EmailTutorService } from './find-tutor/tutor-list/email-tutor-modal/ema
     NavbarTopComponent,
     NavbarSideComponent,
     SubmitBugModalComponent,
-    PreloaderComponent,
-    FindTutorComponent,
-    SearchBarComponent,
-    TutorListComponent,
-    EmailTutorModalComponent
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +41,7 @@ import { EmailTutorService } from './find-tutor/tutor-list/email-tutor-modal/ema
     MaterializeModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FindTutorModule
   ],
   providers: [
     AuthService,
@@ -60,7 +51,6 @@ import { EmailTutorService } from './find-tutor/tutor-list/email-tutor-modal/ema
     ImageService,
     CourseService,
     PreloaderService,
-    EmailTutorService,
     AuthGuard,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
