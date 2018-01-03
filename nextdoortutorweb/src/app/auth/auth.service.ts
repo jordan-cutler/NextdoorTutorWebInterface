@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/Rx';
+import { ApplicationGlobals } from '../shared/ApplicationGlobals';
 
 @Injectable()
 export class AuthService {
@@ -19,11 +20,6 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient, private userSessionService: UserSessionService, private zone: NgZone,
               private router: Router) {
-    console.log('in authservice constructor');
-    if (this.isUserLoggedIn()) {
-      console.log('made it to if statement');
-      this.isUserSignedIn.next(true);
-    }
   }
 
   initializeAuthorization(element: HTMLElement, onsuccess: () => void) {
@@ -51,13 +47,14 @@ export class AuthService {
           )
           .subscribe(
             (userSession: UserSession) => {
-              console.log(userSession);
-              localStorage.setItem('userSession', JSON.stringify(userSession));
-              console.log('saved = ' + JSON.stringify(userSession));
+              ApplicationGlobals.setUserSessionInLocalStorage(userSession);
               this.userSessionService.storeCurrentUser(userSession);
               this.isUserSignedIn.next(true);
-              console.log('user signed in = ' + this.isUserSignedIn);
               onsuccess();
+            },
+            () => {
+              Materialize.toast('Failed to authenticate you. Please try again soon', 3000);
+              this.signOutUserFromGoogle();
             }
           );
       }
@@ -81,11 +78,16 @@ export class AuthService {
   signOutCurrentUser() {
     this.httpClient.post(AuthService.SIGNOUTROUTE, {});
     this.isUserSignedIn.next(false);
+    this.userSessionService.nullifyCurrentUserSession();
+    ApplicationGlobals.clearUserSessionFromLocalStorage();
+
+    this.signOutUserFromGoogle();
+  }
+
+  private signOutUserFromGoogle() {
     this.auth2.signOut().then(() => {
       this.zone.run(() => {
         this.router.navigate(['/']);
-        this.userSessionService.nullifyCurrentUserSession();
-        console.log('signed out');
       });
     });
   }

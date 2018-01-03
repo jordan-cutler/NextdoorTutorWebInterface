@@ -1,5 +1,6 @@
 import { UserSession } from './user-session.model';
 import { Injectable, OnInit } from '@angular/core';
+import { ApplicationGlobals } from '../ApplicationGlobals';
 
 @Injectable()
 export class UserSessionService {
@@ -7,14 +8,9 @@ export class UserSessionService {
   private currentUserSession: UserSession;
 
   constructor() {
-    console.log('constructor called yo');
-    console.log(localStorage.getItem('userSession'));
-    if (localStorage.getItem('userSession')) {
-      this.currentUserSession = UserSession.userSessionJsonToUserSessionModel(JSON.parse(localStorage.getItem('userSession')));
-    } else {
-      console.log('localstorage userSession is null = ' + localStorage.getItem('userSession'));
+    if (ApplicationGlobals.userSessionPresentInLocalStorage()) {
+      this.currentUserSession = ApplicationGlobals.getUserSessionFromLocalStorage();
     }
-    // this.currentUserSession = UserSession.userSessionJsonToUserSessionModel(JSON.parse(localStorage.getItem('userSession')));
   }
 
   storeCurrentUser(userSession: UserSession) {
@@ -22,7 +18,6 @@ export class UserSessionService {
   }
 
   getCurrentUserSession() {
-    console.log('in user session service = ' + this.currentUserSession);
     return this.currentUserSession;
   }
 

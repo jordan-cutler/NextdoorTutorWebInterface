@@ -54,7 +54,7 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestro
 
         this.subject = EmailTutorModalComponent.createSubject(this.courseNumber);
         this.message = EmailTutorModalComponent.createMessage(
-          this.userSessionService.getCurrentUser().userName,
+          this.userSessionService.getCurrentUser().name,
           this.tutorName,
           this.courseNumber
         );

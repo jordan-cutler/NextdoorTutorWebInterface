@@ -35,7 +35,7 @@ export class Tutor {
   }
 
   get name(): string {
-    return this._user.userName;
+    return this._user.name;
   }
 
   get major(): string {
