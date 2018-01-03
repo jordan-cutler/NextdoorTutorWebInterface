@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserSessionService } from './user-session.service';
+import { UserSessionService } from './user-session/user-session.service';
 
 @Injectable()
 export class ImageService {
@@ -17,7 +17,7 @@ export class ImageService {
 
   uploadProfilePictureToServer(file: File | Blob) {
     const currentUserId = this.userSessionService.getCurrentUser().userId;
-    const sessionToken = this.userSessionService.getCurrentUserSession().sessionToken;
+    const sessionToken = this.userSessionService.getCurrentUserSession().getSessionToken();
     return this.httpClient.post(
       ImageService.POSTPROFILEPICTUREROUTE + '/' + currentUserId,
       file,
@@ -29,7 +29,7 @@ export class ImageService {
     //   data: file,
     //   processData: false,  // tell jQuery not to process the data as a string
     //   contentType: file.type,
-    //   headers: {"Authorization": UserSession.sessionToken()},
+    //   headers: {"Authorization": UserSession.getSessionToken()},
     //   success: successFunction,
     //   error: errorFunction
     // });
@@ -38,7 +38,7 @@ export class ImageService {
   // Returns a unique url so the browser doesn't cache the previous image if someone just uploaded a new one
   getNewProfilePhotoUrlForCurrentUser() {
     const currentUserId = this.userSessionService.getCurrentUser().userId;
-    const sessionToken = this.userSessionService.getCurrentUserSession().sessionToken;
+    const sessionToken = this.userSessionService.getCurrentUserSession().getSessionToken();
     return ImageService.GETPROFILEPICTUREROUTE + '/' + currentUserId + ImageService.generateNewQueryString(currentUserId, sessionToken);
   }
 

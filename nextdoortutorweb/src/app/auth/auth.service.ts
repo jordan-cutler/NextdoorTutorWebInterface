@@ -1,9 +1,9 @@
 import GoogleAuth = gapi.auth2.GoogleAuth;
 import GoogleUser = gapi.auth2.GoogleUser;
 import { HttpClient } from '@angular/common/http';
-import { UserSession } from '../../model/user-session.model';
+import { UserSession } from '../shared/user-session/user-session.model';
 import { Injectable, NgZone } from '@angular/core';
-import { UserSessionService } from '../user-session.service';
+import { UserSessionService } from '../shared/user-session/user-session.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 
@@ -19,6 +19,11 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient, private userSessionService: UserSessionService, private zone: NgZone,
               private router: Router) {
+    console.log('in authservice constructor');
+    if (this.isUserLoggedIn()) {
+      console.log('made it to if statement');
+      this.isUserSignedIn.next(true);
+    }
   }
 
   initializeAuthorization(element: HTMLElement, onsuccess: () => void) {
@@ -47,6 +52,8 @@ export class AuthService {
           .subscribe(
             (userSession: UserSession) => {
               console.log(userSession);
+              localStorage.setItem('userSession', JSON.stringify(userSession));
+              console.log('saved = ' + JSON.stringify(userSession));
               this.userSessionService.storeCurrentUser(userSession);
               this.isUserSignedIn.next(true);
               console.log('user signed in = ' + this.isUserSignedIn);
@@ -62,7 +69,13 @@ export class AuthService {
   }
 
   isUserLoggedIn(): boolean {
-    return !!this.userSessionService.getCurrentUserSession();
+    if (!!this.userSessionService.getCurrentUserSession()) {
+      this.isUserSignedIn.next(true);
+      return true;
+    } else {
+      this.isUserSignedIn.next(false);
+      return false;
+    }
   }
 
   signOutCurrentUser() {

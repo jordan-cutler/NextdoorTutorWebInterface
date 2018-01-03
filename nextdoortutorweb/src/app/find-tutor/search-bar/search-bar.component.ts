@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Course } from '../../course/course.model';
+import { Course } from '../../shared/course/course.model';
 
 @Component({
   selector: 'app-find-tutor-search-bar',

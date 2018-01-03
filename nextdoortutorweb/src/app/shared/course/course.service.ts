@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserSessionService } from '../global/service/user-session.service';
+import { UserSessionService } from '../user-session/user-session.service';
 import { Course } from './course.model';
 import { Observable } from 'rxjs/Observable';
 

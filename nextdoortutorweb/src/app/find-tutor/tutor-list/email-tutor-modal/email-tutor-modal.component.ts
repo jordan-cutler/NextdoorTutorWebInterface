@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { UserSessionService } from '../../../global/service/user-session.service';
+import { UserSessionService } from '../../../shared/user-session/user-session.service';
 import { EmailTutorService } from './email-tutor.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
-import { PreloaderService } from '../../../global/preloader/preloader.service';
+import { PreloaderService } from '../../../shared/preloader/preloader.service';
 
 @Component({
   selector: 'app-email-tutor-modal',
@@ -87,7 +87,7 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestro
       }
       return false;
     }
-    
+
     // this.preloaderService.show();
     // setTimeout(() => {
     //   Materialize.toast('Successfully emailed tutor. They will email you back soon if interested.', 3000);
@@ -95,7 +95,7 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestro
     //   $(this.modalSelector).modal('close');
     //   this.preloaderService.hide();
     // }, 10000);
-    
+
     this.preloaderService.show();
     this.emailTutorService.sendEmailToTutor(this.subject, this.message, this.tutorEmail, this.courseNumber).subscribe(
       (successful: boolean) => {

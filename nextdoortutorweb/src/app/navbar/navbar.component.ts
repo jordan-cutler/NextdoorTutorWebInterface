@@ -1,9 +1,9 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { User } from '../user/user.model';
-import { UserSessionService } from '../global/service/user-session.service';
-import { AuthService } from '../global/service/auth/auth.service';
+import { User } from '../shared/user/user-model/user.model';
+import { UserSessionService } from '../shared/user-session/user-session.service';
+import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
-import { ApplicationGlobals } from '../global/ApplicationGlobals';
+import { ApplicationGlobals } from '../shared/ApplicationGlobals';
 
 @Component({
   selector: 'app-navbar',

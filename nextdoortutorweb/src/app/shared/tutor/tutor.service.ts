@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Tutor } from './tutor.model';
+import { Tutor } from './tutor-model/tutor.model';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';

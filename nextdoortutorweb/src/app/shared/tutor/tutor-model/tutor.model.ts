@@ -1,4 +1,4 @@
-import { User } from '../user/user.model';
+import { User } from '../../user/user-model/user.model';
 import { Semester } from './semester.model';
 
 export class Tutor {

@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CourseService } from '../course/course.service';
-import { Course } from '../course/course.model';
+import { CourseService } from '../shared/course/course.service';
+import { Course } from '../shared/course/course.model';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
-import { TutorService } from '../tutor/tutor.service';
-import { Tutor } from '../tutor/tutor.model';
+import { TutorService } from '../shared/tutor/tutor.service';
+import { Tutor } from '../shared/tutor/tutor-model/tutor.model';
 
 @Component({
   selector: 'app-find-tutor',

@@ -1,5 +1,5 @@
 import { Component, Host, Input, OnInit } from '@angular/core';
-import { User } from '../../user/user.model';
+import { User } from '../../shared/user/user-model/user.model';
 import { NavbarComponent } from '../navbar.component';
 
 @Component({

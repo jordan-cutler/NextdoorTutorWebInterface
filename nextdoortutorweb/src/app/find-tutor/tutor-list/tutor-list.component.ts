@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { Tutor } from '../../tutor/tutor.model';
-import { ImageService } from '../../global/service/image.service';
-import { UserSessionService } from '../../global/service/user-session.service';
+import { Tutor } from '../../shared/tutor/tutor-model/tutor.model';
+import { ImageService } from '../../shared/image.service';
+import { UserSessionService } from '../../shared/user-session/user-session.service';
 import { EmailTutorService } from './email-tutor-modal/email-tutor.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class TutorListComponent implements OnInit, AfterViewInit {
               private emailTutorService: EmailTutorService) { }
 
   ngOnInit() {
-    this.currentUserSessionToken = this.userSessionService.getCurrentUserSession().sessionToken;
+    this.currentUserSessionToken = this.userSessionService.getCurrentUserSession().getSessionToken();
     this.currentUserId = this.userSessionService.getCurrentUser().userId;
     this.tutors.forEach((tutor: Tutor) => {
       console.log(tutor.userId);
