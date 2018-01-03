@@ -13,7 +13,6 @@ export class TutorService {
   private static readonly GETTUTORROUTE = '/api/tutors';
   private static readonly DELETETUTORROUTE = '/api/tutors';
   private static readonly UPDATETUTORROUTE = '/api/tutors';
-  private static readonly REQUESTUTORROUTE = '/api/tutors/request';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -56,18 +55,6 @@ export class TutorService {
       {
         courseNumber: courseNumber, hourlyRate: hourlyRate,
         pastExperience: pastExperience, notes: notes
-      }
-    );
-  }
-
-  sendEmailToTutor(subject: string, message: string, tutorEmail: string, relatedCourse: string) {
-    return this.httpClient.post(
-      TutorService.REQUESTUTORROUTE,
-      {
-        subject: subject,
-        message: message,
-        tutorEmail: tutorEmail,
-        relatedCourse: relatedCourse
       }
     );
   }

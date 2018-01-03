@@ -1,3 +1,7 @@
 #searchLabel {
   text-decoration-color: #767676;
 }
+
+.autocomplete-content {
+  position: absolute;
+}

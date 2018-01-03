@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from './global/service/auth/auth.service';
 import { Subscription } from 'rxjs/Subscription';
+import { PreloaderService } from './global/preloader/preloader.service';
+import { PreloaderState } from './global/preloader/PreloaderState';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +12,14 @@ import { Subscription } from 'rxjs/Subscription';
 export class AppComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean;
   isLoggedInSubscription: Subscription;
-  
-  constructor(public authService: AuthService, private cd: ChangeDetectorRef) {
-  }
+
+  loadingSubscription: Subscription;
+  loading: boolean;
+
+  constructor(private authService: AuthService,
+              private preloaderService: PreloaderService,
+              private cd: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
     this.isLoggedInSubscription = this.authService.isUserSignedIn.subscribe(
@@ -21,8 +28,15 @@ export class AppComponent implements OnInit, OnDestroy {
         this.cd.detectChanges();
       }
     );
+
+    this.loadingSubscription = this.preloaderService.preloaderSubject.subscribe(
+      (preloaderState: PreloaderState) => {
+        this.loading = preloaderState.state;
+        this.cd.detectChanges();
+      }
+    );
   }
-  
+
   ngOnDestroy() {
     this.isLoggedInSubscription.unsubscribe();
   }

@@ -10,16 +10,14 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const userSession = this.userSessionService.getCurrentUserSession();
     if (req.method === 'POST' && userSession) {
-      const requestClone = 
-        req.clone({ body: 
-          req.body
-            .append('userId', userSession.user.userId)
-            .append('sessionToken', userSession.sessionToken)
-        });
+      const bodyObject = req.body;
+      bodyObject['userId'] = userSession.user.userId;
+      bodyObject['sessionToken'] = userSession.sessionToken;
+      const requestClone = req.clone({ body: bodyObject });
       return next.handle(requestClone);
     } else if (userSession) {
-      const requestClone = 
-        req.clone({ params: 
+      const requestClone =
+        req.clone({ params:
           req.params
             .append('userId', userSession.user.userId)
             .append('sessionToken', userSession.sessionToken)

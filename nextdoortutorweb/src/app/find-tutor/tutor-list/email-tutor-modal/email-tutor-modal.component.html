@@ -1,24 +1,47 @@
 <div id="{{modalId}}" class="modal">
-  <div class="modal-content">
-    <div class="row">
-      <form class="col s12">
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="subjectTextArea" type="text" class="character-count"
-                   data-length="100" maxlength="100" value="{{subject}}">
-            <label for="subjectTextArea">Subject</label>
+  <form (ngSubmit)="onSubmit($event)" #form="ngForm">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input
+                id="subjectTextArea"
+                type="text"
+                class="character-count"
+                data-length="100"
+                maxlength="100"
+                [(ngModel)]="subject"
+                name="subject"
+                ngModel
+                required
+              />
+              <label for="subjectTextArea">Subject</label>
+            </div>
+          </div>
+          <div class="row">
+          <textarea
+            id="messageTextArea"
+            class="character-count"
+            data-length="255"
+            maxlength="255"
+            placeholder="Your message to {{tutorName}}"
+            [(ngModel)]="message"
+            name="message"
+            ngModel
+            required
+          ></textarea>
           </div>
         </div>
-        <div class="row">
-          <!--<div class="col s12" style="width: 100%">-->
-          <textarea id="messageTextArea" class="character-count"
-                    data-length="255" maxlength="255" placeholder="Your message to {{tutorName}}">{{message}}</textarea>
-          <!--</div>-->
-        </div>
-      </form>
+      </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <a id="sendEmailButton" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Send</a>
-  </div>
+    <div class="modal-footer">
+      <button
+        id="sendEmailButton"
+        class="modal-action waves-effect waves-green btn-flat"
+        type="submit"
+      >Send
+      </button>
+    </div>
+  </form>
 </div>

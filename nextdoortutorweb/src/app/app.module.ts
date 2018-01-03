@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterializeModule } from 'angular2-materialize';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 
@@ -24,6 +26,9 @@ import { SearchBarComponent } from './find-tutor/search-bar/search-bar.component
 import { TutorListComponent } from './find-tutor/tutor-list/tutor-list.component';
 import { EmailTutorModalComponent } from './find-tutor/tutor-list/email-tutor-modal/email-tutor-modal.component';
 import { EmailTutorService } from './find-tutor/tutor-list/email-tutor-modal/email-tutor.service';
+import { PreloaderComponent } from './global/preloader/preloader.component';
+import { PreloaderService } from './global/preloader/preloader.service';
+
 
 
 @NgModule({
@@ -37,13 +42,15 @@ import { EmailTutorService } from './find-tutor/tutor-list/email-tutor-modal/ema
     FindTutorComponent,
     SearchBarComponent,
     TutorListComponent,
-    EmailTutorModalComponent
+    EmailTutorModalComponent,
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,
     MaterializeModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     AuthService,
@@ -53,6 +60,7 @@ import { EmailTutorService } from './find-tutor/tutor-list/email-tutor-modal/ema
     ImageService,
     CourseService,
     EmailTutorService,
+    PreloaderService,
     AuthGuard,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
