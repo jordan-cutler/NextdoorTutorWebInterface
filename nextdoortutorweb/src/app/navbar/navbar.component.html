@@ -1,11 +1,48 @@
-<nav class="white" id="Navbar">
-  <div class="nav-wrapper z-depth-4 white black-text">
+<!--<nav class="white" id="Navbar">-->
+  <!--<div class="nav-wrapper z-depth-4 white black-text">-->
 
-    <app-navbar-top [user]="user"></app-navbar-top>
+    <!--<app-navbar-top [user]="user"></app-navbar-top>-->
 
-    <app-navbar-side [user]="user"></app-navbar-side>
+    <!--<app-navbar-side [user]="user"></app-navbar-side>-->
 
-  </div>
-</nav>
+  <!--</div>-->
+<!--</nav>-->
+
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <ul class="right hide-on-med-and-down">
+        <li><a class="header" routerLink="/home">Home</a></li>
+        <li><a class="header" (click)="onFindTutorClick()">Find a Tutor</a></li>
+        <li><a class="header" (click)="onTutorACourseClick()">Tutor a Course</a></li>
+        <li *ngIf="!user"><a class="header">Sign In</a></li>
+        <li *ngIf="user">
+          <a class="header" (click)="onProfileClick()">
+            <i class="small material-icons left black-text">account_circle</i>{{user.name}}
+          </a>
+        </li>
+        <li *ngIf="user"><a class="header" (click)="onSignOutClick()">Sign Out</a></li>
+      </ul>
+      <ul id="slide-out" class="side-nav">
+        <li *ngIf="user">
+          <div class="user-view">
+            <div class="background">
+              <img src="assets/images/office.jpg">
+            </div>
+            <a><span class="white-text name">{{user.name}}</span></a>
+            <a><span class="white-text email">{{user.email}}</span></a>
+          </div>
+        </li>
+        <li><a class="header">Home</a></li>
+        <li><a class="header" (click)="onFindTutorClick()">Find a Tutor</a></li>
+        <li><a class="header" (click)="onTutorACourseClick()">Tutor a Course</a></li>
+        <li *ngIf="!user"><a class="header">Sign In</a></li>
+        <li *ngIf="user"><a class="header" (click)="onProfileClick()">Profile</a></li>
+        <li *ngIf="user"><a class="header" (click)="onSignOutClick()">Sign Out</a></li>
+      </ul>
+      <a data-activates="slide-out" href="#" class="button-collapse"><i class="material-icons icon-gray">menu</i></a>
+    </div>
+  </nav>
+</div>
 
 <app-submit-bug-modal [modalId]="submitBugModalId"></app-submit-bug-modal>

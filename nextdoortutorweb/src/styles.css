@@ -1,8 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
-/*.iris {*/
-  /*background: url("../images/backgroundshutter.png") no-repeat fixed;*/
-/*}*/
+body {
+  -webkit-text-size-adjust:100%;
+  background: no-repeat fixed;
+  text-align: center;
+  font-family: Righteous, serif;
+  color: #333;
+}
+
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Makes the actual side nav brighter than everything else. Without this, the sidenav-overlay covers the sidenav for some reason and makes the whole screen dark
+ */
+#sidenav-overlay {
+  z-index: 1 !important;
+}
 
 @media only screen and (min-width: 992px) {
   #toast-container {

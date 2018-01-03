@@ -8,8 +8,7 @@ import { NavbarComponent } from '../navbar.component';
   styleUrls: ['./navbar-top.component.css']
 })
 export class NavbarTopComponent implements OnInit {
-  @Input() readonly user: User;
-  
+
   constructor(@Host() public navbarComponent: NavbarComponent) { }
 
   ngOnInit() {

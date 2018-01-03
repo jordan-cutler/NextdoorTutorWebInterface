@@ -10,9 +10,6 @@ import { PreloaderState } from './shared/preloader/PreloaderState';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  isLoggedIn: boolean;
-  isLoggedInSubscription: Subscription;
-
   loadingSubscription: Subscription;
   loading: boolean;
 
@@ -22,13 +19,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.isLoggedInSubscription = this.authService.isUserSignedIn.subscribe(
-      (isLoggedIn: boolean) => {
-        this.isLoggedIn = isLoggedIn;
-        this.cd.detectChanges();
-      }
-    );
-
     this.loadingSubscription = this.preloaderService.preloaderSubject.subscribe(
       (preloaderState: PreloaderState) => {
         this.loading = preloaderState.state;
@@ -38,6 +28,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.isLoggedInSubscription.unsubscribe();
+    this.loadingSubscription.unsubscribe();
   }
 }

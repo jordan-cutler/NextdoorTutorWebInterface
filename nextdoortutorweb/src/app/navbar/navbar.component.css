@@ -1,0 +1,24 @@
+nav {
+  background-color: white;
+  text-align: center;
+  font-family: Righteous, serif; /* TODO: Change generic font based on what @stephanie thinks */
+  color: #333;
+}
+
+li a{
+  font-family: Righteous, serif !important; /* TODO: Change generic font based on what @stephanie thinks */
+}
+
+a {
+  text-decoration: none;
+  color: #fc7c25;
+}
+
+.header {
+  color: #fc7c25 !important;
+  font-size: 12pt;
+}
+
+i.icon-gray{
+  color: #333;
+}

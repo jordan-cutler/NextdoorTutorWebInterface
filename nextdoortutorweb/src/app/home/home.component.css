@@ -1,30 +1,129 @@
-#Login-Full-Logo {
+.container {
   margin: 0 auto;
-  height: 80px;
-  width: 72px;
+  max-width: 1280px;
+  width: 90%;
 }
 
-#Login-tagLine {
-  color: #ffab40;
-  font-size: 20px;
-  font-weight: 400;
+.team {
+  height: 65%;
+  width: 65%;
+  border-radius: 50%;
 }
 
-#Login-body {
-  margin-top: 20vh;
+/* Format team member descriptions */
+.team1 {
+  font-size: 16pt;
+  font-family: Righteous, serif;
 }
 
-.g-signin2{
-  margin-top: 10px;
-  width: 100%;
+.role {
+  font-size: 14pt;
+  font-family: Fresca, serif;
 }
 
-.g-signin2 > div{
-  margin: 0 auto;
+.header {
+  color: #fc7c25 !important;
+  font-size: 12pt;
 }
 
-#Login-logoText {
-  /*font-size: xx-large;*/
-  font-family: Righteous, Helvetica, sans-serif;
-  font-weight: 600;
+.footer {
+  color: white !important;
+}
+
+/* Formats become/find a tutor descriptions */
+p.pTut {
+  font-size: 14pt;
+  width: 95%;
+}
+
+img.keep-calm {
+  height: 80%;
+  width: 65%;
+}
+
+footer {
+  background-color: #333 !important;
+  text-align: left !important;
+  padding-bottom: 1%;
+  padding-top: 1%;
+  color: white !important;
+}
+
+p {
+  font-size: 18pt;
+  font-family: Fresca, serif;
+}
+
+h1 {
+  color: #fc7c25;
+  font-size: 38pt;
+}
+
+h2 {
+  color: #fc7c25;
+  font-size: 34pt;
+}
+
+h3 {
+  font-size: 20pt;
+  color: #333;
+}
+
+h4 {
+  font-size: 14pt;
+  color: #fc7c25;
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 22pt;
+  }
+
+  h2, h3 {
+    font-size: 18pt;
+  }
+
+  h4 {
+    font-size: 14pt;
+  }
+
+  p {
+    font-size: 9pt;
+  }
+
+  li a {
+    font-size: 8pt;
+  }
+
+  .container {
+    width: 95%;
+  }
+
+  .btn {
+    font-size: 5pt;
+    height: auto;
+    width: auto;
+    padding: 3% 4%;
+  }
+
+  .pTut {
+    font-size: 10pt !important;
+  }
+
+  .team1 {
+    font-size: 9pt;
+  }
+
+  .role {
+    font-size: 7pt;
+  }
+
+  .card-title {
+    font-size: 14pt !important;
+  }
+
+  img.keep-calm {
+    height: 100%;
+    width: 70%;
+  }
 }

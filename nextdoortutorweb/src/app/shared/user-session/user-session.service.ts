@@ -1,11 +1,15 @@
 import { UserSession } from './user-session.model';
 import { Injectable, OnInit } from '@angular/core';
 import { ApplicationGlobals } from '../ApplicationGlobals';
+import { User } from '../user/user-model/user.model';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class UserSessionService {
 
   private currentUserSession: UserSession;
+
+  userUpdatedSubject = new Subject<User>();
 
   constructor() {
     if (ApplicationGlobals.userSessionPresentInLocalStorage()) {
@@ -15,6 +19,7 @@ export class UserSessionService {
 
   storeCurrentUser(userSession: UserSession) {
     this.currentUserSession = userSession;
+    this.userUpdatedSubject.next(this.currentUserSession.getUser());
   }
 
   getCurrentUserSession() {
@@ -22,7 +27,11 @@ export class UserSessionService {
   }
 
   getCurrentUser() {
-    return this.currentUserSession.getUser();
+    if (this.currentUserSession) {
+      return this.currentUserSession.getUser();
+    } else {
+      return null;
+    }
   }
 
   nullifyCurrentUserSession() {
