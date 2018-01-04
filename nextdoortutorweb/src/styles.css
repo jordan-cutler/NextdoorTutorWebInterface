@@ -2,7 +2,11 @@
 
 body {
   -webkit-text-size-adjust:100%;
-  background: no-repeat fixed;
+  /*
+  Don't listen to your IDE and "optimize". It will break it
+   */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   text-align: center;
   font-family: Righteous, serif;
   color: #333;
@@ -18,6 +22,14 @@ Makes the actual side nav brighter than everything else. Without this, the siden
  */
 #sidenav-overlay {
   z-index: 1 !important;
+}
+
+.our-orange-background-color {
+  background-color: #fc7c25 !important;
+}
+
+.our-orange-text-color {
+  color: #fc7c25 !important;
 }
 
 @media only screen and (min-width: 992px) {

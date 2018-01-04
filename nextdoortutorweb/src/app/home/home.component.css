@@ -4,16 +4,63 @@
   width: 90%;
 }
 
+#logoSection {
+  padding-top: 6%;
+  padding-bottom: 6%;
+}
+
+#ntLogo {
+  height: 25%;
+  width: 25%;
+  margin: 0 0 -30px 0;
+}
+
+#whoWeAreCardPanel {
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+#becomeTutorContainer {
+  padding-top: 2%;
+  text-align: left;
+}
+
+#findTutorContainer {
+  padding-top: 2%;
+  padding-bottom: 4%;
+  text-align: left;
+}
+
+#findTutorHeader {
+  text-align: right;
+}
+
+#teamCardPanel {
+  background-color: #fc7c25;
+  padding-top: 2%;
+  padding-bottom: 4%;
+}
+
 .team {
   height: 65%;
   width: 65%;
   border-radius: 50%;
 }
 
+#meetTheTeamHeader {
+  color: white;
+}
+
 /* Format team member descriptions */
 .team1 {
   font-size: 16pt;
   font-family: Righteous, serif;
+}
+
+#teamDescription {
+  color: white;
+  padding-left: 8%;
+  padding-right: 8%;
 }
 
 .role {
@@ -28,6 +75,10 @@
 
 .footer {
   color: white !important;
+}
+
+#footerSlogan {
+  font-size: 12px;
 }
 
 /* Formats become/find a tutor descriptions */

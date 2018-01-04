@@ -9,17 +9,17 @@ import { ApplicationGlobals } from '../shared/ApplicationGlobals';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('signInButton') signInButtonRef: ElementRef;
+  // @ViewChild('signInButton') signInButtonRef: ElementRef;
 
   constructor(private router: Router, private authService: AuthService, private zone: NgZone) {
   }
 
   ngOnInit() {
-    this.authService.initializeAuthorization(this.signInButtonRef.nativeElement, () => {
-      this.zone.run(() => {
-        this.router.navigate([ApplicationGlobals.FIND_TUTOR_ROUTE]);
-      });
-    });
+    // this.authService.initializeAuthorization(this.signInButtonRef.nativeElement, () => {
+    //   this.zone.run(() => {
+    //     this.router.navigate([ApplicationGlobals.FIND_TUTOR_ROUTE]);
+    //   });
+    // });
   }
 
 }
