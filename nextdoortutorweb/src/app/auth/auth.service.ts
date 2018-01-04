@@ -22,7 +22,7 @@ export class AuthService {
               private router: Router) {
   }
 
-  initializeAuthorization(element: HTMLElement, onsuccess: () => void) {
+  initializeAuthorization(elements: HTMLElement[], onsuccess: () => void) {
     gapi.load('auth2', () => {
       // Retrieve the singleton for the GoogleAuth library and set up the client.
       this.auth2 = gapi.auth2.init({
@@ -31,34 +31,37 @@ export class AuthService {
         scope: 'profile',
         hosted_domain: 'lehigh.edu'
       });
-      this.renderSignInButton(element, onsuccess);
+      elements.forEach( (element: HTMLElement) => {
+        this.attachSignIn(element, onsuccess);
+      });
     });
   }
 
-  renderSignInButton(element: HTMLElement, onsuccess: () => void) {
-    gapi.signin2.render(element.id, {
-      onsuccess: (googleUser: GoogleUser) => {
-        const idToken = googleUser.getAuthResponse().id_token;
-        this.httpClient.post(AuthService.SIGNINROUTE, { idToken: idToken })
-          .map(
-            (userSession) => {
-              return UserSession.userSessionJsonToUserSessionModel(userSession);
-            }
-          )
-          .subscribe(
-            (userSession: UserSession) => {
-              ApplicationGlobals.setUserSessionInLocalStorage(userSession);
-              this.userSessionService.storeCurrentUser(userSession);
-              this.isUserSignedIn.next(true);
-              onsuccess();
-            },
-            () => {
-              Materialize.toast('Failed to authenticate you. Please try again soon', 3000);
-              this.signOutUserFromGoogle();
-            }
-          );
-      }
-    });
+  attachSignIn(element: HTMLElement, onsuccess: () => void) {
+      this.getAuth().attachClickHandler(element, {},
+        (googleUser: GoogleUser) => {
+          const idToken = googleUser.getAuthResponse().id_token;
+          this.httpClient.post(AuthService.SIGNINROUTE, { idToken: idToken })
+            .map(
+              (userSession) => {
+                return UserSession.userSessionJsonToUserSessionModel(userSession);
+              }
+            )
+            .subscribe(
+              (userSession: UserSession) => {
+                ApplicationGlobals.setUserSessionInLocalStorage(userSession);
+                this.userSessionService.storeCurrentUser(userSession);
+                this.isUserSignedIn.next(true);
+                onsuccess();
+              },
+              () => {
+                Materialize.toast('Failed to authenticate you. Please try again soon', 3000);
+                this.signOutUserFromGoogle();
+              }
+            );
+        }, function(error) {
+          alert(JSON.stringify(error, undefined, 2));
+        });
   }
 
   getAuth(): GoogleAuth {
@@ -87,7 +90,7 @@ export class AuthService {
   private signOutUserFromGoogle() {
     this.auth2.signOut().then(() => {
       this.zone.run(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       });
     });
   }

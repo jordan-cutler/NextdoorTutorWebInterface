@@ -36,5 +36,6 @@ export class UserSessionService {
 
   nullifyCurrentUserSession() {
     this.currentUserSession = null;
+    this.userUpdatedSubject.next(null);
   }
 }

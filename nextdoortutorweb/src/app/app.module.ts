@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { MaterializeModule } from 'angular2-materialize';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,23 +16,23 @@ import { CourseService } from './shared/course/course.service';
 import { AuthGuard } from './auth/auth-guard.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NavbarTopComponent } from './navbar/navbar-top/navbar-top.component';
-import { NavbarSideComponent } from './navbar/navbar-side/navbar-side.component';
 import { SubmitBugModalComponent } from './navbar/submit-bug-modal/submit-bug-modal.component';
 import { PreloaderComponent } from './shared/preloader/preloader.component';
 import { PreloaderService } from './shared/preloader/preloader.service';
 import { SharedModule } from './shared/shared.module';
 import { FindTutorModule } from './find-tutor/find-tutor.module';
+import { ProfileComponent } from './profile/profile.component';
+import { TutorApplicationComponent } from './tutor-application/tutor-application.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    NavbarTopComponent,
-    NavbarSideComponent,
     SubmitBugModalComponent,
-    PreloaderComponent
+    PreloaderComponent,
+    ProfileComponent,
+    TutorApplicationComponent
   ],
   imports: [
     BrowserModule,

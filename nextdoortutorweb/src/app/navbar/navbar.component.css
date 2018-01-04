@@ -1,8 +1,15 @@
 nav {
-  background-color: white;
-  text-align: center;
   font-family: Righteous, serif; /* TODO: Change generic font based on what @stephanie thinks */
   color: #333;
+}
+
+nav ul a {
+  display: inline-block !important;
+}
+
+#logoImage {
+  margin-left: 10%;
+  height: 64px;
 }
 
 li a{
@@ -22,3 +29,18 @@ a {
 i.icon-gray{
   color: #333;
 }
+
+.google-icon {
+  height: 13px !important;
+}
+
+nav .brand-logo {
+  left: 1% !important;
+}
+
+@media only screen and (max-width: 992px) {
+  nav .brand-logo {
+    left: 49% !important;
+  }
+}
+

@@ -14,11 +14,11 @@ import { Tutor } from '../shared/tutor/tutor-model/tutor.model';
 export class FindTutorComponent implements OnInit, OnDestroy {
   coursesWithTutorsSubscription: Subscription;
   courses: Course[];
-  
+
   tutorsForSelectedCourseSubscription: Subscription;
   selectedCourseNumber: string;
   tutorsForSelectedCourse: Tutor[];
-  
+
   constructor(private courseService: CourseService, private tutorService: TutorService) { }
 
   ngOnInit() {
@@ -28,10 +28,10 @@ export class FindTutorComponent implements OnInit, OnDestroy {
       }
     );
   }
-  
+
   onCourseSelect(courseNumber: string) {
     this.selectedCourseNumber = courseNumber;
-    this.tutorService.getTutorsForCourse(courseNumber).subscribe(
+    this.tutorsForSelectedCourseSubscription = this.tutorService.getTutorsForCourse(courseNumber).subscribe(
       (tutors: Tutor[]) => {
         this.tutorsForSelectedCourse = tutors;
       }
@@ -40,6 +40,9 @@ export class FindTutorComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.coursesWithTutorsSubscription.unsubscribe();
-    this.tutorsForSelectedCourseSubscription.unsubscribe();
+
+    if (this.tutorsForSelectedCourseSubscription) {
+      this.tutorsForSelectedCourseSubscription.unsubscribe();
+    }
   }
 }

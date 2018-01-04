@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { User } from '../shared/user/user-model/user.model';
 import { UserSessionService } from '../shared/user-session/user-session.service';
 import { AuthService } from '../auth/auth.service';
@@ -12,6 +12,8 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('signInButtonTop') signInButtonTopRef: ElementRef;
+  @ViewChild('signInButtonSide') signInButtonSideRef: ElementRef;
   user: User;
   submitBugModalId: string;
 
@@ -36,6 +38,12 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     $('.button-collapse').sideNav({
       closeOnClick: true
+    });
+
+    this.authService.initializeAuthorization([this.signInButtonTopRef.nativeElement, this.signInButtonSideRef.nativeElement], () => {
+      this.zone.run(() => {
+        this.router.navigate([ApplicationGlobals.FIND_TUTOR_ROUTE]);
+      });
     });
   }
 
