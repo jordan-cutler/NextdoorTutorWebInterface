@@ -48,20 +48,24 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
     const fileList: FileList = target.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
-      if (this.cropImageModalComponent) {
-        this.cropImageModalComponent.destroy();
-      }
-      this.cropImageModalComponent = this.viewContainerRef.createComponent(this.cropImageModalFactory);
-      this.cropImageModalComponent.instance.file = file;
-      this.newProfilePictureUploadedSubscription =
-        this.cropImageModalComponent.instance.successfulUploadImageEvent.subscribe(
-          () => {
-            this.profilePhotoRef.nativeElement.src = this.imageService.getNewProfilePhotoUrlForCurrentUser();
-          }
-        );
-      this.cropImageModalComponent.changeDetectorRef.detectChanges();
+      this.createCropImageComponent(file);
     }
     target.value = null;
+  }
+
+  createCropImageComponent(file: File) {
+    if (this.cropImageModalComponent) {
+      this.cropImageModalComponent.destroy();
+    }
+    this.cropImageModalComponent = this.viewContainerRef.createComponent(this.cropImageModalFactory);
+    this.cropImageModalComponent.instance.file = file;
+    this.newProfilePictureUploadedSubscription =
+      this.cropImageModalComponent.instance.successfulUploadImageEvent.subscribe(
+        () => {
+          this.profilePhotoRef.nativeElement.src = this.imageService.getNewProfilePhotoUrlForCurrentUser();
+        }
+      );
+    this.cropImageModalComponent.changeDetectorRef.detectChanges();
   }
 
   ngOnDestroy() {
