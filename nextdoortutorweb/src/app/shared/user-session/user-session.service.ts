@@ -15,9 +15,15 @@ export class UserSessionService {
     if (ApplicationGlobals.userSessionPresentInLocalStorage()) {
       this.currentUserSession = ApplicationGlobals.getUserSessionFromLocalStorage();
     }
+
+    this.userUpdatedSubject.subscribe(
+      (user: User) => {
+        this.updateStoredUser(user);
+      }
+    );
   }
 
-  storeCurrentUser(userSession: UserSession) {
+  storeCurrentUserSession(userSession: UserSession) {
     this.currentUserSession = userSession;
     this.userUpdatedSubject.next(this.currentUserSession.getUser());
   }
@@ -37,5 +43,10 @@ export class UserSessionService {
   nullifyCurrentUserSession() {
     this.currentUserSession = null;
     this.userUpdatedSubject.next(null);
+  }
+
+  private updateStoredUser(user: User) {
+    this.currentUserSession.setUser(user);
+    ApplicationGlobals.setUserSessionInLocalStorage(this.currentUserSession);
   }
 }

@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { TutorService } from '../../../shared/tutor/tutor.service';
 import { Subject } from 'rxjs/Subject';
 import { PreloaderService } from '../../../shared/preloader/preloader.service';
+import { TutorUpdateData } from '../../../shared/tutor/TutorUpdateData';
 
 @Component({
   selector: 'app-edit-course-tutor-modal',
@@ -20,7 +21,8 @@ export class EditCourseTutorModalComponent implements OnInit, AfterViewInit, OnD
   coursesUserIsTutoringListUpdatedSubject = new Subject();
 
   constructor(private tutorService: TutorService,
-              private preloaderService: PreloaderService) { }
+              private preloaderService: PreloaderService) {
+  }
 
   ngOnInit() {
   }
@@ -28,11 +30,33 @@ export class EditCourseTutorModalComponent implements OnInit, AfterViewInit, OnD
   ngAfterViewInit() {
     $(this.modalSelector).modal();
     $(this.modalSelector).modal('open');
+    $('input.character-count').characterCounter();
     setTimeout(Materialize.updateTextFields, 200);
   }
 
   onSubmit(event: Event) {
-
+    const tutorUpdateData: TutorUpdateData = {
+      courseNumber: this.tutor.courseNumber,
+      hourlyRate: +this.tutor.hourlyRate,
+      pastExperience: this.tutor.pastExperience,
+      notes: this.tutor.notes
+    };
+    this.preloaderService.show();
+    this.tutorService.updateTutorAsCurrentUser(tutorUpdateData).subscribe(
+      (successful: boolean) => {
+        this.preloaderService.hide();
+        if (successful) {
+          this.coursesUserIsTutoringListUpdatedSubject.next();
+          Materialize.toast('Successfully edited your tutor profile for ' + this.tutor.courseNumber, 2500);
+        } else {
+          Materialize.toast('Failed to update your tutor profile. Try again soon.', 2500);
+        }
+      },
+      (error) => {
+        this.preloaderService.hide();
+        Materialize.toast('Failed to update your tutor profile. Try again soon.', 2500);
+      }
+    );
   }
 
   onStopTutoringCourseClick() {

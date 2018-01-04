@@ -49,8 +49,8 @@ export class TutorService {
   }
 
 
-  updateTutorAsCurrentUser(tutorUpdateData: TutorUpdateData) {
-    return this.httpClient.put(
+  updateTutorAsCurrentUser(tutorUpdateData: TutorUpdateData): Observable<boolean> {
+    return this.httpClient.put<boolean>(
       TutorService.UPDATETUTORROUTE,
       {
         courseNumber: tutorUpdateData.courseNumber,

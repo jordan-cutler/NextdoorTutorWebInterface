@@ -14,6 +14,7 @@ import { User } from '../../shared/user/user-model/user.model';
 import { ImageService } from '../../shared/image.service';
 import { Subscription } from 'rxjs/Subscription';
 import { CropImageModalComponent } from './crop-image-modal/crop-image-modal.component';
+import { EditBasicInfoModalComponent } from './edit-basic-info-modal/edit-basic-info-modal.component';
 
 @Component({
   selector: 'app-basic-info',
@@ -30,6 +31,9 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
   cropImageModalFactory: ComponentFactory<CropImageModalComponent>;
   cropImageModalComponent: ComponentRef<CropImageModalComponent>;
 
+  editBasicInfoModalFactory: ComponentFactory<EditBasicInfoModalComponent>;
+  editBasicInfoModalComponent: ComponentRef<EditBasicInfoModalComponent>;
+
   constructor(private imageService: ImageService,
               private componentFactoryResolver: ComponentFactoryResolver,
               private viewContainerRef: ViewContainerRef) {
@@ -41,6 +45,7 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
     }
 
     this.cropImageModalFactory = this.componentFactoryResolver.resolveComponentFactory(CropImageModalComponent);
+    this.editBasicInfoModalFactory = this.componentFactoryResolver.resolveComponentFactory(EditBasicInfoModalComponent);
   }
 
   profilePhotoFileChange(event: Event) {
@@ -66,6 +71,19 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
         }
       );
     this.cropImageModalComponent.changeDetectorRef.detectChanges();
+  }
+
+  onEditBasicInfoClick() {
+    this.createEditBasicInfoComponent();
+  }
+
+  createEditBasicInfoComponent() {
+    if (this.editBasicInfoModalComponent) {
+      this.editBasicInfoModalComponent.destroy();
+    }
+    this.editBasicInfoModalComponent = this.viewContainerRef.createComponent(this.editBasicInfoModalFactory);
+    this.editBasicInfoModalComponent.instance.user = this.user;
+    this.editBasicInfoModalComponent.changeDetectorRef.detectChanges();
   }
 
   ngOnDestroy() {

@@ -2,7 +2,7 @@ import { User } from '../user/user-model/user.model';
 
 export class UserSession {
 
-  private readonly user: User;
+  private user: User;
   private readonly sessionToken: string;
 
   public static userSessionJsonToUserSessionModel(userSessionJson: any): UserSession {
@@ -18,6 +18,10 @@ export class UserSession {
 
   getUser(): User {
     return this.user;
+  }
+
+  setUser(user: User) {
+    this.user = user;
   }
 
   getSessionToken(): string {

@@ -50,7 +50,7 @@ export class AuthService {
             .subscribe(
               (userSession: UserSession) => {
                 ApplicationGlobals.setUserSessionInLocalStorage(userSession);
-                this.userSessionService.storeCurrentUser(userSession);
+                this.userSessionService.storeCurrentUserSession(userSession);
                 this.isUserSignedIn.next(true);
                 onsuccess();
               },

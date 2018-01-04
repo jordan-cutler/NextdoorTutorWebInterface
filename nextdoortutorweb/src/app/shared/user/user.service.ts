@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
@@ -11,11 +12,11 @@ export class UserService {
 
   }
 
-  updateBio(bio: string): any {
-    return this.httpClient.put(UserService.UPDATEBIOROUTE, {bio: bio});
+  updateBio(bio: string): Observable<boolean> {
+    return this.httpClient.put<boolean>(UserService.UPDATEBIOROUTE, {bio: bio});
   }
 
-  updateMajor(major: string) {
-    return this.httpClient.put(UserService.UPDATEMAJORROUTE, {major: major});
+  updateMajor(major: string): Observable<boolean> {
+    return this.httpClient.put<boolean>(UserService.UPDATEMAJORROUTE, {major: major});
   }
 }

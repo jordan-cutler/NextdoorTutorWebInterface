@@ -9,7 +9,9 @@ import { SharedModule } from '../../shared/shared.module';
     EditCourseTutorModalComponent
   ],
   entryComponents: [EditCourseTutorModalComponent],
-  imports: [SharedModule],
+  imports: [
+    SharedModule
+  ],
   exports: [CoursesUserIsTutoringListComponent]
 })
 export class CoursesUserIsTutoringModule {

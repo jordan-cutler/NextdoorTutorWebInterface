@@ -1,0 +1,43 @@
+<div id="{{modalId}}" class="modal">
+  <form (ngSubmit)="onSubmit($event)" #form="ngForm">
+    <div class="modal-content">
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input
+                id="bioInput"
+                type="text"
+                class="character-count"
+                data-length="141" maxlength="141"
+                [(ngModel)]="bio"
+                name="bio"
+              />
+              <label for="bioInput">Bio</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input
+                id="majorInput"
+                type="text"
+                class="character-count"
+                data-length="50" maxlength="50"
+                [(ngModel)]="major"
+                name="major"
+              />
+              <label for="majorInput">Major</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        id="saveBioButton"
+        class="modal-action modal-close waves-effect waves-green btn-flat"
+        type="submit"
+      >Save</button>
+    </div>
+  </form>
+</div>
