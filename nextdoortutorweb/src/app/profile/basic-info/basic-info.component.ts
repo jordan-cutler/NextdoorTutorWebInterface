@@ -1,14 +1,24 @@
-import { ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ComponentFactory,
+  ComponentFactoryResolver,
+  ComponentRef,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import { User } from '../../shared/user/user-model/user.model';
 import { ImageService } from '../../shared/image.service';
-import { CropImageService } from './crop-image-modal/crop-image.service';
 import { Subscription } from 'rxjs/Subscription';
+import { CropImageModalComponent } from './crop-image-modal/crop-image-modal.component';
 
 @Component({
   selector: 'app-basic-info',
   templateUrl: './basic-info.component.html',
-  styleUrls: ['./basic-info.component.css'],
-  providers: [CropImageService]
+  styleUrls: ['./basic-info.component.css']
 })
 export class BasicInfoComponent implements OnInit, OnDestroy {
   @ViewChild('profilePhotoRef') profilePhotoRef: ElementRef;
@@ -17,9 +27,12 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
 
   newProfilePictureUploadedSubscription: Subscription;
 
+  cropImageModalFactory: ComponentFactory<CropImageModalComponent>;
+  cropImageModalComponent: ComponentRef<CropImageModalComponent>;
+
   constructor(private imageService: ImageService,
-              private cropImageService: CropImageService,
-              private cd: ChangeDetectorRef) {
+              private componentFactoryResolver: ComponentFactoryResolver,
+              private viewContainerRef: ViewContainerRef) {
   }
 
   ngOnInit() {
@@ -30,15 +43,10 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
     this.newProfilePictureUploadedSubscription =
       this.imageService.newProfilePictureUploadedEvent.subscribe(
         () => {
-          console.log('made it to upload successful');
-          // temporarily...
-          // Materialize.toast('Successful upload! Refresh the page to see the changes', 3000);
           this.profilePhotoRef.nativeElement.src = this.imageService.getNewProfilePhotoUrlForCurrentUser()
-          // this.profilePhotoRoute = this.imageService.getNewProfilePhotoUrlForCurrentUser();
-          // TODO: Right now this doesn't work and we need to refresh the page to see the uploaded picture. Fix
-          this.cd.detectChanges();
         }
       );
+    this.cropImageModalFactory = this.componentFactoryResolver.resolveComponentFactory(CropImageModalComponent);
   }
 
   profilePhotoFileChange(event: Event) {
@@ -46,7 +54,12 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
     const fileList: FileList = target.files;
     if (fileList.length > 0) {
       const file: File = fileList[0];
-      this.cropImageService.sendMessageToOpenModal(file);
+      if (this.cropImageModalComponent) {
+        this.cropImageModalComponent.destroy();
+      }
+      this.cropImageModalComponent = this.viewContainerRef.createComponent(this.cropImageModalFactory);
+      this.cropImageModalComponent.instance.file = file;
+      this.cropImageModalComponent.changeDetectorRef.detectChanges();
     }
     target.value = null;
   }

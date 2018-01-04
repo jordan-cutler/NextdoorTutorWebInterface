@@ -1,6 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { CropImageService } from './crop-image.service';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ImageService } from '../../../shared/image.service';
 import { PreloaderService } from '../../../shared/preloader/preloader.service';
 
@@ -9,8 +7,8 @@ import { PreloaderService } from '../../../shared/preloader/preloader.service';
   templateUrl: './crop-image-modal.component.html',
   styleUrls: ['./crop-image-modal.component.css']
 })
-export class CropImageModalComponent implements OnInit, AfterViewInit, OnDestroy {
-  imageSrc = '#';
+export class CropImageModalComponent implements OnInit, AfterViewInit {
+  @Input() file: File;
   modalId = 'cropImageModal';
   modalSelector = '#' + this.modalId;
 
@@ -18,12 +16,9 @@ export class CropImageModalComponent implements OnInit, AfterViewInit, OnDestroy
   imagePreviewSelector = '#' + this.imagePreviewId;
 
   private $cropImage;
-  private profileImageUploadedSubscription: Subscription;
 
-  constructor(private cropImageService: CropImageService,
-              private imageService: ImageService,
+  constructor(private imageService: ImageService,
               private cd: ChangeDetectorRef,
-              private zone: NgZone,
               private preloaderService: PreloaderService) {
   }
 
@@ -31,22 +26,17 @@ export class CropImageModalComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   ngAfterViewInit() {
-    this.profileImageUploadedSubscription = this.cropImageService.getProfileImageUploadedSubject().subscribe(
-      (file: File) => this.openCropperModal(file)
-    );
+    this.openCropperModal();
   }
 
-  openCropperModal(file: File) {
-    this.zone.run(() => {
-      console.log(file);
+  openCropperModal() { // file: File) {
       $(this.modalSelector).modal(); // this line must be present
       $(this.modalSelector).modal('open');
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.imageSrc = e.target.result;
         this.$cropImage = $(this.imagePreviewSelector);
+        // make sure to use jquery to update otherwise it won't work
         this.$cropImage.attr('src', e.target.result);
-        this.cd.detectChanges();
         (this.$cropImage as any).cropper({
           aspectRatio: 1,
           viewMode: 1,
@@ -65,8 +55,7 @@ export class CropImageModalComponent implements OnInit, AfterViewInit, OnDestroy
         });
         this.cd.detectChanges();
       };
-      reader.readAsDataURL(file);
-    });
+      reader.readAsDataURL(this.file);
   }
 
   saveImage() {
@@ -90,10 +79,6 @@ export class CropImageModalComponent implements OnInit, AfterViewInit, OnDestroy
         }
       );
     });
-  }
-
-  ngOnDestroy() {
-    this.profileImageUploadedSubscription.unsubscribe();
   }
 
 }
