@@ -17,31 +17,29 @@
         <div class="row">
           <div class="col s12">
             <!--<div id="Profile-preloader" class="preloader-wrapper big active center">-->
-              <!--<div class="spinner-layer spinner-red-only">-->
-                <!--<div class="circle-clipper left">-->
-                  <!--<div class="circle"></div>-->
-                <!--</div>-->
-                <!--<div class="gap-patch">-->
-                  <!--<div class="circle"></div>-->
-                <!--</div>-->
-                <!--<div class="circle-clipper right">-->
-                  <!--<div class="circle"></div>-->
-                <!--</div>-->
-              <!--</div>-->
+            <!--<div class="spinner-layer spinner-red-only">-->
+            <!--<div class="circle-clipper left">-->
+            <!--<div class="circle"></div>-->
             <!--</div>-->
-            <div id="profileImageContainer" class="media center">
-              <a id="uploadPictureLink">
-                <div *ngIf="profilePhotoRoute">
-                  <img id="profilePhoto" alt="Failed to load profile picture" class="media__image z-depth-3"
-                       src="{{profilePhotoRoute}}"/>
-                </div>
-                <div *ngIf="!profilePhotoRoute">
-                  <i class="large material-icons">account_circle</i>
-                </div>
-                <div class="media__body">
+            <!--<div class="gap-patch">-->
+            <!--<div class="circle"></div>-->
+            <!--</div>-->
+            <!--<div class="circle-clipper right">-->
+            <!--<div class="circle"></div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <div id="profileImageContainer" class="media center image-upload">
+              <label for="profileFileUploadInput">
+                <img id="profilePhoto" alt="Failed to load profile picture" class="media__image z-depth-3"
+                     *ngIf="profilePhotoRoute"
+                     [src]="profilePhotoRoute" #profilePhotoRef/>
+                <i *ngIf="!profilePhotoRoute" class="large material-icons">account_circle</i>
+                <div class="media__body cursorPointer">
                   <h6 class="mobile-hidden">Upload Profile Picture</h6>
                 </div>
-              </a>
+              </label>
+              <input id="profileFileUploadInput" type="file" (change)="profilePhotoFileChange($event)" accept="image/png, image/jpeg, image/gif"/>
             </div>
           </div>
         </div>
@@ -77,3 +75,5 @@
     </div>
   </div>
 </div>
+
+<app-crop-image-modal></app-crop-image-modal>

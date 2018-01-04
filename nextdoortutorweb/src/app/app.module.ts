@@ -25,6 +25,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { TutorApplicationComponent } from './tutor-application/tutor-application.component';
 import { CoursesUserIsTutoringListComponent } from './profile/courses-user-is-tutoring-list/courses-user-is-tutoring-list.component';
 import { BasicInfoComponent } from './profile/basic-info/basic-info.component';
+import { CropImageModalComponent } from './profile/basic-info/crop-image-modal/crop-image-modal.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BasicInfoComponent } from './profile/basic-info/basic-info.component';
     ProfileComponent,
     TutorApplicationComponent,
     CoursesUserIsTutoringListComponent,
-    BasicInfoComponent
+    BasicInfoComponent,
+    CropImageModalComponent
   ],
   imports: [
     BrowserModule,

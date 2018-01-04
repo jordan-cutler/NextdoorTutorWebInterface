@@ -15,8 +15,10 @@ export class TutorListComponent implements OnInit, AfterViewInit {
   currentUserId: string;
   currentUserSessionToken: string;
 
-  constructor(public imageService: ImageService, public userSessionService: UserSessionService,
-              private emailTutorService: EmailTutorService) { }
+  constructor(public imageService: ImageService,
+              public userSessionService: UserSessionService,
+              private emailTutorService: EmailTutorService) {
+  }
 
   ngOnInit() {
     this.currentUserSessionToken = this.userSessionService.getCurrentUserSession().getSessionToken();

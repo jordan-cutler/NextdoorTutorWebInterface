@@ -9,6 +9,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const userSession = this.userSessionService.getCurrentUserSession();
+    /*
+    This is used to not intercept the file upload request we currently have. This is tech debt.
+    TODO: Later, we will change the way we upload files so we don't have to do this workaround
+     */
+    if (req.headers.get('Content-Type')) {
+      return next.handle(req.clone());
+    }
     if (req.method === 'POST' && userSession) {
       const bodyObject = req.body;
       bodyObject['userId'] = userSession.getUser().userId;

@@ -20,12 +20,14 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "../node_modules/materialize-css/dist/css/materialize.min.css"
+        "../node_modules/materialize-css/dist/css/materialize.min.css",
+        "../node_modules/cropper/dist/cropper.min.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/hammerjs/hammer.min.js",
-        "../node_modules/materialize-css/dist/js/materialize.min.js"
+        "../node_modules/materialize-css/dist/js/materialize.min.js",
+        "../node_modules/cropper/dist/cropper.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

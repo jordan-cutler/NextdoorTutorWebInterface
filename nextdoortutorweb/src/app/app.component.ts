@@ -13,16 +13,12 @@ export class AppComponent implements OnInit, OnDestroy {
   loadingSubscription: Subscription;
   loading: boolean;
 
-  constructor(private authService: AuthService,
-              private preloaderService: PreloaderService,
-              private cd: ChangeDetectorRef
-  ) { }
+  constructor(private preloaderService: PreloaderService) { }
 
   ngOnInit() {
     this.loadingSubscription = this.preloaderService.preloaderSubject.subscribe(
       (preloaderState: PreloaderState) => {
         this.loading = preloaderState.state;
-        this.cd.detectChanges();
       }
     );
   }

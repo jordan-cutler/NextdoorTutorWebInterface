@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserSessionService } from '../../../shared/user-session/user-session.service';
 import { EmailTutorService } from './email-tutor.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -12,6 +12,7 @@ import { PreloaderService } from '../../../shared/preloader/preloader.service';
 })
 export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('form') sendEmailForm: NgForm;
+  @ViewChild('subjectInputField') subjectInputField: ElementRef;
 
   tutorName: string;
   tutorEmail: string;
@@ -64,10 +65,13 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestro
     );
   }
 
+  ngAfterViewInit() {
+    $(this.modalSelector).modal();
+  }
+
   private openModal() {
-    Materialize.updateTextFields();
     $(this.modalSelector).modal('open');
-    Materialize.updateTextFields();
+    this.subjectInputField.nativeElement.focus();
   }
 
   onSubmit(event: Event) {
@@ -88,14 +92,6 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestro
       return false;
     }
 
-    // this.preloaderService.show();
-    // setTimeout(() => {
-    //   Materialize.toast('Successfully emailed tutor. They will email you back soon if interested.', 3000);
-    //   this.sendEmailForm.reset();
-    //   $(this.modalSelector).modal('close');
-    //   this.preloaderService.hide();
-    // }, 10000);
-
     this.preloaderService.show();
     this.emailTutorService.sendEmailToTutor(this.subject, this.message, this.tutorEmail, this.courseNumber).subscribe(
       (successful: boolean) => {
@@ -111,13 +107,7 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestro
     );
   }
 
-  ngAfterViewInit() {
-    $(this.modalSelector).modal();
-    Materialize.updateTextFields();
-  }
-
   ngOnDestroy() {
     this.emailTutorButtonClickedSubscription.unsubscribe();
   }
-
 }
