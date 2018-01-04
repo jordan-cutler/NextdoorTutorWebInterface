@@ -12,7 +12,7 @@ export class TutorService {
   private static readonly ADDTUTORROUTE = '/api/tutors/add';
   private static readonly GETUTORSFORCOURSEROUTE = '/api/tutors/course';
   private static readonly GETTUTORROUTE = '/api/tutors';
-  private static readonly DELETETUTORROUTE = '/api/tutors';
+  private static readonly DELETETUTORROUTE = '/api/tutors/delete';
   private static readonly UPDATETUTORROUTE = '/api/tutors';
 
   constructor(private httpClient: HttpClient) {
@@ -42,11 +42,10 @@ export class TutorService {
     });
   }
 
-  removeCurrentUserFromCourseTutor(courseNumber: string) {
-    const params = new HttpParams().set('courseNumber', courseNumber);
-    return this.httpClient.delete(
+  removeCurrentUserFromCourseTutor(courseNumber: string): Observable<boolean> {
+    return this.httpClient.post<boolean>(
       TutorService.DELETETUTORROUTE,
-      { params: params });
+      { courseNumber: courseNumber });
   }
 
 

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, Input, OnInit,
   ViewContainerRef
 } from '@angular/core';
@@ -9,6 +10,7 @@ import { UserSessionService } from '../../shared/user-session/user-session.servi
 import { EditCourseTutorModalComponent } from './edit-course-tutor-modal/edit-course-tutor-modal.component';
 import { TutorService } from '../../shared/tutor/tutor.service';
 import { Tutor } from '../../shared/tutor/tutor-model/tutor.model';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-courses-user-is-tutoring-list',
@@ -17,21 +19,33 @@ import { Tutor } from '../../shared/tutor/tutor-model/tutor.model';
 })
 export class CoursesUserIsTutoringListComponent implements OnInit {
   @Input() userId: string;
-  coursesObservable: Observable<Course[]>;
+  courses: Course[];
 
   editCourseTutorModalFactory: ComponentFactory<EditCourseTutorModalComponent>;
   editCourseTutorModalComponent: ComponentRef<EditCourseTutorModalComponent>;
+
+  coursesListUpdatedSubscription: Subscription;
 
   constructor(private courseService: CourseService,
               private tutorService: TutorService,
               private userSessionService: UserSessionService,
               private componentFactoryResolver: ComponentFactoryResolver,
-              private viewContainerRef: ViewContainerRef) {
+              private viewContainerRef: ViewContainerRef,
+              private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    this.coursesObservable = this.courseService.getCoursesUserIsTutoring(this.userId);
+    this.updateCourses();
     this.editCourseTutorModalFactory = this.componentFactoryResolver.resolveComponentFactory(EditCourseTutorModalComponent);
+  }
+
+  updateCourses() {
+    this.courseService.getCoursesUserIsTutoring(this.userId).subscribe(
+      (courses: Course[]) => {
+        this.courses = courses;
+        this.cd.detectChanges();
+      }
+    );
   }
 
   onCourseClick(course: Course) {
@@ -42,6 +56,12 @@ export class CoursesUserIsTutoringListComponent implements OnInit {
         }
         this.editCourseTutorModalComponent = this.viewContainerRef.createComponent(this.editCourseTutorModalFactory);
         this.editCourseTutorModalComponent.instance.tutor = tutor;
+        this.coursesListUpdatedSubscription =
+          this.editCourseTutorModalComponent.instance.coursesUserIsTutoringListUpdatedSubject.subscribe(
+            () => {
+              this.updateCourses();
+            }
+          );
         this.editCourseTutorModalComponent.changeDetectorRef.detectChanges();
       });
   }

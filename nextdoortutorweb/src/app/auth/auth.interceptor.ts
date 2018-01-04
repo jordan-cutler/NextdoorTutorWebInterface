@@ -16,19 +16,20 @@ export class AuthInterceptor implements HttpInterceptor {
     if (req.headers.get('Content-Type')) {
       return next.handle(req.clone());
     }
-    if (req.method === 'POST' && userSession) {
+    if (req.method === 'GET' && userSession) {
+      const requestClone =
+        req.clone({
+          params:
+            req.params
+              .append('userId', userSession.getUser().userId)
+              .append('sessionToken', userSession.getSessionToken())
+        });
+      return next.handle(requestClone);
+    } else if (userSession) {
       const bodyObject = req.body;
       bodyObject['userId'] = userSession.getUser().userId;
       bodyObject['sessionToken'] = userSession.getSessionToken();
       const requestClone = req.clone({ body: bodyObject });
-      return next.handle(requestClone);
-    } else if (userSession) {
-      const requestClone =
-        req.clone({ params:
-          req.params
-            .append('userId', userSession.getUser().userId)
-            .append('sessionToken', userSession.getSessionToken())
-        });
       return next.handle(requestClone);
     }
     return next.handle(req);
