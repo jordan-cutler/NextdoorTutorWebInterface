@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserSessionService } from '../shared/user-session/user-session.service';
+import { User } from '../shared/user/user-model/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  userIdOfCurrentUser: string;
+  currentUser: User;
 
-  constructor() { }
+  constructor(private userSessionService: UserSessionService) { }
 
   ngOnInit() {
+    this.currentUser = this.userSessionService.getCurrentUser();
+    this.userIdOfCurrentUser = this.currentUser.userId;
   }
 
 }

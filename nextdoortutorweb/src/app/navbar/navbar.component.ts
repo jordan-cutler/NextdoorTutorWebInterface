@@ -47,20 +47,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  onFindTutorClick() {
-    this.zone.run(() => {
-      this.router.navigate([ApplicationGlobals.FIND_TUTOR_ROUTE]);
-    });
-  }
-
-  onTutorACourseClick() {
-
-  }
-
-  onProfileClick() {
-
-  }
-
   onSubmitBugClick() {
     $('#' + this.submitBugModalId).modal('open');
   }

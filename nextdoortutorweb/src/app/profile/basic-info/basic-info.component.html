@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col s12">
+    <div class="z-depth-3 card white center">
+      <div class="card-content z-depth-4">
+        <!--
+         The below example is taken from here: https://jsfiddle.net/Venugopal/e0u4sow1/1/
+         Other Examples:
+         http://jsfiddle.net/6Mt3Q/
+         https://codepen.io/felicia/pen/qKhJt
+         -->
+        <div class="row">
+          <div class="col s12">
+            <a class="modal-trigger right" href="#Profile-editBioModal"><i class="material-icons">edit</i></a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <!--<div id="Profile-preloader" class="preloader-wrapper big active center">-->
+              <!--<div class="spinner-layer spinner-red-only">-->
+                <!--<div class="circle-clipper left">-->
+                  <!--<div class="circle"></div>-->
+                <!--</div>-->
+                <!--<div class="gap-patch">-->
+                  <!--<div class="circle"></div>-->
+                <!--</div>-->
+                <!--<div class="circle-clipper right">-->
+                  <!--<div class="circle"></div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <div id="profileImageContainer" class="media center">
+              <a id="uploadPictureLink">
+                <div *ngIf="profilePhotoRoute">
+                  <img id="profilePhoto" alt="Failed to load profile picture" class="media__image z-depth-3"
+                       src="{{profilePhotoRoute}}"/>
+                </div>
+                <div *ngIf="!profilePhotoRoute">
+                  <i class="large material-icons">account_circle</i>
+                </div>
+                <div class="media__body">
+                  <h6 class="mobile-hidden">Upload Profile Picture</h6>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <h3 id="userName" class="card-title center">{{user.name}}</h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <p id="userBio" class="center">
+              <span *ngIf="user.bio">{{user.bio}}</span>
+              <span *ngIf="!user.bio">You haven't set your bio yet!</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <span *ngIf="user.major"> {{user.major}} </span>
+            <span *ngIf="!user.major"> You haven't set your major yet! </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <a id="emailContact" class="center"><b>Contact:</b> {{user.email}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

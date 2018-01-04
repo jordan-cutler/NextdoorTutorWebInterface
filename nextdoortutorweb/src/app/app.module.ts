@@ -23,6 +23,8 @@ import { SharedModule } from './shared/shared.module';
 import { FindTutorModule } from './find-tutor/find-tutor.module';
 import { ProfileComponent } from './profile/profile.component';
 import { TutorApplicationComponent } from './tutor-application/tutor-application.component';
+import { CoursesUserIsTutoringListComponent } from './profile/courses-user-is-tutoring-list/courses-user-is-tutoring-list.component';
+import { BasicInfoComponent } from './profile/basic-info/basic-info.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { TutorApplicationComponent } from './tutor-application/tutor-application
     SubmitBugModalComponent,
     PreloaderComponent,
     ProfileComponent,
-    TutorApplicationComponent
+    TutorApplicationComponent,
+    CoursesUserIsTutoringListComponent,
+    BasicInfoComponent
   ],
   imports: [
     BrowserModule,
