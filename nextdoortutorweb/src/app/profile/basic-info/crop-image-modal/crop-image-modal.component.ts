@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ImageService } from '../../../shared/image.service';
 import { PreloaderService } from '../../../shared/preloader/preloader.service';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-crop-image-modal',
@@ -16,6 +17,8 @@ export class CropImageModalComponent implements OnInit, AfterViewInit {
   imagePreviewSelector = '#' + this.imagePreviewId;
 
   private $cropImage;
+
+  successfulUploadImageEvent = new Subject();
 
   constructor(private imageService: ImageService,
               private cd: ChangeDetectorRef,
@@ -67,7 +70,7 @@ export class CropImageModalComponent implements OnInit, AfterViewInit {
       this.imageService.uploadProfilePictureToServer(blob).subscribe(
         () => {
           this.preloaderService.hide();
-          this.imageService.newProfilePictureUploadedEvent.next();
+          this.successfulUploadImageEvent.next();
         },
         (error) => {
           this.preloaderService.hide();

@@ -9,8 +9,6 @@ export class ImageService {
   private static readonly GETPROFILEPICTUREROUTE = '/api/drive/download/profilePhoto';
   private static readonly POSTPROFILEPICTUREROUTE = '/api/drive/upload/profilePhoto';
 
-  newProfilePictureUploadedEvent = new Subject();
-
   static generateNewQueryString(userId: string, sessionToken: string) {
     return '?userId=' + userId + '&sessionToken=' + sessionToken;
   }

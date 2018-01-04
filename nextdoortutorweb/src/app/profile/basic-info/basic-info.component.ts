@@ -40,12 +40,6 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
       this.profilePhotoRoute = this.imageService.getNewProfilePhotoUrlForCurrentUser();
     }
 
-    this.newProfilePictureUploadedSubscription =
-      this.imageService.newProfilePictureUploadedEvent.subscribe(
-        () => {
-          this.profilePhotoRef.nativeElement.src = this.imageService.getNewProfilePhotoUrlForCurrentUser()
-        }
-      );
     this.cropImageModalFactory = this.componentFactoryResolver.resolveComponentFactory(CropImageModalComponent);
   }
 
@@ -59,12 +53,20 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
       }
       this.cropImageModalComponent = this.viewContainerRef.createComponent(this.cropImageModalFactory);
       this.cropImageModalComponent.instance.file = file;
+      this.newProfilePictureUploadedSubscription =
+        this.cropImageModalComponent.instance.successfulUploadImageEvent.subscribe(
+          () => {
+            this.profilePhotoRef.nativeElement.src = this.imageService.getNewProfilePhotoUrlForCurrentUser();
+          }
+        );
       this.cropImageModalComponent.changeDetectorRef.detectChanges();
     }
     target.value = null;
   }
 
   ngOnDestroy() {
-    this.newProfilePictureUploadedSubscription.unsubscribe();
+    if (this.newProfilePictureUploadedSubscription) {
+      this.newProfilePictureUploadedSubscription.unsubscribe();
+    }
   }
 }
