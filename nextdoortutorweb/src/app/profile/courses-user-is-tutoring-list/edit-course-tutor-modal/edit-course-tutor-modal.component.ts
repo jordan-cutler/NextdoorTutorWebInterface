@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Tutor } from '../../../shared/tutor/tutor-model/tutor.model';
-import { TutorService } from '../../../shared/tutor/tutor.service';
-import { PreloaderService } from '../../../shared/preloader/preloader.service';
 
 @Component({
   selector: 'app-edit-course-tutor-modal',

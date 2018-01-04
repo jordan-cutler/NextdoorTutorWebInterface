@@ -4,6 +4,7 @@ import { Tutor } from './tutor-model/tutor.model';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
+import { TutorUpdateData } from './TutorUpdateData';
 
 @Injectable()
 export class TutorService {
@@ -48,13 +49,15 @@ export class TutorService {
       { params: params });
   }
 
-  updateTutorAsCurrentUser(courseNumber: string, hourlyRate: number, pastExperience: string, notes: string,
-                           successFunction: (data: any) => any, errorFunction: (data: any) => any) {
+
+  updateTutorAsCurrentUser(tutorUpdateData: TutorUpdateData) {
     return this.httpClient.put(
       TutorService.UPDATETUTORROUTE,
       {
-        courseNumber: courseNumber, hourlyRate: hourlyRate,
-        pastExperience: pastExperience, notes: notes
+        courseNumber: tutorUpdateData.courseNumber,
+        hourlyRate: tutorUpdateData.hourlyRate,
+        pastExperience: tutorUpdateData.pastExperience,
+        notes: tutorUpdateData.notes
       }
     );
   }
