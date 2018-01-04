@@ -3,6 +3,7 @@ import { Tutor } from '../../shared/tutor/tutor-model/tutor.model';
 import { ImageService } from '../../shared/image.service';
 import { UserSessionService } from '../../shared/user-session/user-session.service';
 import { EmailTutorService } from './email-tutor-modal/email-tutor.service';
+import { EmailTutorData } from './email-tutor-modal/EmailTutorData';
 
 @Component({
   selector: 'app-tutor-list',
@@ -23,9 +24,6 @@ export class TutorListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.currentUserSessionToken = this.userSessionService.getCurrentUserSession().getSessionToken();
     this.currentUserId = this.userSessionService.getCurrentUser().userId;
-    this.tutors.forEach((tutor: Tutor) => {
-      console.log(tutor.userId);
-    });
   }
 
   ngAfterViewInit() {

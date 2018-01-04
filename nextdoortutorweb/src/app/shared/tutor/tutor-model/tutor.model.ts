@@ -2,80 +2,18 @@ import { User } from '../../user/user-model/user.model';
 import { Semester } from './semester.model';
 
 export class Tutor {
-  private _user: User;
-  private _hourlyRate: number;
-  private _courseNumber: string;
-  private _grade: string;
-  private _instructor: string;
-  private _pastExperience: string;
-  private _notes: string;
-  private _semesterTaken: Semester;
-  private _hasTakenCourse: boolean;
 
   constructor(
-    user: User, hourlyRate: number, courseNumber: string, grade: string, instructor: string,
-    pastExperience: string, notes: string, semesterTaken: Semester, hasTakenCourse: boolean) {
-    this._user = user;
-    this._hourlyRate = hourlyRate;
-    this._courseNumber = courseNumber;
-    this._grade = grade;
-    this._instructor = instructor;
-    this._pastExperience = pastExperience;
-    this._notes = notes;
-    this._semesterTaken = semesterTaken;
-    this._hasTakenCourse = hasTakenCourse;
-  }
-
-  get userId(): string {
-    return this._user.userId;
-  }
-
-  get email(): string {
-    return this._user.email;
-  }
-
-  get name(): string {
-    return this._user.name;
-  }
-
-  get major(): string {
-    return this._user.major;
-  }
-
-  get bio(): string {
-    return this._user.bio;
-  }
-
-  get hourlyRate(): number {
-    return this._hourlyRate;
-  }
-
-  get courseNumber(): string {
-    return this._courseNumber;
-  }
-
-  get grade(): string {
-    return this._grade;
-  }
-
-  get instructor(): string {
-    return this._instructor;
-  }
-
-  get pastExperience(): string {
-    return this._pastExperience;
-  }
-
-  get notes(): string {
-    return this._notes;
-  }
-
-  get semesterTaken(): Semester {
-    return this._semesterTaken;
-  }
-
-  get hasTakenCourse(): boolean {
-    return this._hasTakenCourse;
+    public user: User,
+    public hourlyRate: number,
+    public courseNumber: string,
+    public grade: string,
+    public instructor: string,
+    public pastExperience: string,
+    public notes: string,
+    public semesterTaken: Semester,
+    public hasTakenCourse: boolean
+  ) {
   }
 
   public static tutorJsonToTutorModel(tutorJson: any): Tutor {

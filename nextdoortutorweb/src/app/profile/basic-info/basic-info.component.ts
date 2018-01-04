@@ -17,11 +17,10 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
 
   newProfilePictureUploadedSubscription: Subscription;
 
-  constructor(
-    private imageService: ImageService,
-    private cropImageService: CropImageService,
-    private cd: ChangeDetectorRef
-  ) { }
+  constructor(private imageService: ImageService,
+              private cropImageService: CropImageService,
+              private cd: ChangeDetectorRef) {
+  }
 
   ngOnInit() {
     if (this.user.profilePhotoId) {
@@ -30,8 +29,7 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
 
     this.newProfilePictureUploadedSubscription =
       this.imageService.newProfilePictureUploadedEvent.subscribe(
-      (uploadSuccessful: boolean) => {
-        if (uploadSuccessful) {
+        () => {
           console.log('made it to upload successful');
           // temporarily...
           // Materialize.toast('Successful upload! Refresh the page to see the changes', 3000);
@@ -40,8 +38,7 @@ export class BasicInfoComponent implements OnInit, OnDestroy {
           // TODO: Right now this doesn't work and we need to refresh the page to see the uploaded picture. Fix
           this.cd.detectChanges();
         }
-      }
-    );
+      );
   }
 
   profilePhotoFileChange(event: Event) {

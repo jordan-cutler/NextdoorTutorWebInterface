@@ -78,7 +78,7 @@ export class CropImageModalComponent implements OnInit, AfterViewInit, OnDestroy
       this.imageService.uploadProfilePictureToServer(blob).subscribe(
         () => {
           this.preloaderService.hide();
-          this.imageService.newProfilePictureUploadedEvent.next(true);
+          this.imageService.newProfilePictureUploadedEvent.next();
         },
         (error) => {
           this.preloaderService.hide();

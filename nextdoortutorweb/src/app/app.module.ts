@@ -26,6 +26,8 @@ import { TutorApplicationComponent } from './tutor-application/tutor-application
 import { CoursesUserIsTutoringListComponent } from './profile/courses-user-is-tutoring-list/courses-user-is-tutoring-list.component';
 import { BasicInfoComponent } from './profile/basic-info/basic-info.component';
 import { CropImageModalComponent } from './profile/basic-info/crop-image-modal/crop-image-modal.component';
+import { EditCourseTutorModalComponent } from './profile/courses-user-is-tutoring-list/edit-course-tutor-modal/edit-course-tutor-modal.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,14 +40,17 @@ import { CropImageModalComponent } from './profile/basic-info/crop-image-modal/c
     TutorApplicationComponent,
     CoursesUserIsTutoringListComponent,
     BasicInfoComponent,
-    CropImageModalComponent
+    CropImageModalComponent,
+    EditCourseTutorModalComponent
   ],
+  entryComponents: [EditCourseTutorModalComponent],
   imports: [
     BrowserModule,
     SharedModule,
     MaterializeModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     FindTutorModule
   ],
   providers: [

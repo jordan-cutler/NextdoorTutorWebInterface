@@ -1,9 +1,10 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserSessionService } from '../../../shared/user-session/user-session.service';
 import { EmailTutorService } from './email-tutor.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
 import { PreloaderService } from '../../../shared/preloader/preloader.service';
+import { EmailTutorData } from './EmailTutorData';
 
 @Component({
   selector: 'app-email-tutor-modal',
@@ -61,6 +62,7 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestro
         );
 
         this.openModal();
+
       }
     );
   }
@@ -72,6 +74,8 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestro
   private openModal() {
     $(this.modalSelector).modal('open');
     this.subjectInputField.nativeElement.focus();
+    $('input.character-count').characterCounter();
+    $('textarea.character-count').characterCounter();
   }
 
   onSubmit(event: Event) {
