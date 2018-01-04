@@ -18,7 +18,7 @@
       <!--</div>-->
       <img
         class="profileImg col s2 z-depth-2"
-        [src]="imageService.getNewProfilePhotoUrl(tutor.userId, currentUserSessionToken, currentUserId)"
+        [src]="imageService.getNewProfilePhotoUrl(tutor.user.userId, currentUserSessionToken, currentUserId)"
         alt="No profile picture"
       />
       <div class="col s7">

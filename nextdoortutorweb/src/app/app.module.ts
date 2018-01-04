@@ -21,13 +21,9 @@ import { PreloaderComponent } from './shared/preloader/preloader.component';
 import { PreloaderService } from './shared/preloader/preloader.service';
 import { SharedModule } from './shared/shared.module';
 import { FindTutorModule } from './find-tutor/find-tutor.module';
-import { ProfileComponent } from './profile/profile.component';
 import { TutorApplicationComponent } from './tutor-application/tutor-application.component';
-import { CoursesUserIsTutoringListComponent } from './profile/courses-user-is-tutoring-list/courses-user-is-tutoring-list.component';
-import { BasicInfoComponent } from './profile/basic-info/basic-info.component';
-import { CropImageModalComponent } from './profile/basic-info/crop-image-modal/crop-image-modal.component';
-import { EditCourseTutorModalComponent } from './profile/courses-user-is-tutoring-list/edit-course-tutor-modal/edit-course-tutor-modal.component';
-import { FormsModule } from '@angular/forms';
+import { CoursesUserIsTutoringModule } from './profile/courses-user-is-tutoring-list/courses-user-is-tutoring.module';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -36,22 +32,17 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     SubmitBugModalComponent,
     PreloaderComponent,
-    ProfileComponent,
     TutorApplicationComponent,
-    CoursesUserIsTutoringListComponent,
-    BasicInfoComponent,
-    CropImageModalComponent,
-    EditCourseTutorModalComponent
   ],
-  entryComponents: [EditCourseTutorModalComponent],
   imports: [
     BrowserModule,
     SharedModule,
     MaterializeModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    FindTutorModule
+    CoursesUserIsTutoringModule,
+    FindTutorModule,
+    ProfileModule
   ],
   providers: [
     AuthService,
