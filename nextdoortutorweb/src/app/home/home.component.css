@@ -12,7 +12,7 @@
 #ntLogo {
   height: 25%;
   width: 25%;
-  margin: 0 0 -30px 0;
+  margin-bottom: -30px;
 }
 
 #whoWeAreCardPanel {
@@ -42,20 +42,20 @@
 }
 
 .team {
+  text-align: center;
   height: 65%;
   width: 65%;
   border-radius: 50%;
 }
 
-#meetTheTeamHeader {
-  color: white;
-}
-
-/* Format team member descriptions */
 .team1 {
+  text-align: center;
   font-size: 16pt;
   font-family: Righteous, serif;
 }
+
+/* Format team member descriptions */
+
 
 #teamDescription {
   color: white;

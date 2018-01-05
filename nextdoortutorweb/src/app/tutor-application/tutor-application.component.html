@@ -3,7 +3,7 @@
     <div class="card-content black-text">
       <div class="row">
         <div class="col s12">
-          <h4 class="card-title condensed light">Fill out your Tutor Profile</h4>
+          <h4 class="card-title condensed light center">Fill out your Tutor Profile</h4>
         </div>
       </div>
 
@@ -11,18 +11,17 @@
 
       <form (ngSubmit)="onSubmit($event)" #applicationForm="ngForm" class="col s12">
         <div class="row">
-          <div class="input-field col s12">
+          <div class="col s12">
+            <label id="courseLabel" for="course">Course to tutor</label>
             <select
               id="course"
               ngModel
               name="course"
-              *ngIf="coursesUserIsNotTutoring"
             >
-              <!--<option value="1">Hello</option>-->
-              <!--<option value="2">Second</option>-->
-              <option *ngFor="let course of coursesUserIsNotTutoring" [ngValue]="course">{{course.courseNumber}} {{course.title}}</option>
+              <option *ngFor="let course of (coursesUserIsNotTutoringObservable | async)"
+                      [ngValue]="course">{{course.courseNumber}} {{course.title}}<!-- Don't move this interpolation on its own line -->
+              </option>
             </select>
-            <label for="course">Course to tutor</label>
           </div>
         </div>
 
@@ -66,6 +65,7 @@
               id="grade"
               ngModel
               name="grade"
+              class="material-select"
             >
               <option *ngFor="let grade of validGrades" [ngValue]="grade">{{grade.grade}}</option>
             </select>
@@ -81,13 +81,13 @@
           [hidden]="!hasTakenCourse.checked"
         >
           <div class="input-field col s4">
-            <select id="semester" ngModel name="semester">
+            <select id="semester" class="material-select" ngModel name="semester">
               <option *ngFor="let semester of validSemesters" [ngValue]="semester">{{semester}}</option>
             </select>
             <label for="semester">Term taken</label>
           </div>
           <div class="input-field col s4">
-            <select id="year" ngModel name="year">
+            <select id="year" class="material-select" ngModel name="year">
               <option *ngFor="let year of validYears" [ngValue]="year">{{year}}</option>
             </select>
             <label for="year">Year taken</label>

@@ -1,17 +1,21 @@
-import { AfterViewInit, Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterContentChecked, AfterContentInit, AfterViewInit, Component, NgZone, OnChanges, OnDestroy,
+  OnInit
+} from '@angular/core';
 import { Course } from '../shared/course/course.model';
 import { CourseService } from '../shared/course/course.service';
 import { Grade } from '../shared/tutor/tutor-model/grade.model';
 import { Semester } from '../shared/tutor/tutor-model/semester.model';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { PreloaderService } from '../shared/preloader/preloader.service';
 
 @Component({
   selector: 'app-tutor-application',
   templateUrl: './tutor-application.component.html',
   styleUrls: ['./tutor-application.component.css']
 })
-export class TutorApplicationComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestroy {
   coursesUserIsNotTutoring: Course[];
 
   coursesUserIsNotTutoringObservable: Observable<Course[]>;
@@ -22,19 +26,28 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnChang
 
   hourlyRate: string;
   defaultCheckedValue = true;
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService, private preloaderService: PreloaderService) { }
 
   ngOnInit() {
+    console.log('ng on init');
     this.coursesUserIsNotTutoringObservable = this.courseService.getCoursesCurrentUserHasntTutoredBefore();
-    this.coursesUserIsNotTutoringSubscription = this.coursesUserIsNotTutoringObservable.subscribe(
-      (courses: Course[]) => {
-        this.coursesUserIsNotTutoring = courses;
-        $('select').material_select();
-        setTimeout(() => {
-          $('select').material_select();
-        }, 500);
-      }
-    );
+    // this.coursesUserIsNotTutoringSubscription = this.coursesUserIsNotTutoringObservable.subscribe(
+    //   (courses: Course[]) => {
+    //     this.preloaderService.show();
+    //     setTimeout(() => {
+    //       this.coursesUserIsNotTutoring = courses;
+    //       console.log('finished assigning courses');
+    //     }, 1000);
+    //
+    //     $('select').material_select();
+    //
+    //     setTimeout(() => {
+    //       $('select').material_select();
+    //       this.preloaderService.hide();
+    //       console.log('called material select');
+    //     }, 1500);
+    //   }
+    // );
     this.validGrades = Grade.VALID_GRADES;
     this.validSemesters = Semester.VALID_SEMESTERS;
     this.validYears = Semester.VALID_YEARS;
@@ -46,17 +59,12 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnChang
   }
 
   ngAfterViewInit() {
-    $('select').material_select();
+    $('.material-select').material_select();
     $('input.character-count').characterCounter();
   }
 
-  ngOnChanges() {
-    console.log('on changes called');
-    $('select').material_select();
-  }
-
   ngOnDestroy() {
-    this.coursesUserIsNotTutoringSubscription.unsubscribe();
+    // this.coursesUserIsNotTutoringSubscription.unsubscribe();
   }
 
 }

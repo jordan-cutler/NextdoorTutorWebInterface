@@ -61,3 +61,10 @@
   width: 85%;
 }
 
+#course {
+  display: block !important;
+}
+
+#courseLabel {
+  text-align: left !important;
+}
