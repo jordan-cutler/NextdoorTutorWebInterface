@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private preloaderService: PreloaderService) { }
 
   ngOnInit() {
-    this.loadingSubscription = this.preloaderService.preloaderSubject.subscribe(
+    this.loadingSubscription = this.preloaderService.getPreloaderObservable().subscribe(
       (preloaderState: PreloaderState) => {
         this.loading = preloaderState.state;
       }

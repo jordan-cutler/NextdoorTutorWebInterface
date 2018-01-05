@@ -5,7 +5,6 @@ import { UserSession } from '../shared/user-session/user-session.model';
 import { Injectable, NgZone } from '@angular/core';
 import { UserSessionService } from '../shared/user-session/user-session.service';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/Rx';
 import { ApplicationGlobals } from '../shared/ApplicationGlobals';
@@ -16,9 +15,10 @@ export class AuthService {
   private static readonly SIGNINROUTE = '/user/loginWithGoogle';
   private static readonly SIGNOUTROUTE = '/user/logout';
   private auth2: GoogleAuth;
-  isUserSignedIn = new Subject<boolean>();
 
-  constructor(private httpClient: HttpClient, private userSessionService: UserSessionService, private zone: NgZone,
+  constructor(private httpClient: HttpClient,
+              private userSessionService: UserSessionService,
+              private zone: NgZone,
               private router: Router) {
   }
 
@@ -31,37 +31,36 @@ export class AuthService {
         scope: 'profile',
         hosted_domain: 'lehigh.edu'
       });
-      elements.forEach( (element: HTMLElement) => {
+      elements.forEach((element: HTMLElement) => {
         this.attachSignIn(element, onsuccess);
       });
     });
   }
 
   attachSignIn(element: HTMLElement, onsuccess: () => void) {
-      this.getAuth().attachClickHandler(element, {},
-        (googleUser: GoogleUser) => {
-          const idToken = googleUser.getAuthResponse().id_token;
-          this.httpClient.post(AuthService.SIGNINROUTE, { idToken: idToken })
-            .map(
-              (userSession) => {
-                return UserSession.userSessionJsonToUserSessionModel(userSession);
-              }
-            )
-            .subscribe(
-              (userSession: UserSession) => {
-                ApplicationGlobals.setUserSessionInLocalStorage(userSession);
-                this.userSessionService.storeCurrentUserSession(userSession);
-                this.isUserSignedIn.next(true);
-                onsuccess();
-              },
-              () => {
-                Materialize.toast('Failed to authenticate you. Please try again soon', 3000);
-                this.signOutUserFromGoogle();
-              }
-            );
-        }, function(error) {
-          alert(JSON.stringify(error, undefined, 2));
-        });
+    this.getAuth().attachClickHandler(element, {},
+      (googleUser: GoogleUser) => {
+        const idToken = googleUser.getAuthResponse().id_token;
+        this.httpClient.post(AuthService.SIGNINROUTE, { idToken: idToken })
+          .map(
+            (userSession) => {
+              return UserSession.userSessionJsonToUserSessionModel(userSession);
+            }
+          )
+          .subscribe(
+            (userSession: UserSession) => {
+              ApplicationGlobals.setUserSessionInLocalStorage(userSession);
+              this.userSessionService.storeCurrentUserSession(userSession);
+              onsuccess();
+            },
+            () => {
+              Materialize.toast('Failed to authenticate you. Please try again soon', 3000);
+              this.signOutUserFromGoogle();
+            }
+          );
+      }, function (error) {
+        Materialize.toast('Error occurred while authenticating. Please contact jdc219@lehigh.edu or try again soon.', 3000);
+      });
   }
 
   getAuth(): GoogleAuth {
@@ -69,18 +68,11 @@ export class AuthService {
   }
 
   isUserLoggedIn(): boolean {
-    if (!!this.userSessionService.getCurrentUserSession()) {
-      this.isUserSignedIn.next(true);
-      return true;
-    } else {
-      this.isUserSignedIn.next(false);
-      return false;
-    }
+    return !!this.userSessionService.getCurrentUserSession();
   }
 
   signOutCurrentUser() {
-    this.httpClient.post(AuthService.SIGNOUTROUTE, {});
-    this.isUserSignedIn.next(false);
+    this.signOutUserFromBackend();
     this.userSessionService.nullifyCurrentUserSession();
     ApplicationGlobals.clearUserSessionFromLocalStorage();
 
@@ -93,5 +85,9 @@ export class AuthService {
         this.router.navigate(['/home']);
       });
     });
+  }
+
+  private signOutUserFromBackend() {
+    this.httpClient.post(AuthService.SIGNOUTROUTE, {});
   }
 }

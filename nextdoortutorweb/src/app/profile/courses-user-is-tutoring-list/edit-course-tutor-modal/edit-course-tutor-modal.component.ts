@@ -5,6 +5,7 @@ import { TutorService } from '../../../shared/tutor/tutor.service';
 import { Subject } from 'rxjs/Subject';
 import { PreloaderService } from '../../../shared/preloader/preloader.service';
 import { TutorUpdateData } from '../../../shared/tutor/TutorUpdateData';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-edit-course-tutor-modal',
@@ -16,9 +17,9 @@ export class EditCourseTutorModalComponent implements OnInit, AfterViewInit, OnD
   @Input() tutor: Tutor;
 
   readonly modalId = 'editCourseTutorModal';
-  readonly modalSelector = '#' + this.modalId;
+  private readonly modalSelector = '#' + this.modalId;
 
-  coursesUserIsTutoringListUpdatedSubject = new Subject();
+  private coursesUserIsTutoringListUpdatedSubject = new Subject();
 
   constructor(private tutorService: TutorService,
               private preloaderService: PreloaderService) {
@@ -78,6 +79,10 @@ export class EditCourseTutorModalComponent implements OnInit, AfterViewInit, OnD
         $(this.modalSelector).modal('close');
       }
     );
+  }
+
+  getCoursesUserIsTutoringListUpdatedObservable(): Observable<any> {
+    return this.coursesUserIsTutoringListUpdatedSubject.asObservable();
   }
 
   ngOnDestroy() {

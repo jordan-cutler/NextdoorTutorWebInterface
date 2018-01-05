@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@ang
 import { ImageService } from '../../../shared/image.service';
 import { PreloaderService } from '../../../shared/preloader/preloader.service';
 import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-crop-image-modal',
@@ -10,15 +11,15 @@ import { Subject } from 'rxjs/Subject';
 })
 export class CropImageModalComponent implements OnInit, AfterViewInit {
   @Input() file: File;
-  modalId = 'cropImageModal';
-  modalSelector = '#' + this.modalId;
+  readonly modalId = 'cropImageModal';
+  private readonly modalSelector = '#' + this.modalId;
 
-  imagePreviewId = 'imagePreview';
-  imagePreviewSelector = '#' + this.imagePreviewId;
+  readonly imagePreviewId = 'imagePreview';
+  private readonly imagePreviewSelector = '#' + this.imagePreviewId;
 
   private $cropImage;
 
-  successfulUploadImageEvent = new Subject();
+  private successfulUploadImageEvent = new Subject();
 
   constructor(private imageService: ImageService,
               private cd: ChangeDetectorRef,
@@ -82,6 +83,10 @@ export class CropImageModalComponent implements OnInit, AfterViewInit {
         }
       );
     });
+  }
+
+  getSuccessfulImageUploadObservable(): Observable<any> {
+    return this.successfulUploadImageEvent.asObservable();
   }
 
 }

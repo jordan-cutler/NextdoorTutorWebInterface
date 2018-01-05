@@ -1,20 +1,22 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserSessionService } from '../../../shared/user-session/user-session.service';
 import { EmailTutorService } from './email-tutor.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
 import { PreloaderService } from '../../../shared/preloader/preloader.service';
-import { EmailTutorData } from './EmailTutorData';
+import { DataNeededToFormEmailToTutor } from './DataNeededToFormEmailToTutor';
+import { FormValidity } from '../../../shared/FormValidity';
 
 @Component({
   selector: 'app-email-tutor-modal',
   templateUrl: './email-tutor-modal.component.html',
   styleUrls: ['./email-tutor-modal.component.css']
 })
-export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestroy {
+export class EmailTutorModalComponent implements OnInit, AfterViewInit {
   @ViewChild('form') sendEmailForm: NgForm;
-  @ViewChild('subjectInputField') subjectInputField: ElementRef;
+  @ViewChild('messageInputField') messageInputField: ElementRef;
 
+  @Input() emailTutorData: DataNeededToFormEmailToTutor;
   tutorName: string;
   tutorEmail: string;
   courseNumber: string;
@@ -23,8 +25,6 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestro
 
   subject: string;
   message: string;
-
-  private emailTutorButtonClickedSubscription: Subscription;
 
   private static createSubject(courseNumber: string) {
     return `NextdoorTutor - ${courseNumber}`;
@@ -41,46 +41,49 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestro
 
   constructor(private userSessionService: UserSessionService,
               private emailTutorService: EmailTutorService,
-              private preloaderService: PreloaderService
-  ) { }
+              private preloaderService: PreloaderService) {
+  }
 
   ngOnInit() {
     this.modalId = 'emailTutorModal';
     this.modalSelector = '#' + this.modalId;
 
-    this.emailTutorButtonClickedSubscription = this.emailTutorService.getEmailTutorModalOpenSubject().subscribe(
-      (emailTutorData: EmailTutorData) => {
-        this.tutorEmail = emailTutorData.tutorEmail;
-        this.courseNumber = emailTutorData.courseNumber;
-        this.tutorName = emailTutorData.tutorName;
+    this.tutorEmail = this.emailTutorData.tutorEmail;
+    this.courseNumber = this.emailTutorData.courseNumber;
+    this.tutorName = this.emailTutorData.tutorName;
 
-        this.subject = EmailTutorModalComponent.createSubject(this.courseNumber);
-        this.message = EmailTutorModalComponent.createMessage(
-          this.userSessionService.getCurrentUser().name,
-          this.tutorName,
-          this.courseNumber
-        );
-
-        this.openModal();
-
-      }
+    this.subject = EmailTutorModalComponent.createSubject(this.courseNumber);
+    this.message = EmailTutorModalComponent.createMessage(
+      this.userSessionService.getCurrentUser().name,
+      this.tutorName,
+      this.courseNumber
     );
   }
 
   ngAfterViewInit() {
-    $(this.modalSelector).modal();
+    this.openModal();
   }
 
   private openModal() {
+    $(this.modalSelector).modal();
     $(this.modalSelector).modal('open');
-    this.subjectInputField.nativeElement.focus();
+    setTimeout(Materialize.updateTextFields, 200);
+    this.messageInputField.nativeElement.focus();
     $('input.character-count').characterCounter();
     $('textarea.character-count').characterCounter();
   }
 
   onSubmit(event: Event) {
-    console.log(this.sendEmailForm);
-    if (this.sendEmailForm.invalid) {
+    const valid = this.giveUserFeedbackOnFormInputsIfNeeded(this.sendEmailForm).valid;
+    if (!valid) {
+      return false;
+    }
+
+    this.emailTutor(this.subject, this.message, this.tutorEmail, this.courseNumber);
+  }
+
+  private giveUserFeedbackOnFormInputsIfNeeded(sendEmailForm: NgForm): FormValidity {
+    if (sendEmailForm.invalid) {
       const controls = this.sendEmailForm.form.controls;
       const subjectInvalid = controls.subject.invalid;
       const messageInvalid = controls.message.invalid;
@@ -93,11 +96,15 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestro
       } else if (messageInvalid) {
         Materialize.toast('Message must be entered', 3000);
       }
-      return false;
+      return { valid: false };
+    } else {
+      return { valid: true };
     }
+  }
 
+  private emailTutor(subject: string, message: string, tutorEmail: string, courseNumber: string) {
     this.preloaderService.show();
-    this.emailTutorService.sendEmailToTutor(this.subject, this.message, this.tutorEmail, this.courseNumber).subscribe(
+    this.emailTutorService.sendEmailToTutor(subject, message, tutorEmail, courseNumber).subscribe(
       (successful: boolean) => {
         if (successful) {
           Materialize.toast('Successfully emailed tutor. They will email you back soon if interested.', 3000);
@@ -110,8 +117,5 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit, OnDestro
       }
     );
   }
-
-  ngOnDestroy() {
-    this.emailTutorButtonClickedSubscription.unsubscribe();
-  }
 }
+

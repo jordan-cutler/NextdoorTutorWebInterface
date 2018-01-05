@@ -12,3 +12,17 @@
   height: 100px !important;
   width: 100px !important;
 }
+
+#tutorInfo {
+  text-align: left;
+}
+
+.container {
+  width: 85%;
+}
+
+@media only screen and (max-width: 992px) {
+  .container {
+    width: 95%;
+  }
+}

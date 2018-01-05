@@ -15,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
     TutorListComponent,
     EmailTutorModalComponent
   ],
+  entryComponents: [EmailTutorModalComponent],
   imports: [
     SharedModule
   ],

@@ -21,10 +21,10 @@ export class CoursesUserIsTutoringListComponent implements OnInit {
   @Input() userId: string;
   courses: Course[];
 
-  editCourseTutorModalFactory: ComponentFactory<EditCourseTutorModalComponent>;
-  editCourseTutorModalComponent: ComponentRef<EditCourseTutorModalComponent>;
+  private editCourseTutorModalFactory: ComponentFactory<EditCourseTutorModalComponent>;
+  private editCourseTutorModalComponent: ComponentRef<EditCourseTutorModalComponent>;
 
-  coursesListUpdatedSubscription: Subscription;
+  private coursesListUpdatedSubscription: Subscription;
 
   constructor(private courseService: CourseService,
               private tutorService: TutorService,
@@ -57,7 +57,7 @@ export class CoursesUserIsTutoringListComponent implements OnInit {
         this.editCourseTutorModalComponent = this.viewContainerRef.createComponent(this.editCourseTutorModalFactory);
         this.editCourseTutorModalComponent.instance.tutor = tutor;
         this.coursesListUpdatedSubscription =
-          this.editCourseTutorModalComponent.instance.coursesUserIsTutoringListUpdatedSubject.subscribe(
+          this.editCourseTutorModalComponent.instance.getCoursesUserIsTutoringListUpdatedObservable().subscribe(
             () => {
               this.updateCourses();
             }

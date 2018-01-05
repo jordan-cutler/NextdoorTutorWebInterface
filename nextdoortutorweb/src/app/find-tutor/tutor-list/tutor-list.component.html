@@ -1,52 +1,38 @@
-<ul class="collapsible z-depth-3" data-collapsible="expandable">
-  <li *ngFor="let tutor of tutors">
-    <div class="row collapsible-header valign-wrapper">
-      <!-- TODO: Add Preloaders for each image -->
-      <!-- Preloader for image -->
-      <!--<div class="preloader-wrapper big active preloader">-->
-        <!--<div class="spinner-layer spinner-red-only">-->
-          <!--<div class="circle-clipper left">-->
-            <!--<div class="circle"></div>-->
-          <!--</div>-->
-          <!--<div class="gap-patch">-->
-            <!--<div class="circle"></div>-->
-          <!--</div>-->
-          <!--<div class="circle-clipper right">-->
-            <!--<div class="circle"></div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <img
-        class="profileImg col s2 z-depth-2"
-        [src]="imageService.getNewProfilePhotoUrl(tutor.user.userId, currentUserSessionToken, currentUserId)"
-        alt="No profile picture"
-      />
-      <div class="col s7">
-        <span>{{tutor.name}}</span>
+<div class="container">
+  <ul class="collapsible z-depth-3" data-collapsible="expandable">
+    <li *ngFor="let tutor of tutors">
+      <div class="row collapsible-header valign-wrapper">
+        <img
+          class="profileImg col s2 z-depth-2"
+          [src]="imageService.getNewProfilePhotoUrl(tutor.user.userId, currentUserSessionToken, currentUserId)"
+          alt="No profile picture"
+        />
+        <div class="col s7">
+          <span>{{tutor.user.name}}</span>
+        </div>
+        <button
+          class="btn TutorSelection-bookTutorButton"
+          (click)="onBookTutor($event, tutor.user.email, tutor.courseNumber, tutor.user.name)">
+          Email Tutor <i class="material-icons right">contact_mail</i>
+        </button>
       </div>
-      <button
-        class="btn TutorSelection-bookTutorButton"
-        (click)="onBookTutor($event, tutor.email, tutor.courseNumber, tutor.name)">
-        Email Tutor <i class="material-icons right">contact_mail</i>
-      </button>
-    </div>
-    <div class="collapsible-body">
-      <div *ngIf="tutor.hasTakenCourse && tutor.grade && tutor.instructor && tutor.semesterTaken; else notTaken">
-        <span><b>Grade:</b> {{tutor.grade}}<br></span>
-        <span><b>Instructor:</b> {{tutor.instructor}}<br></span>
-        <span><b>Semester Taken:</b> {{tutor.semesterTaken.semester}} {{tutor.semesterTaken.year}}<br></span>
+      <div id="tutorInfo" class="collapsible-body">
+        <div *ngIf="tutor.hasTakenCourse && tutor.grade && tutor.instructor && tutor.semesterTaken; else notTaken">
+          <span><b>Grade:</b> {{tutor.grade}}<br></span>
+          <span><b>Instructor:</b> {{tutor.instructor}}<br></span>
+          <span><b>Semester Taken:</b> {{tutor.semesterTaken.semester}} {{tutor.semesterTaken.year}}<br></span>
+        </div>
+        <ng-template #notTaken>
+          <span><b>tutor person has not taken tutor course</b><br></span>
+        </ng-template>
+        <span *ngIf="tutor.pastExperience"><b>Past Experience:</b> {{tutor.pastExperience}}<br></span>
+        <span *ngIf="tutor.notes"><b>Other Notes:</b> {{tutor.notes}}<br></span>
+        <span *ngIf="tutor.user.major"><b>Major: </b> {{tutor.user.major}}<br></span>
+        <span *ngIf="tutor.user.bio"><b>Bio: </b> {{tutor.user.bio}}<br></span>
+        <span *ngIf="tutor.hourlyRate"><b>Hourly Wage:</b> ${{tutor.hourlyRate}}<br></span>
       </div>
-      <ng-template #notTaken>
-        <span><b>tutor person has not taken tutor course</b><br></span>
-      </ng-template>
-      <span *ngIf="tutor.pastExperience"><b>Past Experience:</b> {{tutor.pastExperience}}<br></span>
-      <span *ngIf="tutor.notes"><b>Other Notes:</b> {{tutor.notes}}<br></span>
-      <span *ngIf="tutor.major"><b>Major: </b> {{tutor.major}}<br></span>
-      <span *ngIf="tutor.bio"><b>Bio: </b> {{tutor.bio}}<br></span>
-      <span *ngIf="tutor.hourlyRate"><b>Hourly Wage:</b> ${{tutor.hourlyRate}}<br></span>
-    </div>
-  </li>
-</ul>
+    </li>
 
-<app-email-tutor-modal></app-email-tutor-modal>
+  </ul>
+</div>
 

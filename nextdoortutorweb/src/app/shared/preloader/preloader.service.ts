@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { PreloaderState } from './PreloaderState';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PreloaderService {
 
-  preloaderSubject = new Subject<PreloaderState>();
+  private preloaderSubject = new Subject<PreloaderState>();
 
   constructor() { }
 
@@ -14,10 +15,14 @@ export class PreloaderService {
       state: true
     });
   }
-  
+
   hide() {
     this.preloaderSubject.next({
       state: false
     });
+  }
+
+  getPreloaderObservable(): Observable<PreloaderState> {
+    return this.preloaderSubject.asObservable();
   }
 }

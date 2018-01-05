@@ -12,17 +12,21 @@ import { Tutor } from '../shared/tutor/tutor-model/tutor.model';
   styleUrls: ['./find-tutor.component.css']
 })
 export class FindTutorComponent implements OnInit, OnDestroy {
-  coursesWithTutorsSubscription: Subscription;
+  private coursesWithTutorsSubscription: Subscription;
   courses: Course[];
 
-  tutorsForSelectedCourseSubscription: Subscription;
+  private tutorsForSelectedCourseSubscription: Subscription;
   selectedCourseNumber: string;
   tutorsForSelectedCourse: Tutor[];
 
   constructor(private courseService: CourseService, private tutorService: TutorService) { }
 
   ngOnInit() {
-    this.coursesWithTutorsSubscription = this.courseService.getCoursesWithTutors().subscribe(
+    this.coursesWithTutorsSubscription = this.getCoursesWithTutorsSubscription();
+  }
+
+  getCoursesWithTutorsSubscription() {
+    return this.courseService.getCoursesWithTutors().subscribe(
       (courses: Course[]) => {
         this.courses = courses;
       }

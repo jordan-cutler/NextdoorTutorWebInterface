@@ -15,7 +15,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('signInButtonTop') signInButtonTopRef: ElementRef;
   @ViewChild('signInButtonSide') signInButtonSideRef: ElementRef;
   user: User;
-  submitBugModalId: string;
+  submitBugModalId = 'submitBugModal';
+  private submitBugModalSelector = '#' + this.submitBugModalId;
 
   isLoggedInSubscription: Subscription;
 
@@ -27,12 +28,11 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.user = this.userSessionService.getCurrentUser();
-    this.isLoggedInSubscription = this.userSessionService.userUpdatedSubject.subscribe(
+    this.isLoggedInSubscription = this.userSessionService.getCurrentUserObservable().subscribe(
       (user: User) => {
         this.user = user;
       }
     );
-    this.submitBugModalId = 'submitBugModal';
   }
 
   ngAfterViewInit() {
@@ -48,7 +48,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSubmitBugClick() {
-    $('#' + this.submitBugModalId).modal('open');
+    $(this.submitBugModalSelector).modal('open');
   }
 
   onSignOutClick() {
