@@ -1,0 +1,18 @@
+#hourlyRate::-webkit-slider-thumb {
+  background-color: orange;
+}
+#hourlyRate::-moz-range-thumb {
+  background-color: orange;
+}
+#hourlyRate::-ms-thumb {
+  background-color: orange;
+}
+
+/***** These are to edit the thumb and the text inside the thumb *****/
+#hourlyRate + .thumb {
+  background-color: orange;
+}
+
+#hasTakenCourseCheckboxRow, #hourlyRateRow {
+  text-align: left;
+}

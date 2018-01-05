@@ -21,9 +21,9 @@ import { PreloaderComponent } from './shared/preloader/preloader.component';
 import { PreloaderService } from './shared/preloader/preloader.service';
 import { SharedModule } from './shared/shared.module';
 import { FindTutorModule } from './find-tutor/find-tutor.module';
-import { TutorApplicationComponent } from './tutor-application/tutor-application.component';
 import { CoursesUserIsTutoringModule } from './profile/courses-user-is-tutoring-list/courses-user-is-tutoring.module';
 import { ProfileModule } from './profile/profile.module';
+import { TutorApplicationModule } from './tutor-application/tutor-application.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,6 @@ import { ProfileModule } from './profile/profile.module';
     NavbarComponent,
     SubmitBugModalComponent,
     PreloaderComponent,
-    TutorApplicationComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +41,7 @@ import { ProfileModule } from './profile/profile.module';
     HttpClientModule,
     CoursesUserIsTutoringModule,
     FindTutorModule,
+    TutorApplicationModule,
     ProfileModule
   ],
   providers: [

@@ -15,16 +15,11 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
   readonly modalId = 'editBasicInfoModal';
   private modalSelector = '#' + this.modalId;
 
-  bio: string;
-  major: string;
-
   constructor(private userService: UserService,
               private userSessionService: UserSessionService) {
   }
 
   ngOnInit() {
-    this.bio = this.user.bio;
-    this.major = this.user.major;
   }
 
   ngAfterViewInit() {
@@ -35,15 +30,16 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(event: Event) {
-    this.updateBio();
-    this.updateMajor();
+    const bio = this.basicInfoForm.value.bio;
+    const major = this.basicInfoForm.value.major;
+    this.updateBio(bio);
+    this.updateMajor(major);
   }
 
-  updateBio() {
-    this.userService.updateMajor(this.major).subscribe(
+  updateMajor(major: string) {
+    this.userService.updateMajor(major).subscribe(
       (successful: boolean) => {
         if (successful) {
-          // this.user.major = this.major; // send updated major to parent since we were passed a reference
           this.userSessionService.updateStoredUser(this.user);
         } else {
           Materialize.toast('Failed to update bio. Try again soon.', 2500);
@@ -55,11 +51,10 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
     );
   }
 
-  updateMajor() {
-    this.userService.updateBio(this.bio).subscribe(
+  updateBio(bio: string) {
+    this.userService.updateBio(bio).subscribe(
       (successful: boolean) => {
         if (successful) {
-          // this.user.bio = this.bio; // send updated bio to parent since we were passed a reference
           this.userSessionService.updateStoredUser(this.user);
         } else {
           Materialize.toast('Failed to update major. Try again soon.', 2500);

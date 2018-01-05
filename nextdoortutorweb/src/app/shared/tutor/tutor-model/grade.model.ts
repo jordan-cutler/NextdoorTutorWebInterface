@@ -1,14 +1,14 @@
 export class Grade {
 
-  public static readonly VALID_GRADES: string[] = [
-    'A', 
-    'A-',
-    'B+',
-    'B',
-    'B-',
-    'C+',
-    'C',
-    'C-'
+  public static readonly VALID_GRADES: Grade[] = [
+    new Grade('A'),
+    new Grade('A-'),
+    new Grade('B+'),
+    new Grade('B'),
+    new Grade('B-'),
+    new Grade('C+'),
+    new Grade('C'),
+    new Grade('C-')
   ];
 
   private _grade: string;
@@ -21,9 +21,9 @@ export class Grade {
     return this._grade;
   }
 
-  public static isGradeValid(grade: string): boolean {
-    return Grade.VALID_GRADES.some(function(element: string) {
-      return element === grade;
+  public static isGradeValid(grade: Grade): boolean {
+    return Grade.VALID_GRADES.some((element: Grade) => {
+      return element.grade === grade.grade;
     });
   }
 }
