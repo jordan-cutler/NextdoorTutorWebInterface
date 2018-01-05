@@ -32,6 +32,10 @@ Makes the actual side nav brighter than everything else. Without this, the siden
   color: #fc7c25 !important;
 }
 
+.cursorPointer {
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 992px) {
   #toast-container {
     position: fixed !important;
@@ -49,8 +53,4 @@ Makes the actual side nav brighter than everything else. Without this, the siden
     visibility: hidden;
     display: none;
   }
-}
-
-.cursorPointer {
-  cursor: pointer;
 }

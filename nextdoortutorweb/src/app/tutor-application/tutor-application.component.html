@@ -1,160 +1,155 @@
-<div class="card white">
-  <div class="card-content black-text">
-    <div class="row">
-      <div class="col s12">
-        <h4 class="card-title condensed light">Fill out your Tutor Profile</h4>
+<div class="container">
+  <div class="card white">
+    <div class="card-content black-text">
+      <div class="row">
+        <div class="col s12">
+          <h4 class="card-title condensed light">Fill out your Tutor Profile</h4>
+        </div>
       </div>
+
+      <div class="row"></div>
+
+      <form (ngSubmit)="onSubmit($event)" #applicationForm="ngForm" class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <select
+              id="course"
+              ngModel
+              name="course"
+              *ngIf="coursesUserIsNotTutoring"
+            >
+              <!--<option value="1">Hello</option>-->
+              <!--<option value="2">Second</option>-->
+              <option *ngFor="let course of coursesUserIsNotTutoring" [ngValue]="course">{{course.courseNumber}} {{course.title}}</option>
+            </select>
+            <label for="course">Course to tutor</label>
+          </div>
+        </div>
+
+        <div class="row" id="hourlyRateRow">
+          <div class="col s12">
+            <label for="hourlyRate">Hourly Rate</label>
+          </div>
+          <div class="range-field col s10 m11">
+            <input
+              id="hourlyRate"
+              type="range"
+              min="0" max="50"
+              [(ngModel)]="hourlyRate"
+              name="hourlyRate"
+              ngModel
+            />
+          </div>
+          <div class="col s2 m1">
+            <output id="hourlyRateOutput">{{hourlyRate}}/hr</output>
+          </div>
+        </div>
+
+        <div class="row" id="hasTakenCourseCheckboxRow">
+          <div class="col s12">
+            <input
+              type="checkbox"
+              id="hasTakenCourseCheckbox"
+              [ngModel]="defaultCheckedValue"
+              ngModel
+              required
+              name="hasTakenCourseCheckbox"
+              #hasTakenCourse
+            />
+            <label for="hasTakenCourseCheckbox">Have taken course before</label>
+          </div>
+        </div>
+
+        <div id="gradeRow" class="row" [hidden]="!hasTakenCourse.checked">
+          <div class="input-field col s12">
+            <select
+              id="grade"
+              ngModel
+              name="grade"
+            >
+              <option *ngFor="let grade of validGrades" [ngValue]="grade">{{grade.grade}}</option>
+            </select>
+            <label for="grade">Your letter grade</label>
+          </div>
+        </div>
+
+        <div
+          id="semesterRow"
+          class="row"
+          ngModelGroup="whenPersonTookCourse"
+          #whenPersonTookCourse="ngModelGroup"
+          [hidden]="!hasTakenCourse.checked"
+        >
+          <div class="input-field col s4">
+            <select id="semester" ngModel name="semester">
+              <option *ngFor="let semester of validSemesters" [ngValue]="semester">{{semester}}</option>
+            </select>
+            <label for="semester">Term taken</label>
+          </div>
+          <div class="input-field col s4">
+            <select id="year" ngModel name="year">
+              <option *ngFor="let year of validYears" [ngValue]="year">{{year}}</option>
+            </select>
+            <label for="year">Year taken</label>
+          </div>
+        </div>
+
+        <div id="instructorRow" class="row" [hidden]="!hasTakenCourse.checked">
+          <div class="input-field col s12">
+            <input
+              id="instructor"
+              type="text"
+              class="character-count validate"
+              data-length="141" maxlength="141"
+              ngModel
+              name="instructor"
+              [required]="!hasTakenCourse.disabled"
+            >
+            <label for="instructor">Instructor</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input
+              id="pastExperience"
+              type="text"
+              class="validate character-count"
+              data-length="141" maxlength="141"
+              name="pastExperience"
+              ngModel
+            />
+            <label for="pastExperience">Past Experience (optional)</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input
+              id="notes"
+              type="text"
+              class="validate character-count"
+              data-length="141" maxlength="141"
+              name="notes"
+              ngModel
+            />
+            <label for="notes">Other notes (optional)</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s6 offset-s6 m3 offset-m9">
+            <button
+              id="submit"
+              class="btn waves-effect waves-light orange"
+              type="submit"
+              name="submitApplication"
+            >
+              Submit <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
-
-    <div class="row"></div>
-
-    <form (ngSubmit)="onSubmit($event)" #applicationForm="ngForm" class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <select
-            id="course"
-            ngModel
-            #selectedCourse="ngModel"
-            name="course"
-          >
-            <option value="1" selected>N/A</option>
-            <option value="2">ABC</option>
-            <option value="3">DEF</option>
-
-            <!--<option *ngFor="let course of (coursesUserIsNotTutoringObservable | async)">-->
-              <!--{{course.courseNumber + ' ' + course.title}}-->
-            <!--</option>-->
-          </select>
-          <label for="course">Course to tutor</label>
-        </div>
-      </div>
-
-      <div class="row" id="hourlyRateRow">
-        <div class="col s12">
-          <label for="hourlyRate">Hourly Rate</label>
-        </div>
-        <div class="range-field col s10 m11">
-          <input
-            id="hourlyRate"
-            type="range"
-            min="0" max="50"
-            [(ngModel)]="hourlyRate"
-            name="hourlyRate"
-            ngModel
-            required
-          />
-        </div>
-        <div class="col s2 m1">
-          <output id="hourlyRateOutput">{{hourlyRate}}/hr</output>
-        </div>
-      </div>
-
-      <div class="row" id="hasTakenCourseCheckboxRow">
-        <div class="col s12">
-          <input
-            type="checkbox"
-            id="hasTakenCourseCheckbox"
-            checked="checked"
-            [disabled]="selectedCourse.selectedIndex == 0"
-            ngModel
-            required
-            name="hasTakenCourseCheckbox"
-            #hasTakenCourse="ngModel"
-          />
-          <label for="hasTakenCourseCheckbox">Have taken course before</label>
-        </div>
-      </div>
-
-      <div id="gradeRow" class="row">
-        <div class="input-field col s12">
-          <select
-            id="grade"
-            ngModel
-            name="grade"
-            *ngIf="hasTakenCourse.checked"
-          >
-            <option *ngFor="let grade of validGrades" [ngModel]="grade"></option>
-          </select>
-          <label for="grade">Your letter grade</label>
-        </div>
-      </div>
-
-      <div
-        id="semesterRow"
-        class="row"
-        ngModelGroup="whenPersonTookCourse"
-        #whenPersonTookCourse="ngModelGroup"
-        [hidden]="!hasTakenCourse.checked"
-      >
-        <div class="input-field col s4">
-          <select id="semester" ngModel name="semester">
-            <option *ngFor="let semester of validSemesters">{{semester}}</option>
-          </select>
-          <label for="semester">Term taken</label>
-        </div>
-        <div class="input-field col s4">
-          <select id="year" ngModel name="year">
-            <option *ngFor="let year of validYears">{{year}}</option>
-          </select>
-          <label for="year">Year taken</label>
-        </div>
-      </div>
-
-      <div id="instructorRow" class="row">
-        <div class="input-field col s12">
-          <input
-            id="instructor"
-            type="text"
-            class="character-count validate"
-            data-length="141" maxlength="141"
-            ngModel
-            name="instructor"
-            [required]="!hasTakenCourse.disabled"
-          >
-          <label for="instructor">Instructor</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <input
-            id="pastExperience"
-            type="text"
-            class="validate character-count"
-            data-length="141" maxlength="141"
-            name="pastExperience"
-            ngModel
-          />
-          <label for="pastExperience">Past Experience (optional)</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <input
-            id="notes"
-            type="text"
-            class="validate character-count"
-            data-length="141" maxlength="141"
-            name="notes"
-            ngModel
-          />
-          <label for="notes">Other notes (optional)</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col s6 offset-s6 m3 offset-m9">
-          <button
-            id="submit"
-            class="btn waves-effect waves-light orange"
-            type="submit"
-            name="submitApplication"
-          >
-            Submit <i class="material-icons right">send</i>
-          </button>
-        </div>
-      </div>
-    </form>
   </div>
 </div>
