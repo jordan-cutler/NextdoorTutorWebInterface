@@ -13,8 +13,7 @@
         <div class="row">
           <div class="input-field col s12">
             <select
-              id="course"
-              ngModel
+              id="{{courseDropdownId}}"
               name="course"
               *ngIf="coursesUserIsNotTutoring"
             >
@@ -22,7 +21,7 @@
                       [value]="i">{{course.courseNumber}} {{course.title}}<!-- Don't move this interpolation on its own line -->
               </option>
             </select>
-            <label id="courseLabel" for="course">Course to tutor</label>
+            <label id="courseLabel" for="{{courseDropdownId}}">Course to tutor</label>
           </div>
         </div>
 
@@ -34,10 +33,10 @@
             <input
               id="hourlyRate"
               type="range"
-              min="0" max="50"
+              min="{{minHourlyRate}}" max="{{maxHourlyRate}}"
               [(ngModel)]="hourlyRate"
               name="hourlyRate"
-              ngModel
+              required
             />
           </div>
           <div class="col s2 m1">
@@ -51,8 +50,6 @@
               type="checkbox"
               id="hasTakenCourseCheckbox"
               [ngModel]="defaultCheckedValue"
-              ngModel
-              required
               name="hasTakenCourseCheckbox"
               #hasTakenCourse
             />
@@ -63,14 +60,14 @@
         <div id="gradeRow" class="row" [hidden]="!hasTakenCourse.checked">
           <div class="input-field col s12">
             <select
-              id="grade"
-              ngModel
+              id="{{gradeDropdownId}}"
               name="grade"
               [ngModel]="defaultGrade"
+              [required]="hasTakenCourse.checked"
             >
               <option *ngFor="let grade of validGrades" [value]="grade.grade">{{grade.grade}}</option>
             </select>
-            <label for="grade">Your letter grade</label>
+            <label for="{{gradeDropdownId}}">Your letter grade</label>
           </div>
         </div>
 
@@ -82,16 +79,16 @@
           [hidden]="!hasTakenCourse.checked"
         >
           <div class="input-field col s4">
-            <select id="semester" ngModel name="semester">
-              <option *ngFor="let semester of validSemesters" [ngValue]="semester">{{semester}}</option>
+            <select id="{{termDropdownId}}" name="term">
+              <option *ngFor="let term of validTerms" [value]="term">{{term}}</option>
             </select>
-            <label for="semester">Term taken</label>
+            <label for="{{termDropdownId}}">Term taken</label>
           </div>
           <div class="input-field col s4">
-            <select id="year" ngModel name="year">
-              <option *ngFor="let year of validYears" [ngValue]="year">{{year}}</option>
+            <select id="{{yearDropdownId}}" name="year">
+              <option *ngFor="let year of validYears" [value]="year">{{year}}</option>
             </select>
-            <label for="year">Year taken</label>
+            <label for="{{yearDropdownId}}">Year taken</label>
           </div>
         </div>
 
@@ -104,7 +101,7 @@
               data-length="141" maxlength="141"
               ngModel
               name="instructor"
-              [required]="!hasTakenCourse.disabled"
+              [required]="hasTakenCourse.checked"
             >
             <label for="instructor">Instructor</label>
           </div>

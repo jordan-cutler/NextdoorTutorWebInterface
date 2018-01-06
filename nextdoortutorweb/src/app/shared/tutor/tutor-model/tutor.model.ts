@@ -25,7 +25,7 @@ export class Tutor {
     const pastExperience: string = tutorJson.pastExperience;
     const notes: string = tutorJson.notes;
     const yearTaken: number = tutorJson.semesterTaken.year;
-    const semester: string = tutorJson.semesterTaken.semester;
+    const semester: string = tutorJson.semesterTaken.term;
     const semesterTaken: Semester = new Semester(semester, yearTaken);
     const hasTakenCourse: boolean = tutorJson.hasTakenCourse;
 

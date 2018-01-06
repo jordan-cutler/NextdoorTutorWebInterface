@@ -1,6 +1,6 @@
 export class Semester {
 
-  public static readonly VALID_SEMESTERS: string[] = [
+  public static readonly VALID_TERMS: string[] = [
     'Fall',
     'Spring',
     'Summer',
@@ -9,16 +9,16 @@ export class Semester {
 
   public static readonly VALID_YEARS: number[] = Semester.getValidYears();
 
-  private _semester: string;
+  private _term: string;
   private _year: number;
 
-  constructor(semester: string, yearTaken: number) {
-    this._semester = semester;
+  constructor(term: string, yearTaken: number) {
+    this._term = term;
     this._year = yearTaken;
   }
 
-  get semester(): string {
-    return this._semester;
+  get term(): string {
+    return this._term;
   }
 
   get year(): number {
@@ -30,9 +30,9 @@ export class Semester {
     return [year, (year - 1), (year - 2), (year - 3), (year - 4)];
   }
 
-  public static isSemesterValid(semester: string): boolean {
-    return Semester.VALID_SEMESTERS.some(function (element: string, index: number, array: string[]) {
-      return element === semester;
+  public static isTermValid(term: string): boolean {
+    return Semester.VALID_TERMS.some(function (element: string, index: number, array: string[]) {
+      return element === term;
     });
   }
 

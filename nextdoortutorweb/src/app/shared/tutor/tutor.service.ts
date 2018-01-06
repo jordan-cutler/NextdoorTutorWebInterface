@@ -18,8 +18,18 @@ export class TutorService {
   constructor(private httpClient: HttpClient) {
   }
 
-  addTutor(tutor: Tutor) {
-    return this.httpClient.post(TutorService.ADDTUTORROUTE, tutor);
+  addTutor(tutor: Tutor): Observable<boolean> {
+    return this.httpClient.post<boolean>(TutorService.ADDTUTORROUTE, {
+      hourlyRate: tutor.hourlyRate,
+      courseNumber: tutor.courseNumber,
+      grade: tutor.grade,
+      instructor: tutor.instructor,
+      pastExperience: tutor.pastExperience,
+      notes: tutor.notes,
+      yearTaken: tutor.semesterTaken.year,
+      semesterTaken: tutor.semesterTaken.term,
+      hasTakenCourse: tutor.hasTakenCourse
+    });
   }
 
   getTutorsForCourse(courseNumber: string): Observable<Tutor[]> {

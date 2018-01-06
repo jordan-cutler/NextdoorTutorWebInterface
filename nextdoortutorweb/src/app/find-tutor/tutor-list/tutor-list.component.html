@@ -20,7 +20,7 @@
         <div *ngIf="tutor.hasTakenCourse && tutor.grade && tutor.instructor && tutor.semesterTaken; else notTaken">
           <span><b>Grade:</b> {{tutor.grade}}<br></span>
           <span><b>Instructor:</b> {{tutor.instructor}}<br></span>
-          <span><b>Semester Taken:</b> {{tutor.semesterTaken.semester}} {{tutor.semesterTaken.year}}<br></span>
+          <span><b>Semester Taken:</b> {{tutor.semesterTaken.term}} {{tutor.semesterTaken.year}}<br></span>
         </div>
         <ng-template #notTaken>
           <span><b>tutor person has not taken tutor course</b><br></span>
