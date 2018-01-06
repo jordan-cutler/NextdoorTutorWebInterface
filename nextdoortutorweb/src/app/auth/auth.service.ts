@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 
 import 'rxjs/Rx';
 import { ApplicationGlobals } from '../shared/ApplicationGlobals';
+import { PreloaderService } from '../shared/preloader/preloader.service';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,8 @@ export class AuthService {
   constructor(private httpClient: HttpClient,
               private userSessionService: UserSessionService,
               private zone: NgZone,
-              private router: Router) {
+              private router: Router,
+              private preloaderService: PreloaderService) {
   }
 
   initializeAuthorization(elements: HTMLElement[], onsuccess: () => void) {
@@ -41,6 +43,7 @@ export class AuthService {
     this.getAuth().attachClickHandler(element, {},
       (googleUser: GoogleUser) => {
         const idToken = googleUser.getAuthResponse().id_token;
+        this.preloaderService.show();
         this.httpClient.post(AuthService.SIGNINROUTE, { idToken: idToken })
           .map(
             (userSession) => {
@@ -49,17 +52,21 @@ export class AuthService {
           )
           .subscribe(
             (userSession: UserSession) => {
+              this.preloaderService.hide();
               ApplicationGlobals.setUserSessionInLocalStorage(userSession);
               this.userSessionService.storeCurrentUserSession(userSession);
               onsuccess();
             },
             () => {
+              this.preloaderService.hide();
               Materialize.toast('Failed to authenticate you. Please try again soon', 3000);
               this.signOutUserFromGoogle();
             }
           );
       }, function (error) {
-        Materialize.toast('Error occurred while authenticating. Please contact jdc219@lehigh.edu or try again soon.', 3000);
+        Materialize.toast('Error occurred while authenticating. ' +
+          'Please make sure you are using your correct lehigh.edu credentials and if the error persists ' +
+          'contact jdc219@lehigh.edu or try again soon.', 3000);
       });
   }
 

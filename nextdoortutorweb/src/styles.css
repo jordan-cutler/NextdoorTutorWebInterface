@@ -16,6 +16,44 @@ html, body{
   padding: 0;
 }
 
+/* labels */
+
+/* label color */
+.input-field label {
+  color: #B9B9B9 !important;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color: orange !important;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid orange !important;
+  box-shadow: 0 1px 0 0 orange !important;
+}
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid orange !important;
+  box-shadow: 0 1px 0 0 orange !important;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid red !important;
+  box-shadow: 0 1px 0 0 red !important;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: orange !important;
+}
+
+ul.dropdown-content.select-dropdown li span {
+  color: orange; /* no need for !important :) */
+}
+
+.dropdown-content li>span {
+  color: orange !important;
+}
+
 /*
 Makes the actual side nav brighter than everything else. Without this, the sidenav-overlay covers the sidenav for some reason and makes the whole screen dark
  */

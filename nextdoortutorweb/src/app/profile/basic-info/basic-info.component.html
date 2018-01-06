@@ -16,19 +16,6 @@
 
         <div class="row">
           <div class="col s12">
-            <!--<div id="Profile-preloader" class="preloader-wrapper big active center">-->
-            <!--<div class="spinner-layer spinner-red-only">-->
-            <!--<div class="circle-clipper left">-->
-            <!--<div class="circle"></div>-->
-            <!--</div>-->
-            <!--<div class="gap-patch">-->
-            <!--<div class="circle"></div>-->
-            <!--</div>-->
-            <!--<div class="circle-clipper right">-->
-            <!--<div class="circle"></div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
             <div id="profileImageContainer" class="media center image-upload">
               <label for="profileFileUploadInput">
                 <img id="profilePhoto" alt="Failed to load profile picture" class="media__image z-depth-3"
@@ -68,7 +55,7 @@
 
         <div class="row">
           <div class="col s12">
-            <a id="emailContact" class="center"><b>Contact:</b> {{user.email}}</a>
+            <span *ngIf="user.email" id="emailContact" class="center"><b>Contact:</b> {{user.email}}</span>
           </div>
         </div>
       </div>

@@ -10,6 +10,14 @@
   width: 85%;
 }
 
+.input-field .prefix.active {
+  color: orange;
+}
+
+input[type=search]:not(.browser-default):focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
+  color: orange;
+}
+
 @media only screen and (max-width: 992px) {
   .container {
     width: 95%;
