@@ -61,7 +61,6 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   onSubmit(event: Event) {
-    console.log(this.applicationForm);
     const selectedOptionSelector = 'option:selected';
     const courseNumber = $(this.courseDropdownSelector).find(selectedOptionSelector).text().split(" ")[0];
     const hourlyRate: number = +this.applicationForm.value.hourlyRate;
@@ -75,10 +74,7 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestr
     const notes = this.applicationForm.value.notes;
 
     let invalid = false;
-    console.log('hastaken = ' + hasTakenCourse);
-    console.log('true === hasTakenCourse = ' + (true === hasTakenCourse));
     if (hasTakenCourse) {
-      console.log('hello1');
       if (!Grade.isGradeValid(new Grade(grade))) {
         Materialize.toast('Grade is invalid. Please select an option from the dropdown', 3000);
         invalid = true;
@@ -92,7 +88,6 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestr
         invalid = true;
       }
       if (!instructor) {
-        console.log('hello2');
         Materialize.toast('Let us know who your professor was before submitting.', 3000);
         invalid = true;
       }
@@ -102,21 +97,16 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestr
       Materialize.toast('Invalid hourly rate. Only set a value between ' + this.minHourlyRate + ' and ' + this.maxHourlyRate, 4000);
       invalid = true;
     }
-    console.log('invalid = ' + invalid);
 
     if (invalid) {
-      console.log('made it in return false');
       return false;
     }
-
-    console.log('made it past invalid');
 
     const currentUser = this.userSessionService.getCurrentUser();
     const tutor = new Tutor(
       currentUser, hourlyRate, courseNumber, grade, instructor,
       pastExperience, notes, semester, hasTakenCourse
     );
-    console.log(tutor.grade);
     this.preloaderService.show();
     this.tutorService.addTutor(tutor).subscribe(
       (successful: boolean) => {
