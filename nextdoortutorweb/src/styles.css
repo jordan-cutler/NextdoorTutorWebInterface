@@ -46,12 +46,47 @@ html, body{
   color: orange !important;
 }
 
+
+/* Change color of dropdown options */
 ul.dropdown-content.select-dropdown li span {
   color: orange; /* no need for !important :) */
 }
 
+/* change color of auto complete options */
 .dropdown-content li>span {
   color: orange !important;
+}
+
+/* Edit slider colors */
+input[type=range]::-webkit-slider-thumb {
+  background-color: orange !important;
+}
+input[type=range]::-moz-range-thumb {
+  background-color: orange !important;
+}
+input[type=range]::-ms-thumb {
+  background-color: orange !important;
+}
+
+/***** These are to edit the thumb and the text inside the thumb *****/
+input[type=range] + .thumb {
+  background-color: orange !important;
+}
+
+.input[type=range] + .thumb {
+  background-color: orange !important;
+}
+
+.range-field + .thumb {
+  background-color: orange !important;
+}
+
+.noUI-background {
+  background: orange !important;
+}
+
+.range-label{
+  background-color: orange !important;
 }
 
 /*
