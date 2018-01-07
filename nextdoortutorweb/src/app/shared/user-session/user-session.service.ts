@@ -13,12 +13,6 @@ export class UserSessionService {
   private userUpdatedSubject = new Subject<User>();
 
   constructor() {
-    // document.cookie.split('; ').forEach((cookieString: string) => {
-    //   const cookie = cookieString.split('=');
-    //   if ((cookie.length === 2) && (cookie[0] === 'authToken')) {
-    //     window.sessionStorage.accessToken =
-    //   }
-    // });
   }
 
   storeCurrentUserSession(userSession: UserSession) {

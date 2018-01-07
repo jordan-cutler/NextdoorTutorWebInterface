@@ -81,7 +81,6 @@ export class AuthService {
   signOutCurrentUser() {
     this.userSessionService.nullifyCurrentUserSession();
     ApplicationGlobals.clearJwtFromLocalStorage();
-
     this.signOutUserFromGoogle();
   }
 
