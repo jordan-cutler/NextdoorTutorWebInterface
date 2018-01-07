@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserSessionService } from '../user-session/user-session.service';
 import { Course } from './course.model';
@@ -13,14 +13,14 @@ export class CourseService {
 
   constructor(private httpClient: HttpClient, private userSessionService: UserSessionService) {
   }
-  
+
   getCoursesWithTutors(): Observable<Course[]> {
     return this.httpClient.get<Course[]>(CourseService.COURSESWITHTUTORSROUTE);
   }
 
   getCoursesCurrentUserHasntTutoredBefore(): Observable<Course[]> {
     const currentUserId = this.userSessionService.getCurrentUser().userId;
-    return this.httpClient.get<Course[]>(CourseService.COURSESUSERHASNTTUTOREDBEFOREROUTE + '/' + currentUserId);
+    return this.httpClient.get<Course[]>(CourseService.COURSESUSERHASNTTUTOREDBEFOREROUTE);
   }
 
   getCoursesUserIsTutoring(userId: string): Observable<Course[]> {

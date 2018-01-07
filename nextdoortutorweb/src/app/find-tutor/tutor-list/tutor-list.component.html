@@ -4,7 +4,7 @@
       <div class="row collapsible-header valign-wrapper">
         <img
           class="profileImg col s2 z-depth-2"
-          [src]="imageService.getNewProfilePhotoUrl(tutor.user.userId, currentUserSessionToken, currentUserId)"
+          appHttpImage [userIdUnderProfilePhoto]="tutor.user.userId" [askerId]="currentUserId"
           alt="No profile picture"
         />
         <div class="col s7">

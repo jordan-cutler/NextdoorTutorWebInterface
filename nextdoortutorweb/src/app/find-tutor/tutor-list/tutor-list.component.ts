@@ -18,7 +18,6 @@ export class TutorListComponent implements OnInit, AfterViewInit {
   @Input() tutors: Tutor[];
 
   currentUserId: string;
-  currentUserSessionToken: string;
 
   emailTutorModalFactory: ComponentFactory<EmailTutorModalComponent>;
   emailTutorModalComponent: ComponentRef<EmailTutorModalComponent>;
@@ -30,7 +29,6 @@ export class TutorListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.currentUserSessionToken = this.userSessionService.getCurrentUserSession().getSessionToken();
     this.currentUserId = this.userSessionService.getCurrentUser().userId;
     this.emailTutorModalFactory = this.componentFactoryResolver.resolveComponentFactory(EmailTutorModalComponent);
   }

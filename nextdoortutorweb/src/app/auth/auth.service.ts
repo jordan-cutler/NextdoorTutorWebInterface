@@ -53,7 +53,7 @@ export class AuthService {
           .subscribe(
             (userSession: UserSession) => {
               this.preloaderService.hide();
-              ApplicationGlobals.setUserSessionInLocalStorage(userSession);
+              // ApplicationGlobals.setJwtInLocalStorage(userSession);
               this.userSessionService.storeCurrentUserSession(userSession);
               onsuccess();
             },
@@ -75,13 +75,12 @@ export class AuthService {
   }
 
   isUserLoggedIn(): boolean {
-    return !!this.userSessionService.getCurrentUserSession();
+    return !!this.userSessionService.getCurrentUser();
   }
 
   signOutCurrentUser() {
-    this.signOutUserFromBackend();
     this.userSessionService.nullifyCurrentUserSession();
-    ApplicationGlobals.clearUserSessionFromLocalStorage();
+    ApplicationGlobals.clearJwtFromLocalStorage();
 
     this.signOutUserFromGoogle();
   }
@@ -94,7 +93,4 @@ export class AuthService {
     });
   }
 
-  private signOutUserFromBackend() {
-    this.httpClient.post(AuthService.SIGNOUTROUTE, {});
-  }
 }

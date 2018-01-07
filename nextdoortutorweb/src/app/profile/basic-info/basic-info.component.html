@@ -20,7 +20,7 @@
               <label for="profileFileUploadInput">
                 <img id="profilePhoto" alt="Failed to load profile picture" class="media__image z-depth-3"
                      *ngIf="profilePhotoRoute"
-                     [src]="profilePhotoRoute" #profilePhotoRef/>
+                     appHttpImage [userIdUnderProfilePhoto]="user.userId" [askerId]="user.userId" #profilePhotoRef/>
                 <i *ngIf="!profilePhotoRoute" class="large material-icons">account_circle</i>
                 <div class="media__body cursorPointer">
                   <h6 class="mobile-hidden">Upload Profile Picture</h6>

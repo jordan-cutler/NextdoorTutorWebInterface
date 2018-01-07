@@ -1,5 +1,5 @@
 import { UserSession } from './user-session.model';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ApplicationGlobals } from '../ApplicationGlobals';
 import { User } from '../user/user-model/user.model';
 import { Subject } from 'rxjs/Subject';
@@ -13,18 +13,18 @@ export class UserSessionService {
   private userUpdatedSubject = new Subject<User>();
 
   constructor() {
-    if (ApplicationGlobals.userSessionPresentInLocalStorage()) {
-      this.currentUserSession = ApplicationGlobals.getUserSessionFromLocalStorage();
-    }
+    // document.cookie.split('; ').forEach((cookieString: string) => {
+    //   const cookie = cookieString.split('=');
+    //   if ((cookie.length === 2) && (cookie[0] === 'authToken')) {
+    //     window.sessionStorage.accessToken =
+    //   }
+    // });
   }
 
   storeCurrentUserSession(userSession: UserSession) {
+    ApplicationGlobals.setJwtInLocalStorage(userSession.getJwt());
     this.currentUserSession = userSession;
     this.userUpdatedSubject.next(this.currentUserSession.getUser());
-  }
-
-  getCurrentUserSession() {
-    return this.currentUserSession;
   }
 
   getCurrentUser() {
@@ -46,7 +46,6 @@ export class UserSessionService {
 
   updateStoredUser(user: User) {
     this.currentUserSession.setUser(user);
-    ApplicationGlobals.setUserSessionInLocalStorage(this.currentUserSession);
     this.userUpdatedSubject.next(user);
   }
 }

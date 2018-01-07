@@ -3,17 +3,17 @@ import { User } from '../user/user-model/user.model';
 export class UserSession {
 
   private user: User;
-  private readonly sessionToken: string;
+  private readonly jwt: string;
 
   public static userSessionJsonToUserSessionModel(userSessionJson: any): UserSession {
     const user: User = User.userJsonToUserModel(userSessionJson.user);
-    const sessionToken: string = userSessionJson.sessionToken;
+    const sessionToken: string = userSessionJson.jwt;
     return new UserSession(user, sessionToken);
   }
 
-  constructor(user: User, sessionToken: string) {
+  constructor(user: User, jwt: string) {
     this.user = user;
-    this.sessionToken = sessionToken;
+    this.jwt = jwt;
   }
 
   getUser(): User {
@@ -24,8 +24,8 @@ export class UserSession {
     this.user = user;
   }
 
-  getSessionToken(): string {
-    return this.sessionToken;
+  getJwt(): string {
+    return this.jwt;
   }
 
 }

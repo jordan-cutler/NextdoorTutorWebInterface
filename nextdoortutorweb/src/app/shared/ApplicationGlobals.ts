@@ -1,27 +1,20 @@
-import { UserSession } from './user-session/user-session.model';
-
 export class ApplicationGlobals {
   static readonly FIND_TUTOR_ROUTE = '/findtutor';
-  private static readonly USER_SESSION_LOCAL_STORAGE_KEY = 'userSession';
+  private static readonly JWT_LOCAL_STORAGE_KEY = 'nextdoortutorjwt';
 
-  static clearUserSessionFromLocalStorage() {
-    localStorage.removeItem(ApplicationGlobals.USER_SESSION_LOCAL_STORAGE_KEY);
+  static clearJwtFromLocalStorage() {
+    localStorage.removeItem(ApplicationGlobals.JWT_LOCAL_STORAGE_KEY);
   }
 
-  static setUserSessionInLocalStorage(userSession: UserSession) {
-    localStorage.setItem(ApplicationGlobals.USER_SESSION_LOCAL_STORAGE_KEY, JSON.stringify(userSession));
+  static setJwtInLocalStorage(jwt: string) {
+    localStorage.setItem(ApplicationGlobals.JWT_LOCAL_STORAGE_KEY, jwt);
   }
 
-  static getUserSessionFromLocalStorage(): UserSession {
-    const jsonObjectFromLocalStorage = JSON.parse(localStorage.getItem(ApplicationGlobals.USER_SESSION_LOCAL_STORAGE_KEY));
-    if (jsonObjectFromLocalStorage) {
-      return UserSession.userSessionJsonToUserSessionModel(jsonObjectFromLocalStorage);
-    } else {
-      return null;
-    }
+  static getJwtFromLocalStorage(): string {
+    return localStorage.getItem(ApplicationGlobals.JWT_LOCAL_STORAGE_KEY)
   }
 
-  static userSessionPresentInLocalStorage(): boolean {
-    return !!localStorage.getItem(ApplicationGlobals.USER_SESSION_LOCAL_STORAGE_KEY);
+  static jwtPresentInLocalStorage(): boolean {
+    return !!localStorage.getItem(ApplicationGlobals.JWT_LOCAL_STORAGE_KEY);
   }
 }

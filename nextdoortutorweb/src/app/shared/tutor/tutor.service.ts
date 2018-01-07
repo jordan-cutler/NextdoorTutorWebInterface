@@ -5,6 +5,7 @@ import { Tutor } from './tutor-model/tutor.model';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { TutorUpdateData } from './TutorUpdateData';
+import { UserSessionService } from '../user-session/user-session.service';
 
 @Injectable()
 export class TutorService {
@@ -15,7 +16,7 @@ export class TutorService {
   private static readonly DELETETUTORROUTE = '/api/tutors/delete';
   private static readonly UPDATETUTORROUTE = '/api/tutors';
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private userSessionService: UserSessionService) {
   }
 
   addTutor(tutor: Tutor): Observable<boolean> {
@@ -42,10 +43,10 @@ export class TutorService {
       );
   }
 
-  getTutorById(tutorId: string, courseNumber: string): Observable<Tutor> {
+  getTutorInformationForCurrentUserByCourseNumber(courseNumber: string): Observable<Tutor> {
     const params = new HttpParams().set('courseNumber', courseNumber);
     return this.httpClient.get(
-      TutorService.GETTUTORROUTE + '/' + tutorId,
+      TutorService.GETTUTORROUTE + '/' + courseNumber,
       { params: params })
       .map( (tutor) => {
         return Tutor.tutorJsonToTutorModel(tutor);

@@ -49,7 +49,7 @@ export class CoursesUserIsTutoringListComponent implements OnInit {
   }
 
   onCourseClick(course: Course) {
-    this.tutorService.getTutorById(this.userSessionService.getCurrentUser().userId, course.courseNumber).subscribe(
+    this.tutorService.getTutorInformationForCurrentUserByCourseNumber(course.courseNumber).subscribe(
       (tutor: Tutor) => {
         if (this.editCourseTutorModalComponent) {
           this.editCourseTutorModalComponent.destroy();
