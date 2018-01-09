@@ -15,5 +15,5 @@ WEBFOLDERNAME=html
 #ng test --code-coverage --watch=false
 
 # step 3: build the app with Ahead of Time compilation enabled
-ng build --aot --prod --output-path $TARGETFOLDER/$WEBFOLDERNAME --deploy-url=assets/html/
+ng build --aot --output-path $TARGETFOLDER/$WEBFOLDERNAME --deploy-url=assets/html/
 

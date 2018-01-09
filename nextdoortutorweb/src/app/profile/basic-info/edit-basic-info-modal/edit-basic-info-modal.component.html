@@ -29,6 +29,46 @@
               <label for="majorInput">Major</label>
             </div>
           </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input
+                id="githubInput"
+                type="text"
+                class="character-count"
+                data-length="100" maxlength="100"
+                [ngModel]="user.github ? user.github.link : ''"
+                name="github"
+              />
+              <label for="githubInput">GitHub</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input
+                id="facebookInput"
+                type="text"
+                class="character-count"
+                data-length="100" maxlength="100"
+                [ngModel]="user.facebook ? user.facebook.link : ''"
+                name="facebook"
+              />
+              <label for="facebookInput">Facebook</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input
+                id="linkedinInput"
+                type="text"
+                class="character-count"
+                data-length="100" maxlength="100"
+                [ngModel]="user.linkedin ? user.linkedin.link : ''"
+                name="linkedin"
+              />
+              <label for="linkedinInput">LinkedIn</label>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
