@@ -10,7 +10,7 @@ import { UserSessionService } from '../../../shared/user-session/user-session.se
   styleUrls: ['./edit-basic-info-modal.component.css']
 })
 export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
-  @ViewChild('form') basicInfoForm: NgForm;
+  @ViewChild('editBasicInfoForm') basicInfoForm: NgForm;
   @Input() user: User;
   readonly modalId = 'editBasicInfoModal';
   private modalSelector = '#' + this.modalId;
@@ -40,6 +40,7 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
     this.userService.updateMajor(major).subscribe(
       (successful: boolean) => {
         if (successful) {
+          this.user.major = major;
           this.userSessionService.updateStoredUser(this.user);
         } else {
           Materialize.toast('Failed to update bio. Try again soon.', 2500);
@@ -55,6 +56,7 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
     this.userService.updateBio(bio).subscribe(
       (successful: boolean) => {
         if (successful) {
+          this.user.bio = bio;
           this.userSessionService.updateStoredUser(this.user);
         } else {
           Materialize.toast('Failed to update major. Try again soon.', 2500);

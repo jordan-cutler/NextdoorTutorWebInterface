@@ -1,8 +1,8 @@
 <div id="{{modalId}}" class="modal">
-  <form (ngSubmit)="onSubmit($event)" #form="ngForm">
+  <form (ngSubmit)="onSubmit($event)" #editBasicInfoForm="ngForm">
     <div class="modal-content">
       <div class="row">
-        <form class="col s12">
+        <div class="col s12">
           <div class="row">
             <div class="input-field col s12">
               <input
@@ -29,7 +29,7 @@
               <label for="majorInput">Major</label>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
