@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   attachSignIn(element: HTMLElement, onsuccess: () => void) {
-    this.getAuth().attachClickHandler(element, {},
+    this.auth2.attachClickHandler(element, {},
       (googleUser: GoogleUser) => {
         const idToken = googleUser.getAuthResponse().id_token;
         this.preloaderService.show();
@@ -68,10 +68,6 @@ export class AuthService {
           'Please make sure you are using your correct lehigh.edu credentials and if the error persists ' +
           'contact jdc219@lehigh.edu or try again soon.', 3000);
       });
-  }
-
-  getAuth(): GoogleAuth {
-    return this.auth2;
   }
 
   isUserLoggedIn(): boolean {

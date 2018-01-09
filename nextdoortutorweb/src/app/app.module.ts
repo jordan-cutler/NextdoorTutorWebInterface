@@ -24,6 +24,7 @@ import { FindTutorModule } from './find-tutor/find-tutor.module';
 import { CoursesUserIsTutoringModule } from './profile/courses-user-is-tutoring-list/courses-user-is-tutoring.module';
 import { ProfileModule } from './profile/profile.module';
 import { TutorApplicationModule } from './tutor-application/tutor-application.module';
+import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,14 @@ import { TutorApplicationModule } from './tutor-application/tutor-application.mo
     CourseService,
     PreloaderService,
     AuthGuard,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {
+      provide: HTTP_INTERCEPTORS,
+      useFactory: function(router: Router, preloaderService: PreloaderService) {
+        return new AuthInterceptor(router, preloaderService);
+      },
+      multi: true,
+      deps: [Router, PreloaderService]
+    }
   ],
   bootstrap: [AppComponent]
 })

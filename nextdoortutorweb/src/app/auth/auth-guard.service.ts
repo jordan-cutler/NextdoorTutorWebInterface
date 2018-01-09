@@ -40,7 +40,7 @@ export class AuthGuard implements CanActivate {
         ApplicationGlobals.clearJwtFromLocalStorage();
         this.preloaderService.hide();
         this.router.navigate(['/']);
-        return Observable.of(false);
+        return Observable.throw(false);
       });
     } else {
       this.router.navigate(['/']);

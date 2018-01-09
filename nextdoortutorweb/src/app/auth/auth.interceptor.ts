@@ -1,10 +1,30 @@
-import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {
+  HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor,
+  HttpRequest
+} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ApplicationGlobals } from '../shared/ApplicationGlobals';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { PreloaderService } from '../shared/preloader/preloader.service';
 
+@Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor() {
+  constructor(private router: Router, private preloaderService: PreloaderService) {
+  }
+
+  private handleAuthError(err: HttpErrorResponse): Observable<any> {
+    if (err.status === 401 || err.status === 403) {
+      // navigate /delete cookies or whatever
+      Materialize.toast('Your session has ended. Please log back in.', 3000);
+      this.router.navigate(['/']);
+      // if you've caught / handled the error, you don't want to rethrow it
+      // unless you also want downstream consumers to have to handle it as well.
+      this.preloaderService.hide();
+      return Observable.of(err.message);
+    }
+    return Observable.throw(err);
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -14,28 +34,9 @@ export class AuthInterceptor implements HttpInterceptor {
       const requestClone = req.clone({
         headers: req.headers.append('X-AUTH-TOKEN', jwt)
       });
-      return next.handle(requestClone);
+      return next.handle(requestClone).catch(err => this.handleAuthError(err));
     }
-    // if (req.headers.get('Content-Type')) {
-    //   return next.handle(req.clone());
-    // }
-    // if (req.method === 'GET' && userSession) {
-    //   const requestClone =
-    //     req.clone({
-    //       params:
-    //         req.params
-    //           .append('userId', userSession.getUser().userId)
-    //           .append('sessionToken', userSession.getJwt())
-    //     });
-    //   return next.handle(requestClone);
-    // } else if (userSession) {
-    //   const bodyObject = req.body;
-    //   bodyObject['userId'] = userSession.getUser().userId;
-    //   bodyObject['sessionToken'] = userSession.getJwt();
-    //   const requestClone = req.clone({ body: bodyObject });
-    //   return next.handle(requestClone);
-    // }
-    return next.handle(req);
+    return next.handle(req).catch(err => this.handleAuthError(err));
   }
 
 }

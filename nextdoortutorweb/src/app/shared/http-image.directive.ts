@@ -30,6 +30,9 @@ export class HttpImageDirective implements OnInit {
           // this.cd.detectChanges();
         };
         reader.readAsDataURL(response);
+      },
+      (error) => {
+        this.renderer.setAttribute(this.elementRef.nativeElement, 'src', 'assets/images/account_circle_black_180x180.png');
       }
     );
   }
