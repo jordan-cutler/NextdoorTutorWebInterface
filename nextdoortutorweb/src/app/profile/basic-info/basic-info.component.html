@@ -55,6 +55,29 @@
 
         <div class="row">
           <div class="col s12">
+            <span *ngIf="user.github"><i class="fa fa-github" aria-hidden="true"></i>
+              <a href="{{user.github.link}}">{{user.github.link}}</a></span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <span *ngIf="user.facebook">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+              <a href="{{user.facebook.link}}">{{user.facebook.link}}</a></span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <span *ngIf="user.linkedin">
+              <i class="fa fa-linkedin"></i>
+              <a href="{{user.linkedin.link}}">{{user.linkedin.link}}</a></span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
             <span *ngIf="user.email" id="emailContact" class="center"><b>Contact:</b> {{user.email}}</span>
           </div>
         </div>

@@ -33,16 +33,33 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
 
   onSubmit(event: Event) {
     const value = this.basicInfoForm.value;
-    const bio = value.bio;
-    const major = value.major;
-    const github = value.github;
-    const facebook = value.facebook;
-    const linkedin = value.linkedin;
+    const controls = this.basicInfoForm.controls;
+    const bio: string = value.bio;
+    const major: string = value.major;
+    const github: string = value.github;
+    const facebook: string = value.facebook;
+    const linkedin: string = value.linkedin;
     this.updateBio(bio);
     this.updateMajor(major);
+
+    if (!controls.github.valid) {
+      Materialize.toast('Your GitHub link must at the very least include github.com', 3000);
+      return false;
+    }
+
+    if (!controls.facebook.valid) {
+      Materialize.toast('Your Facebook link must at the very least include facebook.com', 3000);
+      return false;
+    }
+
+    if (!controls.linkedin.valid) {
+      Materialize.toast('Your LinkedIn link must at the very least include linkedin.com', 3000);
+      return false;
+    }
     this.updateGithub(github);
     this.updateFacebook(facebook);
     this.updateLinkedin(linkedin);
+    $(this.modalSelector).modal('close');
   }
 
   updateMajor(major: string) {
