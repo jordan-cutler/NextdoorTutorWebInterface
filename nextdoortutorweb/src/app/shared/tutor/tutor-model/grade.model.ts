@@ -21,6 +21,16 @@ export class Grade {
     return this._grade;
   }
 
+  public static getRank(grade: Grade): number {
+    if (Grade.isGradeValid(grade)) {
+      return Grade.VALID_GRADES.findIndex((element: Grade) => {
+        return element.grade === grade.grade;
+      });
+    } else {
+      return Number.MAX_VALUE;
+    }
+  }
+
   public static isGradeValid(grade: Grade): boolean {
     return Grade.VALID_GRADES.some((element: Grade) => {
       return element.grade === grade.grade;

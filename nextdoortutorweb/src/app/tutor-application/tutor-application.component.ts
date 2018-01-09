@@ -9,6 +9,8 @@ import { NgForm } from '@angular/forms';
 import { TutorService } from '../shared/tutor/tutor.service';
 import { Tutor } from '../shared/tutor/tutor-model/tutor.model';
 import { UserSessionService } from '../shared/user-session/user-session.service';
+import { Router } from '@angular/router';
+import { ApplicationGlobals } from '../shared/ApplicationGlobals';
 
 @Component({
   selector: 'app-tutor-application',
@@ -43,7 +45,8 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestr
   constructor(private courseService: CourseService,
               private userSessionService: UserSessionService,
               private preloaderService: PreloaderService,
-              private tutorService: TutorService) {
+              private tutorService: TutorService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -112,7 +115,8 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestr
       (successful: boolean) => {
         this.preloaderService.hide();
         if (successful) {
-          Materialize.toast('Thanks for becoming a ' + courseNumber + ' tutor! You can find yourself on the find a tutor page.', 4000);
+          this.router.navigate([ApplicationGlobals.FIND_TUTOR_ROUTE]); // this essentially is acting as a  clear form
+          Materialize.toast('Thanks for becoming a ' + courseNumber + ' tutor! You can find yourself on the find a tutor page now.', 4000);
         } else {
           Materialize.toast('Could not sign you up at the moment. Please try again later.', 3000);
         }
