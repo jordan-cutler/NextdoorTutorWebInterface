@@ -40,27 +40,51 @@ export class TutorListComponent implements OnInit, AfterViewInit {
     this.ascendingOrDescending = 'ascending';
   }
 
+  getGradeSort(a: Tutor, b: Tutor): number {
+    return Grade.getRank(new Grade(a.grade)) - Grade.getRank(new Grade(b.grade));
+  }
+
+  getHourlyRateSort(a: Tutor, b: Tutor): number {
+    return a.hourlyRate - b.hourlyRate;
+  }
+
   sortByHourlyRateAscending() {
     this.tutors.sort((a: Tutor, b: Tutor) => {
-      return a.hourlyRate - b.hourlyRate;
+      const rateSort = this.getHourlyRateSort(a, b);
+      if (rateSort === 0) {
+        return this.getGradeSort(a, b);
+      }
+      return rateSort;
     });
   }
 
   sortByHourlyRateDescending() {
     this.tutors.sort((a: Tutor, b: Tutor) => {
-      return b.hourlyRate - a.hourlyRate;
+      const rateSort = this.getHourlyRateSort(b, a);
+      if (rateSort === 0) {
+        return this.getGradeSort(a, b);
+      }
+      return rateSort;
     });
   }
 
   sortByGradeAscending() {
     this.tutors.sort((a: Tutor, b: Tutor) => {
-      return Grade.getRank(new Grade(b.grade)) - Grade.getRank(new Grade(a.grade));
+      const gradeSort = this.getGradeSort(b, a);
+      if (gradeSort === 0) {
+        return this.getHourlyRateSort(a, b);
+      }
+      return gradeSort;
     });
   }
 
   sortByGradeDescending() {
     this.tutors.sort((a: Tutor, b: Tutor) => {
-      return Grade.getRank(new Grade(a.grade)) - Grade.getRank(new Grade(b.grade));
+      const gradeSort = this.getGradeSort(a, b);
+      if (gradeSort === 0) {
+        return this.getHourlyRateSort(a, b);
+      }
+      return gradeSort;
     });
   }
 
