@@ -46,6 +46,16 @@ html, body{
   color: orange !important;
 }
 
+/* Radio button color */
+input[type="radio"].with-gap:checked+label:after {
+  background-color: orange !important;
+}
+/* Change color of border since using with-gap radio button */
+input[type="radio"].with-gap:checked+label:before,
+input[type="radio"].with-gap:checked+label:after {
+  border: 2px solid orange !important;
+}
+
 
 /* Change color of dropdown options */
 ul.dropdown-content.select-dropdown li span {
