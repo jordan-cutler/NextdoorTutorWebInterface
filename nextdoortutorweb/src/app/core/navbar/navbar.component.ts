@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { User } from '../shared/user/user-model/user.model';
-import { UserSessionService } from '../shared/user-session/user-session.service';
-import { AuthService } from '../auth/auth.service';
+import { User } from '../../shared/user/user-model/user.model';
+import { UserSessionService } from '../../shared/user-session/user-session.service';
+import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
-import { ApplicationGlobals } from '../shared/ApplicationGlobals';
+import { ApplicationGlobals } from '../../shared/ApplicationGlobals';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({

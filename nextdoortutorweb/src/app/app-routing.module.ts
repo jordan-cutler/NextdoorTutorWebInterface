@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './core/home/home.component';
 import { FindTutorComponent } from './find-tutor/find-tutor.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { TutorApplicationComponent } from './tutor-application/tutor-application.component';
@@ -15,7 +15,8 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})],
+  providers: [AuthGuard],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

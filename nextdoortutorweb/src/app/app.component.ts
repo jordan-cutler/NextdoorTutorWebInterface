@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { Subscription } from 'rxjs/Subscription';
-import { PreloaderService } from './shared/preloader/preloader.service';
-import { PreloaderState } from './shared/preloader/PreloaderState';
+import { PreloaderService } from './core/preloader/preloader.service';
+import { PreloaderState } from './core/preloader/PreloaderState';
 
 @Component({
   selector: 'app-root',

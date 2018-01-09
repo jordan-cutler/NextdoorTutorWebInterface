@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ImageService } from '../../../shared/image.service';
-import { PreloaderService } from '../../../shared/preloader/preloader.service';
+import { PreloaderService } from '../../../core/preloader/preloader.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 

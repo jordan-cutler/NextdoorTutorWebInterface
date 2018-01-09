@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 import 'rxjs/Rx';
 import { ApplicationGlobals } from '../shared/ApplicationGlobals';
-import { PreloaderService } from '../shared/preloader/preloader.service';
+import { PreloaderService } from '../core/preloader/preloader.service';
 
 @Injectable()
 export class AuthService {

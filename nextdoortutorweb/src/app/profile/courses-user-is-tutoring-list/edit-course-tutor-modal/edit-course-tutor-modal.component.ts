@@ -3,7 +3,7 @@ import { Tutor } from '../../../shared/tutor/tutor-model/tutor.model';
 import { NgForm } from '@angular/forms';
 import { TutorService } from '../../../shared/tutor/tutor.service';
 import { Subject } from 'rxjs/Subject';
-import { PreloaderService } from '../../../shared/preloader/preloader.service';
+import { PreloaderService } from '../../../core/preloader/preloader.service';
 import { TutorUpdateData } from '../../../shared/tutor/TutorUpdateData';
 import { Observable } from 'rxjs/Observable';
 

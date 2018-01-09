@@ -4,7 +4,7 @@ import { CourseService } from '../shared/course/course.service';
 import { Grade } from '../shared/tutor/tutor-model/grade.model';
 import { Semester } from '../shared/tutor/tutor-model/semester.model';
 import { Subscription } from 'rxjs/Subscription';
-import { PreloaderService } from '../shared/preloader/preloader.service';
+import { PreloaderService } from '../core/preloader/preloader.service';
 import { NgForm } from '@angular/forms';
 import { TutorService } from '../shared/tutor/tutor.service';
 import { Tutor } from '../shared/tutor/tutor-model/tutor.model';
