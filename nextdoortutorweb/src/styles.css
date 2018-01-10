@@ -49,7 +49,7 @@ html, body{
 
 
 /* for facebook, github, & linkedin icons */
-.social-icons.icon-circle .fa {
+.social-icons.icon-circle.fa {
   width: 20px;
   height: 20px;
   line-height: 20px;
@@ -65,6 +65,7 @@ html, body{
   font-size: 1.0em !important;
   border-radius: 5px;
 }
+
 .list-unstyled {
   padding-left: 0;
   list-style: none;
@@ -74,10 +75,6 @@ html, body{
   padding-right: 5px;
   padding-left: 5px;
   /*margin-bottom: 10px;*/
-}
-.wrapper {
-  /*padding: 20px;*/
-  text-align: center;
 }
 
 /* for facebook icon */
@@ -109,7 +106,7 @@ input[type="radio"].with-gap:checked+label:after {
 
 /* Change color of dropdown options */
 ul.dropdown-content.select-dropdown li span {
-  color: gray;  /*no need for !important :)*/ 
+  color: gray;  /*no need for !important :)*/
 }
 
 /* change color of auto complete options */
@@ -156,11 +153,11 @@ Makes the actual side nav brighter than everything else. Without this, the siden
   z-index: 1 !important;
 }
 
-.our-orange-background-color {
+.nt-orange-background {
   background-color: #fc7c25 !important;
 }
 
-.our-orange-text-color {
+.nt-orange-text {
   color: #fc7c25 !important;
 }
 

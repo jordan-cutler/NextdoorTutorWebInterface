@@ -10,7 +10,8 @@
          -->
         <div class="row">
           <div class="col s12">
-            <a class="right cursorPointer" (click)="createEditBasicInfoComponent()"><i class="material-icons" style="color: #fc7c25;">edit</i></a>
+            <a class="right cursorPointer" (click)="createEditBasicInfoComponent()"><i class="material-icons"
+                                                                                       style="color: #fc7c25;">edit</i></a>
           </div>
         </div>
 
@@ -26,7 +27,8 @@
                   <h6 class="mobile-hidden">Upload Profile Picture</h6>
                 </div>
               </label>
-              <input id="profileFileUploadInput" type="file" (change)="profilePhotoFileChange($event)" accept="image/png, image/jpeg, image/gif"/>
+              <input id="profileFileUploadInput" type="file" (change)="profilePhotoFileChange($event)"
+                     accept="image/png, image/jpeg, image/gif"/>
             </div>
           </div>
         </div>
@@ -38,48 +40,49 @@
         </div>
 
 
-        <div class="row wrapper">
+        <div class="row center">
           <div class="col s6">
             <table>
               <tr>
-                <th>Email:</th>
+                <th class="nt-orange-text">Email:</th>
                 <td><span *ngIf="user.email" id="emailContact" class="center">{{user.email}}</span></td>
               </tr>
               <tr>
-                <th>Bio:</th>
+                <th class="nt-orange-text">Bio:</th>
                 <td><span *ngIf="user.bio">{{user.bio}}</span>
-                <span *ngIf="!user.bio">You haven't set your bio yet!</span></td>
+                  <span *ngIf="!user.bio">You haven't set your bio yet!</span></td>
               </tr>
               <tr>
-                <th>Major:</th>
+                <th class="nt-orange-text">Major:</th>
                 <td><span *ngIf="user.major">{{user.major}} </span>
-                <span *ngIf="!user.major"> You haven't set your major yet! </span></td>
+                  <span *ngIf="!user.major"> You haven't set your major yet! </span></td>
               </tr>
             </table>
           </div>
-          
+
           <div class="col s6">
-            <ul class="social-icons icon-circle list-unstyled list-inline">
               <table width="45%">
-                <tr *ngIf="user.github?.link">
-                  <th><li><i class="fa fa-github" aria-hidden="true"></i></li></th>
-                    <td><a href="{{user.github.link}}" style="color: #fc7c25;">{{user.github.link}}</a></td>
+                <tr>
+                  <th><i class="fa fa-github social-icons icon-circle" aria-hidden="true"></i></th>
+                  <td *ngIf="user.github?.link"><a class="nt-orange-text" href="{{user.github.link}}">{{user.github.link}}</a></td>
+                  <td *ngIf="!user.github?.link">GitHub not set</td>
                 </tr>
 
-                <tr *ngIf="user.facebook?.link">
-                  <th><li><i class="fa fa-facebook" aria-hidden="true"></i></li></th>
-                  <td><a href="{{user.facebook.link}}" style="color: #fc7c25;">{{user.facebook.link}}</a></td>
+                <tr>
+                  <th><i class="fa fa-facebook social-icons icon-circle" aria-hidden="true"></i></th>
+                  <td *ngIf="user.facebook?.link"><a class="nt-orange-text" href="{{user.facebook.link}}">{{user.facebook.link}}</a></td>
+                  <td *ngIf="!user.facebook?.link">Facebook not set</td>
                 </tr>
 
-                <tr *ngIf="user.linkedin?.link">
-                  <th><li><i class="fa fa-linkedin"></i></li></th>
-                  <td><a href="{{user.linkedin.link}}" style="color: #fc7c25;">{{user.linkedin.link}}</a></td>
+                <tr>
+                  <th><i class="fa fa-linkedin social-icons icon-circle"></i></th>
+                  <td *ngIf="user.linkedin?.link"><a class="nt-orange-text" href="{{user.linkedin.link}}">{{user.linkedin.link}}</a></td>
+                  <td *ngIf="!user.linkedin?.link">LinkedIn not set</td>
                 </tr>
               </table>
-            </ul>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>

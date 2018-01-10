@@ -27,6 +27,7 @@
   }
 }
 
-b{
+/* Make all descriptors such as Hourly Rate our orange color */
+b {
   color: #fc7c25;
 }
