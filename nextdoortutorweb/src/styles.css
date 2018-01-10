@@ -55,8 +55,6 @@ html, body{
   line-height: 20px;
   text-align: center;
   color: white !important;
-  /*color: #FFF;
-  color: rgba(255, 255, 255, 0.8);*/
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -64,17 +62,6 @@ html, body{
   transition: all 0.3s ease-in-out;
   font-size: 1.0em !important;
   border-radius: 5px;
-}
-
-.list-unstyled {
-  padding-left: 0;
-  list-style: none;
-}
-.list-inline li {
-  display: inline-block;
-  padding-right: 5px;
-  padding-left: 5px;
-  /*margin-bottom: 10px;*/
 }
 
 /* for facebook icon */
