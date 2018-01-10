@@ -19,9 +19,9 @@
             <div id="profileImageContainer" class="media center image-upload">
               <label for="profileFileUploadInput">
                 <img id="profilePhoto" alt="Failed to load profile picture" class="media__image z-depth-3"
-                     *ngIf="profilePhotoRoute"
-                     appHttpImage [userIdUnderProfilePhoto]="user.userId" [askerId]="user.userId" #profilePhotoRef/>
-                <i *ngIf="!profilePhotoRoute" class="large material-icons">account_circle</i>
+                     *ngIf="hasProfilePhoto"
+                     appProfileImage [userIdUnderProfilePhoto]="user.userId" [askerId]="user.userId" #profilePhotoRef/>
+                <i *ngIf="!hasProfilePhoto" class="large material-icons">account_circle</i>
                 <div class="media__body cursorPointer">
                   <h6 class="mobile-hidden">Upload Profile Picture</h6>
                 </div>
@@ -49,30 +49,34 @@
         <div class="row">
           <div class="col s12">
             <span *ngIf="user.major"> {{user.major}} </span>
-            <span *ngIf="!user.major"> You haven't set your major yet! </span>
+            <span *ngIf="!user.major"> You haven't set your major yet!</span>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="user.github?.link">
           <div class="col s12">
-            <span *ngIf="user.github"><i class="fa fa-github" aria-hidden="true"></i>
-              <a href="{{user.github.link}}">{{user.github.link}}</a></span>
+            <span>
+              <i class="fa fa-github" aria-hidden="true"></i>
+              <a href="{{user.github.link}}">{{user.github.link}}</a>
+            </span>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="user.facebook?.link">
           <div class="col s12">
-            <span *ngIf="user.facebook">
+            <span>
               <i class="fa fa-facebook" aria-hidden="true"></i>
-              <a href="{{user.facebook.link}}">{{user.facebook.link}}</a></span>
+              <a href="{{user.facebook.link}}">{{user.facebook.link}}</a>
+            </span>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="user.linkedin?.link">
           <div class="col s12">
-            <span *ngIf="user.linkedin">
+            <span>
               <i class="fa fa-linkedin"></i>
-              <a href="{{user.linkedin.link}}">{{user.linkedin.link}}</a></span>
+              <a href="{{user.linkedin.link}}">{{user.linkedin.link}}</a>
+            </span>
           </div>
         </div>
 

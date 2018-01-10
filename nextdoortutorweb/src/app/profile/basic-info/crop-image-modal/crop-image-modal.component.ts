@@ -3,6 +3,7 @@ import { ImageService } from '../../../shared/image.service';
 import { PreloaderService } from '../../../core/preloader/preloader.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import { CropImageService } from './crop-image.service';
 
 @Component({
   selector: 'app-crop-image-modal',
@@ -19,10 +20,11 @@ export class CropImageModalComponent implements OnInit, AfterViewInit {
 
   private $cropImage;
 
-  private successfulUploadImageEvent = new Subject();
+  // private successfulUploadImageEvent = new Subject();
 
   constructor(private imageService: ImageService,
               private cd: ChangeDetectorRef,
+              private cropImageService: CropImageService,
               private preloaderService: PreloaderService) {
   }
 
@@ -71,11 +73,12 @@ export class CropImageModalComponent implements OnInit, AfterViewInit {
       this.imageService.uploadProfilePictureToServer(blob).subscribe(
         () => {
           this.preloaderService.hide();
-          this.successfulUploadImageEvent.next();
+          this.cropImageService.sendSuccessfulImageUploadedEvent();
         },
         (error) => {
+          console.log(error);
           this.preloaderService.hide();
-          if (error.responseJSON.description === 'Must be less than 5 MB in size') {
+          if (error.message === 'Must be less than 5 MB in size') {
             Materialize.toast('Please upload a file with size < 5MB', 3000);
           } else {
             Materialize.toast('Failed to upload new profile image. Try again later.', 3000);
@@ -83,10 +86,6 @@ export class CropImageModalComponent implements OnInit, AfterViewInit {
         }
       );
     });
-  }
-
-  getSuccessfulImageUploadObservable(): Observable<any> {
-    return this.successfulUploadImageEvent.asObservable();
   }
 
 }

@@ -19,7 +19,7 @@ export class ImageService {
   uploadProfilePictureToServer(file: File | Blob) {
     const currentUserId = this.userSessionService.getCurrentUser().userId;
     return this.httpClient.post(
-      ImageService.POSTPROFILEPICTUREROUTE + '/' + currentUserId,
+      ImageService.POSTPROFILEPICTUREROUTE,
       file,
       { headers: new HttpHeaders().append('Content-Type', file.type) }
     );
@@ -36,12 +36,4 @@ export class ImageService {
     return ImageService.GETPROFILEPICTUREROUTE + '/' + userId + ImageService.generateNewQueryString(askerId);
   }
 
-  hideImagesUntilLoaded(preloaderSelector: string, imagesSelector: string) {
-    // $(imagesSelector).hide();
-    // $(preloaderSelector).show();
-    // setTimeout(function() {
-    //   $(preloaderSelector).hide();
-    //   $(imagesSelector).show();
-    // }, 1700);
-  }
 }
