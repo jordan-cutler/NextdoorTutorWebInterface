@@ -2,14 +2,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CourseService } from '../shared/course/course.service';
 import { Course } from '../shared/course/course.model';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
 import { TutorService } from '../shared/tutor/tutor.service';
 import { Tutor } from '../shared/tutor/tutor-model/tutor.model';
+import { TutorSortService } from './tutor-list/tutor-sort.service';
 
 @Component({
   selector: 'app-find-tutor',
   templateUrl: './find-tutor.component.html',
-  styleUrls: ['./find-tutor.component.css']
+  styleUrls: ['./find-tutor.component.css'],
+  providers: [TutorSortService]
 })
 export class FindTutorComponent implements OnInit, OnDestroy {
   private coursesWithTutorsSubscription: Subscription;
@@ -19,7 +20,9 @@ export class FindTutorComponent implements OnInit, OnDestroy {
   selectedCourseNumber: string;
   tutorsForSelectedCourse: Tutor[];
 
-  constructor(private courseService: CourseService, private tutorService: TutorService) { }
+  constructor(private courseService: CourseService,
+              private tutorService: TutorService,
+              private tutorSortService: TutorSortService) { }
 
   ngOnInit() {
     this.coursesWithTutorsSubscription = this.getCoursesWithTutorsSubscription();
@@ -38,6 +41,7 @@ export class FindTutorComponent implements OnInit, OnDestroy {
     this.tutorsForSelectedCourseSubscription = this.tutorService.getTutorsForCourse(courseNumber).subscribe(
       (tutors: Tutor[]) => {
         this.tutorsForSelectedCourse = tutors;
+        this.tutorSortService.sortByCurrent(this.tutorsForSelectedCourse);
       }
     );
   }

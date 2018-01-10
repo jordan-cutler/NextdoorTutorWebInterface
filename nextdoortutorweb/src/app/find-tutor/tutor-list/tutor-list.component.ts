@@ -9,6 +9,10 @@ import { EmailTutorService } from './email-tutor-modal/email-tutor.service';
 import { DataNeededToFormEmailToTutor } from './email-tutor-modal/DataNeededToFormEmailToTutor';
 import { EmailTutorModalComponent } from './email-tutor-modal/email-tutor-modal.component';
 import { Grade } from '../../shared/tutor/tutor-model/grade.model';
+import { FindTutorService } from '../find-tutor.service';
+import { Subscription } from 'rxjs/Subscription';
+import { TutorService } from '../../shared/tutor/tutor.service';
+import { TutorSortService } from './tutor-sort.service';
 
 @Component({
   selector: 'app-tutor-list',
@@ -23,11 +27,8 @@ export class TutorListComponent implements OnInit, AfterViewInit {
   emailTutorModalFactory: ComponentFactory<EmailTutorModalComponent>;
   emailTutorModalComponent: ComponentRef<EmailTutorModalComponent>;
 
-  currentlySortingBy: string;
-  ascendingOrDescending: string;
-
-  constructor(public imageService: ImageService,
-              public userSessionService: UserSessionService,
+  constructor(public userSessionService: UserSessionService,
+              private tutorSortService: TutorSortService,
               private componentFactoryResolver: ComponentFactoryResolver,
               private viewContainerRef: ViewContainerRef) {
   }
@@ -35,93 +36,22 @@ export class TutorListComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.currentUserId = this.userSessionService.getCurrentUser().userId;
     this.emailTutorModalFactory = this.componentFactoryResolver.resolveComponentFactory(EmailTutorModalComponent);
-    this.sortByHourlyRateAscending();
-    this.currentlySortingBy = 'hourlyRate';
-    this.ascendingOrDescending = 'ascending';
   }
 
-  getGradeSort(a: Tutor, b: Tutor): number {
-    return Grade.getRank(new Grade(a.grade)) - Grade.getRank(new Grade(b.grade));
+  onSortAscendingClick() {
+    this.tutorSortService.sortAscending(this.tutors);
   }
 
-  getHourlyRateSort(a: Tutor, b: Tutor): number {
-    return a.hourlyRate - b.hourlyRate;
-  }
-
-  sortByHourlyRateAscending() {
-    this.tutors.sort((a: Tutor, b: Tutor) => {
-      const rateSort = this.getHourlyRateSort(a, b);
-      if (rateSort === 0) {
-        return this.getGradeSort(a, b);
-      }
-      return rateSort;
-    });
-  }
-
-  sortByHourlyRateDescending() {
-    this.tutors.sort((a: Tutor, b: Tutor) => {
-      const rateSort = this.getHourlyRateSort(b, a);
-      if (rateSort === 0) {
-        return this.getGradeSort(a, b);
-      }
-      return rateSort;
-    });
-  }
-
-  sortByGradeAscending() {
-    this.tutors.sort((a: Tutor, b: Tutor) => {
-      const gradeSort = this.getGradeSort(b, a);
-      if (gradeSort === 0) {
-        return this.getHourlyRateSort(a, b);
-      }
-      return gradeSort;
-    });
-  }
-
-  sortByGradeDescending() {
-    this.tutors.sort((a: Tutor, b: Tutor) => {
-      const gradeSort = this.getGradeSort(a, b);
-      if (gradeSort === 0) {
-        return this.getHourlyRateSort(a, b);
-      }
-      return gradeSort;
-    });
-  }
-
-  sortAscending() {
-    this.ascendingOrDescending = 'ascending';
-    if (this.currentlySortingBy === 'hourlyRate') {
-      this.sortByHourlyRateAscending();
-    } else if (this.currentlySortingBy === 'grade') {
-      this.sortByGradeAscending();
-    }
-  }
-
-  sortDescending() {
-    this.ascendingOrDescending = 'descending';
-    if (this.currentlySortingBy === 'hourlyRate') {
-      this.sortByHourlyRateDescending();
-    } else if (this.currentlySortingBy === 'grade') {
-      this.sortByGradeDescending();
-    }
+  onSortDescendingClick() {
+    this.tutorSortService.sortDescending(this.tutors);
   }
 
   onSortByHourlyRateClick() {
-    this.currentlySortingBy = 'hourlyRate';
-    if (this.ascendingOrDescending === 'ascending') {
-      this.sortByHourlyRateAscending();
-    } else if (this.ascendingOrDescending === 'descending') {
-      this.sortByHourlyRateDescending();
-    }
+    this.tutorSortService.sortByHourlyRate(this.tutors);
   }
 
   onSortByGradeClick() {
-    this.currentlySortingBy = 'grade';
-    if (this.ascendingOrDescending === 'ascending') {
-      this.sortByGradeAscending();
-    } else if (this.ascendingOrDescending === 'descending') {
-      this.sortByGradeDescending();
-    }
+    this.tutorSortService.sortByGrade(this.tutors);
   }
 
   ngAfterViewInit() {

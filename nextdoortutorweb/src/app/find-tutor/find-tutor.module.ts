@@ -5,6 +5,7 @@ import { TutorListComponent } from './tutor-list/tutor-list.component';
 import { EmailTutorModalComponent } from './tutor-list/email-tutor-modal/email-tutor-modal.component';
 import { EmailTutorService } from './tutor-list/email-tutor-modal/email-tutor.service';
 import { SharedModule } from '../shared/shared.module';
+import { FindTutorService } from './find-tutor.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     SharedModule
   ],
-  providers: [EmailTutorService]
+  providers: [EmailTutorService, FindTutorService]
 })
 export class FindTutorModule {
 
