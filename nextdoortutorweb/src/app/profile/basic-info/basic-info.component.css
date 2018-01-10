@@ -96,3 +96,14 @@
   opacity: 1;
 }
 
+th {
+  color: #fc7c25;
+}
+
+table, th, td {
+  text-align: left;
+}
+
+
+
+

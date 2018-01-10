@@ -38,8 +38,8 @@
         </div>
 
 
-        <!-- <div class="row">
-          <div class="col s6 offset-s4">
+        <div class="row wrapper">
+          <div class="col s6">
             <table>
               <tr>
                 <th>Email:</th>
@@ -57,58 +57,29 @@
               </tr>
             </table>
           </div>
-        </div>
-        <br> -->
+          
+          <div class="col s6">
+            <ul class="social-icons icon-circle list-unstyled list-inline">
+              <table width="45%">
+                <tr *ngIf="user.github?.link">
+                  <th><li><i class="fa fa-github" aria-hidden="true"></i></li></th>
+                    <td><a href="{{user.github.link}}" style="color: #fc7c25;">{{user.github.link}}</a></td>
+                </tr>
 
-        <div class="row">
-          <div class="col s12">
-            <span *ngIf="user.email" id="emailContact" class="center"><b style="color: #fc7c25;">Email:</b> {{user.email}}</span>
+                <tr *ngIf="user.facebook?.link">
+                  <th><li><i class="fa fa-facebook" aria-hidden="true"></i></li></th>
+                  <td><a href="{{user.facebook.link}}" style="color: #fc7c25;">{{user.facebook.link}}</a></td>
+                </tr>
+
+                <tr *ngIf="user.linkedin?.link">
+                  <th><li><i class="fa fa-linkedin"></i></li></th>
+                  <td><a href="{{user.linkedin.link}}" style="color: #fc7c25;">{{user.linkedin.link}}</a></td>
+                </tr>
+              </table>
+            </ul>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col s12">
-            <p id="userBio" class="center">
-              <span *ngIf="user.bio"><b style="color: #fc7c25;">Bio:</b> {{user.bio}}</span>
-              <span *ngIf="!user.bio">You haven't set your bio yet!</span>
-            </p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col s12">
-            <span *ngIf="user.major"><b style="color: #fc7c25;">Major:</b> {{user.major}} </span>
-            <span *ngIf="!user.major"> You haven't set your major yet! </span>
-          </div>
-        </div>
-        <br>
-
-        <div class="row wrapper" *ngIf="user.github?.link">
-          <ul class="social-icons icon-circle list-unstyled list-inline">
-            <span>
-              <li><i class="fa fa-github" aria-hidden="true"></i>
-              <a href="{{user.github.link}}" style="color: #fc7c25;">{{user.github.link}}</a></li>
-            </span>
-          </ul>
-        </div>
-
-        <div class="row wrapper" *ngIf="user.facebook?.link">
-          <ul class="social-icons icon-circle list-unstyled list-inline">
-            <span>
-              <li><i class="fa fa-facebook" aria-hidden="true"></i>
-              <a href="{{user.facebook.link}}" style="color: #fc7c25;">{{user.facebook.link}}</a></li>
-            </span>
-          </ul>
-        </div>
-
-        <div class="row wrapper" *ngIf="user.linkedin?.link">
-          <ul class="social-icons icon-circle list-unstyled list-inline">
-            <span>
-              <li><i class="fa fa-linkedin"></i>
-              <a href="{{user.linkedin.link}}" style="color: #fc7c25;">{{user.linkedin.link}}</a></li>
-            </span>
-          </ul>
-        </div>
+        
       </div>
     </div>
   </div>

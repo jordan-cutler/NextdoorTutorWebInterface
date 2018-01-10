@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-$nt-orange: #fc7c25;
 
 body {
   -webkit-text-size-adjust:100%;
@@ -26,17 +25,17 @@ html, body{
 }
 /* label focus color */
 .input-field input[type=text]:focus + label {
-  color: orange !important;
+  color: #fc7c25 !important;
 }
 /* label underline focus color */
 .input-field input[type=text]:focus {
-  border-bottom: 1px solid orange !important;
-  box-shadow: 0 1px 0 0 orange !important;
+  border-bottom: 1px solid #fc7c25 !important;
+  box-shadow: 0 1px 0 0 #fc7c25 !important;
 }
 /* valid color */
 .input-field input[type=text].valid {
-  border-bottom: 1px solid orange !important;
-  box-shadow: 0 1px 0 0 orange !important;
+  border-bottom: 1px solid #fc7c25 !important;
+  box-shadow: 0 1px 0 0 #fc7c25 !important;
 }
 /* invalid color */
 .input-field input[type=text].invalid {
@@ -45,7 +44,7 @@ html, body{
 }
 /* icon prefix focus color */
 .input-field .prefix.active {
-  color: orange !important;
+  color: #fc7c25 !important;
 }
 
 
@@ -99,55 +98,55 @@ i.fa-linkedin{
 
 /* Radio button color */
 input[type="radio"].with-gap:checked+label:after {
-  background-color: orange !important;
+  background-color: #fc7c25 !important;
 }
 /* Change color of border since using with-gap radio button */
 input[type="radio"].with-gap:checked+label:before,
 input[type="radio"].with-gap:checked+label:after {
-  border: 2px solid orange !important;
+  border: 2px solid #fc7c25 !important;
 }
 
 
 /* Change color of dropdown options */
 ul.dropdown-content.select-dropdown li span {
-  color: orange; /* no need for !important :) */
+  color: gray;  /*no need for !important :)*/ 
 }
 
 /* change color of auto complete options */
 .dropdown-content li>span {
-  color: orange !important;
+  color: gray !important;
 }
 
 /* Edit slider colors */
 input[type=range]::-webkit-slider-thumb {
-  background-color: orange !important;
+  background-color: #fc7c25 !important;
 }
 input[type=range]::-moz-range-thumb {
-  background-color: orange !important;
+  background-color: #fc7c25 !important;
 }
 input[type=range]::-ms-thumb {
-  background-color: orange !important;
+  background-color: #fc7c25 !important;
 }
 
 /***** These are to edit the thumb and the text inside the thumb *****/
 input[type=range] + .thumb {
-  background-color: orange !important;
+  background-color: #fc7c25 !important;
 }
 
 .input[type=range] + .thumb {
-  background-color: orange !important;
+  background-color: #fc7c25 !important;
 }
 
 .range-field + .thumb {
-  background-color: orange !important;
+  background-color: #fc7c25 !important;
 }
 
 .noUI-background {
-  background: orange !important;
+  background: #fc7c25 !important;
 }
 
 .range-label{
-  background-color: orange !important;
+  background-color: #fc7c25 !important;
 }
 
 /*

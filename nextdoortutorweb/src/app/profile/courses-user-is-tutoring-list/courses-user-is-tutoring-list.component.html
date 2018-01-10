@@ -6,7 +6,7 @@
       </div>
       <div *ngIf="courses">
         <a *ngFor="let course of courses" (click)="onCourseClick(course)"
-           class="collection-item cursorPointer center orange-text">
+           class="collection-item cursorPointer center" style="color: #fc7c25;">
           {{course.courseNumber}} {{course.title}}
         </a>
       </div>
