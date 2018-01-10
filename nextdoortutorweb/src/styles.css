@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
+$nt-orange: #fc7c25;
+
 body {
   -webkit-text-size-adjust:100%;
   /*
@@ -45,6 +47,55 @@ html, body{
 .input-field .prefix.active {
   color: orange !important;
 }
+
+
+/* for facebook, github, & linkedin icons */
+.social-icons.icon-circle .fa {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  color: white !important;
+  /*color: #FFF;
+  color: rgba(255, 255, 255, 0.8);*/
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  font-size: 1.0em !important;
+  border-radius: 5px;
+}
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+.list-inline li {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+  /*margin-bottom: 10px;*/
+}
+.wrapper {
+  /*padding: 20px;*/
+  text-align: center;
+}
+
+/* for facebook icon */
+i.fa-facebook{
+  background-color:#3C599F;
+}
+
+/* for github icon */
+i.fa-github{
+  background-color:#070709;
+}
+
+/* for linkedin icon */
+i.fa-linkedin{
+  background-color:#0085AE;
+}
+
 
 /* Radio button color */
 input[type="radio"].with-gap:checked+label:after {
