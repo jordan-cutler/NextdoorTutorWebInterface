@@ -13,6 +13,7 @@ export class TutorService {
   private static readonly ADDTUTORROUTE = '/api/tutors/add';
   private static readonly GETUTORSFORCOURSEROUTE = '/api/tutors/course';
   private static readonly GETTUTORROUTE = '/api/tutors';
+  private static readonly INSTRUCTORENDORSEMENTROUTE = '/api/tutors/instructorEndorse';
   private static readonly DELETETUTORROUTE = '/api/tutors/delete';
   private static readonly UPDATETUTORROUTE = '/api/tutors';
 
@@ -51,6 +52,16 @@ export class TutorService {
       .map( (tutor) => {
         return Tutor.tutorJsonToTutorModel(tutor);
     });
+  }
+
+  giveInstructorEndorsement(tutorId: string, tutorCourseNumber: string): Observable<boolean> {
+    return this.httpClient.put<boolean>(
+      TutorService.INSTRUCTORENDORSEMENTROUTE,
+      {
+        tutorId: tutorId,
+        courseNumber: tutorCourseNumber
+      }
+    );
   }
 
   removeCurrentUserFromCourseTutor(courseNumber: string): Observable<boolean> {

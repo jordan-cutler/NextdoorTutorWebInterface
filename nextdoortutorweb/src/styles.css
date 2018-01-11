@@ -152,6 +152,14 @@ Makes the actual side nav brighter than everything else. Without this, the siden
   cursor: pointer;
 }
 
+.two-lined-button {
+  height: auto !important;
+  min-height: 20px !important;
+  line-height: 20px !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
 @media only screen and (min-width: 992px) {
   #toast-container {
     position: fixed !important;

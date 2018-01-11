@@ -1,5 +1,5 @@
 import {
-  AfterViewInit, Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, Input, OnInit,
+  AfterViewInit, Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, Input, OnDestroy, OnInit,
   ViewContainerRef
 } from '@angular/core';
 import { Tutor } from '../../shared/tutor/tutor-model/tutor.model';
@@ -13,28 +13,34 @@ import { FindTutorService } from '../find-tutor.service';
 import { Subscription } from 'rxjs/Subscription';
 import { TutorService } from '../../shared/tutor/tutor.service';
 import { TutorSortService } from './tutor-sort.service';
+import { User } from '../../shared/user/user-model/user.model';
 
 @Component({
   selector: 'app-tutor-list',
   templateUrl: './tutor-list.component.html',
   styleUrls: ['./tutor-list.component.css']
 })
-export class TutorListComponent implements OnInit, AfterViewInit {
+export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() tutors: Tutor[];
 
-  currentUserId: string;
+  currentUser: User;
+  currentUserSubscription: Subscription;
 
   emailTutorModalFactory: ComponentFactory<EmailTutorModalComponent>;
   emailTutorModalComponent: ComponentRef<EmailTutorModalComponent>;
 
   constructor(public userSessionService: UserSessionService,
               private tutorSortService: TutorSortService,
+              private tutorService: TutorService,
               private componentFactoryResolver: ComponentFactoryResolver,
               private viewContainerRef: ViewContainerRef) {
   }
 
   ngOnInit() {
-    this.currentUserId = this.userSessionService.getCurrentUser().userId;
+    this.currentUser = this.userSessionService.getCurrentUser();
+    this.currentUserSubscription = this.userSessionService.getCurrentUserObservable().subscribe(
+      (user: User) => this.currentUser = user
+    );
     this.emailTutorModalFactory = this.componentFactoryResolver.resolveComponentFactory(EmailTutorModalComponent);
   }
 
@@ -71,6 +77,32 @@ export class TutorListComponent implements OnInit, AfterViewInit {
     this.createEmailTutorModalComponent(emailTutorData);
   }
 
+  instructorEndorseTutor(event: Event, tutorId: string, tutorCourseNumber: string, tutor: Tutor, instructorName: string) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.tutorService.giveInstructorEndorsement(tutorId, tutorCourseNumber).subscribe(
+      (isSuccessful: boolean) => {
+        if (isSuccessful) {
+          tutor.instructorNameWhoEndorsed = instructorName;
+        } else {
+          Materialize.toast(
+            'Failed to endorse tutor. Make sure you check with Jordan Cutler that you are registered as an instructor',
+            3000);
+        }
+      },
+      (error) => {
+        Materialize.toast(
+          'Failed to endorse tutor. Make sure you check with Jordan Cutler that you are registered as an instructor',
+          3000);
+      }
+    );
+  }
+
+  removeInstructorEndorsement(event: Event, tutorId: string, tutorCourseNumber: string, tutor: Tutor, instructorName: string) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   createEmailTutorModalComponent(emailTutorData: DataNeededToFormEmailToTutor) {
     if (this.emailTutorModalComponent) {
       this.emailTutorModalComponent.destroy();
@@ -78,5 +110,9 @@ export class TutorListComponent implements OnInit, AfterViewInit {
     this.emailTutorModalComponent = this.viewContainerRef.createComponent(this.emailTutorModalFactory);
     this.emailTutorModalComponent.instance.emailTutorData = emailTutorData;
     this.emailTutorModalComponent.changeDetectorRef.detectChanges();
+  }
+
+  ngOnDestroy() {
+    this.currentUserSubscription.unsubscribe();
   }
 }

@@ -11,11 +11,13 @@
             <div class="col s5">
               <form action="#">
                 <p>
-                  <input class="with-gap" name="group1" type="radio" id="hourlyRateSorterRadio" (click)="onSortByHourlyRateClick()" checked />
+                  <input class="with-gap" name="group1" type="radio" id="hourlyRateSorterRadio"
+                         (click)="onSortByHourlyRateClick()" checked/>
                   <label for="hourlyRateSorterRadio">Hourly Rate</label>
                 </p>
                 <p>
-                  <input class="with-gap" name="group1" type="radio" id="gradeSorterRadio" (click)="onSortByGradeClick()" />
+                  <input class="with-gap" name="group1" type="radio" id="gradeSorterRadio"
+                         (click)="onSortByGradeClick()"/>
                   <label for="gradeSorterRadio">Grade</label>
                 </p>
               </form>
@@ -24,11 +26,13 @@
             <div class="col s5">
               <form action="#">
                 <p>
-                  <input class="with-gap" name="group2" type="radio" id="ascendingSorterRadio" (click)="onSortAscendingClick()" checked />
+                  <input class="with-gap" name="group2" type="radio" id="ascendingSorterRadio"
+                         (click)="onSortAscendingClick()" checked/>
                   <label for="ascendingSorterRadio">Ascending</label>
                 </p>
                 <p>
-                  <input class="with-gap" name="group2" type="radio" id="descendingSorterRadio" (click)="onSortDescendingClick()" />
+                  <input class="with-gap" name="group2" type="radio" id="descendingSorterRadio"
+                         (click)="onSortDescendingClick()"/>
                   <label for="descendingSorterRadio">Descending</label>
                 </p>
               </form>
@@ -45,21 +49,56 @@
       <div class="row collapsible-header valign-wrapper">
         <img
           class="profileImg col s2 z-depth-2"
-          appHttpImage [userIdUnderProfilePhoto]="tutor.user.userId" [askerId]="currentUserId"
+          appHttpImage [userIdUnderProfilePhoto]="tutor.user.userId" [askerId]="currentUser.userId"
           alt="No profile picture"
         />
-        <div class="col s5">
+        <div class="col s2 m1">
           <span>{{tutor.user.name}}</span>
         </div>
+        <div class="col s2 m3 center">
+          <div *ngIf="tutor.instructorNameWhoEndorsed">
+            <div class="row">
+              <div class="col s12">
+                <i class="material-icons nt-orange-text">verified_user</i>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <span>{{tutor.instructorNameWhoEndorsed | professor}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="col s2">
-          <span *ngIf="tutor.grade && tutor.hourlyRate">{{tutor.grade}} / ${{tutor.hourlyRate}}</span>
+          <span *ngIf="tutor.grade && tutor.hourlyRate">
+            {{tutor.grade}} <span class="hide-on-small-only">/</span> ${{tutor.hourlyRate}}
+          </span>
           <span *ngIf="!tutor.grade && tutor.hourlyRate">Not taken / ${{tutor.hourlyRate}}</span>
         </div>
-        <div class="col s3">
+        <div class="col s4 center">
+          <!-- Only displayed for normal users -->
           <button
-            class="btn TutorSelection-bookTutorButton nt-orange-background"
-            (click)="onBookTutor($event, tutor.user.email, tutor.courseNumber, tutor.user.name)">
+            class="btn nt-orange-background"
+            (click)="onBookTutor($event, tutor.user.email, tutor.courseNumber, tutor.user.name)"
+            *ngIf="!currentUser.isInstructor">
             Email Tutor <i class="material-icons right">contact_mail</i>
+          </button>
+
+          <!-- Only displayed if tutor has not already been endorsed and the current user is an instructor -->
+          <button
+            class="btn nt-orange-background"
+            type="button"
+            (click)="instructorEndorseTutor($event, tutor.user.userId, tutor.courseNumber, tutor, currentUser.name)"
+            *ngIf="!tutor.instructorNameWhoEndorsed && currentUser.isInstructor">
+            Endorse
+          </button>
+
+          <!-- Only displayed if the person who endorsed the tutor is the current user and the current user is an instructor -->
+          <button
+            class="btn two-lined-button nt-orange-background"
+            (click)="removeInstructorEndorsement($event, tutor.user.userId, tutor.courseNumber, tutor, currentUser.name)"
+            *ngIf="tutor.instructorNameWhoEndorsed === currentUser.name && currentUser.isInstructor">
+            Remove Endorsement
           </button>
         </div>
       </div>

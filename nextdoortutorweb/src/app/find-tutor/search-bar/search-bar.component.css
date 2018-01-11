@@ -20,7 +20,7 @@ input[type=search]:not(.browser-default):focus:not([readonly])+label, textarea.m
 
 @media only screen and (max-width: 992px) {
   .container {
-    width: 95%;
+    width: 100%;
   }
 }
 
