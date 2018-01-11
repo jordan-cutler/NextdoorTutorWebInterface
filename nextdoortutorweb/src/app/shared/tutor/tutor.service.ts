@@ -13,11 +13,11 @@ export class TutorService {
   private static readonly ADDTUTORROUTE = '/api/tutors/add';
   private static readonly GETUTORSFORCOURSEROUTE = '/api/tutors/course';
   private static readonly GETTUTORROUTE = '/api/tutors';
-  private static readonly INSTRUCTORENDORSEMENTROUTE = '/api/tutors/instructorEndorse';
+  private static readonly INSTRUCTORENDORSEROUTE = '/api/tutors/instructorEndorse';
+  private static readonly REMOVEINSTRUCTORENDORSEMENTROUTE = '/api/tutors/removeInstructorEndorsement';
   private static readonly DELETETUTORROUTE = '/api/tutors/delete';
   private static readonly UPDATETUTORROUTE = '/api/tutors';
-
-  constructor(private httpClient: HttpClient, private userSessionService: UserSessionService) {
+  constructor(private httpClient: HttpClient) {
   }
 
   addTutor(tutor: Tutor): Observable<boolean> {
@@ -56,7 +56,17 @@ export class TutorService {
 
   giveInstructorEndorsement(tutorId: string, tutorCourseNumber: string): Observable<boolean> {
     return this.httpClient.put<boolean>(
-      TutorService.INSTRUCTORENDORSEMENTROUTE,
+      TutorService.INSTRUCTORENDORSEROUTE,
+      {
+        tutorId: tutorId,
+        courseNumber: tutorCourseNumber
+      }
+    );
+  }
+
+  removeInstructorEndorsement(tutorId: string, tutorCourseNumber: string): Observable<boolean> {
+    return this.httpClient.put<boolean>(
+      TutorService.REMOVEINSTRUCTORENDORSEMENTROUTE,
       {
         tutorId: tutorId,
         courseNumber: tutorCourseNumber

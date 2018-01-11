@@ -101,6 +101,22 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
   removeInstructorEndorsement(event: Event, tutorId: string, tutorCourseNumber: string, tutor: Tutor, instructorName: string) {
     event.preventDefault();
     event.stopPropagation();
+    if (tutor.instructorNameWhoEndorsed !== instructorName) {
+      Materialize.toast('You are not allowed to remove a different professor endorsement', 3000);
+      return false;
+    }
+    this.tutorService.removeInstructorEndorsement(tutorId, tutorCourseNumber).subscribe(
+      (isSuccessful: boolean) => {
+        if (isSuccessful) {
+          tutor.instructorNameWhoEndorsed = null;
+        } else {
+          Materialize.toast('Failed to remove endorsement. Make sure you are the instructor who gave the endorsement', 3000);
+        }
+      },
+      (error) => {
+        Materialize.toast('Failed to remove endorsement. Make sure you are the instructor who gave the endorsement', 3000);
+      }
+    );
   }
 
   createEmailTutorModalComponent(emailTutorData: DataNeededToFormEmailToTutor) {
