@@ -12,7 +12,8 @@ export class User {
     public github: ProfilePageLink,
     public facebook: ProfilePageLink,
     public linkedin: ProfilePageLink,
-    public creationDate: Date
+    public creationDate: Date,
+    public isInstructor: boolean
   ) {
   }
 
@@ -27,12 +28,13 @@ export class User {
     const facebook = userJson.facebook == null ? null : ProfilePageLink.toModelFromJson(userJson.facebook);
     const linkedin = userJson.linkedin == null ? null : ProfilePageLink.toModelFromJson(userJson.linkedin);
     const creationDate = userJson.creationDate;
+    const isInstructor = userJson.isInstructor;
 
     return new User(
       userId, email, name,
       profilePhotoId, bio, major,
       github, facebook, linkedin,
-      creationDate
+      creationDate, isInstructor
     );
   }
 }

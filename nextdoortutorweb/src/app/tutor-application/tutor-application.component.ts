@@ -75,6 +75,7 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestr
     const instructor = this.applicationForm.value.instructor;
     const pastExperience = this.applicationForm.value.pastExperience;
     const notes = this.applicationForm.value.notes;
+    const instructorNameWhoEndorsed: string = null;
 
     let invalid = false;
     if (hasTakenCourse) {
@@ -108,7 +109,7 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestr
     const currentUser = this.userSessionService.getCurrentUser();
     const tutor = new Tutor(
       currentUser, hourlyRate, courseNumber, grade, instructor,
-      pastExperience, notes, semester, hasTakenCourse
+      pastExperience, notes, semester, hasTakenCourse, instructorNameWhoEndorsed
     );
     this.preloaderService.show();
     this.tutorService.addTutor(tutor).subscribe(

@@ -12,7 +12,8 @@ export class Tutor {
     public pastExperience: string,
     public notes: string,
     public semesterTaken: Semester,
-    public hasTakenCourse: boolean
+    public hasTakenCourse: boolean,
+    public instructorNameWhoEndorsed: string
   ) {
   }
 
@@ -28,10 +29,12 @@ export class Tutor {
     const semester: string = tutorJson.semesterTaken.term;
     const semesterTaken: Semester = new Semester(semester, yearTaken);
     const hasTakenCourse: boolean = tutorJson.hasTakenCourse;
+    const instructorNameWhoEndorsed: string = tutorJson.instructorNameWhoEndorsed;
 
     return new Tutor(
       user, hourlyRate, courseNumber,
-      grade, instructor, pastExperience, notes, semesterTaken, hasTakenCourse
+      grade, instructor, pastExperience,
+      notes, semesterTaken, hasTakenCourse, instructorNameWhoEndorsed
     );
   }
 }
