@@ -19,7 +19,7 @@ import { UserSessionService } from '../../shared/user-session/user-session.servi
 @Component({
   selector: 'app-basic-info',
   templateUrl: './basic-info.component.html',
-  styleUrls: ['./basic-info.component.css']
+  styleUrls: ['./basic-info.component.scss']
 })
 export class BasicInfoComponent implements OnInit {
   @ViewChild('profilePhotoRef') profilePhotoRef: ElementRef;
@@ -40,9 +40,7 @@ export class BasicInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.user.profilePhotoId) {
-      this.hasProfilePhoto = true;
-    }
+    this.hasProfilePhoto = !!this.user.profilePhotoId;
     this.userUpdatedSubscription = this.userSessionService.getCurrentUserObservable().subscribe(
       (user: User) => {
         this.user = user;

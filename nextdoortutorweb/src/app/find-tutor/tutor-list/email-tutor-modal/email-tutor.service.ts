@@ -1,8 +1,6 @@
-import { Subject } from 'rxjs/Subject';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { DataNeededToFormEmailToTutor } from './DataNeededToFormEmailToTutor';
 
 @Injectable()
 export class EmailTutorService {

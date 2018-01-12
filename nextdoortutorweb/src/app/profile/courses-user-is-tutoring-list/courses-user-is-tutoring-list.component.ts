@@ -1,49 +1,42 @@
-import {
-  ChangeDetectorRef,
-  Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, Input, OnInit,
-  ViewContainerRef
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { Course } from '../../shared/course/course.model';
 import { CourseService } from '../../shared/course/course.service';
-import { Observable } from 'rxjs/Observable';
-import { UserSessionService } from '../../shared/user-session/user-session.service';
 import { EditCourseTutorModalComponent } from './edit-course-tutor-modal/edit-course-tutor-modal.component';
 import { TutorService } from '../../shared/tutor/tutor.service';
 import { Tutor } from '../../shared/tutor/tutor-model/tutor.model';
 import { Subscription } from 'rxjs/Subscription';
+import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
 
 @Component({
   selector: 'app-courses-user-is-tutoring-list',
   templateUrl: './courses-user-is-tutoring-list.component.html',
-  styleUrls: ['./courses-user-is-tutoring-list.component.css']
+  styleUrls: ['./courses-user-is-tutoring-list.component.scss']
 })
-export class CoursesUserIsTutoringListComponent implements OnInit {
+export class CoursesUserIsTutoringListComponent implements OnInit, OnDestroy {
   @Input() userId: string;
   courses: Course[];
 
-  private editCourseTutorModalFactory: ComponentFactory<EditCourseTutorModalComponent>;
-  private editCourseTutorModalComponent: ComponentRef<EditCourseTutorModalComponent>;
-
+  private dynamicComponentGenerator: DynamicComponentGenerator<EditCourseTutorModalComponent>;
   private coursesListUpdatedSubscription: Subscription;
+  private getCoursesSubscription: Subscription;
 
   constructor(private courseService: CourseService,
               private tutorService: TutorService,
-              private userSessionService: UserSessionService,
               private componentFactoryResolver: ComponentFactoryResolver,
-              private viewContainerRef: ViewContainerRef,
-              private cd: ChangeDetectorRef) {
+              private viewContainerRef: ViewContainerRef) {
   }
 
   ngOnInit() {
     this.updateCourses();
-    this.editCourseTutorModalFactory = this.componentFactoryResolver.resolveComponentFactory(EditCourseTutorModalComponent);
+    this.dynamicComponentGenerator = new DynamicComponentGenerator<EditCourseTutorModalComponent>(
+      this.componentFactoryResolver, this.viewContainerRef, EditCourseTutorModalComponent
+    );
   }
 
   updateCourses() {
-    this.courseService.getCoursesUserIsTutoring(this.userId).subscribe(
+    this.getCoursesSubscription = this.courseService.getCoursesUserIsTutoring(this.userId).subscribe(
       (courses: Course[]) => {
         this.courses = courses;
-        this.cd.detectChanges();
       }
     );
   }
@@ -51,18 +44,18 @@ export class CoursesUserIsTutoringListComponent implements OnInit {
   onCourseClick(course: Course) {
     this.tutorService.getTutorInformationForCurrentUserByCourseNumber(course.courseNumber).subscribe(
       (tutor: Tutor) => {
-        if (this.editCourseTutorModalComponent) {
-          this.editCourseTutorModalComponent.destroy();
-        }
-        this.editCourseTutorModalComponent = this.viewContainerRef.createComponent(this.editCourseTutorModalFactory);
-        this.editCourseTutorModalComponent.instance.tutor = tutor;
-        this.coursesListUpdatedSubscription =
-          this.editCourseTutorModalComponent.instance.getCoursesUserIsTutoringListUpdatedObservable().subscribe(
-            () => {
-              this.updateCourses();
-            }
-          );
-        this.editCourseTutorModalComponent.changeDetectorRef.detectChanges();
+        this.dynamicComponentGenerator.destroyComponentIfExists();
+        this.dynamicComponentGenerator.createComponent();
+        const instance = this.dynamicComponentGenerator.getComponentInstance();
+        instance.tutor = tutor;
+        this.coursesListUpdatedSubscription = instance.getCoursesUserIsTutoringListUpdatedObservable().subscribe(
+          () => this.updateCourses()
+        );
+        this.dynamicComponentGenerator.addComponentToDom();
       });
+  }
+
+  ngOnDestroy() {
+    this.getCoursesSubscription.unsubscribe();
   }
 }

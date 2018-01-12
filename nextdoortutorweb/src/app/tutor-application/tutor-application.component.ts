@@ -15,7 +15,7 @@ import { ApplicationGlobals } from '../shared/ApplicationGlobals';
 @Component({
   selector: 'app-tutor-application',
   templateUrl: './tutor-application.component.html',
-  styleUrls: ['./tutor-application.component.css']
+  styleUrls: ['./tutor-application.component.scss']
 })
 export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('applicationForm') applicationForm: NgForm;

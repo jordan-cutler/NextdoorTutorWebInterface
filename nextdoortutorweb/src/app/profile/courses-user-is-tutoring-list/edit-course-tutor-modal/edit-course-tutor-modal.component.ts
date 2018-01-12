@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-edit-course-tutor-modal',
   templateUrl: './edit-course-tutor-modal.component.html',
-  styleUrls: ['./edit-course-tutor-modal.component.css']
+  styleUrls: ['./edit-course-tutor-modal.component.scss']
 })
 export class EditCourseTutorModalComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('form') changeTutorInfoForm: NgForm;

@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { UserSessionService } from '../../../shared/user-session/user-session.service';
 import { EmailTutorService } from './email-tutor.service';
-import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
 import { PreloaderService } from '../../../core/preloader/preloader.service';
 import { DataNeededToFormEmailToTutor } from './DataNeededToFormEmailToTutor';
@@ -10,7 +9,7 @@ import { FormValidity } from '../../../shared/FormValidity';
 @Component({
   selector: 'app-email-tutor-modal',
   templateUrl: './email-tutor-modal.component.html',
-  styleUrls: ['./email-tutor-modal.component.css']
+  styleUrls: ['./email-tutor-modal.component.scss']
 })
 export class EmailTutorModalComponent implements OnInit, AfterViewInit {
   @ViewChild('form') sendEmailForm: NgForm;

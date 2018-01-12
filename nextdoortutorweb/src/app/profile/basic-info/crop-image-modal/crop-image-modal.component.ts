@@ -1,14 +1,12 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ImageService } from '../../../shared/image.service';
 import { PreloaderService } from '../../../core/preloader/preloader.service';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
 import { CropImageService } from './crop-image.service';
 
 @Component({
   selector: 'app-crop-image-modal',
   templateUrl: './crop-image-modal.component.html',
-  styleUrls: ['./crop-image-modal.component.css']
+  styleUrls: ['./crop-image-modal.component.scss']
 })
 export class CropImageModalComponent implements OnInit, AfterViewInit {
   @Input() file: File;

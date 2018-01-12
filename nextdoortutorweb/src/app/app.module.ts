@@ -10,6 +10,7 @@ import { CoursesUserIsTutoringModule } from './profile/courses-user-is-tutoring-
 import { ProfileModule } from './profile/profile.module';
 import { TutorApplicationModule } from './tutor-application/tutor-application.module';
 import { CoreModule } from './core/core.module';
+import { TutorViewModule } from './tutor-view/tutor-view.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CoreModule } from './core/core.module';
     FindTutorModule,
     TutorApplicationModule,
     CoreModule,
-    ProfileModule
+    ProfileModule,
+    TutorViewModule
   ],
   bootstrap: [AppComponent]
 })

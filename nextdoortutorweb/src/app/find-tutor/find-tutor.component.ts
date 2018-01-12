@@ -9,7 +9,7 @@ import { TutorSortService } from './tutor-list/tutor-sort.service';
 @Component({
   selector: 'app-find-tutor',
   templateUrl: './find-tutor.component.html',
-  styleUrls: ['./find-tutor.component.css'],
+  styleUrls: ['./find-tutor.component.scss'],
   providers: [TutorSortService]
 })
 export class FindTutorComponent implements OnInit, OnDestroy {

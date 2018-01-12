@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('signInButtonTop') signInButtonTopRef: ElementRef;

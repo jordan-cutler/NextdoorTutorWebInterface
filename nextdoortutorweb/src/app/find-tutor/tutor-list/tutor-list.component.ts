@@ -18,7 +18,7 @@ import { User } from '../../shared/user/user-model/user.model';
 @Component({
   selector: 'app-tutor-list',
   templateUrl: './tutor-list.component.html',
-  styleUrls: ['./tutor-list.component.css']
+  styleUrls: ['./tutor-list.component.scss']
 })
 export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() tutors: Tutor[];

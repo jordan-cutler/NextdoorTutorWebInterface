@@ -160,6 +160,16 @@ Makes the actual side nav brighter than everything else. Without this, the siden
   padding-bottom: 8px !important;
 }
 
+.profilePhoto {
+  border-radius: 5% !important;
+  -webkit-border-radius: 5% !important;
+  -moz-border-radius: 5% !important;
+  border: 2px solid white !important;
+  padding: 0 !important;
+  height: 106px !important;
+  width: 106px !important;
+}
+
 @media only screen and (min-width: 992px) {
   #toast-container {
     position: fixed !important;
@@ -170,6 +180,13 @@ Makes the actual side nav brighter than everything else. Without this, the siden
     width: 30vw !important;
     height: 10vh !important;
   }
+
+  .profilePhoto {
+    border-radius: 5% !important;
+    padding: 0 !important;
+    height: 168px !important;
+    width: 168px !important;
+  }
 }
 
 @media only screen and (max-width: 992px) {
@@ -178,3 +195,4 @@ Makes the actual side nav brighter than everything else. Without this, the siden
     display: none;
   }
 }
+

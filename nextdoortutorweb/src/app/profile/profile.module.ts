@@ -10,6 +10,9 @@ import { ProfileComponent } from './profile.component';
     SharedModule,
     BasicInfoModule,
     CoursesUserIsTutoringModule
+  ],
+  exports: [
+    BasicInfoModule
   ]
 })
 export class ProfileModule {

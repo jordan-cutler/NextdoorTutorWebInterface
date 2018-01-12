@@ -4,7 +4,7 @@ import { Course } from '../../shared/course/course.model';
 @Component({
   selector: 'app-find-tutor-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css']
+  styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit, AfterViewInit {
   @Output() selectedCourseNumberEventEmitter = new EventEmitter<string>();

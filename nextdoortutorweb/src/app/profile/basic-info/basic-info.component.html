@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col s10 offset-s1">
+  <div class="col s12 m10 offset-m1">
     <div class="z-depth-3 card white center">
       <div class="card-content z-depth-4">
         <!--
@@ -19,7 +19,7 @@
           <div class="col s12">
             <div id="profileImageContainer" class="media center image-upload">
               <label for="profileFileUploadInput">
-                <img id="profilePhoto" alt="Failed to load profile picture" class="media__image z-depth-3"
+                <img alt="Failed to load profile picture" class="profilePhoto media__image z-depth-3"
                      *ngIf="hasProfilePhoto"
                      appProfileImage [userIdUnderProfilePhoto]="user.userId" [askerId]="user.userId" #profilePhotoRef/>
                 <i *ngIf="!hasProfilePhoto" class="large material-icons">account_circle</i>

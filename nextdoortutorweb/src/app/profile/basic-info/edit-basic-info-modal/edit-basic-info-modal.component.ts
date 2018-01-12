@@ -9,7 +9,7 @@ import { ProfilePageLink, Site } from '../../../shared/user/user-model/profile-p
 @Component({
   selector: 'app-edit-basic-info-modal',
   templateUrl: './edit-basic-info-modal.component.html',
-  styleUrls: ['./edit-basic-info-modal.component.css']
+  styleUrls: ['./edit-basic-info-modal.component.scss']
 })
 export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
   @ViewChild('editBasicInfoForm') basicInfoForm: NgForm;
