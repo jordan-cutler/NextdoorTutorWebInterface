@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { CropImageModalComponent } from './crop-image-modal/crop-image-modal.component';
 import { EditBasicInfoModalComponent } from './edit-basic-info-modal/edit-basic-info-modal.component';
 import { UserSessionService } from '../../shared/user-session/user-session.service';
+import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
 
 @Component({
   selector: 'app-basic-info',
@@ -28,11 +29,8 @@ export class BasicInfoComponent implements OnInit {
 
   private userUpdatedSubscription: Subscription;
 
-  private cropImageModalFactory: ComponentFactory<CropImageModalComponent>;
-  private cropImageModalComponent: ComponentRef<CropImageModalComponent>;
-
-  private editBasicInfoModalFactory: ComponentFactory<EditBasicInfoModalComponent>;
-  private editBasicInfoModalComponent: ComponentRef<EditBasicInfoModalComponent>;
+  private dynamicCropImageComponentGenerator: DynamicComponentGenerator<CropImageModalComponent>;
+  private dynamicEditBasicInfoComponentGenerator: DynamicComponentGenerator<EditBasicInfoModalComponent>;
 
   constructor(private userSessionService: UserSessionService,
               private componentFactoryResolver: ComponentFactoryResolver,
@@ -46,9 +44,13 @@ export class BasicInfoComponent implements OnInit {
         this.user = user;
       }
     );
+    this.dynamicCropImageComponentGenerator = new DynamicComponentGenerator<CropImageModalComponent>(
+      this.componentFactoryResolver, this.viewContainerRef, CropImageModalComponent
+    );
+    this.dynamicEditBasicInfoComponentGenerator = new DynamicComponentGenerator<EditBasicInfoModalComponent>(
+      this.componentFactoryResolver, this.viewContainerRef, EditBasicInfoModalComponent
+    );
 
-    this.cropImageModalFactory = this.componentFactoryResolver.resolveComponentFactory(CropImageModalComponent);
-    this.editBasicInfoModalFactory = this.componentFactoryResolver.resolveComponentFactory(EditBasicInfoModalComponent);
   }
 
   profilePhotoFileChange(event: Event) {
@@ -62,21 +64,17 @@ export class BasicInfoComponent implements OnInit {
   }
 
   createCropImageComponent(file: File) {
-    if (this.cropImageModalComponent) {
-      this.cropImageModalComponent.destroy();
-    }
-    this.cropImageModalComponent = this.viewContainerRef.createComponent(this.cropImageModalFactory);
-    this.cropImageModalComponent.instance.file = file;
-    this.cropImageModalComponent.changeDetectorRef.detectChanges();
+    this.dynamicCropImageComponentGenerator.destroyComponentIfExists();
+    this.dynamicCropImageComponentGenerator.createComponent();
+    this.dynamicCropImageComponentGenerator.getComponentInstance().file = file;
+    this.dynamicCropImageComponentGenerator.addComponentToDom();
   }
 
   createEditBasicInfoComponent() {
-    if (this.editBasicInfoModalComponent) {
-      this.editBasicInfoModalComponent.destroy();
-    }
-    this.editBasicInfoModalComponent = this.viewContainerRef.createComponent(this.editBasicInfoModalFactory);
-    this.editBasicInfoModalComponent.instance.user = this.user;
-    this.editBasicInfoModalComponent.changeDetectorRef.detectChanges();
+    this.dynamicEditBasicInfoComponentGenerator.destroyComponentIfExists();
+    this.dynamicEditBasicInfoComponentGenerator.createComponent();
+    this.dynamicEditBasicInfoComponentGenerator.getComponentInstance().user = this.user;
+    this.dynamicEditBasicInfoComponentGenerator.addComponentToDom();
   }
 
 }

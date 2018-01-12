@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { TutorService } from '../../shared/tutor/tutor.service';
 import { TutorSortService } from './tutor-sort.service';
 import { User } from '../../shared/user/user-model/user.model';
+import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
 
 @Component({
   selector: 'app-tutor-list',
@@ -26,8 +27,7 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
   currentUser: User;
   currentUserSubscription: Subscription;
 
-  emailTutorModalFactory: ComponentFactory<EmailTutorModalComponent>;
-  emailTutorModalComponent: ComponentRef<EmailTutorModalComponent>;
+  dynamicEmailTutorComponentGenerator: DynamicComponentGenerator<EmailTutorModalComponent>;
 
   constructor(public userSessionService: UserSessionService,
               private tutorSortService: TutorSortService,
@@ -41,7 +41,9 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.currentUserSubscription = this.userSessionService.getCurrentUserObservable().subscribe(
       (user: User) => this.currentUser = user
     );
-    this.emailTutorModalFactory = this.componentFactoryResolver.resolveComponentFactory(EmailTutorModalComponent);
+    this.dynamicEmailTutorComponentGenerator = new DynamicComponentGenerator<EmailTutorModalComponent>(
+      this.componentFactoryResolver, this.viewContainerRef, EmailTutorModalComponent
+    );
   }
 
   onSortAscendingClick() {
@@ -120,12 +122,10 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   createEmailTutorModalComponent(emailTutorData: DataNeededToFormEmailToTutor) {
-    if (this.emailTutorModalComponent) {
-      this.emailTutorModalComponent.destroy();
-    }
-    this.emailTutorModalComponent = this.viewContainerRef.createComponent(this.emailTutorModalFactory);
-    this.emailTutorModalComponent.instance.emailTutorData = emailTutorData;
-    this.emailTutorModalComponent.changeDetectorRef.detectChanges();
+    this.dynamicEmailTutorComponentGenerator.destroyComponentIfExists();
+    this.dynamicEmailTutorComponentGenerator.createComponent();
+    this.dynamicEmailTutorComponentGenerator.getComponentInstance().emailTutorData = emailTutorData;
+    this.dynamicEmailTutorComponentGenerator.addComponentToDom();
   }
 
   ngOnDestroy() {
