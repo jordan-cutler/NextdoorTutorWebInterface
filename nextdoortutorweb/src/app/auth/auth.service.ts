@@ -53,11 +53,11 @@ export class AuthService {
           .subscribe(
             (userSession: UserSession) => {
               this.preloaderService.hide();
-              // ApplicationGlobals.setJwtInLocalStorage(userSession);
               this.userSessionService.storeCurrentUserSession(userSession);
               onsuccess();
             },
-            () => {
+            (error) => {
+              console.log(error);
               this.preloaderService.hide();
               Materialize.toast('Failed to authenticate you. Please try again soon', 3000);
               this.signOutUserFromGoogle();

@@ -30,7 +30,7 @@ export class TutorService {
       pastExperience: tutor.pastExperience,
       notes: tutor.notes,
       yearTaken: tutor.semesterTaken.year,
-      semesterTaken: tutor.semesterTaken.term,
+      termTaken: tutor.semesterTaken.term,
       hasTakenCourse: tutor.hasTakenCourse
     });
   }
