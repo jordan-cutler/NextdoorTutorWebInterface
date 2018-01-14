@@ -1,21 +1,22 @@
 import {
-  AfterViewInit, Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, Input, OnDestroy, OnInit,
+  AfterViewInit,
+  Component,
+  ComponentFactoryResolver,
+  Input,
+  OnDestroy,
+  OnInit,
   ViewContainerRef
 } from '@angular/core';
 import { Tutor } from '../../shared/tutor/tutor-model/tutor.model';
-import { ImageService } from '../../shared/image.service';
 import { UserSessionService } from '../../shared/user-session/user-session.service';
-import { EmailTutorService } from './email-tutor-modal/email-tutor.service';
 import { DataNeededToFormEmailToTutor } from './email-tutor-modal/DataNeededToFormEmailToTutor';
 import { EmailTutorModalComponent } from './email-tutor-modal/email-tutor-modal.component';
-import { Grade } from '../../shared/tutor/tutor-model/grade.model';
-import { FindTutorService } from '../find-tutor.service';
 import { Subscription } from 'rxjs/Subscription';
 import { TutorService } from '../../shared/tutor/tutor.service';
-import { TutorSortService } from './tutor-sort.service';
 import { User } from '../../shared/user/user-model/user.model';
 import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
 import { OverallTutorReviewSummary } from '../../shared/tutor/reviews/overall-tutor-review-summary.model';
+import { OverallTutorReviewSummarySortService } from './overall-tutor-review-summary-sort.service';
 
 @Component({
   selector: 'app-tutor-list',
@@ -31,7 +32,7 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
   dynamicEmailTutorComponentGenerator: DynamicComponentGenerator<EmailTutorModalComponent>;
 
   constructor(public userSessionService: UserSessionService,
-              private tutorSortService: TutorSortService,
+              private overallTutorReviewSummarySortService: OverallTutorReviewSummarySortService,
               private tutorService: TutorService,
               private componentFactoryResolver: ComponentFactoryResolver,
               private viewContainerRef: ViewContainerRef) {
@@ -48,19 +49,27 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSortAscendingClick() {
-    //this.tutorSortService.sortAscending(this.summaries);
+    this.overallTutorReviewSummarySortService.sortAscending(this.summaries);
   }
 
   onSortDescendingClick() {
-    //this.tutorSortService.sortDescending(this.summaries);
+    this.overallTutorReviewSummarySortService.sortDescending(this.summaries);
   }
 
   onSortByHourlyRateClick() {
-    //this.tutorSortService.sortByHourlyRate(this.summaries);
+    this.overallTutorReviewSummarySortService.sortByHourlyRate(this.summaries);
   }
 
   onSortByGradeClick() {
-    //this.tutorSortService.sortByGrade(this.summaries);
+    this.overallTutorReviewSummarySortService.sortByGrade(this.summaries);
+  }
+
+  onSortByAverageOverallReviewClick() {
+    this.overallTutorReviewSummarySortService.sortByAverageOverAllCourses(this.summaries);
+  }
+
+  onSortByAverageCourseReviewClick() {
+    this.overallTutorReviewSummarySortService.sortByAverageForCourse(this.summaries);
   }
 
   ngAfterViewInit() {

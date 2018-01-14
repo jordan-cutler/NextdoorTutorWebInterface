@@ -6,7 +6,6 @@ import { EmailTutorModalComponent } from './tutor-list/email-tutor-modal/email-t
 import { EmailTutorService } from './tutor-list/email-tutor-modal/email-tutor.service';
 import { SharedModule } from '../shared/shared.module';
 import { FindTutorService } from './find-tutor.service';
-import { ProfessorPipe } from '../shared/professor.pipe';
 
 @NgModule({
   declarations: [

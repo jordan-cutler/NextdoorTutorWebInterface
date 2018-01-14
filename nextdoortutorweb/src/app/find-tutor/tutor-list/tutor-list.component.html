@@ -18,12 +18,6 @@
                       <label for="hourlyRateSorterRadio">Hourly Rate</label>
                     </p>
                   </div>
-                  <div class="col s12">
-                    <p>
-                      <input class="with-gap" name="group1" type="radio" id="averageCourseReviewSorterRadio"/>
-                      <label for="averageCourseReviewSorterRadio">Avg. Course Review</label>
-                    </p>
-                  </div>
 
                   <div class="col s12">
                     <p>
@@ -32,9 +26,19 @@
                       <label for="gradeSorterRadio">Grade</label>
                     </p>
                   </div>
+                  
                   <div class="col s12">
                     <p>
-                      <input class="with-gap" name="group1" type="radio" id="averageOverallReviewSorterRadio"/>
+                      <input class="with-gap" name="group1" type="radio" id="averageCourseReviewSorterRadio"
+                             (click)="onSortByAverageCourseReviewClick()"/>
+                      <label for="averageCourseReviewSorterRadio">Avg. Course Review</label>
+                    </p>
+                  </div>
+
+                  <div class="col s12">
+                    <p>
+                      <input class="with-gap" name="group1" type="radio" id="averageOverallReviewSorterRadio"
+                             (click)="onSortByAverageOverallReviewClick()"/>
                       <label for="averageOverallReviewSorterRadio">Avg. Overall Review</label>
                     </p>
                   </div>

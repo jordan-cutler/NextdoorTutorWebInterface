@@ -21,6 +21,11 @@ export class Grade {
     return this._grade;
   }
 
+  /**
+   * the better the grade, the closer it is to rank 1
+   * @param {Grade} grade
+   * @returns {number}
+   */
   public static getRank(grade: Grade): number {
     if (Grade.isGradeValid(grade)) {
       return Grade.VALID_GRADES.findIndex((element: Grade) => {

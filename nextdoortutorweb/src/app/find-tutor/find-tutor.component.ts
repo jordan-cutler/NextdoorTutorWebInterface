@@ -2,20 +2,18 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CourseService } from '../shared/course/course.service';
 import { Course } from '../shared/course/course.model';
 import { Subscription } from 'rxjs/Subscription';
-import { TutorService } from '../shared/tutor/tutor.service';
-import { Tutor } from '../shared/tutor/tutor-model/tutor.model';
-import { TutorSortService } from './tutor-list/tutor-sort.service';
 
 import 'rxjs/Rx';
 import { TutorReviewService } from '../shared/tutor/reviews/tutor-review.service';
 import { OverallTutorReviewSummary } from '../shared/tutor/reviews/overall-tutor-review-summary.model';
 import { PreloaderService } from '../core/preloader/preloader.service';
+import { OverallTutorReviewSummarySortService } from './tutor-list/overall-tutor-review-summary-sort.service';
 
 @Component({
   selector: 'app-find-tutor',
   templateUrl: './find-tutor.component.html',
   styleUrls: ['./find-tutor.component.scss'],
-  providers: [TutorSortService]
+  providers: [OverallTutorReviewSummarySortService]
 })
 export class FindTutorComponent implements OnInit, OnDestroy {
   private coursesWithTutorsSubscription: Subscription;
@@ -26,7 +24,7 @@ export class FindTutorComponent implements OnInit, OnDestroy {
   summariesForSelectedCourse: OverallTutorReviewSummary[];
 
   constructor(private courseService: CourseService,
-              private tutorSortService: TutorSortService,
+              private overallTutorReviewSummarySortService: OverallTutorReviewSummarySortService,
               private tutorReviewService: TutorReviewService,
               private preloaderService: PreloaderService) { }
 
@@ -49,6 +47,7 @@ export class FindTutorComponent implements OnInit, OnDestroy {
       (summaries: OverallTutorReviewSummary[]) => {
         this.summariesForSelectedCourse = summaries;
         this.preloaderService.hide();
+        this.overallTutorReviewSummarySortService.sortByCurrent(this.summariesForSelectedCourse);
       },
       (error) => {
         Materialize.toast('An error occurred while retrieving the tutors for that course. Please try again soon.', 3000);
