@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 body {
   -webkit-text-size-adjust:100%;
   /*
@@ -79,17 +78,30 @@ i.fa-linkedin{
   background-color:#0085AE;
 }
 
+i.fa-certificate {
+  color: #FA7C34;
+}
+
+.collapsible-body {
+  padding-top: 0 !important;
+}
 
 /* Radio button color */
-input[type="radio"].with-gap:checked+label:after {
-  background-color: #fc7c25 !important;
-}
-/* Change color of border since using with-gap radio button */
-input[type="radio"].with-gap:checked+label:before,
-input[type="radio"].with-gap:checked+label:after {
-  border: 2px solid #fc7c25 !important;
-}
 
+[type="radio"].with-gap:checked + label:before {
+  border-radius: 50%;
+  border: 2px solid #fc7c25 !important; }
+
+[type="radio"].with-gap:checked + label:after {
+  border-radius: 50%;
+  border: 2px solid #fc7c25 !important;
+  background-color: #fc7c25 !important;
+  z-index: 0;
+  -webkit-transform: scale(.5);
+  -moz-transform: scale(.5);
+  -ms-transform: scale(.5);
+  -o-transform: scale(.5);
+  transform: scale(.5); }
 
 /* Change color of dropdown options */
 ul.dropdown-content.select-dropdown li span {

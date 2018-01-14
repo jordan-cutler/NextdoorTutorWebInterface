@@ -15,6 +15,7 @@ import { PreloaderService } from './preloader/preloader.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthInterceptor } from '../auth/auth.interceptor';
+import { TutorReviewService } from '../shared/tutor/reviews/tutor-review.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AuthInterceptor } from '../auth/auth.interceptor';
     UserSessionService,
     ImageService,
     CourseService,
+    TutorReviewService,
     PreloaderService,
     {
       provide: HTTP_INTERCEPTORS,

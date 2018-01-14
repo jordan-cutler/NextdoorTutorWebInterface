@@ -3,27 +3,46 @@
   <div class="row">
     <div class="col s12">
       <div class="card white z-depth-3">
-        <div class="card-content white-text">
-          <div class="row">
+        <div class="card-content black-text">
+          <div class="row valign-wrapper">
             <div class="col s2">
-              <span class="black-text">Sort by: </span>
+              <span>Sort by: </span>
             </div>
-            <div class="col s5">
+            <div class="col s5 m6">
               <form action="#">
-                <p>
-                  <input class="with-gap" name="group1" type="radio" id="hourlyRateSorterRadio"
-                         (click)="onSortByHourlyRateClick()" checked/>
-                  <label for="hourlyRateSorterRadio">Hourly Rate</label>
-                </p>
-                <p>
-                  <input class="with-gap" name="group1" type="radio" id="gradeSorterRadio"
-                         (click)="onSortByGradeClick()"/>
-                  <label for="gradeSorterRadio">Grade</label>
-                </p>
+                <div class="row">
+                  <div class="col s12">
+                    <p>
+                      <input class="with-gap" name="group1" type="radio" id="hourlyRateSorterRadio"
+                             (click)="onSortByHourlyRateClick()" checked/>
+                      <label for="hourlyRateSorterRadio">Hourly Rate</label>
+                    </p>
+                  </div>
+                  <div class="col s12">
+                    <p>
+                      <input class="with-gap" name="group1" type="radio" id="averageCourseReviewSorterRadio"/>
+                      <label for="averageCourseReviewSorterRadio">Avg. Course Review</label>
+                    </p>
+                  </div>
+
+                  <div class="col s12">
+                    <p>
+                      <input class="with-gap" name="group1" type="radio" id="gradeSorterRadio"
+                             (click)="onSortByGradeClick()"/>
+                      <label for="gradeSorterRadio">Grade</label>
+                    </p>
+                  </div>
+                  <div class="col s12">
+                    <p>
+                      <input class="with-gap" name="group1" type="radio" id="averageOverallReviewSorterRadio"/>
+                      <label for="averageOverallReviewSorterRadio">Avg. Overall Review</label>
+                    </p>
+                  </div>
+                </div>
               </form>
             </div>
 
-            <div class="col s5">
+            <div class="col s5 m4">
               <form action="#">
                 <p>
                   <input class="with-gap" name="group2" type="radio" id="ascendingSorterRadio"
@@ -37,88 +56,139 @@
                 </p>
               </form>
             </div>
-
           </div>
+
+          <ul class="collapsible z-depth-3" data-collapsible="expandable">
+            <li *ngFor="let summary of summaries">
+              <div class="row collapsible-header valign-wrapper">
+                <img
+                  class="profileImg col s2 z-depth-2"
+                  appHttpImage [userIdUnderProfilePhoto]="summary.tutor.user.userId" [askerId]="currentUser.userId"
+                  alt="No profile picture"
+                />
+                <div class="col s2 m1 left">
+                  <span>{{summary.tutor.user.name}}</span>
+                </div>
+
+                <div class="col m4 center hide-on-small-only">
+                  <div class="row center">
+                    <div class="col s12">
+                      <span>
+                        <b>Avg. Overall Review: </b>
+                        <span *ngIf="summary.averageOfAllReviewsForAllCourses; else noOverallAverage">
+                          {{summary.averageOfAllReviewsForAllCourses}}
+                        </span>
+                        <ng-template #noOverallAverage>
+                          <span>N/A</span>
+                        </ng-template>
+                      </span>
+                    </div>
+
+                    <div class="col s12">
+                      <span>
+                        <b>Avg. Course Review: </b>
+                        <span
+                          *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews; else noCourseAverage">
+                          {{summary.courseReviewSummary.averageOfAllScoresAmongAllReviews}}
+                        </span>
+                        <ng-template #noCourseAverage>
+                          <span>N/A</span>
+                        </ng-template>
+                      </span>
+
+                    </div>
+
+                    <div class="col s12">
+                      <span *ngIf="summary.tutor.grade"><b>Course Grade:</b> {{summary.tutor.grade}}</span>
+                      <span *ngIf="!summary.tutor.grade">Hasn't Taken Course</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s3 m1">
+                  <span class="hide-on-small-only" *ngIf="summary.tutor.hourlyRate">
+                    ${{summary.tutor.hourlyRate}}
+                  </span>
+                  <span class="hide-on-med-and-up" *ngIf="summary.tutor.grade && summary.tutor.hourlyRate">
+                    {{summary.tutor.grade}} / ${{summary.tutor.hourlyRate}}
+                  </span>
+                  <span class="hide-on-med-and-up" *ngIf="!summary.tutor.grade && summary.tutor.hourlyRate">Not taken / ${{summary.tutor.hourlyRate}}</span>
+                </div>
+
+                <div class="col m1 hide-on-small-only">
+                  <div *ngIf="summary.tutor.instructorNameWhoEndorsed">
+                    <div class="row">
+                      <div class="col s12">
+                        <span class="fa fa-stack">
+                          <i class="fa fa-certificate fa-stack-2x"></i>
+                          <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                        </span>
+                      </div>
+                      <div class="col s12">
+                        <span>{{summary.tutor.instructorNameWhoEndorsed | professor}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s3 left">
+                  <!-- Only displayed for normal users -->
+                  <button
+                    class="btn nt-orange-background"
+                    (click)="onBookTutor($event, summary.tutor.user.email, summary.tutor.courseNumber, summary.tutor.user.name)"
+                    *ngIf="!currentUser.isInstructor">
+                    Email Tutor <i class="material-icons right">contact_mail</i>
+                  </button>
+
+                  <!-- Only displayed if tutor has not already been endorsed and the current user is an instructor -->
+                  <button
+                    class="btn nt-orange-background"
+                    type="button"
+                    (click)="instructorEndorseTutor($event, summary.tutor.user.userId, summary.tutor.courseNumber, tutor, currentUser.name)"
+                    *ngIf="!summary.tutor.instructorNameWhoEndorsed && currentUser.isInstructor">
+                    Endorse
+                  </button>
+
+                  <!-- Only displayed if the person who endorsed the tutor is the current user and the current user is an instructor -->
+                  <button
+                    class="btn two-lined-button nt-orange-background"
+                    (click)="removeInstructorEndorsement($event, summary.tutor.user.userId, summary.tutor.courseNumber, tutor, currentUser.name)"
+                    *ngIf="summary.tutor.instructorNameWhoEndorsed === currentUser.name && currentUser.isInstructor">
+                    Remove Endorsement
+                  </button>
+                </div>
+              </div>
+              <div id="tutorInfo" class="collapsible-body">
+                <span class="hide-on-med-and-up" *ngIf="summary.averageOfAllReviewsForAllCourses">
+                  <b>Avg. Overall Review: </b> {{summary.averageOfAllReviewsForAllCourses}}<br/>
+                </span>
+                <span class="hide-on-med-and-up"
+                      *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews">
+                  <b>Avg. Course Review: </b> {{summary.courseReviewSummary.averageOfAllScoresAmongAllReviews}}<br/>
+                </span>
+                <div
+                  *ngIf="summary.tutor.hasTakenCourse && summary.tutor.grade && summary.tutor.instructor && summary.tutor.semesterTaken; else notTaken">
+                  <span><b>Instructor:</b> {{summary.tutor.instructor}}<br></span>
+                  <span><b>Semester Taken:</b> {{summary.tutor.semesterTaken.term}} {{summary.tutor.semesterTaken.year}}<br></span>
+                </div>
+                <ng-template #notTaken>
+                  <span><b>This person has not taken the course</b><br></span>
+                </ng-template>
+                <span *ngIf="summary.tutor.pastExperience"><b>Past Experience:</b> {{summary.tutor.pastExperience}}<br></span>
+                <span *ngIf="summary.tutor.notes"><b>Other Notes:</b> {{summary.tutor.notes}}<br></span>
+                <span *ngIf="summary.tutor.user.major"><b>Major: </b> {{summary.tutor.user.major}}<br></span>
+                <span *ngIf="summary.tutor.user.bio"><b>Bio: </b> {{summary.tutor.user.bio}}<br></span>
+                <span class="hide-on-med-and-up" *ngIf="summary.tutor.instructorNameWhoEndorsed">
+                  <b>Endorsed by: </b> {{summary.tutor.instructorNameWhoEndorsed | professor}}<br/>
+                </span>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-
-  <ul class="collapsible z-depth-3" data-collapsible="expandable">
-    <li *ngFor="let tutor of tutors">
-      <div class="row collapsible-header valign-wrapper">
-        <img
-          class="profileImg col s2 z-depth-2"
-          appHttpImage [userIdUnderProfilePhoto]="tutor.user.userId" [askerId]="currentUser.userId"
-          alt="No profile picture"
-        />
-        <div class="col s2 m1">
-          <span>{{tutor.user.name}}</span>
-        </div>
-        <div class="col s2 m3 center">
-          <div *ngIf="tutor.instructorNameWhoEndorsed">
-            <div class="row">
-              <div class="col s12">
-                <i class="material-icons nt-orange-text">verified_user</i>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col s12">
-                <span>{{tutor.instructorNameWhoEndorsed | professor}}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col s2">
-          <span *ngIf="tutor.grade && tutor.hourlyRate">
-            {{tutor.grade}} <span class="hide-on-small-only">/</span> ${{tutor.hourlyRate}}
-          </span>
-          <span *ngIf="!tutor.grade && tutor.hourlyRate">Not taken / ${{tutor.hourlyRate}}</span>
-        </div>
-        <div class="col s4 center">
-          <!-- Only displayed for normal users -->
-          <button
-            class="btn nt-orange-background"
-            (click)="onBookTutor($event, tutor.user.email, tutor.courseNumber, tutor.user.name)"
-            *ngIf="!currentUser.isInstructor">
-            Email Tutor <i class="material-icons right">contact_mail</i>
-          </button>
-
-          <!-- Only displayed if tutor has not already been endorsed and the current user is an instructor -->
-          <button
-            class="btn nt-orange-background"
-            type="button"
-            (click)="instructorEndorseTutor($event, tutor.user.userId, tutor.courseNumber, tutor, currentUser.name)"
-            *ngIf="!tutor.instructorNameWhoEndorsed && currentUser.isInstructor">
-            Endorse
-          </button>
-
-          <!-- Only displayed if the person who endorsed the tutor is the current user and the current user is an instructor -->
-          <button
-            class="btn two-lined-button nt-orange-background"
-            (click)="removeInstructorEndorsement($event, tutor.user.userId, tutor.courseNumber, tutor, currentUser.name)"
-            *ngIf="tutor.instructorNameWhoEndorsed === currentUser.name && currentUser.isInstructor">
-            Remove Endorsement
-          </button>
-        </div>
-      </div>
-      <div id="tutorInfo" class="collapsible-body">
-        <div *ngIf="tutor.hasTakenCourse && tutor.grade && tutor.instructor && tutor.semesterTaken; else notTaken">
-          <span><b>Grade:</b> {{tutor.grade}}<br></span>
-          <span><b>Instructor:</b> {{tutor.instructor}}<br></span>
-          <span><b>Semester Taken:</b> {{tutor.semesterTaken.term}} {{tutor.semesterTaken.year}}<br></span>
-        </div>
-        <ng-template #notTaken>
-          <span><b>This person has not taken the course</b><br></span>
-        </ng-template>
-        <span *ngIf="tutor.pastExperience"><b>Past Experience:</b> {{tutor.pastExperience}}<br></span>
-        <span *ngIf="tutor.notes"><b>Other Notes:</b> {{tutor.notes}}<br></span>
-        <span *ngIf="tutor.user.major"><b>Major: </b> {{tutor.user.major}}<br></span>
-        <span *ngIf="tutor.user.bio"><b>Bio: </b> {{tutor.user.bio}}<br></span>
-        <span *ngIf="tutor.hourlyRate"><b>Hourly Wage:</b> ${{tutor.hourlyRate}}<br></span>
-      </div>
-    </li>
-
-  </ul>
 </div>
+
+
 

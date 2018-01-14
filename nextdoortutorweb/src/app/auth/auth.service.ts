@@ -56,10 +56,10 @@ export class AuthService {
               this.userSessionService.storeCurrentUserSession(userSession);
               onsuccess();
             },
-            (error) => {
-              console.log(error);
+            () => {
               this.preloaderService.hide();
-              Materialize.toast('Failed to authenticate you. Please try again soon', 3000);
+              Materialize.toast('Failed to authenticate you. Please try again soon. ' +
+                'If you run into continuous issues please contact jdc219@lehigh.edu', 3000);
               this.signOutUserFromGoogle();
             }
           );

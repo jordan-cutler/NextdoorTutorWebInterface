@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class EmailTutorService {
-  private static readonly REQUESTUTORROUTE = '/api/tutors/request';
+  private static readonly REQUESTUTORROUTE = '/api/summaries/request';
 
   constructor(private httpClient: HttpClient) {
   }

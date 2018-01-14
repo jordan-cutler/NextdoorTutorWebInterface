@@ -5,19 +5,18 @@ import { Tutor } from './tutor-model/tutor.model';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { TutorUpdateData } from './TutorUpdateData';
-import { UserSessionService } from '../user-session/user-session.service';
 
 @Injectable()
 export class TutorService {
 
-  private static readonly ADDTUTORROUTE = '/api/tutors/add';
-  private static readonly GETUTORSFORCOURSEROUTE = '/api/tutors/course';
-  private static readonly GETTUTORROUTE = '/api/tutors';
-  private static readonly GETTUTORDATAROUTE = '/api/tutors/tutorData';
-  private static readonly INSTRUCTORENDORSEROUTE = '/api/tutors/instructorEndorse';
-  private static readonly REMOVEINSTRUCTORENDORSEMENTROUTE = '/api/tutors/removeInstructorEndorsement';
-  private static readonly DELETETUTORROUTE = '/api/tutors/delete';
-  private static readonly UPDATETUTORROUTE = '/api/tutors';
+  private static readonly ADDTUTORROUTE = '/api/summaries/add';
+  private static readonly GETUTORSFORCOURSEROUTE = '/api/summaries/course';
+  private static readonly GETTUTORROUTE = '/api/summaries';
+  private static readonly GETTUTORDATAROUTE = '/api/summaries/tutorData';
+  private static readonly INSTRUCTORENDORSEROUTE = '/api/summaries/instructorEndorse';
+  private static readonly REMOVEINSTRUCTORENDORSEMENTROUTE = '/api/summaries/removeInstructorEndorsement';
+  private static readonly DELETETUTORROUTE = '/api/summaries/delete';
+  private static readonly UPDATETUTORROUTE = '/api/summaries';
   constructor(private httpClient: HttpClient) {
   }
 

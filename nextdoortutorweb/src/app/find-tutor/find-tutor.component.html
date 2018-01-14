@@ -3,7 +3,7 @@
     [courses]="courses"
     (selectedCourseNumberEventEmitter)="onCourseSelect($event)"></app-find-tutor-search-bar>
 </div>
-<div *ngIf="selectedCourseNumber && tutorsForSelectedCourse">
-  <app-tutor-list [tutors]="tutorsForSelectedCourse"></app-tutor-list>
+<div *ngIf="selectedCourseNumber && summariesForSelectedCourse">
+  <app-tutor-list [summaries]="summariesForSelectedCourse"></app-tutor-list>
 </div>
 

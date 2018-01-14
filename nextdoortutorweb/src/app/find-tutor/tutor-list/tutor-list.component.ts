@@ -15,6 +15,7 @@ import { TutorService } from '../../shared/tutor/tutor.service';
 import { TutorSortService } from './tutor-sort.service';
 import { User } from '../../shared/user/user-model/user.model';
 import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
+import { OverallTutorReviewSummary } from '../../shared/tutor/reviews/overall-tutor-review-summary.model';
 
 @Component({
   selector: 'app-tutor-list',
@@ -22,7 +23,7 @@ import { DynamicComponentGenerator } from '../../shared/dynamic-component-genera
   styleUrls: ['./tutor-list.component.scss']
 })
 export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input() tutors: Tutor[];
+  @Input() summaries: OverallTutorReviewSummary[];
 
   currentUser: User;
   currentUserSubscription: Subscription;
@@ -47,19 +48,19 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSortAscendingClick() {
-    this.tutorSortService.sortAscending(this.tutors);
+    //this.tutorSortService.sortAscending(this.summaries);
   }
 
   onSortDescendingClick() {
-    this.tutorSortService.sortDescending(this.tutors);
+    //this.tutorSortService.sortDescending(this.summaries);
   }
 
   onSortByHourlyRateClick() {
-    this.tutorSortService.sortByHourlyRate(this.tutors);
+    //this.tutorSortService.sortByHourlyRate(this.summaries);
   }
 
   onSortByGradeClick() {
-    this.tutorSortService.sortByGrade(this.tutors);
+    //this.tutorSortService.sortByGrade(this.summaries);
   }
 
   ngAfterViewInit() {
