@@ -16,7 +16,7 @@ import { TutorService } from '../../shared/tutor/tutor.service';
 import { User } from '../../shared/user/user-model/user.model';
 import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
 import { OverallTutorReviewSummary } from '../../shared/tutor/reviews/overall-tutor-review-summary.model';
-import { OverallTutorReviewSummarySortService } from './overall-tutor-review-summary-sort.service';
+import { OverallTutorReviewSummarySortService } from './sort-bar/overall-tutor-review-summary-sort.service';
 
 @Component({
   selector: 'app-tutor-list',
@@ -46,30 +46,6 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dynamicEmailTutorComponentGenerator = new DynamicComponentGenerator<EmailTutorModalComponent>(
       this.componentFactoryResolver, this.viewContainerRef, EmailTutorModalComponent
     );
-  }
-
-  onSortAscendingClick() {
-    this.overallTutorReviewSummarySortService.sortAscending(this.summaries);
-  }
-
-  onSortDescendingClick() {
-    this.overallTutorReviewSummarySortService.sortDescending(this.summaries);
-  }
-
-  onSortByHourlyRateClick() {
-    this.overallTutorReviewSummarySortService.sortByHourlyRate(this.summaries);
-  }
-
-  onSortByGradeClick() {
-    this.overallTutorReviewSummarySortService.sortByGrade(this.summaries);
-  }
-
-  onSortByAverageOverallReviewClick() {
-    this.overallTutorReviewSummarySortService.sortByAverageOverAllCourses(this.summaries);
-  }
-
-  onSortByAverageCourseReviewClick() {
-    this.overallTutorReviewSummarySortService.sortByAverageForCourse(this.summaries);
   }
 
   ngAfterViewInit() {

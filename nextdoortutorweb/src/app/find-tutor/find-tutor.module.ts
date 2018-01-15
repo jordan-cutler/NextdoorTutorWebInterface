@@ -6,13 +6,15 @@ import { EmailTutorModalComponent } from './tutor-list/email-tutor-modal/email-t
 import { EmailTutorService } from './tutor-list/email-tutor-modal/email-tutor.service';
 import { SharedModule } from '../shared/shared.module';
 import { FindTutorService } from './find-tutor.service';
+import { SortBarComponent } from './tutor-list/sort-bar/sort-bar.component';
 
 @NgModule({
   declarations: [
     FindTutorComponent,
     SearchBarComponent,
     TutorListComponent,
-    EmailTutorModalComponent
+    EmailTutorModalComponent,
+    SortBarComponent
   ],
   entryComponents: [EmailTutorModalComponent],
   imports: [

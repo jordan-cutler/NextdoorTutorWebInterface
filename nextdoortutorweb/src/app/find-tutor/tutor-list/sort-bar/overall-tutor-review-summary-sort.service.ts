@@ -1,9 +1,9 @@
-import { OverallTutorReviewSummary } from '../../shared/tutor/reviews/overall-tutor-review-summary.model';
-import { Grade } from '../../shared/tutor/tutor-model/grade.model';
+import { OverallTutorReviewSummary } from '../../../shared/tutor/reviews/overall-tutor-review-summary.model';
+import { Grade } from '../../../shared/tutor/tutor-model/grade.model';
 
 export class OverallTutorReviewSummarySortService {
-  private currentlySortingBy = 'hourlyRate';
-  private ascendingOrDescending = 'ascending';
+  private currentlySortingBy = SortOn.HourlyRate;
+  private ascendingOrDescending = SortBy.Ascending;
 
   constructor() {
   }
@@ -105,58 +105,61 @@ export class OverallTutorReviewSummarySortService {
     return OverallTutorReviewSummarySortService.getGradeSort(summary1, summary2);
   }
 
-  sortAscending(tutors: OverallTutorReviewSummary[]) {
-    this.ascendingOrDescending = 'ascending';
-    this.sortByCurrent(tutors);
+  sortAscending(summaries: OverallTutorReviewSummary[]) {
+    this.ascendingOrDescending = SortBy.Ascending;
+    this.sortByCurrent(summaries);
   }
 
-  sortDescending(tutors: OverallTutorReviewSummary[]) {
-    this.ascendingOrDescending = 'descending';
-    this.sortByCurrent(tutors);
+  sortDescending(summaries: OverallTutorReviewSummary[]) {
+    this.ascendingOrDescending = SortBy.Descending;
+    this.sortByCurrent(summaries);
   }
 
-  sortByHourlyRate(tutors: OverallTutorReviewSummary[]) {
-    this.currentlySortingBy = 'hourlyRate';
-    this.sortByCurrent(tutors);
+  sortByHourlyRate(summaries: OverallTutorReviewSummary[]) {
+    this.currentlySortingBy = SortOn.HourlyRate;
+    this.sortByCurrent(summaries);
   }
 
-  sortByGrade(tutors: OverallTutorReviewSummary[]) {
-    this.currentlySortingBy = 'grade';
-    this.sortByCurrent(tutors);
+  sortByGrade(summaries: OverallTutorReviewSummary[]) {
+    this.currentlySortingBy = SortOn.Grade;
+    this.sortByCurrent(summaries);
   }
 
-  sortByAverageOverAllCourses(tutors: OverallTutorReviewSummary[]) {
-    this.currentlySortingBy = 'averageOverallReview';
-    this.sortByCurrent(tutors);
+  sortByAverageOverAllCourses(summaries: OverallTutorReviewSummary[]) {
+    this.currentlySortingBy = SortOn.AverageOverallReview;
+    this.sortByCurrent(summaries);
   }
 
   sortByAverageForCourse(summaries: OverallTutorReviewSummary[]) {
-    this.currentlySortingBy = 'averageCourseReview';
+    this.currentlySortingBy = SortOn.AverageCourseReview;
     this.sortByCurrent(summaries);
   }
 
   sortByCurrent(summaries: OverallTutorReviewSummary[]) {
-    if (this.ascendingOrDescending === 'ascending') {
-      if (this.currentlySortingBy === 'hourlyRate') {
-        OverallTutorReviewSummarySortService.sortByHourlyRateAscending(summaries);
-      } else if (this.currentlySortingBy === 'grade') {
-        OverallTutorReviewSummarySortService.sortByGradeAscending(summaries);
-      } else if (this.currentlySortingBy === 'averageOverallReview') {
-        OverallTutorReviewSummarySortService.sortByAverageOverallReviewAscending(summaries);
-      } else if (this.currentlySortingBy === 'averageCourseReview') {
-        OverallTutorReviewSummarySortService.sortByAverageCourseReviewAscending(summaries);
-      }
-    } else if (this.ascendingOrDescending === 'descending') {
-      if (this.currentlySortingBy === 'hourlyRate') {
-        OverallTutorReviewSummarySortService.sortByHourlyRateAscending(summaries).reverse();
-      } else if (this.currentlySortingBy === 'grade') {
-        OverallTutorReviewSummarySortService.sortByGradeAscending(summaries).reverse();
-      } else if (this.currentlySortingBy === 'averageOverallReview') {
-        OverallTutorReviewSummarySortService.sortByAverageOverallReviewAscending(summaries).reverse();
-      } else if (this.currentlySortingBy === 'averageCourseReview') {
-        OverallTutorReviewSummarySortService.sortByAverageCourseReviewAscending(summaries).reverse();
-      }
+    if (this.currentlySortingBy === SortOn.HourlyRate) {
+      OverallTutorReviewSummarySortService.sortByHourlyRateAscending(summaries);
+    } else if (this.currentlySortingBy === SortOn.Grade) {
+      OverallTutorReviewSummarySortService.sortByGradeAscending(summaries);
+    } else if (this.currentlySortingBy === SortOn.AverageOverallReview) {
+      OverallTutorReviewSummarySortService.sortByAverageOverallReviewAscending(summaries);
+    } else if (this.currentlySortingBy === SortOn.AverageCourseReview) {
+      OverallTutorReviewSummarySortService.sortByAverageCourseReviewAscending(summaries);
+    }
+
+    if (this.ascendingOrDescending === SortBy.Descending) {
+      summaries.reverse();
     }
   }
+}
 
+enum SortOn {
+  HourlyRate,
+  Grade,
+  AverageOverallReview,
+  AverageCourseReview
+}
+
+enum SortBy {
+  Ascending,
+  Descending
 }

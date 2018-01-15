@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 import { TutorReviewService } from '../shared/tutor/reviews/tutor-review.service';
 import { OverallTutorReviewSummary } from '../shared/tutor/reviews/overall-tutor-review-summary.model';
 import { PreloaderService } from '../core/preloader/preloader.service';
-import { OverallTutorReviewSummarySortService } from './tutor-list/overall-tutor-review-summary-sort.service';
+import { OverallTutorReviewSummarySortService } from './tutor-list/sort-bar/overall-tutor-review-summary-sort.service';
 
 @Component({
   selector: 'app-find-tutor',
