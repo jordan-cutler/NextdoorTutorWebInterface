@@ -16,8 +16,11 @@
               </span>
             </div>
             <div class="col s3">
-              <button class="btn nt-orange-background white-text right" type="button"
-                      (click)="onCourseClick(reviewSummary.courseNumber)">
+              <button
+                *ngIf="currentUser.userId != basicTutorInfo.user.userId"
+                class="btn nt-orange-background white-text right" type="button"
+                (click)="onCourseClick(reviewSummary.courseNumber)"
+              >
                 Review
               </button>
             </div>

@@ -1,10 +1,10 @@
 import { Component, ComponentFactoryResolver, Input, OnInit, ViewContainerRef } from '@angular/core';
-import { CourseService } from '../../shared/course/course.service';
-import { Course } from '../../shared/course/course.model';
 import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
 import { TutorReviewModalComponent } from './tutor-review-modal/tutor-review-modal.component';
 import { BasicTutorInfo } from '../../shared/tutor/reviews/basic-tutor-info.model';
 import { CourseReviewSummary } from '../../shared/tutor/reviews/course-review-summary.model';
+import { User } from '../../shared/user/user-model/user.model';
+import { UserSessionService } from '../../shared/user-session/user-session.service';
 
 @Component({
   selector: 'app-courses-tutor-is-tutoring',
@@ -13,15 +13,18 @@ import { CourseReviewSummary } from '../../shared/tutor/reviews/course-review-su
 })
 export class CoursesTutorIsTutoringComponent implements OnInit {
   @Input() basicTutorInfo: BasicTutorInfo;
+  currentUser: User;
   courses: string[];
 
   dynamicCourseTutorIsTutoringModalComponentGenerator: DynamicComponentGenerator<TutorReviewModalComponent>;
 
-  constructor(private courseService: CourseService,
+  constructor(private userSessionService: UserSessionService,
               private componentFactoryResolver: ComponentFactoryResolver,
               private viewContainerRef: ViewContainerRef) { }
 
   ngOnInit() {
+    this.currentUser = this.userSessionService.getCurrentUser();
+
     this.courses = this.basicTutorInfo.courseReviewSummaries.map(
       (courseReviewSummary: CourseReviewSummary) => courseReviewSummary.courseNumber
     );
