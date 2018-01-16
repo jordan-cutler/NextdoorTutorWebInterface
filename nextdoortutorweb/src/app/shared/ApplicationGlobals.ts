@@ -1,5 +1,7 @@
 export class ApplicationGlobals {
   static readonly FIND_TUTOR_ROUTE = '/findtutor';
+  static readonly TUTOR_VIEW_ROUTE = '/tutorview';
+
   private static readonly JWT_LOCAL_STORAGE_KEY = 'nextdoortutorjwt';
 
   static clearJwtFromLocalStorage() {

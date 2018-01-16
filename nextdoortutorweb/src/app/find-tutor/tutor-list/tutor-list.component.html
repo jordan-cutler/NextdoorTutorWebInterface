@@ -9,11 +9,17 @@
           <ul class="collapsible z-depth-3" data-collapsible="expandable">
             <li *ngFor="let summary of summaries">
               <div class="row collapsible-header valign-wrapper">
-                <img
-                  class="profileImg col s2 z-depth-2"
-                  appHttpImage [userIdUnderProfilePhoto]="summary.tutor.user.userId" [askerId]="currentUser.userId"
-                  alt="No profile picture"
-                />
+                <div class="overlay-container" (click)="onImageClick($event, summary.tutor)">
+                  <img
+                    class="profileImg media__image col s2 z-depth-2"
+                    appHttpImage [userIdUnderProfilePhoto]="summary.tutor.user.userId" [askerId]="currentUser.userId"
+                    alt="No profile picture"
+                  />
+                  <div class="overlay cursorPointer">
+                    <div class="overlay-text">View Profile</div>
+                  </div>
+                </div>
+
                 <div class="col s2 m1 left">
                   <span>{{summary.tutor.user.name}}</span>
                 </div>

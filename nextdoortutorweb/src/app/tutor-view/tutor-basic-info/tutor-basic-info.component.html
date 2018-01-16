@@ -4,7 +4,7 @@
       <div class="card-content z-depth-4">
         <div class="row">
           <div class="col s12">
-            <img alt="Failed to load profile picture" class="profilePhoto media__image z-depth-3"
+            <img alt="Failed to load profile picture" class="profilePhoto z-depth-3"
                  *ngIf="hasProfilePhoto"
                  appHttpImage [userIdUnderProfilePhoto]="tutorUser.userId" [askerId]="currentUser.userId"/>
             <i *ngIf="!hasProfilePhoto" class="large material-icons">account_circle</i>

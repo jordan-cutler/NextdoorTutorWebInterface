@@ -6,6 +6,14 @@
   font-weight: 390;
 }
 
+table, th, td {
+  text-align: left;
+}
+
+/*
+Hover effect for images
+ */
+
 .media {
   display: inline-block;
   position: relative;
@@ -76,10 +84,9 @@
   opacity: 1;
 }
 
-table, th, td {
-  text-align: left;
-}
-
+/*
+Hover effect end
+ */
 
 
 

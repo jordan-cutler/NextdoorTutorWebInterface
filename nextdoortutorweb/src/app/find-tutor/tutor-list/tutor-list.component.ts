@@ -16,7 +16,8 @@ import { TutorService } from '../../shared/tutor/tutor.service';
 import { User } from '../../shared/user/user-model/user.model';
 import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
 import { OverallTutorReviewSummary } from '../../shared/tutor/reviews/overall-tutor-review-summary.model';
-import { OverallTutorReviewSummarySortService } from './sort-bar/overall-tutor-review-summary-sort.service';
+import { Router } from '@angular/router';
+import { ApplicationGlobals } from '../../shared/ApplicationGlobals';
 
 @Component({
   selector: 'app-tutor-list',
@@ -32,7 +33,7 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
   dynamicEmailTutorComponentGenerator: DynamicComponentGenerator<EmailTutorModalComponent>;
 
   constructor(public userSessionService: UserSessionService,
-              private overallTutorReviewSummarySortService: OverallTutorReviewSummarySortService,
+              private router: Router,
               private tutorService: TutorService,
               private componentFactoryResolver: ComponentFactoryResolver,
               private viewContainerRef: ViewContainerRef) {
@@ -63,6 +64,13 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
       tutorName: name
     };
     this.createEmailTutorModalComponent(emailTutorData);
+  }
+
+  onImageClick(event: Event, tutor: Tutor) {
+    event.preventDefault();
+    event.stopPropagation();
+    const tutorEmailId = tutor.user.email.split('@')[0];
+    this.router.navigate([ApplicationGlobals.TUTOR_VIEW_ROUTE + '/' + tutorEmailId]);
   }
 
   instructorEndorseTutor(event: Event, tutorId: string, tutorCourseNumber: string, tutor: Tutor, instructorName: string) {

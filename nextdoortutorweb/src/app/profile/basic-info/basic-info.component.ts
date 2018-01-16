@@ -1,15 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ComponentFactory,
-  ComponentFactoryResolver,
-  ComponentRef,
-  ElementRef,
-  Input,
-  OnInit,
-  ViewChild,
-  ViewContainerRef
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { User } from '../../shared/user/user-model/user.model';
 import { Subscription } from 'rxjs/Subscription';
 import { CropImageModalComponent } from './crop-image-modal/crop-image-modal.component';
@@ -23,7 +12,6 @@ import { DynamicComponentGenerator } from '../../shared/dynamic-component-genera
   styleUrls: ['./basic-info.component.scss']
 })
 export class BasicInfoComponent implements OnInit {
-  @ViewChild('profilePhotoRef') profilePhotoRef: ElementRef;
   @Input() user: User;
   hasProfilePhoto: boolean;
 
