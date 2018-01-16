@@ -1,46 +1,43 @@
-import { Component, ComponentFactoryResolver, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
-import { User } from '../../shared/user/user-model/user.model';
+import { Component, ComponentFactoryResolver, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { CourseService } from '../../shared/course/course.service';
 import { Course } from '../../shared/course/course.model';
-import { Subscription } from 'rxjs/Subscription';
 import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
-import { CourseTutorIsTutoringModalComponent } from './course-tutor-is-tutoring-modal/course-tutor-is-tutoring-modal.component';
-import { Tutor } from '../../shared/tutor/tutor-model/tutor.model';
+import { TutorReviewModalComponent } from './tutor-review-modal/tutor-review-modal.component';
+import { BasicTutorInfo } from '../../shared/tutor/reviews/basic-tutor-info.model';
+import { CourseReviewSummary } from '../../shared/tutor/reviews/course-review-summary.model';
 
 @Component({
   selector: 'app-courses-tutor-is-tutoring',
   templateUrl: './courses-tutor-is-tutoring.component.html',
   styleUrls: ['./courses-tutor-is-tutoring.component.scss']
 })
-export class CoursesTutorIsTutoringComponent implements OnInit, OnDestroy {
-  @Input() tutor: Tutor;
-  courses: Course[];
+export class CoursesTutorIsTutoringComponent implements OnInit {
+  @Input() basicTutorInfo: BasicTutorInfo;
+  courses: string[];
 
-  getCoursesSubscription: Subscription;
-  dynamicCourseTutorIsTutoringModalComponentGenerator: DynamicComponentGenerator<CourseTutorIsTutoringModalComponent>;
+  dynamicCourseTutorIsTutoringModalComponentGenerator: DynamicComponentGenerator<TutorReviewModalComponent>;
 
   constructor(private courseService: CourseService,
               private componentFactoryResolver: ComponentFactoryResolver,
               private viewContainerRef: ViewContainerRef) { }
 
   ngOnInit() {
-    this.getCoursesSubscription = this.courseService.getCoursesUserIsTutoring(this.tutor.user.userId).subscribe(
-      (courses: Course[]) => this.courses = courses
+    this.courses = this.basicTutorInfo.courseReviewSummaries.map(
+      (courseReviewSummary: CourseReviewSummary) => courseReviewSummary.courseNumber
     );
-    this.dynamicCourseTutorIsTutoringModalComponentGenerator = new DynamicComponentGenerator<CourseTutorIsTutoringModalComponent>(
-      this.componentFactoryResolver, this.viewContainerRef, CourseTutorIsTutoringModalComponent
+    this.dynamicCourseTutorIsTutoringModalComponentGenerator = new DynamicComponentGenerator<TutorReviewModalComponent>(
+      this.componentFactoryResolver, this.viewContainerRef, TutorReviewModalComponent
     );
   }
 
-  onCourseClick(course: Course) {
+  onCourseClick(courseNumber: string) {
     this.dynamicCourseTutorIsTutoringModalComponentGenerator.destroyComponentIfExists();
     this.dynamicCourseTutorIsTutoringModalComponentGenerator.createComponent();
-    this.dynamicCourseTutorIsTutoringModalComponentGenerator.getComponentInstance().tutor = this.tutor;
+    const instance = this.dynamicCourseTutorIsTutoringModalComponentGenerator.getComponentInstance()
+    instance.tutorUser = this.basicTutorInfo.user;
+    instance.courseNumber = courseNumber;
     this.dynamicCourseTutorIsTutoringModalComponentGenerator.addComponentToDom();
   }
 
-  ngOnDestroy() {
-    this.getCoursesSubscription.unsubscribe();
-  }
 
 }

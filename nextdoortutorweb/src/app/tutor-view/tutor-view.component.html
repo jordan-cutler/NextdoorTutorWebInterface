@@ -1,4 +1,4 @@
-<div *ngIf="tutor">
-  <app-tutor-basic-info [tutorUser]="tutor.user"></app-tutor-basic-info>
-  <app-courses-tutor-is-tutoring [tutor]="tutor"></app-courses-tutor-is-tutoring>
+<div *ngIf="basicTutorInfo">
+  <app-tutor-basic-info [basicTutorInfo]="basicTutorInfo"></app-tutor-basic-info>
+  <app-courses-tutor-is-tutoring [basicTutorInfo]="basicTutorInfo"></app-courses-tutor-is-tutoring>
 </div>

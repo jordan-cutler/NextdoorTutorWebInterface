@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Tutor } from '../shared/tutor/tutor-model/tutor.model';
 import { Subscription } from 'rxjs/Subscription';
-import { TutorService } from '../shared/tutor/tutor.service';
+import { TutorReviewService } from '../shared/tutor/reviews/tutor-review.service';
+import { BasicTutorInfo } from '../shared/tutor/reviews/basic-tutor-info.model';
 
 @Component({
   selector: 'app-tutor-view',
@@ -10,34 +11,43 @@ import { TutorService } from '../shared/tutor/tutor.service';
   styleUrls: ['./tutor-view.component.scss']
 })
 export class TutorViewComponent implements OnInit, OnDestroy {
-
   tutorEmail: string;
-  tutor: Tutor;
+  basicTutorInfo: BasicTutorInfo;
 
   paramsSubscription: Subscription;
   tutorDataSubscription: Subscription;
+  successfulReviewSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              private tutorService: TutorService) {
+              private tutorReviewService: TutorReviewService) {
   }
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(
       (params: Params) => {
         this.tutorEmail = params['emailId'] + '@lehigh.edu';
-        this.tutorDataSubscription =
-          this.tutorService.getTutorDataByEmail(this.tutorEmail).subscribe(
-            (tutor: Tutor) => this.tutor = tutor
-          );
+        this.updateBasicTutorInfo(this.tutorEmail);
       }
     );
+    this.successfulReviewSubscription = this.tutorReviewService.getSuccessfulReviewUploadedObservable().subscribe(
+      () => this.updateBasicTutorInfo(this.tutorEmail)
+    );
+  }
+
+  updateBasicTutorInfo(email: string) {
+    this.tutorDataSubscription =
+      this.tutorReviewService.getBasicTutorInfo(email).subscribe(
+        (basicTutorInfo: BasicTutorInfo) => this.basicTutorInfo = basicTutorInfo
+      );
   }
 
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
     if (this.tutorDataSubscription) {
       this.tutorDataSubscription.unsubscribe();
+    }
+    if (this.successfulReviewSubscription) {
+      this.successfulReviewSubscription.unsubscribe();
     }
   }
 

@@ -54,12 +54,6 @@ export class FindTutorComponent implements OnInit, OnDestroy {
         this.preloaderService.hide();
       }
     );
-    // this.tutorsForSelectedCourseSubscription = this.tutorService.getTutorsForCourse(courseNumber).subscribe(
-    //   (summaries: Tutor[]) => {
-    //     this.summariesForSelectedCourse = summaries;
-    //     this.tutorSortService.sortByCurrent(this.summariesForSelectedCourse);
-    //   }
-    // );
   }
 
   ngOnDestroy() {

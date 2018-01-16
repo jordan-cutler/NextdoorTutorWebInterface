@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-  -webkit-text-size-adjust:100%;
+  -webkit-text-size-adjust: 100%;
   /*
   Don't listen to your IDE and "optimize". It will break it
    */
@@ -11,7 +11,7 @@ body {
   color: #333;
 }
 
-html, body{
+html, body {
   margin: 0;
   padding: 0;
 }
@@ -22,30 +22,34 @@ html, body{
 .input-field label {
   color: #B9B9B9 !important;
 }
+
 /* label focus color */
 .input-field input[type=text]:focus + label {
   color: #fc7c25 !important;
 }
+
 /* label underline focus color */
 .input-field input[type=text]:focus {
   border-bottom: 1px solid #fc7c25 !important;
   box-shadow: 0 1px 0 0 #fc7c25 !important;
 }
+
 /* valid color */
 .input-field input[type=text].valid {
   border-bottom: 1px solid #fc7c25 !important;
   box-shadow: 0 1px 0 0 #fc7c25 !important;
 }
+
 /* invalid color */
 .input-field input[type=text].invalid {
   border-bottom: 1px solid red !important;
   box-shadow: 0 1px 0 0 red !important;
 }
+
 /* icon prefix focus color */
 .input-field .prefix.active {
   color: #fc7c25 !important;
 }
-
 
 /* for facebook, github, & linkedin icons */
 .social-icons.icon-circle.fa {
@@ -64,18 +68,18 @@ html, body{
 }
 
 /* for facebook icon */
-i.fa-facebook{
-  background-color:#3C599F;
+i.fa-facebook {
+  background-color: #3C599F;
 }
 
 /* for github icon */
-i.fa-github{
-  background-color:#070709;
+i.fa-github {
+  background-color: #070709;
 }
 
 /* for linkedin icon */
-i.fa-linkedin{
-  background-color:#0085AE;
+i.fa-linkedin {
+  background-color: #0085AE;
 }
 
 i.fa-certificate {
@@ -86,11 +90,21 @@ i.fa-certificate {
   padding-top: 0 !important;
 }
 
+textarea {
+  padding: 12px 20px;
+  height: 200px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
 /* Radio button color */
 
 [type="radio"].with-gap:checked + label:before {
   border-radius: 50%;
-  border: 2px solid #fc7c25 !important; }
+  border: 2px solid #fc7c25 !important;
+}
 
 [type="radio"].with-gap:checked + label:after {
   border-radius: 50%;
@@ -101,15 +115,16 @@ i.fa-certificate {
   -moz-transform: scale(.5);
   -ms-transform: scale(.5);
   -o-transform: scale(.5);
-  transform: scale(.5); }
+  transform: scale(.5);
+}
 
 /* Change color of dropdown options */
 ul.dropdown-content.select-dropdown li span {
-  color: gray;  /*no need for !important :)*/
+  color: gray; /*no need for !important :)*/
 }
 
 /* change color of auto complete options */
-.dropdown-content li>span {
+.dropdown-content li > span {
   color: gray !important;
 }
 
@@ -117,9 +132,11 @@ ul.dropdown-content.select-dropdown li span {
 input[type=range]::-webkit-slider-thumb {
   background-color: #fc7c25 !important;
 }
+
 input[type=range]::-moz-range-thumb {
   background-color: #fc7c25 !important;
 }
+
 input[type=range]::-ms-thumb {
   background-color: #fc7c25 !important;
 }
@@ -141,7 +158,7 @@ input[type=range] + .thumb {
   background: #fc7c25 !important;
 }
 
-.range-label{
+.range-label {
   background-color: #fc7c25 !important;
 }
 

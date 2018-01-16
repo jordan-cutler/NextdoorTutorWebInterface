@@ -1,0 +1,91 @@
+<div id="{{modalId}}" class="modal">
+  <div class="modal-content">
+    <h4 class="condensed light center">Review {{tutorUser.name}} for {{courseNumber}}</h4>
+    <h6 class="condensed light center">All reviews are anonymous</h6>
+    <div class="row">
+      <div class="input-field col s12">
+        <select
+          id="{{knowledgeableDropdownId}}"
+          name="knowledgeableGrade"
+          [ngModel]="defaultDropdownValue"
+          required
+        >
+          <option [value]="defaultDropdownValue">N/A</option>
+          <option *ngFor="let grade of validGrades" [value]="grade">{{grade}}</option>
+        </select>
+        <label for="{{knowledgeableDropdownId}}">Knowledgeable</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <select
+          id="{{helpfulDropdownId}}"
+          name="helpfulGrade"
+          [ngModel]="defaultDropdownValue"
+          required
+        >
+          <option [value]="defaultDropdownValue">N/A</option>
+          <option *ngFor="let grade of validGrades" [value]="grade">{{grade}}</option>
+        </select>
+        <label for="{{helpfulDropdownId}}">Helpful</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <select
+          id="{{charismaticDropdownId}}"
+          name="charismaticGrade"
+          [ngModel]="defaultDropdownValue"
+          required
+        >
+          <option [value]="defaultDropdownValue">N/A</option>
+          <option *ngFor="let grade of validGrades" [value]="grade">{{grade}}</option>
+        </select>
+        <label for="{{charismaticDropdownId}}">Charismatic</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <select
+          id="{{overallDropdownId}}"
+          name="overallGrade"
+          [ngModel]="defaultDropdownValue"
+          required
+        >
+          <option [value]="defaultDropdownValue">N/A</option>
+          <option *ngFor="let grade of validGrades" [value]="grade">{{grade}}</option>
+        </select>
+        <label for="{{overallDropdownId}}">Knowledgeable</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <input
+          id="{{notesId}}"
+          type="text"
+          class="validate character-count"
+          data-length="200" maxlength="200"
+          name="notes"
+        />
+        <label for="{{notesId}}">Other notes (optional)</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s6 offset-s6 m3 offset-m9">
+        <button
+          id="submit"
+          class="btn waves-effect waves-light nt-orange-background"
+          type="submit"
+          name="submitApplication"
+          (click)="onSubmitReview()"
+        >
+          Submit <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

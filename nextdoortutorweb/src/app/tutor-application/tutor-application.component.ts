@@ -65,7 +65,7 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestr
 
   onSubmit(event: Event) {
     const selectedOptionSelector = 'option:selected';
-    const courseNumber = $(this.courseDropdownSelector).find(selectedOptionSelector).text().split(" ")[0];
+    const courseNumber = $(this.courseDropdownSelector).find(selectedOptionSelector).text().split(' ')[0];
     const hourlyRate: number = +this.applicationForm.value.hourlyRate;
     const hasTakenCourse: boolean = this.applicationForm.value.hasTakenCourseCheckbox;
     const grade = $(this.gradeDropdownSelector).find(selectedOptionSelector).text();

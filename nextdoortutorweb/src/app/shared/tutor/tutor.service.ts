@@ -9,14 +9,13 @@ import { TutorUpdateData } from './TutorUpdateData';
 @Injectable()
 export class TutorService {
 
-  private static readonly ADDTUTORROUTE = '/api/summaries/add';
-  private static readonly GETUTORSFORCOURSEROUTE = '/api/summaries/course';
-  private static readonly GETTUTORROUTE = '/api/summaries';
-  private static readonly GETTUTORDATAROUTE = '/api/summaries/tutorData';
-  private static readonly INSTRUCTORENDORSEROUTE = '/api/summaries/instructorEndorse';
-  private static readonly REMOVEINSTRUCTORENDORSEMENTROUTE = '/api/summaries/removeInstructorEndorsement';
-  private static readonly DELETETUTORROUTE = '/api/summaries/delete';
-  private static readonly UPDATETUTORROUTE = '/api/summaries';
+  private static readonly ADDTUTORROUTE = '/api/tutors/add';
+  private static readonly GETUTORSFORCOURSEROUTE = '/api/tutors/course';
+  private static readonly GETTUTORROUTE = '/api/tutors';
+  private static readonly INSTRUCTORENDORSEROUTE = '/api/tutors/instructorEndorse';
+  private static readonly REMOVEINSTRUCTORENDORSEMENTROUTE = '/api/tutors/removeInstructorEndorsement';
+  private static readonly DELETETUTORROUTE = '/api/tutors/delete';
+  private static readonly UPDATETUTORROUTE = '/api/tutors';
   constructor(private httpClient: HttpClient) {
   }
 
@@ -50,13 +49,6 @@ export class TutorService {
       .map( (tutor) => {
         return Tutor.tutorJsonToTutorModel(tutor);
     });
-  }
-
-  getTutorDataByEmail(email: string): Observable<Tutor> {
-    return this.httpClient.get(TutorService.GETTUTORDATAROUTE + '/' + email)
-      .map( (tutor) => {
-        return Tutor.tutorJsonToTutorModel(tutor);
-      });
   }
 
   giveInstructorEndorsement(tutorId: string, tutorCourseNumber: string): Observable<boolean> {
