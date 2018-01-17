@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../../shared/user/user-model/user.model';
-import { NgForm } from '@angular/forms';
+import { AbstractControl, NgForm } from '@angular/forms';
 import { UserService } from '../../../shared/user/user.service';
 import { UserSessionService } from '../../../shared/user-session/user-session.service';
 import { Observable } from 'rxjs/Observable';
@@ -34,6 +34,9 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
   onSubmit(event: Event) {
     const value = this.basicInfoForm.value;
     const controls = this.basicInfoForm.controls;
+    const githubControl = controls['github'];
+    const facebookControl = controls['facebook'];
+    const linkedinControl = controls['linkedin'];
     const bio: string = value.bio;
     const major: string = value.major;
     const github: string = value.github;
@@ -42,23 +45,30 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
     this.updateBio(bio);
     this.updateMajor(major);
 
-    if (!controls.github.valid) {
-      Materialize.toast('Your GitHub link must at the very least include github.com', 3000);
+
+    if (!githubControl.valid) {
+      Materialize.toast('Your GitHub link must follow the proper format of https://www.github.com/[YourGitHubUserName]', 3000);
       return false;
     }
 
-    if (!controls.facebook.valid) {
-      Materialize.toast('Your Facebook link must at the very least include facebook.com', 3000);
+    if (!facebookControl.valid) {
+      Materialize.toast('Your Facebook link must follow the proper format of https://www.facebook.com/[YourFacebookUserName]', 3000);
       return false;
     }
 
-    if (!controls.linkedin.valid) {
-      Materialize.toast('Your LinkedIn link must at the very least include linkedin.com', 3000);
+    if (!linkedinControl.valid) {
+      Materialize.toast('Your LinkedIn link must follow the proper format of https://www.linkedin.com/[YourLinkedInUserName]', 3000);
       return false;
     }
-    this.updateGithub(github);
-    this.updateFacebook(facebook);
-    this.updateLinkedin(linkedin);
+    if (githubControl.dirty) {
+      this.updateGithub(github);
+    }
+    if (facebookControl.dirty) {
+      this.updateFacebook(facebook);
+    }
+    if (linkedinControl.dirty) {
+      this.updateLinkedin(linkedin);
+    }
     $(this.modalSelector).modal('close');
   }
 

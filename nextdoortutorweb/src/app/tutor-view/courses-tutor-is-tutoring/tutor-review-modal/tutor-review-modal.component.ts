@@ -4,6 +4,7 @@ import { User } from '../../../shared/user/user-model/user.model';
 import { TutorReviewService } from '../../../shared/tutor/reviews/tutor-review.service';
 import { UserSessionService } from '../../../shared/user-session/user-session.service';
 import { PreloaderService } from '../../../core/preloader/preloader.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-tutor-review-modal',
@@ -84,9 +85,13 @@ export class TutorReviewModalComponent implements OnInit, AfterViewInit {
           Materialize.toast('Failed to upload review. Please make sure you select an option for each of the dropdowns.', 4000);
         }
       },
-      (error) => {
+      (error: HttpErrorResponse) => {
         this.preloaderService.hide();
-        Materialize.toast('Failed to upload review. Please make sure you select an option for each of the dropdowns.', 4000);
+        if (error.error.description === 'Cannot submit more than 1 review per day per tutor per course') {
+          Materialize.toast('You may only upload 1 review per day per tutor per course', 3000);
+        } else {
+          Materialize.toast('Failed to upload review. Please make sure you select an option for each of the dropdowns.', 4000);
+        }
       }
     );
     $(this.modalSelector).modal('close');
