@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { OverallTutorReviewSummarySortService } from './overall-tutor-review-summary-sort.service';
+import { OverallTutorReviewSummarySortService, SortBy, SortOn } from './overall-tutor-review-summary-sort.service';
 import { OverallTutorReviewSummary } from '../../../shared/tutor/reviews/overall-tutor-review-summary.model';
 
 @Component({
@@ -9,33 +9,69 @@ import { OverallTutorReviewSummary } from '../../../shared/tutor/reviews/overall
 })
 export class SortBarComponent implements OnInit {
   @Input() summaries: OverallTutorReviewSummary[];
+  selectedSortOn: SortOn;
+  selectedSortBy: SortBy;
+  sortOnOptions: SortOn[];
+  sortByOptions: SortBy[];
 
   constructor(private overallTutorReviewSummarySortService: OverallTutorReviewSummarySortService) { }
 
   ngOnInit() {
+    this.selectedSortOn = SortOn.AverageCourseReview;
+    this.selectedSortBy = SortBy.Descending;
+    this.sortOnOptions = [
+      SortOn.AverageOverallReview,
+      SortOn.AverageCourseReview,
+      SortOn.Grade,
+      SortOn.HourlyRate
+    ];
+    this.sortByOptions = [
+      SortBy.Descending,
+      SortBy.Ascending
+    ];
   }
 
-  onSortAscendingClick() {
+  onChangeSortOn(sortOption: SortOn) {
+    if (sortOption === SortOn.HourlyRate) {
+      this.sortByHourlyRate();
+    } else if (sortOption === SortOn.Grade) {
+      this.sortByGrade();
+    } else if (sortOption === SortOn.AverageOverallReview) {
+      this.sortByAverageOverallReview();
+    } else if (sortOption === SortOn.AverageCourseReview) {
+      this.sortByAverageCourseReview();
+    }
+  }
+
+  onChangeSortBy(sortBy: SortBy) {
+    if (sortBy === SortBy.Descending) {
+      this.sortDescending();
+    } else if (sortBy === SortBy.Ascending) {
+      this.sortAscending();
+    }
+  }
+
+  sortAscending() {
     this.overallTutorReviewSummarySortService.sortAscending(this.summaries);
   }
 
-  onSortDescendingClick() {
+  sortDescending() {
     this.overallTutorReviewSummarySortService.sortDescending(this.summaries);
   }
 
-  onSortByHourlyRateClick() {
+  sortByHourlyRate() {
     this.overallTutorReviewSummarySortService.sortByHourlyRate(this.summaries);
   }
 
-  onSortByGradeClick() {
+  sortByGrade() {
     this.overallTutorReviewSummarySortService.sortByGrade(this.summaries);
   }
 
-  onSortByAverageOverallReviewClick() {
+  sortByAverageOverallReview() {
     this.overallTutorReviewSummarySortService.sortByAverageOverAllCourses(this.summaries);
   }
 
-  onSortByAverageCourseReviewClick() {
+  sortByAverageCourseReview() {
     this.overallTutorReviewSummarySortService.sortByAverageForCourse(this.summaries);
   }
 

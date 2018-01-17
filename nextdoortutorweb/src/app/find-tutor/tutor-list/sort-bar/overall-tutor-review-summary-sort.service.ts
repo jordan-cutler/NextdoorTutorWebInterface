@@ -2,8 +2,8 @@ import { OverallTutorReviewSummary } from '../../../shared/tutor/reviews/overall
 import { Grade } from '../../../shared/tutor/tutor-model/grade.model';
 
 export class OverallTutorReviewSummarySortService {
-  private currentlySortingBy = SortOn.HourlyRate;
-  private ascendingOrDescending = SortBy.Ascending;
+  private currentlySortingBy = SortOn.AverageOverallReview;
+  private ascendingOrDescending = SortBy.Descending;
 
   constructor() {
   }
@@ -152,14 +152,14 @@ export class OverallTutorReviewSummarySortService {
   }
 }
 
-enum SortOn {
-  HourlyRate,
-  Grade,
-  AverageOverallReview,
-  AverageCourseReview
+export enum SortOn {
+  HourlyRate = 'Hourly Rate',
+  Grade = 'Grade',
+  AverageOverallReview = 'Avg. Overall Review',
+  AverageCourseReview = 'Avg. Course Review'
 }
 
-enum SortBy {
-  Ascending,
-  Descending
+export enum SortBy {
+  Ascending = 'Ascending',
+  Descending = 'Descending'
 }

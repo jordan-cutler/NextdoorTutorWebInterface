@@ -33,7 +33,6 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
   dynamicEmailTutorComponentGenerator: DynamicComponentGenerator<EmailTutorModalComponent>;
 
   constructor(public userSessionService: UserSessionService,
-              private router: Router,
               private tutorService: TutorService,
               private componentFactoryResolver: ComponentFactoryResolver,
               private viewContainerRef: ViewContainerRef) {

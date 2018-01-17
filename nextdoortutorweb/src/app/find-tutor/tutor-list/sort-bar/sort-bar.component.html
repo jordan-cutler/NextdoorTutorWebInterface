@@ -1,57 +1,33 @@
-<div class="row valign-wrapper">
-  <div class="col s2">
-    <span>Sort by: </span>
-  </div>
-  <div class="col s5 m6">
-    <form action="#">
-      <div class="row">
-        <div class="col s12">
-          <p>
-            <input class="with-gap" name="group1" type="radio" id="hourlyRateSorterRadio"
-                   (click)="onSortByHourlyRateClick()" checked/>
-            <label for="hourlyRateSorterRadio">Hourly Rate</label>
-          </p>
-        </div>
-
-        <div class="col s12">
-          <p>
-            <input class="with-gap" name="group1" type="radio" id="gradeSorterRadio"
-                   (click)="onSortByGradeClick()"/>
-            <label for="gradeSorterRadio">Course Grade</label>
-          </p>
-        </div>
-
-        <div class="col s12">
-          <p>
-            <input class="with-gap" name="group1" type="radio" id="averageCourseReviewSorterRadio"
-                   (click)="onSortByAverageCourseReviewClick()"/>
-            <label for="averageCourseReviewSorterRadio">Avg. Course Review</label>
-          </p>
-        </div>
-
-        <div class="col s12">
-          <p>
-            <input class="with-gap" name="group1" type="radio" id="averageOverallReviewSorterRadio"
-                   (click)="onSortByAverageOverallReviewClick()"/>
-            <label for="averageOverallReviewSorterRadio">Avg. Overall Review</label>
-          </p>
-        </div>
-      </div>
-    </form>
+<div class="row">
+  <div class="col s4 m3 offset-s3 offset-m3">
+    <div class="input-field col s12">
+      <select
+        id="sortOn"
+        name="sortOn"
+        materialize="material_select"
+        [materializeSelectOptions]="sortOnOptions"
+        [(ngModel)]="selectedSortOn"
+        (ngModelChange)="onChangeSortOn($event)"
+      >
+        <option *ngFor="let sortOption of sortOnOptions" [value]="sortOption">{{sortOption.toString()}}</option>
+      </select>
+      <label for="sortOn">Sort On</label>
+    </div>
   </div>
 
-  <div class="col s5 m4">
-    <form action="#">
-      <p>
-        <input class="with-gap" name="group2" type="radio" id="ascendingSorterRadio"
-               (click)="onSortAscendingClick()" checked/>
-        <label for="ascendingSorterRadio">Ascending</label>
-      </p>
-      <p>
-        <input class="with-gap" name="group2" type="radio" id="descendingSorterRadio"
-               (click)="onSortDescendingClick()"/>
-        <label for="descendingSorterRadio">Descending</label>
-      </p>
-    </form>
+  <div class="col s3 offset-s2 offset-m3">
+    <div class="input-field col s12">
+      <select
+        id="sortBy"
+        materialize="material_select"
+        [(ngModel)]="selectedSortBy"
+        [materializeSelectOptions]="sortByOptions"
+        (ngModelChange)="onChangeSortBy($event)"
+        name="sortBy"
+      >
+        <option *ngFor="let sortByOption of sortByOptions" [value]="sortByOption">{{sortByOption.toString()}}</option>
+      </select>
+      <label for="sortBy">Sort By</label>
+    </div>
   </div>
 </div>

@@ -10,7 +10,7 @@
           [ngModel]="defaultDropdownValue"
           required
         >
-          <option [value]="defaultDropdownValue">N/A</option>
+          <option disabled [value]="defaultDropdownValue">N/A</option>
           <option *ngFor="let grade of validGrades" [value]="grade">{{grade}}</option>
         </select>
         <label for="{{knowledgeableDropdownId}}">Knowledgeable</label>
@@ -25,7 +25,7 @@
           [ngModel]="defaultDropdownValue"
           required
         >
-          <option [value]="defaultDropdownValue">N/A</option>
+          <option disabled [value]="defaultDropdownValue">N/A</option>
           <option *ngFor="let grade of validGrades" [value]="grade">{{grade}}</option>
         </select>
         <label for="{{helpfulDropdownId}}">Helpful</label>
@@ -39,7 +39,7 @@
           [ngModel]="defaultDropdownValue"
           required
         >
-          <option [value]="defaultDropdownValue">N/A</option>
+          <option disabled [value]="defaultDropdownValue">N/A</option>
           <option *ngFor="let grade of validGrades" [value]="grade">{{grade}}</option>
         </select>
         <label for="{{charismaticDropdownId}}">Charismatic</label>
@@ -53,7 +53,7 @@
           [ngModel]="defaultDropdownValue"
           required
         >
-          <option [value]="defaultDropdownValue">N/A</option>
+          <option disabled [value]="defaultDropdownValue">N/A</option>
           <option *ngFor="let grade of validGrades" [value]="grade">{{grade}}</option>
         </select>
         <label for="{{overallDropdownId}}">Overall</label>

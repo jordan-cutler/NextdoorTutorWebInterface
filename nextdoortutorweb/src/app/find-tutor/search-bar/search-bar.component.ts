@@ -36,7 +36,6 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
         const courseNumber = course.split(' ')[0];
         this.searchBarText = course;
         this.selectedCourseNumberEventEmitter.emit(courseNumber);
-        // CoursesWithTutors.showListOfTutorsForCourseNumber(courseNumber);
       },
       minLength: 0, // The minimum length of the input for the autocomplete to start. Default: 1.
     });
