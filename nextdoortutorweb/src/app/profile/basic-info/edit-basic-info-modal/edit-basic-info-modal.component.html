@@ -33,11 +33,12 @@
             <div class="input-field col s12">
               <input
                 id="githubInput"
-                type="text"
+                type="url"
                 class="character-count validate"
                 data-length="100" maxlength="100"
-                [ngModel]="user.github ? user.github.link : ''"
-                pattern=".*github.com.*"
+                [ngModel]="user.github ? user.github.link : 'https://www.github.com/'"
+                placeholder="https://www.github.com/[YourGitHubUsername]"
+                pattern="https://www.github.com/.*"
                 name="github"
               />
               <label for="githubInput">GitHub</label>
@@ -47,12 +48,13 @@
             <div class="input-field col s12">
               <input
                 id="facebookInput"
-                type="text"
+                type="url"
                 class="character-count validate"
                 data-length="100" maxlength="100"
-                [ngModel]="user.facebook ? user.facebook.link : ''"
+                [ngModel]="user.facebook ? user.facebook.link : 'https://www.facebook.com/'"
                 name="facebook"
-                pattern=".*facebook.com.*"
+                placeholder="https://www.facebook.com/[YourFacebookUsername]"
+                pattern="https://www.facebook.com/.*"
                 #fb="ngModel"
               />
               <label for="facebookInput">Facebook</label>
@@ -62,11 +64,12 @@
             <div class="input-field col s12">
               <input
                 id="linkedinInput"
-                type="text"
+                type="url"
                 class="character-count validate"
                 data-length="100" maxlength="100"
-                [ngModel]="user.linkedin ? user.linkedin.link : ''"
-                pattern=".*linkedin.com.*"
+                [ngModel]="user.linkedin ? user.linkedin.link : 'https://www.linkedin.com/'"
+                placeholder="https://www.linkedin.com/[YourLinkedInUsername]"
+                pattern="https://www.linkedin.com/.*"
                 name="linkedin"
               />
               <label for="linkedinInput">LinkedIn</label>
@@ -81,7 +84,8 @@
         id="saveBioButton"
         class="waves-effect waves-green btn-flat"
         type="submit"
-      >Save</button>
+      >Save
+      </button>
     </div>
   </form>
 </div>
