@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('signInButtonTop') signInButtonTopRef: ElementRef;
-  @ViewChild('signInButtonSide') signInButtonSideRef: ElementRef;
   user: User;
   submitBugModalId = 'submitBugModal';
   private submitBugModalSelector = '#' + this.submitBugModalId;
@@ -40,7 +39,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
       closeOnClick: true
     });
 
-    this.authService.initializeAuthorization([this.signInButtonTopRef.nativeElement, this.signInButtonSideRef.nativeElement], () => {
+    this.authService.initializeAuthorization([this.signInButtonTopRef.nativeElement], () => {
       this.zone.run(() => {
         this.router.navigate([ApplicationGlobals.FIND_TUTOR_ROUTE]);
       });
@@ -52,6 +51,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSignOutClick() {
+    $('.button-collapse').sideNav('hide');
     this.authService.signOutCurrentUser();
   }
 

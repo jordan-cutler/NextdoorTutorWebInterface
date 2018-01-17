@@ -6,45 +6,50 @@
         <img id="logoImage" class="responsive-img" src="assets/images/NTLogo.png" alt="NextdoorTutor">
       </a>
 
-      <ul class="right hide-on-med-and-down">
-        <li><a class="header" routerLink="/home">Home</a></li>
-        <li *ngIf="user"><a class="header" routerLink="/findtutor">Find a Tutor</a></li>
-        <li *ngIf="user"><a class="header" routerLink="/tutorapplication">Tutor a Course</a></li>
-        <li [hidden]="user">
+      <ul [hidden]="user" class="right">
+        <li>
           <a class="header" #signInButtonTop>
             <img class="google-icon" src="assets/images/googlelogo.png" alt="Google"/>&emsp;Login
           </a>
         </li>
-        <li *ngIf="user">
-          <a class="header" routerLink="/profile">
-            <i class="small material-icons left black-text">account_circle</i>{{user.name}}
-          </a>
-        </li>
-        <li *ngIf="user"><a class="header" (click)="onSignOutClick()">Sign Out</a></li>
+      </ul>
+
+      <ul [hidden]="!user" class="right hide-on-med-and-down">
+        <ng-container *ngIf="user">
+          <li><a class="header" routerLink="/findtutor">Find a Tutor</a></li>
+          <li><a class="header" routerLink="/tutorapplication">Tutor a Course</a></li>
+          <li>
+            <a class="header" routerLink="/profile">
+              <i class="small material-icons left black-text">account_circle</i>{{user.name}}
+            </a>
+          </li>
+          <li><a class="header" (click)="onSignOutClick()">Sign Out</a></li>
+        </ng-container>
+
       </ul>
       <!-- END TOP NAVBAR -->
 
       <!-- BEGIN SLIDE OUT NAVBAR -->
-      <ul id="slide-out" class="side-nav">
-        <li *ngIf="user">
-          <div class="user-view">
-            <div class="background">
-              <img src="assets/images/office.jpg">
+      <ul [hidden]="!user" id="slide-out" class="side-nav">
+        <ng-container *ngIf="user">
+          <li>
+            <div class="user-view">
+              <div class="background">
+                <img src="assets/images/office.jpg">
+              </div>
+              <a><span class="white-text name">{{user.name}}</span></a>
             </div>
-            <a><span class="white-text name">{{user.name}}</span></a>
-          </div>
-        </li>
-        <li><a class="header" routerLink="/home">Home</a></li>
-        <li *ngIf="user"><a class="header" routerLink="/findtutor">Find a Tutor</a></li>
-        <li *ngIf="user"><a class="header" routerLink="/tutorapplication">Tutor a Course</a></li>
-        <!--<li [hidden]="user"><img class="google-icon" src="assets/images/googlelogo.png" alt="Google"/></li>-->
-        <li [hidden]="user"><a class="header" #signInButtonSide>Login With Google</a></li>
-        <li *ngIf="user"><a class="header" routerLink="/profile">Profile</a></li>
-        <li *ngIf="user"><a class="header" (click)="onSignOutClick()">Sign Out</a></li>
+          </li>
+          <li><a class="header" routerLink="/home">Home</a></li>
+          <li><a class="header" routerLink="/findtutor">Find a Tutor</a></li>
+          <li><a class="header" routerLink="/tutorapplication">Tutor a Course</a></li>
+          <li><a class="header" routerLink="/profile">Profile</a></li>
+          <li><a class="header" routerLink="/home" (click)="onSignOutClick()">Sign Out</a></li>
+        </ng-container>
       </ul>
       <!-- END SLIDE OUT NAVBAR -->
 
-      <a data-activates="slide-out" href="#" class="button-collapse"><i class="material-icons icon-gray">menu</i></a>
+      <a [hidden]="!user" data-activates="slide-out" href="#" class="button-collapse"><i class="material-icons icon-gray">menu</i></a>
     </div>
   </nav>
 </div>
