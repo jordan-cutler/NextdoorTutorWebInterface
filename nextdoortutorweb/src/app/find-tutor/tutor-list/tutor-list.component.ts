@@ -66,11 +66,12 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.createEmailTutorModalComponent(emailTutorData);
   }
 
+  // don't make it static. gets called from template
   onImageClick(event: Event, tutor: Tutor) {
     event.preventDefault();
     event.stopPropagation();
     const tutorEmailId = tutor.user.email.split('@')[0];
-    this.router.navigate([ApplicationGlobals.TUTOR_VIEW_ROUTE + '/' + tutorEmailId]);
+    window.open(ApplicationGlobals.TUTOR_VIEW_ROUTE + '/' + tutorEmailId, '_blank');
   }
 
   instructorEndorseTutor(event: Event, tutorId: string, tutorCourseNumber: string, tutor: Tutor, instructorName: string) {
