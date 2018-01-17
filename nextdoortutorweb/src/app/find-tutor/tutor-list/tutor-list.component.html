@@ -24,37 +24,38 @@
                   <span>{{summary.tutor.user.name}}</span>
                 </div>
 
-                <div class="col m4 center hide-on-small-only">
-                  <div class="row center">
-                    <div class="col s12">
-                      <span>
-                        <b>Avg. Overall Review: </b>
-                        <span *ngIf="summary.averageOfAllReviewsForAllCourses; else noOverallAverage">
-                          {{summary.averageOfAllReviewsForAllCourses}}
-                        </span>
-                        <ng-template #noOverallAverage>
-                          <span>N/A</span>
-                        </ng-template>
-                      </span>
-                    </div>
+                <div class="col m4 hide-on-small-only">
+                  <div class="row">
+                    <div class="col s10 offset-s1">
+                        <div class="col s12">
+                          <span class="left">
+                            <span *ngIf="summary.averageOfAllReviewsForAllCourses; else noOverallAverage">
+                              {{summary.averageOfAllReviewsForAllCourses}}:
+                            </span>
+                            <ng-template #noOverallAverage>
+                              <span>N/A: </span>
+                            </ng-template>
+                            <b>Avg. Overall Review</b>
+                          </span>
+                        </div>
 
-                    <div class="col s12">
-                      <span>
-                        <b>Avg. Course Review: </b>
-                        <span
-                          *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews; else noCourseAverage">
-                          {{summary.courseReviewSummary.averageOfAllScoresAmongAllReviews}}
-                        </span>
-                        <ng-template #noCourseAverage>
-                          <span>N/A</span>
-                        </ng-template>
-                      </span>
+                        <div class="col s12">
+                          <span class="left">
+                            <span
+                              *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews; else noCourseAverage">
+                              {{summary.courseReviewSummary.averageOfAllScoresAmongAllReviews}}:
+                            </span>
+                            <ng-template #noCourseAverage>
+                              <span>N/A: </span>
+                            </ng-template>
+                            <b>Avg. Course Review </b>
+                          </span>
+                        </div>
 
-                    </div>
-
-                    <div class="col s12">
-                      <span *ngIf="summary.tutor.grade"><b>Course Grade:</b> {{summary.tutor.grade}}</span>
-                      <span *ngIf="!summary.tutor.grade">Hasn't Taken Course</span>
+                        <div class="col s12">
+                          <span class="left" *ngIf="summary.tutor.grade">{{summary.tutor.grade}}: <b>Course Grade</b></span>
+                          <span class="left" *ngIf="!summary.tutor.grade">Hasn't Taken Course</span>
+                        </div>
                     </div>
                   </div>
                 </div>
