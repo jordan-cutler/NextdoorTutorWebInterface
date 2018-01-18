@@ -1,10 +1,14 @@
-import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit, Component, ElementRef, EventEmitter, NgZone, OnDestroy, OnInit,
+  ViewChild
+} from '@angular/core';
 import { User } from '../../shared/user/user-model/user.model';
 import { UserSessionService } from '../../shared/user-session/user-session.service';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
 import { ApplicationGlobals } from '../../shared/ApplicationGlobals';
 import { Subscription } from 'rxjs/Subscription';
+import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +22,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   private submitBugModalSelector = '#' + this.submitBugModalId;
 
   isLoggedInSubscription: Subscription;
+  sideNavActions = new EventEmitter<string|MaterializeAction>();
 
   constructor(private userSessionService: UserSessionService,
               private authService: AuthService,
@@ -35,10 +40,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    $('.button-collapse').sideNav({
-      closeOnClick: true
-    });
-
     this.authService.initializeAuthorization([this.signInButtonTopRef.nativeElement], () => {
       this.zone.run(() => {
         this.router.navigate([ApplicationGlobals.FIND_TUTOR_ROUTE]);
@@ -51,7 +52,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSignOutClick() {
-    $('.button-collapse').sideNav('hide');
+    this.sideNavActions.emit({action: 'sideNav', params: ['hide']});
     this.authService.signOutCurrentUser();
   }
 
