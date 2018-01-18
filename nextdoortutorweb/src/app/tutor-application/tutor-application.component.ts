@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Course } from '../shared/course/course.model';
 import { CourseService } from '../shared/course/course.service';
 import { Grade } from '../shared/tutor/tutor-model/grade.model';
@@ -17,18 +17,14 @@ import { ApplicationGlobals } from '../shared/ApplicationGlobals';
   templateUrl: './tutor-application.component.html',
   styleUrls: ['./tutor-application.component.scss']
 })
-export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestroy {
+export class TutorApplicationComponent implements OnInit, OnDestroy {
   @ViewChild('applicationForm') applicationForm: NgForm;
   coursesUserIsNotTutoring: Course[];
 
   readonly courseDropdownId = 'course';
-  readonly courseDropdownSelector = '#' + this.courseDropdownId;
   readonly gradeDropdownId = 'grade';
-  readonly gradeDropdownSelector = '#' + this.gradeDropdownId;
   readonly termDropdownId = 'term';
-  readonly termDropdownSelector = '#' + this.termDropdownId;
   readonly yearDropdownId = 'year';
-  readonly yearDropdownSelector = '#' + this.yearDropdownId;
 
   readonly minHourlyRate = 0;
   readonly maxHourlyRate = 50;
@@ -40,7 +36,9 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestr
 
   hourlyRate: string;
   defaultCheckedValue = true;
-  defaultGrade: string;
+  selectedGrade: string;
+  selectedCourse: string;
+  defaultCourse: string;
 
   constructor(private courseService: CourseService,
               private userSessionService: UserSessionService,
@@ -53,28 +51,29 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestr
     this.coursesUserIsNotTutoringSubscription = this.courseService.getCoursesCurrentUserHasntTutoredBefore().subscribe(
       (courses: Course[]) => {
         this.coursesUserIsNotTutoring = courses;
-        this.setUpIntervalToCheckForCoursesUpdatedOnDomEvent(courses.length - 1);
       }
     );
     this.validGrades = Grade.VALID_GRADES;
     this.validTerms = Semester.VALID_TERMS;
     this.validYears = Semester.VALID_YEARS;
     this.hourlyRate = '20';
-    this.defaultGrade = 'B+';
+    this.selectedGrade = 'B+';
+    this.defaultCourse = 'N/A';
+    this.selectedCourse = this.defaultCourse;
   }
 
   onSubmit(event: Event) {
-    const selectedOptionSelector = 'option:selected';
-    const courseNumber = $(this.courseDropdownSelector).find(selectedOptionSelector).text().split(' ')[0];
-    const hourlyRate: number = +this.applicationForm.value.hourlyRate;
-    const hasTakenCourse: boolean = this.applicationForm.value.hasTakenCourseCheckbox;
-    const grade = $(this.gradeDropdownSelector).find(selectedOptionSelector).text();
-    const term = $(this.termDropdownSelector).find(selectedOptionSelector).text();
-    const year: number = +$(this.yearDropdownSelector).find(selectedOptionSelector).text();
+    const controls = this.applicationForm.form.controls;
+    const courseNumber = controls['course'].value;
+    const grade = controls['grade'].value;
+    const hasTakenCourse: boolean = controls['hasTakenCourseCheckbox'].value;
+    const hourlyRate = controls['hourlyRate'].value;
+    const instructor = controls['instructor'].value;
+    const pastExperience = controls['pastExperience'].value;
+    const notes = controls['notes'].value;
+    const term = controls['whenPersonTookCourse']['controls']['term'].value;
+    const year = controls['whenPersonTookCourse']['controls']['year'].value;
     const semester = new Semester(term, year);
-    const instructor = this.applicationForm.value.instructor;
-    const pastExperience = this.applicationForm.value.pastExperience;
-    const notes = this.applicationForm.value.notes;
     const instructorNameWhoEndorsed: string = null;
 
     let invalid = false;
@@ -127,22 +126,6 @@ export class TutorApplicationComponent implements OnInit, AfterViewInit, OnDestr
         Materialize.toast('Could not sign you up at the moment. Please try again later.', 3000);
       }
     );
-  }
-
-  setUpIntervalToCheckForCoursesUpdatedOnDomEvent(indexOfLastElement: number) {
-    this.preloaderService.show();
-    const intervalReference = setInterval(() => {
-      if ($(this.courseDropdownSelector).find('option[value=' + indexOfLastElement + ']').length) {
-        $('select').material_select();
-        this.preloaderService.hide();
-        clearInterval(intervalReference);
-      }
-    }, 200);
-  }
-
-  ngAfterViewInit() {
-    $('select').material_select();
-    $('input.character-count').characterCounter();
   }
 
   ngOnDestroy() {

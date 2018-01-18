@@ -9,16 +9,21 @@
 
       <div class="row"></div>
 
-      <form (ngSubmit)="onSubmit($event)" #applicationForm="ngForm" class="col s12">
+      <form materialize (ngSubmit)="onSubmit($event)" #applicationForm="ngForm" class="col s12">
         <div class="row">
           <div class="input-field col s12">
             <select
               id="{{courseDropdownId}}"
               name="course"
-              *ngIf="coursesUserIsNotTutoring"
+              materialize="material_select"
+              [(ngModel)]="selectedCourse"
+              [materializeSelectOptions]="coursesUserIsNotTutoring"
+              required
             >
-              <option *ngFor="let course of coursesUserIsNotTutoring; let i = index;"
-                      [value]="i">{{course.courseNumber}} {{course.title}}<!-- Don't move this interpolation on its own line -->
+              <option value="{{defaultCourse}}" disabled selected>Select a course</option>
+              <option
+                *ngFor="let course of coursesUserIsNotTutoring"
+                [value]="course.courseNumber">{{course.courseNumber}} {{course.title}}<!-- Don't move this interpolation on its own line -->
               </option>
             </select>
             <label id="courseLabel" for="{{courseDropdownId}}">Course to tutor</label>
@@ -62,7 +67,9 @@
             <select
               id="{{gradeDropdownId}}"
               name="grade"
-              [ngModel]="defaultGrade"
+              materialize="material_select"
+              [materializeSelectOptions]="validGrades"
+              [(ngModel)]="selectedGrade"
               [required]="hasTakenCourse.checked"
             >
               <option *ngFor="let grade of validGrades" [value]="grade.grade">{{grade.grade}}</option>
@@ -79,13 +86,25 @@
           [hidden]="!hasTakenCourse.checked"
         >
           <div class="input-field col s4">
-            <select id="{{termDropdownId}}" name="term">
+            <select
+              id="{{termDropdownId}}"
+              name="term"
+              materialize="material_select"
+              [materializeSelectOptions]="validTerms"
+              [(ngModel)]="validTerms[0]"
+            >
               <option *ngFor="let term of validTerms" [value]="term">{{term}}</option>
             </select>
             <label for="{{termDropdownId}}">Term taken</label>
           </div>
           <div class="input-field col s4">
-            <select id="{{yearDropdownId}}" name="year">
+            <select
+              id="{{yearDropdownId}}"
+              name="year"
+              materialize="material_select"
+              [materializeSelectOptions]="validYears"
+              [(ngModel)]="validYears[0]"
+            >
               <option *ngFor="let year of validYears" [value]="year">{{year}}</option>
             </select>
             <label for="{{yearDropdownId}}">Year taken</label>
@@ -97,7 +116,8 @@
             <input
               id="instructor"
               type="text"
-              class="character-count validate"
+              class="validate"
+              materialize="characterCounter"
               data-length="141" maxlength="141"
               ngModel
               name="instructor"
@@ -112,7 +132,8 @@
             <input
               id="pastExperience"
               type="text"
-              class="validate character-count"
+              class="validate"
+              materialize="characterCounter"
               data-length="141" maxlength="141"
               name="pastExperience"
               ngModel
@@ -126,7 +147,8 @@
             <input
               id="notes"
               type="text"
-              class="validate character-count"
+              class="validate"
+              materialize="characterCounter"
               data-length="141" maxlength="141"
               name="notes"
               ngModel
