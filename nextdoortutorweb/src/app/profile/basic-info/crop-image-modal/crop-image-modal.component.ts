@@ -1,7 +1,8 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { ImageService } from '../../../shared/image.service';
 import { PreloaderService } from '../../../core/preloader/preloader.service';
 import { CropImageService } from './crop-image.service';
+import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
   selector: 'app-crop-image-modal',
@@ -18,7 +19,7 @@ export class CropImageModalComponent implements OnInit, AfterViewInit {
 
   private $cropImage;
 
-  // private successfulUploadImageEvent = new Subject();
+  modalActions = new EventEmitter<string | MaterializeAction>();
 
   constructor(private imageService: ImageService,
               private cd: ChangeDetectorRef,
@@ -33,33 +34,32 @@ export class CropImageModalComponent implements OnInit, AfterViewInit {
     this.openCropperModal();
   }
 
-  openCropperModal() { // file: File) {
-      $(this.modalSelector).modal(); // this line must be present
-      $(this.modalSelector).modal('open');
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.$cropImage = $(this.imagePreviewSelector);
-        // make sure to use jquery to update otherwise it won't work
-        this.$cropImage.attr('src', e.target.result);
-        (this.$cropImage as any).cropper({
-          aspectRatio: 1,
-          viewMode: 1,
-          dragMode: 'move',
-          autoCropArea: 0.65,
-          restore: false,
-          guides: false,
-          highlight: false,
-          background: false,
-          cropBoxMovable: false,
-          cropBoxResizable: false,
-          minContainerHeight: 300,
-          minContainerWidth: 200,
-          minCanvasHeight: 200,
-          minCanvasWidth: 200
-        });
-        this.cd.detectChanges();
-      };
-      reader.readAsDataURL(this.file);
+  openCropperModal() {
+    this.modalActions.emit({action: 'modal', params: ['open']});
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.$cropImage = $(this.imagePreviewSelector);
+      // make sure to use jquery to update otherwise it won't work
+      this.$cropImage.attr('src', e.target.result);
+      (this.$cropImage as any).cropper({
+        aspectRatio: 1,
+        viewMode: 1,
+        dragMode: 'move',
+        autoCropArea: 0.65,
+        restore: false,
+        guides: false,
+        highlight: false,
+        background: false,
+        cropBoxMovable: false,
+        cropBoxResizable: false,
+        minContainerHeight: 300,
+        minContainerWidth: 200,
+        minCanvasHeight: 200,
+        minCanvasWidth: 200
+      });
+      this.cd.detectChanges();
+    };
+    reader.readAsDataURL(this.file);
   }
 
   saveImage() {
