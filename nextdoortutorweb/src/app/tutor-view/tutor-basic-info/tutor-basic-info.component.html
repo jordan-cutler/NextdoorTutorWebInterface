@@ -25,16 +25,16 @@
           <div class="col s6">
             <table>
               <tr>
-                <th class="nt-orange-text">Email:</th>
+                <td class="nt-orange-text">Email:</td>
                 <td><span *ngIf="tutorUser.email" id="emailContact" class="center">{{tutorUser.email}}</span></td>
               </tr>
               <tr>
-                <th class="nt-orange-text">Bio:</th>
+                <td class="nt-orange-text">Bio:</td>
                 <td><span *ngIf="tutorUser.bio">{{tutorUser.bio}}</span>
                   <span *ngIf="!tutorUser.bio">Bio not set</span></td>
               </tr>
               <tr>
-                <th class="nt-orange-text">Major:</th>
+                <td class="nt-orange-text">Major:</td>
                 <td><span *ngIf="tutorUser.major">{{tutorUser.major}} </span>
                   <span *ngIf="!tutorUser.major">Major not set</span></td>
               </tr>
@@ -42,23 +42,23 @@
           </div>
 
           <div class="col s6">
-            <table width="45%">
+            <table class="profileLinksTable">
               <tr>
-                <th><i class="fa fa-github social-icons icon-circle" aria-hidden="true"></i></th>
+                <td class="icon-td"><i class="fa fa-github social-icons icon-circle" aria-hidden="true"></i></td>
                 <td *ngIf="tutorUser.github?.link"><a class="nt-orange-text"
                                                  href="{{tutorUser.github.link}}">{{tutorUser.github.link}}</a></td>
                 <td *ngIf="!tutorUser.github?.link">GitHub not set</td>
               </tr>
 
               <tr>
-                <th><i class="fa fa-facebook social-icons icon-circle" aria-hidden="true"></i></th>
+                <td class="icon-td"><i class="fa fa-facebook social-icons icon-circle" aria-hidden="true"></i></td>
                 <td *ngIf="tutorUser.facebook?.link"><a class="nt-orange-text" href="{{tutorUser.facebook.link}}">{{tutorUser.facebook.link}}</a>
                 </td>
                 <td *ngIf="!tutorUser.facebook?.link">Facebook not set</td>
               </tr>
 
               <tr>
-                <th><i class="fa fa-linkedin social-icons icon-circle"></i></th>
+                <td class="icon-td"><i class="fa fa-linkedin social-icons icon-circle"></i></td>
                 <td *ngIf="tutorUser.linkedin?.link"><a class="nt-orange-text" href="{{tutorUser.linkedin.link}}">{{tutorUser.linkedin.link}}</a>
                 </td>
                 <td *ngIf="!tutorUser.linkedin?.link">LinkedIn not set</td>

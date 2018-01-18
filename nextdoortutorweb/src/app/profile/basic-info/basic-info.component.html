@@ -44,16 +44,16 @@
           <div class="col s6">
             <table>
               <tr>
-                <th class="nt-orange-text">Email:</th>
+                <td class="nt-orange-text">Email:</td>
                 <td><span *ngIf="user.email" id="emailContact" class="center">{{user.email}}</span></td>
               </tr>
               <tr>
-                <th class="nt-orange-text">Bio:</th>
+                <td class="nt-orange-text">Bio:</td>
                 <td><span *ngIf="user.bio">{{user.bio}}</span>
                   <span *ngIf="!user.bio">You haven't set your bio yet!</span></td>
               </tr>
               <tr>
-                <th class="nt-orange-text">Major:</th>
+                <td class="nt-orange-text">Major:</td>
                 <td><span *ngIf="user.major">{{user.major}} </span>
                   <span *ngIf="!user.major"> You haven't set your major yet! </span></td>
               </tr>
@@ -61,25 +61,30 @@
           </div>
 
           <div class="col s6">
-              <table width="45%">
-                <tr>
-                  <th><i class="fa fa-github social-icons icon-circle" aria-hidden="true"></i></th>
-                  <td *ngIf="user.github?.link"><a class="nt-orange-text" href="{{user.github.link}}">{{user.github.link}}</a></td>
-                  <td *ngIf="!user.github?.link">GitHub not set</td>
-                </tr>
+            <table class="profileLinksTable">
+              <tbody>
+              <tr>
+                <td class="icon-td"><i class="fa fa-github social-icons icon-circle" aria-hidden="true"></i></td>
+                <td *ngIf="user.github?.link"><a class="nt-orange-text" href="{{user.github.link}}">{{user.github.link}}</a>
+                </td>
+                <td *ngIf="!user.github?.link">GitHub not set</td>
+              </tr>
 
-                <tr>
-                  <th><i class="fa fa-facebook social-icons icon-circle" aria-hidden="true"></i></th>
-                  <td *ngIf="user.facebook?.link"><a class="nt-orange-text" href="{{user.facebook.link}}">{{user.facebook.link}}</a></td>
-                  <td *ngIf="!user.facebook?.link">Facebook not set</td>
-                </tr>
+              <tr>
+                <td class="icon-td"><i class="fa fa-facebook social-icons icon-circle" aria-hidden="true"></i></td>
+                <td *ngIf="user.facebook?.link"><a class="nt-orange-text" href="{{user.facebook.link}}">{{user.facebook.link}}</a>
+                </td>
+                <td *ngIf="!user.facebook?.link">Facebook not set</td>
+              </tr>
 
-                <tr>
-                  <th><i class="fa fa-linkedin social-icons icon-circle"></i></th>
-                  <td *ngIf="user.linkedin?.link"><a class="nt-orange-text" href="{{user.linkedin.link}}">{{user.linkedin.link}}</a></td>
-                  <td *ngIf="!user.linkedin?.link">LinkedIn not set</td>
-                </tr>
-              </table>
+              <tr>
+                <td class="icon-td"><i class="fa fa-linkedin social-icons icon-circle"></i></td>
+                <td *ngIf="user.linkedin?.link"><a class="nt-orange-text" href="{{user.linkedin.link}}">{{user.linkedin.link}}</a>
+                </td>
+                <td *ngIf="!user.linkedin?.link">LinkedIn not set</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 

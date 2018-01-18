@@ -199,6 +199,21 @@ Makes the actual side nav brighter than everything else. Without this, the siden
   width: 106px !important;
 }
 
+.profileLinksTable {
+  width: 100%;
+  word-wrap: break-word;
+  table-layout: fixed;
+}
+
+.icon-td {
+  width: 30px;
+  white-space: nowrap;
+}
+
+.word-wrap {
+  word-wrap: break-word;
+}
+
 @media only screen and (min-width: 992px) {
   #toast-container {
     position: fixed !important;
