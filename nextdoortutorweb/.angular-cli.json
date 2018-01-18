@@ -19,10 +19,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss",
         "../external/materializedist/css/materialize.min.scss",
         "../external/cropperdist/cropper.min.scss",
-        "../external/font-awesome/css/font-awesome.min.scss"
+        "../external/font-awesome/css/font-awesome.min.scss",
+        "styles.scss"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
