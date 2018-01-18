@@ -1,12 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ComponentFactoryResolver,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewContainerRef
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { Tutor } from '../../shared/tutor/tutor-model/tutor.model';
 import { UserSessionService } from '../../shared/user-session/user-session.service';
 import { DataNeededToFormEmailToTutor } from './email-tutor-modal/DataNeededToFormEmailToTutor';
@@ -16,7 +8,6 @@ import { TutorService } from '../../shared/tutor/tutor.service';
 import { User } from '../../shared/user/user-model/user.model';
 import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
 import { OverallTutorReviewSummary } from '../../shared/tutor/reviews/overall-tutor-review-summary.model';
-import { Router } from '@angular/router';
 import { ApplicationGlobals } from '../../shared/ApplicationGlobals';
 
 @Component({
@@ -24,7 +15,7 @@ import { ApplicationGlobals } from '../../shared/ApplicationGlobals';
   templateUrl: './tutor-list.component.html',
   styleUrls: ['./tutor-list.component.scss']
 })
-export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
+export class TutorListComponent implements OnInit, OnDestroy {
   @Input() summaries: OverallTutorReviewSummary[];
 
   currentUser: User;
@@ -46,12 +37,6 @@ export class TutorListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dynamicEmailTutorComponentGenerator = new DynamicComponentGenerator<EmailTutorModalComponent>(
       this.componentFactoryResolver, this.viewContainerRef, EmailTutorModalComponent
     );
-  }
-
-  ngAfterViewInit() {
-    $('.collapsible').collapsible();
-    $('input.character-count').characterCounter();
-    $('textarea.character-count').characterCounter();
   }
 
   onBookTutor(event: Event, email: string, courseNumber: string, name: string) {

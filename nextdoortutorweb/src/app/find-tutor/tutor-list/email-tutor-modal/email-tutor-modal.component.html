@@ -8,7 +8,7 @@
               <input
                 id="subjectTextArea"
                 type="text"
-                class="character-count"
+                materialize="characterCounter"
                 data-length="100"
                 maxlength="100"
                 [(ngModel)]="subject"
@@ -22,7 +22,7 @@
           <div class="row">
           <textarea
             id="messageTextArea"
-            class="character-count"
+            materialize="characterCounter"
             data-length="255"
             maxlength="255"
             placeholder="Your message to {{tutorName}}"

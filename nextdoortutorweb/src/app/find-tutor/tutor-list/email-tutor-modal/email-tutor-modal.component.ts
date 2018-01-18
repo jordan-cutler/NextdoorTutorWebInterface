@@ -67,9 +67,6 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
     $(this.modalSelector).modal();
     $(this.modalSelector).modal('open');
     setTimeout(Materialize.updateTextFields, 200);
-    this.messageInputField.nativeElement.focus();
-    $('input.character-count').characterCounter();
-    $('textarea.character-count').characterCounter();
   }
 
   onSubmit(event: Event) {
@@ -84,8 +81,8 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
   private giveUserFeedbackOnFormInputsIfNeeded(sendEmailForm: NgForm): FormValidity {
     if (sendEmailForm.invalid) {
       const controls = this.sendEmailForm.form.controls;
-      const subjectInvalid = controls.subject.invalid;
-      const messageInvalid = controls.message.invalid;
+      const subjectInvalid = controls['subject'].invalid;
+      const messageInvalid = controls['message'].invalid;
       // TODO: Add some class around these fields that makes them red after the user hits the submit button.
       // TODO: We can probably add a tooltip to the fields instead of having a toast
       if (subjectInvalid && messageInvalid) {
