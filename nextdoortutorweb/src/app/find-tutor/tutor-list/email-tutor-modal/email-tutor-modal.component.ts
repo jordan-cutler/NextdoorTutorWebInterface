@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
 import { UserSessionService } from '../../../shared/user-session/user-session.service';
 import { EmailTutorService } from './email-tutor.service';
 import { NgForm } from '@angular/forms';
 import { PreloaderService } from '../../../core/preloader/preloader.service';
 import { DataNeededToFormEmailToTutor } from './DataNeededToFormEmailToTutor';
 import { FormValidity } from '../../../shared/FormValidity';
+import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
   selector: 'app-email-tutor-modal',
@@ -24,6 +25,7 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
 
   subject: string;
   message: string;
+  modalActions = new EventEmitter<string|MaterializeAction>();
 
   private static createSubject(courseNumber: string) {
     return `NextdoorTutor - ${courseNumber}`;
@@ -64,9 +66,7 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
   }
 
   private openModal() {
-    $(this.modalSelector).modal();
-    $(this.modalSelector).modal('open');
-    setTimeout(Materialize.updateTextFields, 200);
+    this.modalActions.emit({action: 'modal', params: ['open']});
   }
 
   onSubmit(event: Event) {

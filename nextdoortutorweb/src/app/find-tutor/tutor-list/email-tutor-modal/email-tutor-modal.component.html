@@ -1,4 +1,4 @@
-<div id="{{modalId}}" class="modal">
+<div id="{{modalId}}" class="modal" materialize="modal" [materializeActions]="modalActions">
   <form (ngSubmit)="onSubmit($event)" #form="ngForm">
     <div class="modal-content">
       <div class="row">
