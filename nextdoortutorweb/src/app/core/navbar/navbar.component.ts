@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   isLoggedInSubscription: Subscription;
   sideNavActions = new EventEmitter<string|MaterializeAction>();
+  submitBugModalActions = new EventEmitter<string|MaterializeAction>();
 
   constructor(private userSessionService: UserSessionService,
               private authService: AuthService,
@@ -48,7 +49,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSubmitBugClick() {
-    $(this.submitBugModalSelector).modal('open');
+    this.submitBugModalActions.emit({action: 'modal', params: ['open']});
+    // $(this.submitBugModalSelector).modal('open');
   }
 
   onSignOutClick() {
