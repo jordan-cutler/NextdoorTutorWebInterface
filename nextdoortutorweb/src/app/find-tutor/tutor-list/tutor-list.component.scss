@@ -43,6 +43,7 @@ td {
   opacity: 0;
   transition: .5s ease;
   background-color: #fc7c25;
+  border-radius: 5%;
 }
 
 .overlay-container:hover .overlay {
@@ -66,10 +67,15 @@ td {
 
 .inner-icon i {
   position: absolute;
-  bottom: 2px;
-  right: -15px;
+  bottom: 4px;
+  right: -12px;
   opacity: 1;
   color: #fc7c25;
+  background-color: #ffffff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  /*font-size: 2rem;*/
 }
 
 @media only screen and (max-width: 992px) {
@@ -87,5 +93,6 @@ td {
 b {
   color: #fc7c25;
 }
+
 
 
