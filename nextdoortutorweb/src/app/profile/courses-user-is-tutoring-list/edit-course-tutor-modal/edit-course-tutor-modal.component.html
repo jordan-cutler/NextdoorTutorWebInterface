@@ -1,4 +1,4 @@
-<div id="{{modalId}}" class="modal">
+<div id="{{modalId}}" class="modal" materialize="modal" [materializeActions]="modalActions">
   <form (ngSubmit)="onSubmit($event)" #form="ngForm">
     <div class="modal-content">
       <h4 class="condensed light">Edit your {{tutor.courseNumber}} information</h4>
@@ -28,7 +28,7 @@
           <input
             id="EditCourseModal-pastExperience"
             type="text"
-            class="validate character-count"
+            materialize="characterCounter"
             data-length="141" maxlength="141"
             [(ngModel)]="tutor.pastExperience"
             name="pastExperience"
@@ -44,7 +44,7 @@
           <input
             id="EditCourseModal-notes"
             type="text"
-            class="validate character-count"
+            materialize="characterCounter"
             data-length="141" maxlength="141"
             [(ngModel)]="tutor.notes"
             name="notes"

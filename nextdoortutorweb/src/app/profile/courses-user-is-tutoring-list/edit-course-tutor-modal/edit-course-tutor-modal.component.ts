@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Tutor } from '../../../shared/tutor/tutor-model/tutor.model';
 import { NgForm } from '@angular/forms';
 import { TutorService } from '../../../shared/tutor/tutor.service';
@@ -6,6 +6,7 @@ import { Subject } from 'rxjs/Subject';
 import { PreloaderService } from '../../../core/preloader/preloader.service';
 import { TutorUpdateData } from '../../../shared/tutor/TutorUpdateData';
 import { Observable } from 'rxjs/Observable';
+import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
   selector: 'app-edit-course-tutor-modal',
@@ -20,6 +21,7 @@ export class EditCourseTutorModalComponent implements OnInit, AfterViewInit, OnD
   private readonly modalSelector = '#' + this.modalId;
 
   private coursesUserIsTutoringListUpdatedSubject = new Subject();
+  modalActions = new EventEmitter<string|MaterializeAction>();
 
   constructor(private tutorService: TutorService,
               private preloaderService: PreloaderService) {
@@ -29,9 +31,7 @@ export class EditCourseTutorModalComponent implements OnInit, AfterViewInit, OnD
   }
 
   ngAfterViewInit() {
-    $(this.modalSelector).modal();
-    $(this.modalSelector).modal('open');
-    $('input.character-count').characterCounter();
+    this.modalActions.emit({action: 'modal', params: ['open']});
     setTimeout(Materialize.updateTextFields, 200);
   }
 
