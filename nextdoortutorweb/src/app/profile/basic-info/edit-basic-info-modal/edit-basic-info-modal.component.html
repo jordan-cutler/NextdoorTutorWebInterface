@@ -1,4 +1,4 @@
-<div id="{{modalId}}" class="modal">
+<div id="{{modalId}}" class="modal" materialize="modal" [materializeActions]="modalActions">
   <form (ngSubmit)="onSubmit($event)" #editBasicInfoForm="ngForm">
     <div class="modal-content">
       <div class="row">
@@ -8,7 +8,7 @@
               <input
                 id="bioInput"
                 type="text"
-                class="character-count"
+                materialize="characterCounter"
                 data-length="141" maxlength="141"
                 [ngModel]="user.bio"
                 name="bio"
@@ -21,7 +21,7 @@
               <input
                 id="majorInput"
                 type="text"
-                class="character-count"
+                materialize="characterCounter"
                 data-length="50" maxlength="50"
                 [ngModel]="user.major"
                 name="major"
@@ -34,7 +34,8 @@
               <input
                 id="githubInput"
                 type="url"
-                class="character-count validate"
+                class="validate"
+                materialize="characterCounter"
                 data-length="100" maxlength="100"
                 [ngModel]="user.github?.link ? user.github.link : 'https://www.github.com/[YourGitHubUsername]'"
                 placeholder="https://www.github.com/[YourGitHubUsername]"
@@ -49,7 +50,8 @@
               <input
                 id="facebookInput"
                 type="url"
-                class="character-count validate"
+                class="validate"
+                materialize="characterCounter"
                 data-length="100" maxlength="100"
                 [ngModel]="user.facebook?.link ? user.facebook.link : 'https://www.facebook.com/[YourFacebookUsername]'"
                 name="facebook"
@@ -65,7 +67,8 @@
               <input
                 id="linkedinInput"
                 type="url"
-                class="character-count validate"
+                class="validate"
+                materialize="characterCounter"
                 data-length="100" maxlength="100"
                 [ngModel]="user.linkedin?.link ? user.linkedin.link : 'https://www.linkedin.com/[YourLinkedInUsername]'"
                 placeholder="https://www.linkedin.com/[YourLinkedInUsername]"

@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../../shared/user/user-model/user.model';
 import { AbstractControl, NgForm } from '@angular/forms';
 import { UserService } from '../../../shared/user/user.service';
 import { UserSessionService } from '../../../shared/user-session/user-session.service';
 import { Observable } from 'rxjs/Observable';
 import { ProfilePageLink, Site } from '../../../shared/user/user-model/profile-page-link.model';
+import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
   selector: 'app-edit-basic-info-modal',
@@ -16,6 +17,7 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
   @Input() user: User;
   readonly modalId = 'editBasicInfoModal';
   private modalSelector = '#' + this.modalId;
+  modalActions = new EventEmitter<string|MaterializeAction>();
 
   constructor(private userService: UserService,
               private userSessionService: UserSessionService) {
@@ -25,9 +27,7 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    $('input.character-count').characterCounter();
-    $(this.modalSelector).modal();
-    $(this.modalSelector).modal('open');
+    this.modalActions.emit({action: 'modal', params: ['open']});
     setTimeout(Materialize.updateTextFields, 200);
   }
 
