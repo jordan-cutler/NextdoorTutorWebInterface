@@ -1,10 +1,12 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
 import { Tutor } from '../../../shared/tutor/tutor-model/tutor.model';
 import { User } from '../../../shared/user/user-model/user.model';
 import { TutorReviewService } from '../../../shared/tutor/reviews/tutor-review.service';
 import { UserSessionService } from '../../../shared/user-session/user-session.service';
 import { PreloaderService } from '../../../core/preloader/preloader.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
+import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
   selector: 'app-tutor-review-modal',
@@ -12,13 +14,14 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./tutor-review-modal.component.scss']
 })
 export class TutorReviewModalComponent implements OnInit, AfterViewInit {
+  @ViewChild('reviewForm') reviewForm: NgForm;
   @Input() tutorUser: User;
   @Input() courseNumber: string;
   readonly modalId = 'courseReview';
 
-  private readonly modalSelector = '#' + this.modalId;
+  modalActions = new EventEmitter<string|MaterializeAction>();
 
-  readonly validGrades = [
+  readonly validReviewGrades = [
     'A+',
     'A',
     'A-',
@@ -33,44 +36,39 @@ export class TutorReviewModalComponent implements OnInit, AfterViewInit {
   ];
 
   readonly knowledgeableDropdownId = 'knowledgeableDropdown';
-  readonly knowledgeableDropdownSelector = '#' + this.knowledgeableDropdownId;
   readonly helpfulDropdownId = 'helpfulDropdown';
-  readonly helpfulDropdownSelector = '#' + this.helpfulDropdownId;
   readonly charismaticDropdownId = 'charismaticDropdown';
-  readonly charismaticDropdownSelector = '#' + this.charismaticDropdownId;
   readonly overallDropdownId = 'overallDropdown';
-  readonly overallDropdownSelector = '#' + this.overallDropdownId;
   readonly notesId = 'notes';
-  readonly notesSelector = '#' + this.notesId;
-  readonly defaultDropdownValue = 'N/A';
+
+  selectedDropdownValue: string;
+  defaultDropdownValue: string;
 
   constructor(private tutorReviewService: TutorReviewService,
               private preloaderService: PreloaderService) { }
 
   ngOnInit() {
-
+    this.defaultDropdownValue = 'N/A';
+    this.selectedDropdownValue = this.defaultDropdownValue;
   }
 
   ngAfterViewInit() {
-    $(this.modalSelector).modal();
-    $(this.modalSelector).modal('open');
-    $('select').material_select();
-    $('input.character-count').characterCounter();
+    this.modalActions.emit({action: 'modal', params: ['open']});
   }
 
   onSubmitReview() {
-    const selectedOptionSelector = 'option:selected';
-    const knowledgeableGrade = $(this.knowledgeableDropdownSelector).find(selectedOptionSelector).text();
-    const helpfulGrade = $(this.helpfulDropdownSelector).find(selectedOptionSelector).text();
-    const charismaticGrade = $(this.charismaticDropdownSelector).find(selectedOptionSelector).text();
-    const overallGrade = $(this.overallDropdownSelector).find(selectedOptionSelector).text();
+    const controls = this.reviewForm.form.controls;
+    const knowledgeableGrade = controls['knowledgeableGrade'].value;
+    const helpfulGrade = controls['helpfulGrade'].value;
+    const charismaticGrade = controls['charismaticGrade'].value;
+    const overallGrade = controls['overallGrade'].value;
+    const notes = controls['notes'].value;
     const grades = [knowledgeableGrade, helpfulGrade, charismaticGrade, overallGrade];
     if (grades.find((value: string) => value === this.defaultDropdownValue ||
-        !this.validGrades.find((validGrade: string) => validGrade === value))) {
+        !this.validReviewGrades.find((validGrade: string) => validGrade === value))) {
       Materialize.toast('Make sure you select an option for each of the dropdowns.', 3000);
       return false;
     }
-    const notes = $(this.notesSelector).val();
     this.preloaderService.show();
     this.tutorReviewService.submitReviewForTutor(
       this.tutorUser.userId, this.courseNumber, knowledgeableGrade,
@@ -94,7 +92,7 @@ export class TutorReviewModalComponent implements OnInit, AfterViewInit {
         }
       }
     );
-    $(this.modalSelector).modal('close');
+    this.modalActions.emit({action: 'modal', params: ['close']});
   }
 
 }
