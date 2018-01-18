@@ -1,3 +1,7 @@
+td {
+  padding: 2px 3px !important;
+}
+
 .profileImg {
   border-radius: 5%;
   padding: 0 !important;
@@ -25,7 +29,7 @@
   position: relative;
 }
 
-.overlay {
+.overlay, .inner-icon {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -33,6 +37,9 @@
   right: 0;
   height: 100%;
   width: 100%;
+}
+
+.overlay {
   opacity: 0;
   transition: .5s ease;
   background-color: #fc7c25;
@@ -51,6 +58,19 @@
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.inner-icon:hover i {
+  opacity: 0;
+}
+
+.inner-icon i {
+  position: absolute;
+  bottom: 2px;
+  right: -15px;
+  z-index: 999;
+  opacity: 1;
+  color: #fc7c25;
 }
 
 @media only screen and (max-width: 992px) {

@@ -15,6 +15,9 @@
                     appHttpImage [userIdUnderProfilePhoto]="summary.tutor.user.userId" [askerId]="currentUser.userId"
                     alt="No profile picture"
                   />
+                  <div class="inner-icon">
+                    <i class="material-icons">fullscreen</i>
+                  </div>
                   <div class="overlay cursorPointer">
                     <div class="overlay-text">View Profile</div>
                   </div>
@@ -48,7 +51,7 @@
                             <td>N/A:</td>
                           </ng-template>
                           <td>:</td>
-                          <td>Avg. Course Review</td>
+                          <td><b>Avg. Course Review</b></td>
                         </tr>
 
                         <tr>
@@ -57,7 +60,7 @@
                               {{summary.tutor.grade}}
                             </td>
                             <td>:</td>
-                            <td>Course Grade</td>
+                            <td><b>Course Grade</b></td>
                           </ng-container>
 
                           <td *ngIf="!summary.tutor.grade" colspan="3">Hasn't Taken Course</td>
