@@ -20,15 +20,15 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "../node_modules/materialize-css/dist/css/materialize.min.scss",
-        "../node_modules/cropper/dist/cropper.min.scss",
-        "../node_modules/font-awesome/css/font-awesome.min.scss"
+        "../external/materializedist/css/materialize.min.scss",
+        "../external/cropperdist/cropper.min.scss",
+        "../external/font-awesome/css/font-awesome.min.scss"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/hammerjs/hammer.min.js",
-        "../node_modules/materialize-css/dist/js/materialize.min.js",
-        "../node_modules/cropper/dist/cropper.min.js"
+        "../external/materializedist/js/materialize.min.js",
+        "../external/cropperdist/cropper.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
