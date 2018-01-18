@@ -1,5 +1,5 @@
 td {
-  padding: 2px 3px !important;
+  padding: 2px 0px 0px 0px !important;
 }
 
 .profileImg {
@@ -67,15 +67,15 @@ td {
 
 .inner-icon i {
   position: absolute;
-  bottom: 4px;
-  right: -12px;
+  bottom: 2px;
+  right: -15px;
   opacity: 1;
   color: #fc7c25;
-  background-color: #ffffff;
+  /*background-color: #ffffff;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  /*font-size: 2rem;*/
+  width: 12px;
+  height: 12px;*/
+  font-size: 1.8rem;
 }
 
 @media only screen and (max-width: 992px) {
@@ -93,6 +93,31 @@ td {
 b {
   color: #fc7c25;
 }
+
+.align-table {
+  padding-right: 77px;
+}
+
+.column {
+  float: left;
+}
+
+.left {
+  width: 15%;
+  padding-left: 2%;
+}
+
+.right {
+  width: 80%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
 
 
 
