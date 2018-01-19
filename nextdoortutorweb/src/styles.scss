@@ -216,13 +216,11 @@ Makes the actual side nav brighter than everything else. Without this, the siden
 
 @media only screen and (min-width: 992px) {
   #toast-container {
-    position: fixed !important;
-    top: 20vh !important;
-    bottom: 70vh !important;
-    left: 35vw !important;
-    right: 35vw !important;
-    width: 30vw !important;
-    height: 10vh !important;
+    left: 25vw;
+    width: 50vw;
+  }
+  .toast {
+    word-break: keep-all;
   }
 
   .profilePhoto {
