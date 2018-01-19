@@ -18,12 +18,12 @@
         <ng-container *ngIf="user">
           <li><a class="header" routerLink="/findtutor">Find a Tutor</a></li>
           <li><a class="header" routerLink="/tutorapplication">Tutor a Course</a></li>
+          <li><a class="header" (click)="onSubmitBugClick()">Submit Bug</a></li>
           <li>
             <a class="header" routerLink="/profile">
               <i class="small material-icons left black-text">account_circle</i>{{user.name}}
             </a>
           </li>
-          <li><a class="header" (click)="onSubmitBugClick()">Submit Bug</a></li>
           <li><a class="header" (click)="onSignOutClick()">Sign Out</a></li>
         </ng-container>
 
