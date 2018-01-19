@@ -80,7 +80,7 @@ export class TutorReviewModalComponent implements OnInit, AfterViewInit {
           this.tutorReviewService.sendSuccessfulReviewUploadedEvent();
           Materialize.toast('Review added successfully. Thanks!', 3000);
         } else {
-          Materialize.toast('Failed to upload review. Please make sure you select an option for each of the dropdowns.', 4000);
+          Materialize.toast('Failed to upload review. Please make sure you select an option for each of the dropdowns.', 3000);
         }
       },
       (error: HttpErrorResponse) => {
