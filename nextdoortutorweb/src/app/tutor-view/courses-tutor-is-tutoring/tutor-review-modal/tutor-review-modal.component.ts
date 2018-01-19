@@ -66,7 +66,7 @@ export class TutorReviewModalComponent implements OnInit, AfterViewInit {
     const grades = [knowledgeableGrade, helpfulGrade, charismaticGrade, overallGrade];
     if (grades.find((value: string) => value === this.defaultDropdownValue ||
         !this.validReviewGrades.find((validGrade: string) => validGrade === value))) {
-      Materialize.toast('Make sure you select an option for each of the dropdowns.', 3000);
+      Materialize.toast('Make sure you select an option for each of the dropdowns.hhfhfhfhfhfhfhfhfhfhfhf a b c abcddeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee applesauce', 99999);
       return false;
     }
     this.preloaderService.show();
