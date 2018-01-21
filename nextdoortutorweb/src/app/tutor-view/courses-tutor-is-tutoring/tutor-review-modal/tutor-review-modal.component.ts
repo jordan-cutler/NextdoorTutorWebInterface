@@ -1,8 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
-import { Tutor } from '../../../shared/tutor/tutor-model/tutor.model';
 import { User } from '../../../shared/user/user-model/user.model';
 import { TutorReviewService } from '../../../shared/tutor/reviews/tutor-review.service';
-import { UserSessionService } from '../../../shared/user-session/user-session.service';
 import { PreloaderService } from '../../../core/preloader/preloader.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';

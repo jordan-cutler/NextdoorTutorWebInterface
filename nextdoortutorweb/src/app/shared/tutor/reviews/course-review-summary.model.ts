@@ -1,5 +1,7 @@
+import { Course } from '../../course/course.model';
+
 export class CourseReviewSummary {
-  constructor(public courseNumber: string,
+  constructor(public course: Course,
               public knowledgeableAverage: string,
               public helpfulAverage: string,
               public charismaticAverage: string,
@@ -11,14 +13,14 @@ export class CourseReviewSummary {
     if (!courseReviewSummaryJson) {
       return null;
     }
-    const courseNumber = courseReviewSummaryJson.courseNumber;
+    const course: Course = Course.toModelFromJson(courseReviewSummaryJson.course);
     const knowledgeableAverage = courseReviewSummaryJson.knowledgeableAverage;
     const helpfulAverage = courseReviewSummaryJson.helpfulAverage;
     const charismaticAverage = courseReviewSummaryJson.charismaticAverage;
     const averageOfAllScoresAmongAllReviews = courseReviewSummaryJson.averageOfAllScoresAmongAllReviews;
     const notes = courseReviewSummaryJson.notes;
     return new CourseReviewSummary(
-      courseNumber, knowledgeableAverage, helpfulAverage,
+      course, knowledgeableAverage, helpfulAverage,
       charismaticAverage, averageOfAllScoresAmongAllReviews, notes
     );
   }

@@ -64,7 +64,7 @@ export class TutorApplicationComponent implements OnInit, OnDestroy {
 
   onSubmit(event: Event) {
     const controls = this.applicationForm.form.controls;
-    const courseNumber = controls['course'].value;
+    const course: Course = controls['course'].value;
     const grade = controls['grade'].value;
     const hasTakenCourse: boolean = controls['hasTakenCourseCheckbox'].value;
     const hourlyRate = controls['hourlyRate'].value;
@@ -107,7 +107,7 @@ export class TutorApplicationComponent implements OnInit, OnDestroy {
 
     const currentUser = this.userSessionService.getCurrentUser();
     const tutor = new Tutor(
-      currentUser, hourlyRate, courseNumber, grade, instructor,
+      currentUser, hourlyRate, course, grade, instructor,
       pastExperience, notes, semester, hasTakenCourse, instructorNameWhoEndorsed
     );
     this.preloaderService.show();
@@ -115,8 +115,9 @@ export class TutorApplicationComponent implements OnInit, OnDestroy {
       (successful: boolean) => {
         this.preloaderService.hide();
         if (successful) {
-          this.router.navigate([ApplicationGlobals.FIND_TUTOR_ROUTE]); // this essentially is acting as a  clear form
-          Materialize.toast('Thanks for becoming a ' + courseNumber + ' tutor! You can find yourself on the find a tutor page now.', 4000);
+          this.router.navigate([ApplicationGlobals.FIND_TUTOR_ROUTE]); // this essentially is acting as a clear form
+          Materialize.toast('Thanks for becoming a ' + course.courseNumber + ' tutor! ' +
+            'You can find yourself on the find a tutor page now.', 4000);
         } else {
           Materialize.toast('Could not sign you up at the moment. Please try again later.', 3000);
         }

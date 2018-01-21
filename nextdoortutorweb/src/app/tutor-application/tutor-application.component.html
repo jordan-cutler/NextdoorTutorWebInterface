@@ -23,7 +23,7 @@
               <option value="{{defaultCourse}}" disabled selected>Select a course</option>
               <option
                 *ngFor="let course of coursesUserIsNotTutoring"
-                [value]="course.courseNumber">{{course.courseNumber}} {{course.title}}<!-- Don't move this interpolation on its own line -->
+                [value]="course">{{course.courseNumber}} {{course.title}}<!-- Don't move this interpolation on its own line -->
               </option>
             </select>
             <label id="courseLabel" for="{{courseDropdownId}}">Course to tutor</label>

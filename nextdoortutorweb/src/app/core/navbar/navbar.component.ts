@@ -1,5 +1,11 @@
 import {
-  AfterViewInit, Component, ElementRef, EventEmitter, NgZone, OnDestroy, OnInit,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  NgZone,
+  OnDestroy,
+  OnInit,
   ViewChild
 } from '@angular/core';
 import { User } from '../../shared/user/user-model/user.model';

@@ -37,7 +37,7 @@ export class EditCourseTutorModalComponent implements OnInit, AfterViewInit, OnD
 
   onSubmit(event: Event) {
     const tutorUpdateData: TutorUpdateData = {
-      courseNumber: this.tutor.courseNumber,
+      courseNumber: this.tutor.course.courseNumber,
       hourlyRate: +this.tutor.hourlyRate,
       pastExperience: this.tutor.pastExperience,
       notes: this.tutor.notes
@@ -48,7 +48,7 @@ export class EditCourseTutorModalComponent implements OnInit, AfterViewInit, OnD
         this.preloaderService.hide();
         if (successful) {
           this.coursesUserIsTutoringListUpdatedSubject.next();
-          Materialize.toast('Successfully edited your tutor profile for ' + this.tutor.courseNumber, 2500);
+          Materialize.toast('Successfully edited your tutor profile for ' + this.tutor.course.courseNumber, 2500);
         } else {
           Materialize.toast('Failed to update your tutor profile. Try again soon.', 2500);
         }
@@ -62,20 +62,20 @@ export class EditCourseTutorModalComponent implements OnInit, AfterViewInit, OnD
 
   onStopTutoringCourseClick() {
     this.preloaderService.show();
-    this.tutorService.removeCurrentUserFromCourseTutor(this.tutor.courseNumber).subscribe(
+    this.tutorService.removeCurrentUserFromCourseTutor(this.tutor.course.courseNumber).subscribe(
       (successful: boolean) => {
         this.preloaderService.hide();
         if (successful) {
           this.coursesUserIsTutoringListUpdatedSubject.next();
-          Materialize.toast('Successfully removed you from tutoring for ' + this.tutor.courseNumber + '.', 3000);
+          Materialize.toast('Successfully removed you from tutoring for ' + this.tutor.course.courseNumber + '.', 3000);
         } else {
-          Materialize.toast('Failed to remove you from tutoring for ' + this.tutor.courseNumber + '. Try again soon', 3000);
+          Materialize.toast('Failed to remove you from tutoring for ' + this.tutor.course.courseNumber + '. Try again soon', 3000);
         }
         $(this.modalSelector).modal('close');
       },
       (error) => {
         this.preloaderService.hide();
-        Materialize.toast('Failed to remove you from tutoring for ' + this.tutor.courseNumber + '. Try again soon', 3000);
+        Materialize.toast('Failed to remove you from tutoring for ' + this.tutor.course.courseNumber + '. Try again soon', 3000);
         $(this.modalSelector).modal('close');
       }
     );
