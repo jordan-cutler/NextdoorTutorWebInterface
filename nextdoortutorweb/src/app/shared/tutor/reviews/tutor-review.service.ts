@@ -6,12 +6,14 @@ import { OverallTutorReviewSummary } from './overall-tutor-review-summary.model'
 import 'rxjs/Rx';
 import { BasicTutorInfo } from './basic-tutor-info.model';
 import { Subject } from 'rxjs/Subject';
+import { CourseReviewSummary } from './course-review-summary.model';
 
 @Injectable()
 export class TutorReviewService {
 
   private static readonly OVERALLSUMMARYROUTE = '/api/tutorReview/overallSummary';
-  private static readonly ALLSUMMARIESROUTE = '/api/tutorReview/summariesForCourse';
+  private static readonly ALLOVERALLSUMMARIESFORCOURSEROUTE = '/api/tutorReview/summariesForCourse';
+  private static readonly ALLCOURSEREVIEWSUMMARIESFORTUTORROUTE = '/api/tutorReview/summariesForTutor';
   private static readonly GETBASICTUTORINFOROUTE = '/api/tutorReview/basicTutorInfo';
   private static readonly SUBMITTUTORREVIEWROUTE = '/api/tutorReview';
 
@@ -47,10 +49,20 @@ export class TutorReviewService {
 
   getAllOverallTutorReviewSummariesForCourse(courseNumber: string): Observable<OverallTutorReviewSummary[]> {
     return this.httpClient.get(
-      TutorReviewService.ALLSUMMARIESROUTE + '/' + courseNumber
+      TutorReviewService.ALLOVERALLSUMMARIESFORCOURSEROUTE + '/' + courseNumber
     ).map(
       (overallTutorReviewSummariesJson: any[]) => overallTutorReviewSummariesJson.map(
         (overallTutorReviewSummaryJson) => OverallTutorReviewSummary.toModelFromJson(overallTutorReviewSummaryJson)
+      )
+    );
+  }
+
+  getAllCourseReviewSummariesForTutor(userId: string): Observable<CourseReviewSummary[]> {
+    return this.httpClient.get(
+      TutorReviewService.ALLCOURSEREVIEWSUMMARIESFORTUTORROUTE + '/' + userId
+    ).map(
+      (courseReviewSummariesJson: any[]) => courseReviewSummariesJson.map(
+        (courseReviewSummaryJson) => CourseReviewSummary.toModelFromJson(courseReviewSummaryJson)
       )
     );
   }

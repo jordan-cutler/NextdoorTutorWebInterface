@@ -36,7 +36,10 @@ export class TutorViewComponent implements OnInit, OnDestroy {
   updateBasicTutorInfo(email: string) {
     this.tutorDataSubscription =
       this.tutorReviewService.getBasicTutorInfo(email).subscribe(
-        (basicTutorInfo: BasicTutorInfo) => this.basicTutorInfo = basicTutorInfo
+        (basicTutorInfo: BasicTutorInfo) => {
+          this.basicTutorInfo = basicTutorInfo;
+          console.log(JSON.stringify(this.basicTutorInfo));
+        }
       );
   }
 

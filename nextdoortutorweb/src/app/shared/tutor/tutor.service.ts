@@ -22,7 +22,7 @@ export class TutorService {
   addTutor(tutor: Tutor): Observable<boolean> {
     return this.httpClient.post<boolean>(TutorService.ADDTUTORROUTE, {
       hourlyRate: tutor.hourlyRate,
-      courseNumber: tutor.course.courseNumber,
+      course: tutor.course,
       grade: tutor.grade,
       instructor: tutor.instructor,
       pastExperience: tutor.pastExperience,

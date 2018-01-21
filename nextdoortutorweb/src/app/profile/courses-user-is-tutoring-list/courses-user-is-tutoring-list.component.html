@@ -4,12 +4,14 @@
       <div class="collection-header">
         <h5 class="condensed light center">Courses You're Tutoring</h5>
       </div>
-      <div *ngIf="courses">
-        <a *ngFor="let course of courses" (click)="onCourseClick(course)"
+        <a *ngFor="let courseReviewSummary of courseReviewSummaries" (click)="onCourseClick(courseReviewSummary.course)"
            class="collection-item cursorPointer center nt-orange-text">
-          {{course.courseNumber}} {{course.title}}
+          {{courseReviewSummary.course.courseNumber}} {{courseReviewSummary.course.title}} <br>
+          <span *ngIf="courseReviewSummary?.averageOfAllScoresAmongAllReviews; else noReviews">
+                  Average Review: {{courseReviewSummary.averageOfAllScoresAmongAllReviews}}
+                </span>
+          <ng-template #noReviews><span>No reviews</span></ng-template>
         </a>
-      </div>
     </div>
   </div>
 </div>

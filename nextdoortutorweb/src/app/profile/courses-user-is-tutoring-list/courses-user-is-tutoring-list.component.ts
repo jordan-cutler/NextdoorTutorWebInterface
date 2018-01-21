@@ -6,6 +6,8 @@ import { TutorService } from '../../shared/tutor/tutor.service';
 import { Tutor } from '../../shared/tutor/tutor-model/tutor.model';
 import { Subscription } from 'rxjs/Subscription';
 import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
+import { CourseReviewSummary } from '../../shared/tutor/reviews/course-review-summary.model';
+import { TutorReviewService } from '../../shared/tutor/reviews/tutor-review.service';
 
 @Component({
   selector: 'app-courses-user-is-tutoring-list',
@@ -14,29 +16,29 @@ import { DynamicComponentGenerator } from '../../shared/dynamic-component-genera
 })
 export class CoursesUserIsTutoringListComponent implements OnInit, OnDestroy {
   @Input() userId: string;
+  @Input() courseReviewSummaries: CourseReviewSummary[];
   courses: Course[];
 
   private dynamicComponentGenerator: DynamicComponentGenerator<EditCourseTutorModalComponent>;
   private coursesListUpdatedSubscription: Subscription;
-  private getCoursesSubscription: Subscription;
+  private getCourseReviewSummariesSubscription: Subscription;
 
-  constructor(private courseService: CourseService,
+  constructor(private tutorReviewService: TutorReviewService,
               private tutorService: TutorService,
               private componentFactoryResolver: ComponentFactoryResolver,
               private viewContainerRef: ViewContainerRef) {
   }
 
   ngOnInit() {
-    this.updateCourses();
     this.dynamicComponentGenerator = new DynamicComponentGenerator<EditCourseTutorModalComponent>(
       this.componentFactoryResolver, this.viewContainerRef, EditCourseTutorModalComponent
     );
   }
 
   updateCourses() {
-    this.getCoursesSubscription = this.courseService.getCoursesUserIsTutoring(this.userId).subscribe(
-      (courses: Course[]) => {
-        this.courses = courses;
+    this.getCourseReviewSummariesSubscription = this.tutorReviewService.getAllCourseReviewSummariesForTutor(this.userId).subscribe(
+      (courseReviewSummaries: CourseReviewSummary[]) => {
+        this.courseReviewSummaries = courseReviewSummaries;
       }
     );
   }
@@ -56,6 +58,8 @@ export class CoursesUserIsTutoringListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.getCoursesSubscription.unsubscribe();
+    if (this.getCourseReviewSummariesSubscription) {
+      this.getCourseReviewSummariesSubscription.unsubscribe();
+    }
   }
 }
