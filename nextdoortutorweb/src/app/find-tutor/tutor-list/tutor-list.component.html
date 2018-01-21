@@ -6,7 +6,7 @@
 
           <app-sort-bar [summaries]="summaries"></app-sort-bar>
 
-          <ul class="z-depth-3" materialize="collapsible" [materializeParams]="[{accordion: false}]">
+          <ul class="z-depth-3" materialize="collapsible" [materializeParams]="[{accordion: false}]" data-collapsible="expandable">
             <li *ngFor="let summary of summaries">
               <div class="row collapsible-header valign-wrapper">
                 <div class="overlay-container" (click)="onImageClick($event, summary.tutor)">
