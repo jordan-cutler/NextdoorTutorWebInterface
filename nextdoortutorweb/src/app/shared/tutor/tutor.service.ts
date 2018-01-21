@@ -27,8 +27,7 @@ export class TutorService {
       instructor: tutor.instructor,
       pastExperience: tutor.pastExperience,
       notes: tutor.notes,
-      yearTaken: tutor.semesterTaken.year,
-      termTaken: tutor.semesterTaken.term,
+      semesterTaken: tutor.semesterTaken,
       hasTakenCourse: tutor.hasTakenCourse
     });
   }
