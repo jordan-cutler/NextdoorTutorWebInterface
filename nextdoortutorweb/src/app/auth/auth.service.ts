@@ -47,7 +47,7 @@ export class AuthService {
         this.httpClient.post(AuthService.SIGNINROUTE, { idToken: idToken })
           .map(
             (userSession) => {
-              return UserSession.userSessionJsonToUserSessionModel(userSession);
+              return UserSession.toModelFromJson(userSession);
             }
           )
           .subscribe(

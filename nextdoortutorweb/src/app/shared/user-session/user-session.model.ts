@@ -5,7 +5,7 @@ export class UserSession {
   private user: User;
   private readonly jwt: string;
 
-  public static userSessionJsonToUserSessionModel(userSessionJson: any): UserSession {
+  public static toModelFromJson(userSessionJson: any): UserSession {
     const user: User = User.userJsonToUserModel(userSessionJson.user);
     const sessionToken: string = userSessionJson.jwt;
     return new UserSession(user, sessionToken);

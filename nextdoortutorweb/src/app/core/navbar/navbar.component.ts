@@ -25,7 +25,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('signInButtonTop') signInButtonTopRef: ElementRef;
   user: User;
   submitBugModalId = 'submitBugModal';
-  private submitBugModalSelector = '#' + this.submitBugModalId;
 
   isLoggedInSubscription: Subscription;
   sideNavActions = new EventEmitter<string|MaterializeAction>();
@@ -56,7 +55,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onSubmitBugClick() {
     this.submitBugModalActions.emit({action: 'modal', params: ['open']});
-    // $(this.submitBugModalSelector).modal('open');
   }
 
   onSignOutClick() {

@@ -13,7 +13,8 @@ const appRoutes: Routes = [
   { path: 'findtutor', component: FindTutorComponent, canActivate: [AuthGuard] },
   { path: 'tutorapplication', component: TutorApplicationComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'tutorview/:emailId', component: TutorViewComponent, canActivate: [AuthGuard] }
+  { path: 'tutorview/:emailId', component: TutorViewComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '/home'}
 ];
 
 @NgModule({
