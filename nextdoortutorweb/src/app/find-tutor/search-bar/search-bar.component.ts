@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Course } from '../../shared/course/course.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-find-tutor-search-bar',
@@ -7,13 +8,12 @@ import { Course } from '../../shared/course/course.model';
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit, AfterViewInit {
-  @Output() selectedCourseNumberEventEmitter = new EventEmitter<string>();
   @Input() courses: Course[];
   @ViewChild('searchBar') searchBarRef: ElementRef;
   searchBarId: string;
   searchBarText = '';
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.searchBarId = 'searchBar';
@@ -36,7 +36,13 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
       onAutocomplete: (course: string) => {
         const courseNumber = course.split(' ')[0];
         this.searchBarText = course;
-        this.selectedCourseNumberEventEmitter.emit(courseNumber);
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: {
+            courseNumber: courseNumber
+          },
+          preserveQueryParams: false
+        });
       },
       minLength: 0, // The minimum length of the input for the autocomplete to start. Default: 1.
     });
