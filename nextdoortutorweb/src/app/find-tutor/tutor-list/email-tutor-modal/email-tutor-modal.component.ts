@@ -22,7 +22,6 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
   tutorEmail: string;
   courseNumber: string;
   modalId: string;
-  modalSelector: string;
 
   subject: string;
   message: string;
@@ -48,7 +47,6 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.modalId = 'emailTutorModal';
-    this.modalSelector = '#' + this.modalId;
 
     this.tutorEmail = this.emailTutorData.tutorEmail;
     this.courseNumber = this.emailTutorData.courseNumber;
@@ -106,7 +104,7 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
         if (successful) {
           Materialize.toast('Successfully emailed tutor. They will email you back soon if interested.', 3000);
           this.sendEmailForm.reset();
-          $(this.modalSelector).modal('close');
+          this.modalActions.emit({action: 'modal', params: ['close']});
         } else {
           Materialize.toast('Failed to send email. Please try again soon.', 3000);
         }

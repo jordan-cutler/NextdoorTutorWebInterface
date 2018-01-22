@@ -16,7 +16,6 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
   @ViewChild('editBasicInfoForm') basicInfoForm: NgForm;
   @Input() user: User;
   readonly modalId = 'editBasicInfoModal';
-  private modalSelector = '#' + this.modalId;
   modalActions = new EventEmitter<string|MaterializeAction>();
 
   constructor(private userService: UserService,
@@ -69,7 +68,7 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
     if (linkedinControl.dirty) {
       this.updateLinkedin(linkedin);
     }
-    $(this.modalSelector).modal('close');
+    this.modalActions.emit({action: 'modal', params: ['close']});
   }
 
   updateMajor(major: string) {
