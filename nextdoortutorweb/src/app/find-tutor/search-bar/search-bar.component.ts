@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Course } from '../../shared/course/course.model';
 
 @Component({
@@ -9,6 +9,7 @@ import { Course } from '../../shared/course/course.model';
 export class SearchBarComponent implements OnInit, AfterViewInit {
   @Output() selectedCourseNumberEventEmitter = new EventEmitter<string>();
   @Input() courses: Course[];
+  @ViewChild('searchBar') searchBarRef: ElementRef;
   searchBarId: string;
   searchBarText = '';
 
@@ -42,8 +43,13 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
   }
 
   onSearchBarClick() {
-    this.searchBarText = '';
-    Materialize.updateTextFields();
+    if (this.searchBarText) {
+      this.searchBarText = '';
+      setTimeout( () => {
+        this.searchBarRef.nativeElement.blur();
+        this.searchBarRef.nativeElement.focus();
+      }, 10);
+    }
   }
 
 }

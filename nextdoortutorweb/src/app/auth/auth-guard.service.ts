@@ -21,7 +21,6 @@ export class AuthGuard implements CanActivate {
               private preloaderService: PreloaderService,
               private authService: AuthService,
               private router: Router) {
-
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -46,6 +45,5 @@ export class AuthGuard implements CanActivate {
       this.router.navigate(['/']);
       return false;
     }
-    // return true;
   }
 }
