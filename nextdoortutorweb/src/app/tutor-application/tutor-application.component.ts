@@ -65,15 +65,15 @@ export class TutorApplicationComponent implements OnInit, OnDestroy {
   onSubmit(event: Event) {
     const controls = this.applicationForm.form.controls;
     const course: Course = controls['course'].value;
-    const grade = controls['grade'].value;
+    let grade = controls['grade'].value;
     const hasTakenCourse: boolean = controls['hasTakenCourseCheckbox'].value;
     const hourlyRate = controls['hourlyRate'].value;
-    const instructor = controls['instructor'].value;
+    let instructor = controls['instructor'].value;
     const pastExperience = controls['pastExperience'].value;
     const notes = controls['notes'].value;
     const term = controls['whenPersonTookCourse']['controls']['term'].value;
     const year = controls['whenPersonTookCourse']['controls']['year'].value;
-    const semester = new Semester(term, year);
+    let semester = new Semester(term, year);
     const instructorNameWhoEndorsed: string = null;
 
     let invalid = false;
@@ -94,6 +94,10 @@ export class TutorApplicationComponent implements OnInit, OnDestroy {
         Materialize.toast('Let us know who your professor was before submitting.', 3000);
         invalid = true;
       }
+    } else {
+      instructor = null;
+      grade = null;
+      semester = null;
     }
 
     if (hourlyRate < this.minHourlyRate || hourlyRate > this.maxHourlyRate) {

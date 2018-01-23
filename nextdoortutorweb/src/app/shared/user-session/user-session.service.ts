@@ -24,6 +24,8 @@ export class UserSessionService {
       return this.httpClient.get(UserSessionService.GET_USER_FROM_JWT_ROUTE).map(
         (userJson) => new UserSession(User.userJsonToUserModel(userJson), jwt)
       );
+    } else {
+      return null;
     }
   }
 
