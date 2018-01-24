@@ -5,14 +5,40 @@
 }
 
 #logoSection {
-  padding-top: 6%;
-  padding-bottom: 6%;
+  padding-top: 3%;
+  padding-bottom: 2%;
+  text-align: center;
 }
 
 #ntLogo {
   height: 25%;
   width: 25%;
   margin-bottom: -30px;
+}
+
+#actionSection {
+  padding-bottom: 3%;
+}
+
+#login {
+  /*background-color: #fc7c25 !important;*/
+  height: 250px;
+}
+
+#cardBody {
+  color: #fc7c25 !important;
+  font-size: 16pt !important;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.card-title {
+  color: #333 !important;
+  padding-bottom: 2%;
+}
+
+#action-btn {
+  background-color: #fc7c25;
+  color: white;
 }
 
 #whoWeAreCardPanel {
@@ -65,7 +91,7 @@
 
 .role {
   font-size: 14pt;
-  font-family: Fresca, serif;
+  font-family: Quicksand, sans-serif;
 }
 
 .header {
@@ -84,7 +110,8 @@
 /* Formats become/find a tutor descriptions */
 p.pTut {
   font-size: 14pt;
-  width: 95%;
+  width: 100%;
+  padding-left: 1%;
 }
 
 img.keep-calm {
@@ -98,11 +125,23 @@ footer {
   padding-bottom: 1%;
   padding-top: 1%;
   color: white !important;
+
+  clear: both;
+  /*position: fixed;*/
+  overflow: hidden;
+  display: block;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+}
+
+.page-footer  {
+  width: 100%;
 }
 
 p {
   font-size: 18pt;
-  font-family: Fresca, serif;
+  font-family: Quicksand, sans-serif;
 }
 
 h1 {

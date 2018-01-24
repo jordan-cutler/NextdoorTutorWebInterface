@@ -32,10 +32,15 @@ i.icon-gray{
 
 .google-icon {
   height: 13px !important;
+  right: 4% !important;
 }
 
 nav .brand-logo {
-  left: 1% !important;
+  left: 4% !important;
+}
+
+#icon {
+  /*padding-right: 4% !important;*/
 }
 
 @media only screen and (max-width: 992px) {

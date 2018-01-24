@@ -2,11 +2,12 @@
   <nav class="white">
     <div class="nav-wrapper">
       <!-- BEGIN TOP NAVBAR -->
+
       <a routerLink="/home" class="brand-logo">
         <img id="logoImage" class="responsive-img" src="assets/images/NTLogo.png" alt="NextdoorTutor">
       </a>
 
-      <ul [hidden]="user" class="right">
+      <ul [hidden]="user" class="right"  id="icon">
         <li>
           <a class="header" #signInButtonTop>
             <img class="google-icon" src="assets/images/googlelogo.png" alt="Google"/>&emsp;Login
