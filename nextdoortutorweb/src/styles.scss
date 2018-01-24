@@ -214,16 +214,11 @@ Makes the actual side nav brighter than everything else. Without this, the siden
   word-wrap: break-word;
 }
 
+.toast {
+  word-break: keep-all;
+}
+
 @media only screen and (min-width: 992px) {
-  #toast-container {
-    position: fixed !important;
-    top: 20vh !important;
-    bottom: 70vh !important;
-    left: 35vw !important;
-    right: 35vw !important;
-    width: 30vw !important;
-    height: 10vh !important;
-  }
 
   .profilePhoto {
     border-radius: 5% !important;
@@ -240,3 +235,39 @@ Makes the actual side nav brighter than everything else. Without this, the siden
   }
 }
 
+
+@media only screen and (min-width : 601px) and (max-width : 1260px) {
+  .toast {
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+@media only screen and (min-width : 1261px) {
+  .toast {
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+@media only screen and (min-width : 601px) and (max-width : 1260px) {
+  #toast-container {
+    max-width: 70%;
+    bottom: 0;
+    margin: auto;
+    width: fit-content;
+    top: 90%;
+    right: 0;
+    left: 0;
+  }
+}
+
+@media only screen and (min-width : 1261px) {
+  #toast-container {
+    min-width: 100%;
+    bottom: 0;
+    top: 90%;
+    right: 0;
+    left: 0;
+  }
+}

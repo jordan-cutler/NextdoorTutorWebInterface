@@ -6,6 +6,7 @@ import { PreloaderService } from '../../../core/preloader/preloader.service';
 import { DataNeededToFormEmailToTutor } from './DataNeededToFormEmailToTutor';
 import { FormValidity } from '../../../shared/FormValidity';
 import { MaterializeAction } from 'angular2-materialize';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-email-tutor-modal',
@@ -21,7 +22,6 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
   tutorEmail: string;
   courseNumber: string;
   modalId: string;
-  modalSelector: string;
 
   subject: string;
   message: string;
@@ -47,7 +47,6 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.modalId = 'emailTutorModal';
-    this.modalSelector = '#' + this.modalId;
 
     this.tutorEmail = this.emailTutorData.tutorEmail;
     this.courseNumber = this.emailTutorData.courseNumber;
@@ -105,11 +104,28 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
         if (successful) {
           Materialize.toast('Successfully emailed tutor. They will email you back soon if interested.', 3000);
           this.sendEmailForm.reset();
-          $(this.modalSelector).modal('close');
+          this.modalActions.emit({action: 'modal', params: ['close']});
         } else {
           Materialize.toast('Failed to send email. Please try again soon.', 3000);
         }
         this.preloaderService.hide();
+      },
+      (error: HttpErrorResponse) => {
+        this.preloaderService.hide();
+        const userEmailLimitDescription =
+          'You have reached the maximum number of email requests you can make per day. You can send more tomorrow.';
+        const applicationEmailLimitDescription =
+          'NextdoorTutor has reached their limit for sending emails for the day. Users will be able to send more tomorrow.';
+        if (error.error.description === userEmailLimitDescription) {
+          Materialize.toast(userEmailLimitDescription + ' In the meantime, you may email them directly at ' + tutorEmail, 7000);
+        } else if (error.error.description === applicationEmailLimitDescription) {
+          Materialize.toast(
+            applicationEmailLimitDescription +
+            ' We apologize for any inconvenience. You may send an email directly to the tutor at ' + tutorEmail, 8000
+          );
+        } else {
+          Materialize.toast('Failed to send email. Please try again soon.', 3000);
+        }
       }
     );
   }

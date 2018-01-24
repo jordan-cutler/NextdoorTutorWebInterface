@@ -1,7 +1,4 @@
-import {
-  HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor,
-  HttpRequest
-} from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ApplicationGlobals } from '../shared/ApplicationGlobals';
 import { Injectable } from '@angular/core';

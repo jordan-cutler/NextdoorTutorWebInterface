@@ -1,7 +1,4 @@
-import {
-  ComponentFactory, ComponentFactoryResolver, ComponentRef, Type,
-  ViewContainerRef
-} from '@angular/core';
+import { ComponentFactory, ComponentFactoryResolver, ComponentRef, Type, ViewContainerRef } from '@angular/core';
 
 export class DynamicComponentGenerator<T> {
   private componentFactoryResolver: ComponentFactoryResolver;

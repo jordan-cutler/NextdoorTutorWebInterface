@@ -8,7 +8,7 @@
             <div class="col s3"></div>
             <div class="col s6 center">
               <span class="nt-orange-text">
-                {{reviewSummary.courseNumber}} |
+                {{reviewSummary.course.courseNumber}} {{reviewSummary.course.title}} <br>
                 <span *ngIf="reviewSummary?.averageOfAllScoresAmongAllReviews; else noReviews">
                   Average Review: {{reviewSummary.averageOfAllScoresAmongAllReviews}}
                 </span>
@@ -19,7 +19,7 @@
               <button
                 *ngIf="currentUser.userId != basicTutorInfo.user.userId"
                 class="btn nt-orange-background white-text right" type="button"
-                (click)="onCourseClick(reviewSummary.courseNumber)"
+                (click)="onCourseClick(reviewSummary.course)"
               >
                 Review
               </button>

@@ -9,20 +9,7 @@ export class Semester {
 
   public static readonly VALID_YEARS: number[] = Semester.getValidYears();
 
-  private _term: string;
-  private _year: number;
-
-  constructor(term: string, yearTaken: number) {
-    this._term = term;
-    this._year = yearTaken;
-  }
-
-  get term(): string {
-    return this._term;
-  }
-
-  get year(): number {
-    return this._year;
+  constructor(public term: string, public year: number) {
   }
 
   private static getValidYears(): number[] {

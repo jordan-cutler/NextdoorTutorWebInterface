@@ -1,5 +1,11 @@
 import {
-  AfterViewInit, Component, ElementRef, EventEmitter, NgZone, OnDestroy, OnInit,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  NgZone,
+  OnDestroy,
+  OnInit,
   ViewChild
 } from '@angular/core';
 import { User } from '../../shared/user/user-model/user.model';
@@ -19,7 +25,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('signInButtonTop') signInButtonTopRef: ElementRef;
   user: User;
   submitBugModalId = 'submitBugModal';
-  private submitBugModalSelector = '#' + this.submitBugModalId;
 
   isLoggedInSubscription: Subscription;
   sideNavActions = new EventEmitter<string|MaterializeAction>();
@@ -50,7 +55,6 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onSubmitBugClick() {
     this.submitBugModalActions.emit({action: 'modal', params: ['open']});
-    // $(this.submitBugModalSelector).modal('open');
   }
 
   onSignOutClick() {

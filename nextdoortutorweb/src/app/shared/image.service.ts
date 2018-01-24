@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserSessionService } from './user-session/user-session.service';
-import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ImageService {

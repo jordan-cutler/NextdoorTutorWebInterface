@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../../shared/user/user-model/user.model';
-import { AbstractControl, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { UserService } from '../../../shared/user/user.service';
 import { UserSessionService } from '../../../shared/user-session/user-session.service';
 import { Observable } from 'rxjs/Observable';
@@ -16,7 +16,6 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
   @ViewChild('editBasicInfoForm') basicInfoForm: NgForm;
   @Input() user: User;
   readonly modalId = 'editBasicInfoModal';
-  private modalSelector = '#' + this.modalId;
   modalActions = new EventEmitter<string|MaterializeAction>();
 
   constructor(private userService: UserService,
@@ -69,7 +68,7 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
     if (linkedinControl.dirty) {
       this.updateLinkedin(linkedin);
     }
-    $(this.modalSelector).modal('close');
+    this.modalActions.emit({action: 'modal', params: ['close']});
   }
 
   updateMajor(major: string) {

@@ -14,25 +14,20 @@ import 'rxjs/Rx';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  private static readonly GET_USER_FROM_JWT_ROUTE = '/users/userByJwt';
-
   constructor(private userSessionService: UserSessionService,
-              private httpClient: HttpClient,
               private preloaderService: PreloaderService,
               private authService: AuthService,
               private router: Router) {
-
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.isUserLoggedIn()) {
       return true;
     } else if (ApplicationGlobals.jwtPresentInLocalStorage()) {
-      const jwt: string = ApplicationGlobals.getJwtFromLocalStorage();
       this.preloaderService.show();
-      return this.httpClient.get(AuthGuard.GET_USER_FROM_JWT_ROUTE).map(
-        (userJson) => {
-          this.userSessionService.storeCurrentUserSession(new UserSession(User.userJsonToUserModel(userJson), jwt));
+      return this.userSessionService.attemptToRetrieveUserCredentialsFromServer().map(
+        (userSession: UserSession) => {
+          this.userSessionService.storeCurrentUserSession(userSession);
           this.preloaderService.hide();
           return true;
         }
@@ -46,6 +41,5 @@ export class AuthGuard implements CanActivate {
       this.router.navigate(['/']);
       return false;
     }
-    // return true;
   }
 }

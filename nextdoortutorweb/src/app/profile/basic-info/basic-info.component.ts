@@ -5,6 +5,7 @@ import { CropImageModalComponent } from './crop-image-modal/crop-image-modal.com
 import { EditBasicInfoModalComponent } from './edit-basic-info-modal/edit-basic-info-modal.component';
 import { UserSessionService } from '../../shared/user-session/user-session.service';
 import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
+import { BasicTutorInfo } from '../../shared/tutor/reviews/basic-tutor-info.model';
 
 @Component({
   selector: 'app-basic-info',
@@ -12,7 +13,8 @@ import { DynamicComponentGenerator } from '../../shared/dynamic-component-genera
   styleUrls: ['./basic-info.component.scss']
 })
 export class BasicInfoComponent implements OnInit {
-  @Input() user: User;
+  @Input() basicInfo: BasicTutorInfo;
+  user: User;
   hasProfilePhoto: boolean;
 
   private userUpdatedSubscription: Subscription;
@@ -26,6 +28,7 @@ export class BasicInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.basicInfo.user;
     this.hasProfilePhoto = !!this.user.profilePhotoId;
     this.userUpdatedSubscription = this.userSessionService.getCurrentUserObservable().subscribe(
       (user: User) => {

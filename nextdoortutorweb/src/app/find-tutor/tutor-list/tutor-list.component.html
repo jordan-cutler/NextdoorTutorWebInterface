@@ -6,7 +6,7 @@
 
           <app-sort-bar [summaries]="summaries"></app-sort-bar>
 
-          <ul class="z-depth-3" materialize="collapsible" [materializeParams]="[{accordion: false}]">
+          <ul class="z-depth-3" materialize="collapsible" [materializeParams]="[{accordion: false}]" data-collapsible="expandable">
             <li *ngFor="let summary of summaries">
               <div class="row collapsible-header valign-wrapper">
                 <!-- TUTOR NAME -->
@@ -109,7 +109,7 @@
                   <!-- Only displayed for normal users -->
                   <button
                     class="btn nt-orange-background"
-                    (click)="onBookTutor($event, summary.tutor.user.email, summary.tutor.courseNumber, summary.tutor.user.name)"
+                    (click)="onBookTutor($event, summary.tutor.user.email, summary.tutor.course.courseNumber, summary.tutor.user.name)"
                     *ngIf="!currentUser.isInstructor">
                     Email Tutor <i class="material-icons right">contact_mail</i>
                   </button>
@@ -118,7 +118,7 @@
                   <button
                     class="btn nt-orange-background"
                     type="button"
-                    (click)="instructorEndorseTutor($event, summary.tutor.user.userId, summary.tutor.courseNumber, tutor, currentUser.name)"
+                    (click)="instructorEndorseTutor($event, summary.tutor.user.userId, summary.tutor.course.courseNumber, tutor, currentUser.name)"
                     *ngIf="!summary.tutor.instructorNameWhoEndorsed && currentUser.isInstructor">
                     Endorse
                   </button>
@@ -126,7 +126,7 @@
                   <!-- Only displayed if the person who endorsed the tutor is the current user and the current user is an instructor -->
                   <button
                     class="btn two-lined-button nt-orange-background"
-                    (click)="removeInstructorEndorsement($event, summary.tutor.user.userId, summary.tutor.courseNumber, tutor, currentUser.name)"
+                    (click)="removeInstructorEndorsement($event, summary.tutor.user.userId, summary.tutor.course.courseNumber, tutor, currentUser.name)"
                     *ngIf="summary.tutor.instructorNameWhoEndorsed === currentUser.name && currentUser.isInstructor">
                     Remove Endorsement
                   </button>

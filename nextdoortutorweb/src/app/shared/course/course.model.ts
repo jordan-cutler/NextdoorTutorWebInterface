@@ -1,17 +1,11 @@
 export class Course {
-  private _courseNumber: string;
-  private _title: string;
 
-  constructor(courseNumber: string, title: string) {
-    this._courseNumber = courseNumber;
-    this._title = title;
+  constructor(public courseNumber: string, public title: string) {
   }
 
-  get courseNumber(): string {
-    return this._courseNumber;
-  }
-
-  get title(): string {
-    return this._title;
+  static toModelFromJson(courseJson: any) {
+    const courseNumber = courseJson.courseNumber;
+    const title = courseJson.title;
+    return new Course(courseNumber, title);
   }
 }

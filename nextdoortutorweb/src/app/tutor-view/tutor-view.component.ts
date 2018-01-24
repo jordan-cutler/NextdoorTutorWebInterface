@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Tutor } from '../shared/tutor/tutor-model/tutor.model';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { TutorReviewService } from '../shared/tutor/reviews/tutor-review.service';
 import { BasicTutorInfo } from '../shared/tutor/reviews/basic-tutor-info.model';
@@ -37,7 +36,10 @@ export class TutorViewComponent implements OnInit, OnDestroy {
   updateBasicTutorInfo(email: string) {
     this.tutorDataSubscription =
       this.tutorReviewService.getBasicTutorInfo(email).subscribe(
-        (basicTutorInfo: BasicTutorInfo) => this.basicTutorInfo = basicTutorInfo
+        (basicTutorInfo: BasicTutorInfo) => {
+          this.basicTutorInfo = basicTutorInfo;
+          console.log(JSON.stringify(this.basicTutorInfo));
+        }
       );
   }
 

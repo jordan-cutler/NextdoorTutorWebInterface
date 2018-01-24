@@ -10,8 +10,7 @@
          -->
         <div class="row">
           <div class="col s12">
-            <a class="right cursorPointer" (click)="createEditBasicInfoComponent()"><i class="material-icons"
-                                                                                       style="color: #fc7c25;">edit</i></a>
+            <a class="right cursorPointer nt-orange-text" (click)="createEditBasicInfoComponent()"><i class="material-icons">edit</i></a>
           </div>
         </div>
 
@@ -36,6 +35,9 @@
         <div class="row">
           <div class="col s12">
             <h3 id="userName" class="card-title center">{{user.name}}</h3>
+            <h6 class="center" *ngIf="basicInfo.averageOfAllReviewsForAllCourses">
+              Avg. Overall Review: {{basicInfo.averageOfAllReviewsForAllCourses}}
+            </h6>
           </div>
         </div>
 

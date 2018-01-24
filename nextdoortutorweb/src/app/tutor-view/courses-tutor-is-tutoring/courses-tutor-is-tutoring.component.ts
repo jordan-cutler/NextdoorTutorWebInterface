@@ -5,6 +5,7 @@ import { BasicTutorInfo } from '../../shared/tutor/reviews/basic-tutor-info.mode
 import { CourseReviewSummary } from '../../shared/tutor/reviews/course-review-summary.model';
 import { User } from '../../shared/user/user-model/user.model';
 import { UserSessionService } from '../../shared/user-session/user-session.service';
+import { Course } from '../../shared/course/course.model';
 
 @Component({
   selector: 'app-courses-tutor-is-tutoring',
@@ -14,7 +15,7 @@ import { UserSessionService } from '../../shared/user-session/user-session.servi
 export class CoursesTutorIsTutoringComponent implements OnInit {
   @Input() basicTutorInfo: BasicTutorInfo;
   currentUser: User;
-  courses: string[];
+  courses: Course[];
 
   dynamicCourseTutorIsTutoringModalComponentGenerator: DynamicComponentGenerator<TutorReviewModalComponent>;
 
@@ -26,19 +27,19 @@ export class CoursesTutorIsTutoringComponent implements OnInit {
     this.currentUser = this.userSessionService.getCurrentUser();
 
     this.courses = this.basicTutorInfo.courseReviewSummaries.map(
-      (courseReviewSummary: CourseReviewSummary) => courseReviewSummary.courseNumber
+      (courseReviewSummary: CourseReviewSummary) => courseReviewSummary.course
     );
     this.dynamicCourseTutorIsTutoringModalComponentGenerator = new DynamicComponentGenerator<TutorReviewModalComponent>(
       this.componentFactoryResolver, this.viewContainerRef, TutorReviewModalComponent
     );
   }
 
-  onCourseClick(courseNumber: string) {
+  onCourseClick(course: Course) {
     this.dynamicCourseTutorIsTutoringModalComponentGenerator.destroyComponentIfExists();
     this.dynamicCourseTutorIsTutoringModalComponentGenerator.createComponent();
-    const instance = this.dynamicCourseTutorIsTutoringModalComponentGenerator.getComponentInstance()
+    const instance = this.dynamicCourseTutorIsTutoringModalComponentGenerator.getComponentInstance();
     instance.tutorUser = this.basicTutorInfo.user;
-    instance.courseNumber = courseNumber;
+    instance.courseNumber = course.courseNumber;
     this.dynamicCourseTutorIsTutoringModalComponentGenerator.addComponentToDom();
   }
 

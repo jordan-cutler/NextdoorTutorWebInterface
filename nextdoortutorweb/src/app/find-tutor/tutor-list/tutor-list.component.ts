@@ -9,6 +9,7 @@ import { User } from '../../shared/user/user-model/user.model';
 import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
 import { OverallTutorReviewSummary } from '../../shared/tutor/reviews/overall-tutor-review-summary.model';
 import { ApplicationGlobals } from '../../shared/ApplicationGlobals';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tutor-list',
@@ -30,6 +31,7 @@ export class TutorListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
     this.currentUser = this.userSessionService.getCurrentUser();
     this.currentUserSubscription = this.userSessionService.getCurrentUserObservable().subscribe(
       (user: User) => this.currentUser = user

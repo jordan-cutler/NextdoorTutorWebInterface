@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, NgZone, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ImageService } from './image.service';
 
