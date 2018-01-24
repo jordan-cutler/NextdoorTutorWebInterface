@@ -13,7 +13,11 @@ nav ul a {
 }
 
 li a{
-  font-family: Righteous, serif !important; /* TODO: Change generic font based on what @stephanie thinks */
+  font-family: Righteous, serif !important;
+}
+
+.side-nav li a {
+  width: 100%;
 }
 
 a {
