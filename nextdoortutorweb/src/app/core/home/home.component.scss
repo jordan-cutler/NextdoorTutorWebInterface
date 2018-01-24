@@ -21,8 +21,7 @@
 }
 
 #login {
-  /*background-color: #fc7c25 !important;*/
-  height: 250px;
+  height: 280px;
 }
 
 #cardBody {
@@ -33,7 +32,7 @@
 
 .card-title {
   color: #333 !important;
-  padding-bottom: 2%;
+  padding-bottom: 1%;
 }
 
 #action-btn {
@@ -51,6 +50,11 @@
   text-align: left;
 }
 
+#becomeTutorImg {
+  height: 120%;
+  width: 80%;
+}
+
 #findTutorContainer {
   padding-top: 2%;
   padding-bottom: 4%;
@@ -59,6 +63,15 @@
 
 #findTutorHeader {
   text-align: right;
+}
+
+#findTutorImg {
+  height: 90%;
+  width: 80%;
+}
+
+hr {
+  width: 80%;
 }
 
 #teamCardPanel {
@@ -101,10 +114,12 @@
 
 .footer {
   color: white !important;
+  font-family: Quicksand, sans-serif;
+  font-size: 14px;
 }
 
 #footerSlogan {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 /* Formats become/find a tutor descriptions */
@@ -125,9 +140,7 @@ footer {
   padding-bottom: 1%;
   padding-top: 1%;
   color: white !important;
-
   clear: both;
-  /*position: fixed;*/
   overflow: hidden;
   display: block;
   bottom: 0;
