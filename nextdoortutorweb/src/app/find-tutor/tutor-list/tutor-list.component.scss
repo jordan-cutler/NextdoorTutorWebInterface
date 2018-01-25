@@ -1,5 +1,9 @@
+td, th {
+  padding: 2px 0px 0px 0px;
+}
+
 td {
-  padding: 2px 0px 0px 0px !important;
+  padding-left: 1%;
 }
 
 .profileImg {
@@ -22,17 +26,7 @@ td {
 }
 
 .tutor-name {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-}
-
-.tutor-name:before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
+  padding-left: 1%;
 }
 
 .container {
