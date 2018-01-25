@@ -1,0 +1,55 @@
+nav {
+  font-family: Righteous, serif; /* TODO: Change generic font based on what @stephanie thinks */
+  color: #333;
+}
+
+nav ul a {
+  display: inline-block !important;
+}
+
+#logoImage {
+  margin-left: 10%;
+  height: 64px;
+}
+
+li a{
+  font-family: Righteous, serif !important;
+}
+
+.side-nav li a {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #fc7c25;
+}
+
+.header {
+  color: #fc7c25 !important;
+  font-size: 12pt;
+}
+
+i.icon-gray{
+  color: #333;
+}
+
+.google-icon {
+  height: 13px !important;
+  right: 4% !important;
+}
+
+nav .brand-logo {
+  left: 2% !important;
+}
+
+#icon {
+  padding-right: 0% !important;
+}
+
+@media only screen and (max-width: 992px) {
+  nav .brand-logo {
+    left: 49% !important;
+  }
+}
+

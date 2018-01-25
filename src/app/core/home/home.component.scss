@@ -1,0 +1,229 @@
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
+}
+
+#logoSection {
+  padding-top: 3%;
+  padding-bottom: 2%;
+  text-align: center;
+}
+
+#ntLogo {
+  height: 25%;
+  width: 25%;
+  margin-bottom: -30px;
+}
+
+#actionSection {
+  padding-bottom: 3%;
+}
+
+.welcome-card {
+  height: 320px;
+}
+
+.cardBody {
+  color: #fc7c25;
+  font-size: 16pt;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.card-title {
+  color: #333;
+  padding-bottom: 1%;
+}
+
+#whoWeAreCardPanel {
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+#becomeTutorContainer {
+  padding-top: 2%;
+  text-align: left;
+}
+
+#findTutorContainer {
+  padding-top: 2%;
+  padding-bottom: 4%;
+  text-align: left;
+}
+
+#findTutorHeader {
+  text-align: right;
+}
+
+
+.card-reveal-image {
+  width: 100%;
+}
+
+hr {
+  width: 80%;
+}
+
+#teamCardPanel {
+  background-color: #fc7c25;
+  padding-top: 2%;
+  padding-bottom: 4%;
+}
+
+.team {
+  text-align: center;
+  height: 65%;
+  width: 65%;
+  border-radius: 50%;
+}
+
+.team1 {
+  text-align: center;
+  font-size: 16pt;
+  font-family: Righteous, serif;
+}
+
+/* Format team member descriptions */
+
+
+#teamDescription {
+  color: white;
+  padding-left: 8%;
+  padding-right: 8%;
+}
+
+.role {
+  font-size: 14pt;
+  font-family: Quicksand, sans-serif;
+}
+
+.header {
+  color: #fc7c25 !important;
+  font-size: 12pt;
+}
+
+.footer {
+  color: white !important;
+  font-family: Quicksand, sans-serif;
+  font-size: 14px;
+}
+
+#footerSlogan {
+  font-size: 14px;
+}
+
+/* Formats become/find a tutor descriptions */
+p.becomeTutorParagraph {
+  font-size: 14pt;
+  width: 100%;
+  padding-left: 1%;
+}
+
+img.keep-calm {
+  height: 80%;
+  width: 65%;
+}
+
+footer {
+  background-color: #333 !important;
+  text-align: left !important;
+  padding-bottom: 1%;
+  padding-top: 1%;
+  color: white !important;
+  clear: both;
+  overflow: hidden;
+  display: block;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+}
+
+.page-footer  {
+  width: 100%;
+}
+
+p {
+  font-size: 18pt;
+  font-family: Quicksand, sans-serif;
+}
+
+h1 {
+  color: #fc7c25;
+  font-size: 38pt;
+}
+
+h2 {
+  color: #fc7c25;
+  font-size: 34pt;
+}
+
+h3 {
+  font-size: 20pt;
+  color: #333;
+}
+
+h4 {
+  font-size: 14pt;
+  color: #fc7c25;
+}
+
+@media only screen and (max-width: 992px) {
+  .welcome-card {
+    height: 280px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 22pt;
+  }
+
+  h2, h3 {
+    font-size: 18pt;
+  }
+
+  h4 {
+    font-size: 14pt;
+  }
+
+  p {
+    font-size: 9pt;
+  }
+
+  li a {
+    font-size: 8pt;
+  }
+
+  .container {
+    width: 95%;
+  }
+
+  .becomeTutorParagraph {
+    font-size: 10pt !important;
+  }
+
+  .team1 {
+    font-size: 9pt;
+  }
+
+  .role {
+    font-size: 7pt;
+  }
+
+  .card-title {
+    font-size: 14pt !important;
+  }
+
+  .cardBody {
+    font-size: 12pt;
+  }
+
+  .welcome-card {
+    height: 260px;
+  }
+
+  img.keep-calm {
+    height: 100%;
+    width: 70%;
+  }
+}

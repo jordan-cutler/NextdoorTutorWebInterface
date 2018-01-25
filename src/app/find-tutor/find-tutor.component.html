@@ -1,0 +1,7 @@
+<div *ngIf="courses">
+  <app-find-tutor-search-bar [courses]="courses"></app-find-tutor-search-bar>
+</div>
+<div *ngIf="selectedCourseNumber && summariesForSelectedCourse">
+  <app-tutor-list [summaries]="summariesForSelectedCourse"></app-tutor-list>
+</div>
+

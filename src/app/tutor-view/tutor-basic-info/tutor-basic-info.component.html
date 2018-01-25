@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col s12 m10 offset-m1">
+    <div class="z-depth-3 card white center">
+      <div class="card-content z-depth-4">
+        <div class="row">
+          <div class="col s12">
+            <img alt="Failed to load profile picture" class="profilePhoto z-depth-3"
+                 *ngIf="hasProfilePhoto"
+                 appHttpImage [userIdUnderProfilePhoto]="tutorUser.userId" [askerId]="currentUser.userId"/>
+            <i *ngIf="!hasProfilePhoto" class="large material-icons">account_circle</i>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <h3 id="userName" class="card-title center">{{tutorUser.name}}</h3><br/>
+            <h6 class="center" *ngIf="basicTutorInfo.averageOfAllReviewsForAllCourses">
+              Avg. Overall Review: {{basicTutorInfo.averageOfAllReviewsForAllCourses}}
+            </h6>
+          </div>
+        </div>
+
+
+        <div class="row center">
+          <div class="col s6">
+            <table>
+              <tr>
+                <td class="nt-orange-text">Email:</td>
+                <td><span *ngIf="tutorUser.email" id="emailContact" class="center">{{tutorUser.email}}</span></td>
+              </tr>
+              <tr>
+                <td class="nt-orange-text">Bio:</td>
+                <td><span *ngIf="tutorUser.bio">{{tutorUser.bio}}</span>
+                  <span *ngIf="!tutorUser.bio">Bio not set</span></td>
+              </tr>
+              <tr>
+                <td class="nt-orange-text">Major:</td>
+                <td><span *ngIf="tutorUser.major">{{tutorUser.major}} </span>
+                  <span *ngIf="!tutorUser.major">Major not set</span></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="col s6">
+            <table class="profileLinksTable">
+              <tr>
+                <td class="icon-td"><i class="fa fa-github social-icons icon-circle" aria-hidden="true"></i></td>
+                <td *ngIf="tutorUser.github?.link"><a class="nt-orange-text"
+                                                 href="{{tutorUser.github.link}}">{{tutorUser.github.link}}</a></td>
+                <td *ngIf="!tutorUser.github?.link">GitHub not set</td>
+              </tr>
+
+              <tr>
+                <td class="icon-td"><i class="fa fa-facebook social-icons icon-circle" aria-hidden="true"></i></td>
+                <td *ngIf="tutorUser.facebook?.link"><a class="nt-orange-text" href="{{tutorUser.facebook.link}}">{{tutorUser.facebook.link}}</a>
+                </td>
+                <td *ngIf="!tutorUser.facebook?.link">Facebook not set</td>
+              </tr>
+
+              <tr>
+                <td class="icon-td"><i class="fa fa-linkedin social-icons icon-circle"></i></td>
+                <td *ngIf="tutorUser.linkedin?.link"><a class="nt-orange-text" href="{{tutorUser.linkedin.link}}">{{tutorUser.linkedin.link}}</a>
+                </td>
+                <td *ngIf="!tutorUser.linkedin?.link">LinkedIn not set</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="col s12 m10 offset-m1">
+    <div class="z-depth-3 card white center">
+      <div class="card-content z-depth-4">
+        <!--
+         The below example is taken from here: https://jsfiddle.net/Venugopal/e0u4sow1/1/
+         Other Examples:
+         http://jsfiddle.net/6Mt3Q/
+         https://codepen.io/felicia/pen/qKhJt
+         -->
+        <div class="row">
+          <div class="col s12">
+            <a class="right cursorPointer nt-orange-text" (click)="createEditBasicInfoComponent()">
+              <i class="material-icons">edit</i>
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <div id="profileImageContainer" class="media center image-upload">
+              <label for="profileFileUploadInput">
+                <img alt="Failed to load profile picture" class="profilePhoto media__image z-depth-3 hide-on-small-only"
+                     *ngIf="hasProfilePhoto"
+                     appProfileImage [userIdUnderProfilePhoto]="user.userId" [askerId]="user.userId" #profilePhotoRef>
+                <i *ngIf="!hasProfilePhoto" class="large material-icons">account_circle</i>
+                <div class="media__body cursorPointer">
+                  <h6 class="hide-on-med-and-down">Upload Profile Picture</h6>
+                </div>
+              </label>
+              <input id="profileFileUploadInput" type="file" (change)="profilePhotoFileChange($event)"
+                     accept="image/png, image/jpeg, image/gif">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <h3 id="userName" class="card-title center">{{user.name}}</h3>
+            <h6 class="center" *ngIf="basicInfo.averageOfAllReviewsForAllCourses">
+              Avg. Overall Review: {{basicInfo.averageOfAllReviewsForAllCourses}}
+            </h6>
+          </div>
+        </div>
+
+
+        <div class="row center">
+          <div class="col s6">
+            <table>
+              <tr>
+                <td class="nt-orange-text">Email:</td>
+                <td><span *ngIf="user.email" id="emailContact" class="center">{{user.email}}</span></td>
+              </tr>
+              <tr>
+                <td class="nt-orange-text">Bio:</td>
+                <td><span *ngIf="user.bio">{{user.bio}}</span>
+                  <span *ngIf="!user.bio">You haven't set your bio yet!</span></td>
+              </tr>
+              <tr>
+                <td class="nt-orange-text">Major:</td>
+                <td><span *ngIf="user.major">{{user.major}} </span>
+                  <span *ngIf="!user.major"> You haven't set your major yet! </span></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="col s6">
+            <table class="profileLinksTable">
+              <tbody>
+              <tr>
+                <td class="icon-td">
+                  <i class="fa fa-github social-icons icon-circle" aria-hidden="true"></i>
+                </td>
+                <td *ngIf="user.github?.link">
+                  <a class="nt-orange-text" href="{{user.github.link}}">{{user.github.link}}</a>
+                </td>
+                <td *ngIf="!user.github?.link">GitHub not set</td>
+              </tr>
+
+              <tr>
+                <td class="icon-td"><i class="fa fa-facebook social-icons icon-circle" aria-hidden="true"></i></td>
+                <td *ngIf="user.facebook?.link"><a class="nt-orange-text" href="{{user.facebook.link}}">{{user.facebook.link}}</a>
+                </td>
+                <td *ngIf="!user.facebook?.link">Facebook not set</td>
+              </tr>
+
+              <tr>
+                <td class="icon-td"><i class="fa fa-linkedin social-icons icon-circle"></i></td>
+                <td *ngIf="user.linkedin?.link"><a class="nt-orange-text" href="{{user.linkedin.link}}">{{user.linkedin.link}}</a>
+                </td>
+                <td *ngIf="!user.linkedin?.link">LinkedIn not set</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,270 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  -webkit-text-size-adjust: 100%;
+  /*
+  Don't listen to your IDE and "optimize". It will break it
+   */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: Righteous, serif;
+  color: #333;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* labels */
+
+/* label color */
+.input-field label {
+  color: #B9B9B9 !important;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color: #fc7c25 !important;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #fc7c25 !important;
+  box-shadow: 0 1px 0 0 #fc7c25 !important;
+}
+
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid #fc7c25 !important;
+  box-shadow: 0 1px 0 0 #fc7c25 !important;
+}
+
+/* invalid color */
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid red !important;
+  box-shadow: 0 1px 0 0 red !important;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #fc7c25 !important;
+}
+
+/* for facebook, github, & linkedin icons */
+.social-icons.icon-circle.fa {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  color: white !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  font-size: 1.0em !important;
+  border-radius: 5px;
+}
+
+/* for facebook icon */
+i.fa-facebook {
+  background-color: #3C599F;
+}
+
+/* for github icon */
+i.fa-github {
+  background-color: #070709;
+}
+
+/* for linkedin icon */
+i.fa-linkedin {
+  background-color: #0085AE;
+}
+
+i.fa-certificate {
+  color: #FA7C34;
+}
+
+.collapsible-body {
+  padding-top: 0 !important;
+}
+
+textarea {
+  padding: 12px 20px;
+  height: 200px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+/* Radio button color */
+
+[type="radio"].with-gap:checked + label:before {
+  border-radius: 50%;
+  border: 2px solid #fc7c25 !important;
+}
+
+[type="radio"].with-gap:checked + label:after {
+  border-radius: 50%;
+  border: 2px solid #fc7c25 !important;
+  background-color: #fc7c25 !important;
+  z-index: 0;
+  -webkit-transform: scale(.5);
+  -moz-transform: scale(.5);
+  -ms-transform: scale(.5);
+  -o-transform: scale(.5);
+  transform: scale(.5);
+}
+
+/* Change color of dropdown options */
+ul.dropdown-content.select-dropdown li span {
+  color: gray; /*no need for !important :)*/
+}
+
+/* change color of auto complete options */
+.dropdown-content li > span {
+  color: gray !important;
+}
+
+/* Edit slider colors */
+input[type=range]::-webkit-slider-thumb {
+  background-color: #fc7c25 !important;
+}
+
+input[type=range]::-moz-range-thumb {
+  background-color: #fc7c25 !important;
+}
+
+input[type=range]::-ms-thumb {
+  background-color: #fc7c25 !important;
+}
+
+/***** These are to edit the thumb and the text inside the thumb *****/
+input[type=range] + .thumb {
+  background-color: #fc7c25 !important;
+}
+
+.input[type=range] + .thumb {
+  background-color: #fc7c25 !important;
+}
+
+.range-field + .thumb {
+  background-color: #fc7c25 !important;
+}
+
+.noUI-background {
+  background: #fc7c25 !important;
+}
+
+.range-label {
+  background-color: #fc7c25 !important;
+}
+
+/*
+Makes the actual side nav brighter than everything else. Without this, the sidenav-overlay covers the sidenav for some reason and makes the whole screen dark
+ */
+#sidenav-overlay {
+  z-index: 1 !important;
+}
+
+.nt-orange-background {
+  background-color: #fc7c25 !important;
+}
+
+.nt-orange-text {
+  color: #fc7c25 !important;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.two-lined-button {
+  height: auto !important;
+  min-height: 20px !important;
+  line-height: 20px !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.profilePhoto {
+  border-radius: 5% !important;
+  -webkit-border-radius: 5% !important;
+  -moz-border-radius: 5% !important;
+  border: 2px solid white !important;
+  padding: 0 !important;
+  height: 106px !important;
+  width: 106px !important;
+}
+
+.profileLinksTable {
+  width: 100%;
+  word-wrap: break-word;
+  table-layout: fixed;
+}
+
+.icon-td {
+  width: 30px;
+  white-space: nowrap;
+}
+
+.word-wrap {
+  word-wrap: break-word;
+}
+
+.toast {
+  word-break: keep-all;
+}
+
+.container .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+@media only screen and (min-width: 992px) {
+
+  .profilePhoto {
+    border-radius: 5% !important;
+    padding: 0 !important;
+    height: 168px !important;
+    width: 168px !important;
+  }
+}
+
+@media only screen and (min-width : 601px) and (max-width : 1260px) {
+  .toast {
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+@media only screen and (min-width : 1261px) {
+  .toast {
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+@media only screen and (min-width : 601px) and (max-width : 1260px) {
+  #toast-container {
+    max-width: 70%;
+    bottom: 0;
+    margin: auto;
+    width: fit-content;
+    top: 90%;
+    right: 0;
+    left: 0;
+  }
+}
+
+@media only screen and (min-width : 1261px) {
+  #toast-container {
+    min-width: 100%;
+    bottom: 0;
+    top: 90%;
+    right: 0;
+    left: 0;
+  }
+}
