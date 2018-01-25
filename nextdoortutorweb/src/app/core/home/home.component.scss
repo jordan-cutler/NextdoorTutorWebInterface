@@ -24,10 +24,6 @@
   height: 320px;
 }
 
-.card-content {
-  overflow-y: scroll;
-}
-
 .cardBody {
   color: #fc7c25;
   font-size: 16pt;
@@ -37,11 +33,6 @@
 .card-title {
   color: #333;
   padding-bottom: 1%;
-}
-
-#action-btn {
-  background-color: #fc7c25;
-  color: white;
 }
 
 #whoWeAreCardPanel {
@@ -54,11 +45,6 @@
   text-align: left;
 }
 
-#becomeTutorImg {
-  height: 120%;
-  width: 80%;
-}
-
 #findTutorContainer {
   padding-top: 2%;
   padding-bottom: 4%;
@@ -69,9 +55,9 @@
   text-align: right;
 }
 
-.findTutorImg {
-  height: 90%;
-  width: 80%;
+
+.card-reveal-image {
+  width: 100%;
 }
 
 hr {
