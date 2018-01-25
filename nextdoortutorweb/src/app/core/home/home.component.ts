@@ -13,6 +13,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  scrollTo(destination: string): void {
+    window.location.hash = destination;
+  }
+
 }
 
 
