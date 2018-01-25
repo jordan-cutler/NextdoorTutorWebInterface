@@ -10,7 +10,9 @@
          -->
         <div class="row">
           <div class="col s12">
-            <a class="right cursorPointer nt-orange-text" (click)="createEditBasicInfoComponent()"><i class="material-icons">edit</i></a>
+            <a class="right cursorPointer nt-orange-text" (click)="createEditBasicInfoComponent()">
+              <i class="material-icons">edit</i>
+            </a>
           </div>
         </div>
 
@@ -20,14 +22,14 @@
               <label for="profileFileUploadInput">
                 <img alt="Failed to load profile picture" class="profilePhoto media__image z-depth-3 hide-on-small-only"
                      *ngIf="hasProfilePhoto"
-                     appProfileImage [userIdUnderProfilePhoto]="user.userId" [askerId]="user.userId" #profilePhotoRef/>
+                     appProfileImage [userIdUnderProfilePhoto]="user.userId" [askerId]="user.userId" #profilePhotoRef>
                 <i *ngIf="!hasProfilePhoto" class="large material-icons">account_circle</i>
                 <div class="media__body cursorPointer">
                   <h6 class="hide-on-med-and-down">Upload Profile Picture</h6>
                 </div>
               </label>
               <input id="profileFileUploadInput" type="file" (change)="profilePhotoFileChange($event)"
-                     accept="image/png, image/jpeg, image/gif"/>
+                     accept="image/png, image/jpeg, image/gif">
             </div>
           </div>
         </div>
@@ -66,8 +68,11 @@
             <table class="profileLinksTable">
               <tbody>
               <tr>
-                <td class="icon-td"><i class="fa fa-github social-icons icon-circle" aria-hidden="true"></i></td>
-                <td *ngIf="user.github?.link"><a class="nt-orange-text" href="{{user.github.link}}">{{user.github.link}}</a>
+                <td class="icon-td">
+                  <i class="fa fa-github social-icons icon-circle" aria-hidden="true"></i>
+                </td>
+                <td *ngIf="user.github?.link">
+                  <a class="nt-orange-text" href="{{user.github.link}}">{{user.github.link}}</a>
                 </td>
                 <td *ngIf="!user.github?.link">GitHub not set</td>
               </tr>
@@ -89,8 +94,9 @@
             </table>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 </div>
+
+

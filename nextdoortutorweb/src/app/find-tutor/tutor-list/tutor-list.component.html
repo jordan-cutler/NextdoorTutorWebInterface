@@ -6,42 +6,36 @@
 
           <app-sort-bar [summaries]="summaries"></app-sort-bar>
 
-          <ul class="z-depth-3" materialize="collapsible" [materializeParams]="[{accordion: false}]" data-collapsible="expandable">
+          <ul class="z-depth-3" materialize="collapsible" [materializeParams]="[{accordion: false}]"
+              data-collapsible="expandable">
             <li *ngFor="let summary of summaries">
               <div class="row collapsible-header valign-wrapper">
+
                 <div class="overlay-container" (click)="onImageClick($event, summary.tutor)">
+                  <!-- TUTOR IMAGE -->
                   <img
                     class="profileImg media__image col s2 z-depth-2"
                     appHttpImage [userIdUnderProfilePhoto]="summary.tutor.user.userId" [askerId]="currentUser.userId"
-                    alt="No profile picture"
-                  />
+                    alt="No profile picture"/>
                   <div class="inner-icon">
-                    <i class="material-icons">fullscreen</i>
+                    <i class="material-icons">person</i>
                   </div>
                   <div class="overlay cursorPointer">
                     <div class="overlay-text">View Profile</div>
                   </div>
                 </div>
 
+                <!-- TUTOR NAME -->
                 <div class="col s2 m1 left">
                   <span>{{summary.tutor.user.name}}</span>
                 </div>
 
+                <!-- TUTOR GRADES -->
                 <div class="col m4 hide-on-small-only">
-                  <div class="row">
+                  <div class="row tutor-grades">
                     <div class="col s10 offset-s1">
                       <table>
-                        <tr>
-                          <td *ngIf="summary.averageOfAllReviewsForAllCourses">
-                            {{summary.averageOfAllReviewsForAllCourses}}
-                          </td>
-                          <td *ngIf="!summary.averageOfAllReviewsForAllCourses">
-                            N/A
-                          </td>
-                          <td>:</td>
-                          <td><b>Avg. Overall Review</b></td>
-                        </tr>
-
+                        <tbody>
                         <tr>
                           <td
                             *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews; else noCourseAverage">
@@ -62,15 +56,16 @@
                             <td>:</td>
                             <td><b>Course Grade</b></td>
                           </ng-container>
-
                           <td *ngIf="!summary.tutor.grade" colspan="3">Hasn't Taken Course</td>
                         </tr>
+                        </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
 
-                <div class="col s3 m1">
+                <!-- TUTOR RATES -->
+                <div class="col s3 m1 right">
                   <span class="hide-on-small-only" *ngIf="summary.tutor.hourlyRate">
                     ${{summary.tutor.hourlyRate}}
                   </span>
@@ -80,7 +75,7 @@
                   <span class="hide-on-med-and-up" *ngIf="!summary.tutor.grade && summary.tutor.hourlyRate">Not taken / ${{summary.tutor.hourlyRate}}</span>
                 </div>
 
-                <div class="col m1 hide-on-small-only">
+                <div class="col s1 hide-on-small-only">
                   <div *ngIf="summary.tutor.instructorNameWhoEndorsed">
                     <div class="row">
                       <div class="col s12">
@@ -96,13 +91,14 @@
                   </div>
                 </div>
 
+                <!-- BUTTONS -->
                 <div class="col s3 left">
                   <!-- Only displayed for normal users -->
                   <button
                     class="btn nt-orange-background"
                     (click)="onBookTutor($event, summary.tutor.user.email, summary.tutor.course.courseNumber, summary.tutor.user.name)"
                     *ngIf="!currentUser.isInstructor">
-                    Email Tutor <i class="material-icons right">contact_mail</i>
+                    Email Tutor<i class="material-icons right">contact_mail</i>
                   </button>
 
                   <!-- Only displayed if tutor has not already been endorsed and the current user is an instructor -->
@@ -123,29 +119,126 @@
                   </button>
                 </div>
               </div>
+
+              <!-- More information about the tutor -->
               <div id="tutorInfo" class="collapsible-body">
-                <span class="hide-on-med-and-up" *ngIf="summary.averageOfAllReviewsForAllCourses">
-                  <b>Avg. Overall Review: </b> {{summary.averageOfAllReviewsForAllCourses}}<br/>
-                </span>
-                <span class="hide-on-med-and-up"
-                      *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews">
-                  <b>Avg. Course Review: </b> {{summary.courseReviewSummary.averageOfAllScoresAmongAllReviews}}<br/>
-                </span>
+
+                <ng-template #notTaken>
+                  <div class="row">
+                    <div class="col s12">
+                      <div class="left left1">
+                        <b>This person has not taken the course</b>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+
+                <div class="row" *ngIf="summary.averageOfAllReviewsForAllCourses">
+                  <div class="col s12">
+                    <div class="left left1">
+                      <b>Avg. Overall Review  </b>
+                    </div>
+                    <div class="right right1" *ngIf="summary.averageOfAllReviewsForAllCourses">
+                      {{summary.averageOfAllReviewsForAllCourses}}
+                    </div>
+                    <div class="right right1" *ngIf="!summary.averageOfAllReviewsForAllCourses">
+                      N/A
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row hide-on-med-and-up"
+                     *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews">
+                  <div class="col s12">
+                    <div class="left left1">
+                      <b>Avg. Course Review  </b>
+                    </div>
+                    <div class="right right1">
+                      {{summary.courseReviewSummary.averageOfAllScoresAmongAllReviews}}
+                    </div>
+                  </div>
+                </div>
+
                 <div
                   *ngIf="summary.tutor.hasTakenCourse && summary.tutor.grade && summary.tutor.instructor && summary.tutor.semesterTaken; else notTaken">
-                  <span><b>Instructor:</b> {{summary.tutor.instructor}}<br></span>
-                  <span><b>Semester Taken:</b> {{summary.tutor.semesterTaken.term}} {{summary.tutor.semesterTaken.year}}<br></span>
+
+                  <div class="row">
+                    <div class="col s12">
+                      <div class="left left1">
+                        <b>Instructor </b>
+                      </div>
+                      <div class="right right1">
+                        {{summary.tutor.instructor}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col s12">
+                      <div class="left left1">
+                        <b>Semester Taken </b>
+                      </div>
+                      <div class="right right1">
+                        {{summary.tutor.semesterTaken.term}} {{summary.tutor.semesterTaken.year}}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <ng-template #notTaken>
-                  <span><b>This person has not taken the course</b><br></span>
-                </ng-template>
-                <span *ngIf="summary.tutor.pastExperience"><b>Past Experience:</b> {{summary.tutor.pastExperience}}<br></span>
-                <span *ngIf="summary.tutor.notes"><b>Other Notes:</b> {{summary.tutor.notes}}<br></span>
-                <span *ngIf="summary.tutor.user.major"><b>Major: </b> {{summary.tutor.user.major}}<br></span>
-                <span *ngIf="summary.tutor.user.bio"><b>Bio: </b> {{summary.tutor.user.bio}}<br></span>
-                <span class="hide-on-med-and-up" *ngIf="summary.tutor.instructorNameWhoEndorsed">
-                  <b>Endorsed by: </b> {{summary.tutor.instructorNameWhoEndorsed | professor}}<br/>
-                </span>
+
+                <div class="row" *ngIf="summary.tutor.pastExperience">
+                  <div class="col s12">
+                    <div class="left left1">
+                      <b>Past Experience  </b>
+                    </div>
+                    <div class="right right1">
+                      {{summary.tutor.pastExperience}}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row" *ngIf="summary.tutor.notes">
+                  <div class="col s12">
+                    <div class="left left1">
+                      <b>Other Notes  </b>
+                    </div>
+                    <div class="right right1">
+                      {{summary.tutor.notes}}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row" *ngIf="summary.tutor.user.major">
+                  <div class="col s12">
+                    <div class="left left1">
+                      <b>Major  </b>
+                    </div>
+                    <div class="right right1">
+                      {{summary.tutor.user.major}}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row" *ngIf="summary.tutor.user.bio">
+                  <div class="col s12">
+                    <div class="left left1">
+                      <b>Bio  </b>
+                    </div>
+                    <div class="right right1">
+                      {{summary.tutor.user.bio}}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row hide-on-med-and-up" *ngIf="summary.tutor.instructorNameWhoEndorsed">
+                  <div class="col s12">
+                    <div class="left left1">
+                      <b>Endorsed by  </b>
+                    </div>
+                    <div class="right right1">
+                      {{summary.tutor.instructorNameWhoEndorsed | professor}}
+                    </div>
+                  </div>
+                </div>
               </div>
             </li>
           </ul>
@@ -154,6 +247,5 @@
     </div>
   </div>
 </div>
-
 
 

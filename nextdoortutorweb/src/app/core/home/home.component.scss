@@ -5,14 +5,34 @@
 }
 
 #logoSection {
-  padding-top: 6%;
-  padding-bottom: 6%;
+  padding-top: 3%;
+  padding-bottom: 2%;
+  text-align: center;
 }
 
 #ntLogo {
   height: 25%;
   width: 25%;
   margin-bottom: -30px;
+}
+
+#actionSection {
+  padding-bottom: 3%;
+}
+
+.welcome-card {
+  height: 320px;
+}
+
+.cardBody {
+  color: #fc7c25;
+  font-size: 16pt;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.card-title {
+  color: #333;
+  padding-bottom: 1%;
 }
 
 #whoWeAreCardPanel {
@@ -33,6 +53,15 @@
 
 #findTutorHeader {
   text-align: right;
+}
+
+
+.card-reveal-image {
+  width: 100%;
+}
+
+hr {
+  width: 80%;
 }
 
 #teamCardPanel {
@@ -65,7 +94,7 @@
 
 .role {
   font-size: 14pt;
-  font-family: Fresca, serif;
+  font-family: Quicksand, sans-serif;
 }
 
 .header {
@@ -75,16 +104,19 @@
 
 .footer {
   color: white !important;
+  font-family: Quicksand, sans-serif;
+  font-size: 14px;
 }
 
 #footerSlogan {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 /* Formats become/find a tutor descriptions */
-p.pTut {
+p.becomeTutorParagraph {
   font-size: 14pt;
-  width: 95%;
+  width: 100%;
+  padding-left: 1%;
 }
 
 img.keep-calm {
@@ -98,11 +130,21 @@ footer {
   padding-bottom: 1%;
   padding-top: 1%;
   color: white !important;
+  clear: both;
+  overflow: hidden;
+  display: block;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+}
+
+.page-footer  {
+  width: 100%;
 }
 
 p {
   font-size: 18pt;
-  font-family: Fresca, serif;
+  font-family: Quicksand, sans-serif;
 }
 
 h1 {
@@ -123,6 +165,12 @@ h3 {
 h4 {
   font-size: 14pt;
   color: #fc7c25;
+}
+
+@media only screen and (max-width: 992px) {
+  .welcome-card {
+    height: 280px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -150,14 +198,7 @@ h4 {
     width: 95%;
   }
 
-  .btn {
-    font-size: 5pt;
-    height: auto;
-    width: auto;
-    padding: 3% 4%;
-  }
-
-  .pTut {
+  .becomeTutorParagraph {
     font-size: 10pt !important;
   }
 
@@ -171,6 +212,14 @@ h4 {
 
   .card-title {
     font-size: 14pt !important;
+  }
+
+  .cardBody {
+    font-size: 12pt;
+  }
+
+  .welcome-card {
+    height: 260px;
   }
 
   img.keep-calm {

@@ -218,6 +218,11 @@ Makes the actual side nav brighter than everything else. Without this, the siden
   word-break: keep-all;
 }
 
+.container .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 @media only screen and (min-width: 992px) {
 
   .profilePhoto {

@@ -15,6 +15,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthInterceptor } from '../auth/auth.interceptor';
 import { TutorReviewService } from '../shared/tutor/reviews/tutor-review.service';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
@@ -25,7 +26,8 @@ import { NavbarComponent } from './navbar/navbar.component';
   imports: [
     NavbarModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2PageScrollModule
   ],
   exports: [
     AppRoutingModule,
