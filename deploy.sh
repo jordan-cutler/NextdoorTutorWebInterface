@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TARGETFOLDER=././../../NextdoorTutorServer/public
+TARGETFOLDER=././../NextdoorTutorServer/public
 #TARGETFOLDER=../backend/target/classes
 
 WEBFOLDERNAME=html
