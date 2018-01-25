@@ -16,10 +16,13 @@
     <div class="card small welcome-card">
       <div class="card-content">
         <span class="card-title">Get Started Today</span>
-        <p class="cardBody">No need to create an account, simply log in with your Lehigh email.<br>Click below to learn more about our services.</p>
+        <p class="cardBody">No need to create an account, simply log in with your Lehigh email.<br>Click below to learn
+          more about our services.</p>
       </div>
       <div class="card-action">
-        <button pageScroll [pageScrollDuration]="500" [pageScrollOffset]="10" href="#becomeTutor" class="btn cursorPointer nt-orange-background white-text" type="button">More Info</button>
+        <button pageScroll [pageScrollDuration]="500" [pageScrollOffset]="10" href="#becomeTutor"
+                class="btn cursorPointer nt-orange-background white-text" type="button">More Info
+        </button>
       </div>
     </div>
   </div>
@@ -31,7 +34,15 @@
         <p class="cardBody">Donate to help fund the growth, expansion and improvement of NextdoorTutor.</p>
       </div>
       <div class="card-action">
-        <a class="btn nt-orange-background white-text" target="_blank" href="https://www.paypal.com/donate/?token=rpAS4SbLBmwhjCyadzUiB3se_sMepfXb_rhAndkC_jTLax7loNYtfBoa_oYgF196MvITQm&country.x=US&locale.x=US">Donate</a>
+        <form #form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="encrypted"
+                 value="-----BEGIN PKCS7-----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-----END PKCS7-----">
+          <button type="button" (click)="form.submit()" class="btn nt-orange-background white-text cursorPointer">
+            Donate
+          </button>
+          <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
       </div>
     </div>
   </div>
@@ -44,13 +55,12 @@
 <div id="whoWeAreCardPanel" class="row card-panel white">
   <h2 class="center">Who We Are</h2>
   <div class="col s5 offset-s1">
-        <span class="flow-text">
-          <p class="center">
-            <strong>A service for Lehigh University students that helps connect tutors with tutees taking courses in the Computer Science and Engineering department.
-            <br><br>Scroll down to learn more about how to find/become a tutor!
-            </strong>
-          </p>
-        </span>
+    <p class="center flow-text">
+      <strong>A service for Lehigh University students that helps connect tutors with tutees taking courses in the
+        Computer Science and Engineering department.
+        <br><br>Scroll down to learn more about how to find/become a tutor!
+      </strong>
+    </p>
   </div>
 
   <div class="col s5 offset-s1">
@@ -81,7 +91,8 @@
       <span class="card-title grey-text text-darken-4">Tutor a Course<i class="material-icons right">close</i></span>
       <div class="row">
         <div class="col s10 offset-s2">
-          <span class="flow-text"><p class="pTut">Below is the simple form a student would fill out to tutor a course.</p></span>
+          <span class="flow-text"><p
+            class="pTut">Below is the simple form a student would fill out to tutor a course.</p></span>
           <img id="becomeTutorImg" src="assets/images/tutor-regi-img.png">
         </div>
       </div>
@@ -101,13 +112,17 @@
     <div class="card-content">
       <span class="flow-text card-title activator grey-text text-darken-4">Viewing Tutors For A Course<i
         class="material-icons right">more_vert</i></span>
-      <p class="pTut">Be able to see all available tutors before you commit to one. You can select a tutor based on criteria that matter to you. Once you find the perfect tutor, just click "Email Tutor" to set up a session.<br>See how easy it is to find a tutor by expanding this box.</p>
+      <p class="pTut">Be able to see all available tutors before you commit to one. You can select a tutor based on
+        criteria that matter to you. Once you find the perfect tutor, just click "Email Tutor" to set up a session.<br>See
+        how easy it is to find a tutor by expanding this box.</p>
     </div>
     <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">Viewing Tutors For A Course<i class="material-icons right">close</i></span>
+      <span class="card-title grey-text text-darken-4">Viewing Tutors For A Course<i
+        class="material-icons right">close</i></span>
       <div class="row">
         <div class="col s10 offset-s2">
-          <p class="pTut flow-text">First, a student would select the class he/she needs a tutor for from the list below.</p>
+          <p class="pTut flow-text">First, a student would select the class he/she needs a tutor for from the list
+            below.</p>
           <!-- Add image of finding a tutor search -->
           <img class="findTutorImg" src="assets/images/class-list.png" align="center">
         </div>
@@ -115,7 +130,8 @@
       <hr>
       <div class="row">
         <div class="col s10 offset-s2">
-          <p class="pTut">The list of available tutors for that class will then appear with the sort options shown below.</p>
+          <p class="pTut">The list of available tutors for that class will then appear with the sort options shown
+            below.</p>
           <img class="findTutorImg" src="assets/images/tutor-list.png" align="center">
         </div>
       </div>
