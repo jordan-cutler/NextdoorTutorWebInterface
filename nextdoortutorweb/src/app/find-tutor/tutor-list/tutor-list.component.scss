@@ -1,10 +1,20 @@
-td, th {
-  padding: 2px 0px 0px 0px;
-  text-align: left;
+td {
+  padding: 2px 0 0 0;
 }
 
-td {
-  padding-left: 1%;
+ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.tutor-grades {
+  margin-bottom: 10px !important;
+  margin-top: 10px !important;
+}
+
+.container .row {
+  margin-left: -.75rem;
+  margin-right: -.75rem;
 }
 
 .profileImg {
@@ -26,12 +36,8 @@ td {
   text-align: left;
 }
 
-.tutor-name {
-  padding-left: 1%;
-}
-
 .container {
-  width: 87%;
+  width: 85%;
 }
 
 .overlay-container {
@@ -81,10 +87,6 @@ td {
   right: -15px;
   opacity: 1;
   color: #fc7c25;
-  /*background-color: #ffffff;
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;*/
   font-size: 1.8rem;
 }
 
@@ -102,6 +104,7 @@ td {
 /* Make all descriptors such as Hourly Rate our orange color */
 b {
   color: #fc7c25;
+  padding-left: 1%;
 }
 
 .align-table {
