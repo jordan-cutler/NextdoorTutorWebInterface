@@ -11,7 +11,7 @@ import { ProfileModule } from './profile/profile.module';
 import { TutorApplicationModule } from './tutor-application/tutor-application.module';
 import { CoreModule } from './core/core.module';
 import { TutorViewModule } from './tutor-view/tutor-view.module';
-import { ScrollToModule } from 'ng2-scroll-to';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { ScrollToModule } from 'ng2-scroll-to';
     CoreModule,
     ProfileModule,
     TutorViewModule,
-    ScrollToModule.forRoot()
+    Ng2PageScrollModule
   ],
   bootstrap: [AppComponent]
 })
