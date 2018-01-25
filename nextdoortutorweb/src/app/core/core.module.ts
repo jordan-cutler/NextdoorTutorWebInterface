@@ -3,7 +3,6 @@ import { PreloaderComponent } from './preloader/preloader.component';
 import { NavbarModule } from './navbar/navbar.module';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
-import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from '../auth/auth.service';
 import { TutorService } from '../shared/tutor/tutor.service';
@@ -17,6 +16,7 @@ import { Router } from '@angular/router';
 import { AuthInterceptor } from '../auth/auth.interceptor';
 import { TutorReviewService } from '../shared/tutor/reviews/tutor-review.service';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [

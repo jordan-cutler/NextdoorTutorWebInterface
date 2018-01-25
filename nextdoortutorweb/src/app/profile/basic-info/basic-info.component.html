@@ -20,12 +20,12 @@
           <div class="col s12">
             <div id="profileImageContainer" class="media center image-upload">
               <label for="profileFileUploadInput">
-                <img alt="Failed to load profile picture" class="profilePhoto media__image z-depth-3"
+                <img alt="Failed to load profile picture" class="profilePhoto media__image z-depth-3 hide-on-small-only"
                      *ngIf="hasProfilePhoto"
                      appProfileImage [userIdUnderProfilePhoto]="user.userId" [askerId]="user.userId" #profilePhotoRef>
                 <i *ngIf="!hasProfilePhoto" class="large material-icons">account_circle</i>
                 <div class="media__body cursorPointer">
-                  <h6 class="mobile-hidden">Upload Profile Picture</h6>
+                  <h6 class="hide-on-med-and-down">Upload Profile Picture</h6>
                 </div>
               </label>
               <input id="profileFileUploadInput" type="file" (change)="profilePhotoFileChange($event)"
