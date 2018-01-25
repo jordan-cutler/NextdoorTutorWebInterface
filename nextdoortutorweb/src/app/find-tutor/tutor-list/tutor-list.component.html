@@ -58,7 +58,7 @@
                   </table>
                 </div>
 
-
+                <!-- TUTOR RATES -->
                 <div class="col s3 offset-s2">
                   <span class="hide-on-small-only" *ngIf="summary.tutor.hourlyRate">
                     ${{summary.tutor.hourlyRate}}
@@ -118,13 +118,13 @@
               <div id="tutorInfo" class="collapsible-body">
                 <div class="row" *ngIf="summary.averageOfAllReviewsForAllCourses">
                   <div class="column left">
-                    <b>Avg. Overall Review</b>
+                    <b>Avg. Overall Review: </b>
                   </div>
                   <div class="column right" *ngIf="summary.averageOfAllReviewsForAllCourses">
-                    : {{summary.averageOfAllReviewsForAllCourses}}
+                    {{summary.averageOfAllReviewsForAllCourses}}
                   </div>
                   <div class="column right" *ngIf="!summary.averageOfAllReviewsForAllCourses">
-                    : N/A
+                    N/A
                   </div>
                 </div>
 
