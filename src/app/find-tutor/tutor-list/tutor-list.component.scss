@@ -1,5 +1,5 @@
 td {
-  padding: 2px 2px 0 0;
+  padding: 2px 4px 2px 0;
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -8,13 +8,40 @@ ul {
   list-style-type: none;
 }
 
+/* Used to position tutor's name */
+.tutor-name-left {
+  margin-left: 1% !important;
+}
+
+/* Width used to format the avg. course review &
+ * course grade titles for each tutor */
+.description-display {
+  width: 62%;
+}
+
+/* Width used to format the avg. course review &
+ * course grade for each tutor */
 .course-grade-display {
+  width: 38%;
+}
+
+/* Width used to format the Haven't Taken Course title */
+.course-not-taken {
   width: 60%;
 }
 
+.b-black {
+  color: black !important;
+}
+
+/* Formats the whole table that displays a tutor's grades */
 .tutor-grades {
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+.table-padding {
+  padding-left: 3%;
 }
 
 .container .row {
@@ -135,7 +162,9 @@ b {
     clear: both;
 }
 
+/* Makes font size a bit smaller for the email tutor button
+ * otherwise it takes up too much space */
 .btn {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
 }
 

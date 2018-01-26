@@ -13,7 +13,7 @@
                 <!-- TUTOR IMAGE -->
                 <div class="overlay-container" (click)="onImageClick($event, summary.tutor)">
                   <img
-                    class="profileImg media__image col s2 m1 z-depth-2"
+                    class="profileImg media__image col s2 z-depth-2"
                     appHttpImage [userIdUnderProfilePhoto]="summary.tutor.user.userId" [askerId]="currentUser.userId"
                     alt="No profile picture"/>
                   <div class="inner-icon">
@@ -25,46 +25,44 @@
                 </div>
 
                 <!-- TUTOR NAME -->
-                <div class="col s2 m1 left">
+                <div class="col m1 tutor-name-left">
                   <span>{{summary.tutor.user.name}}</span>
                 </div>
 
                 <!-- TUTOR GRADES -->
-                <div class="col m3 hide-on-small-only">
+                <div class="col m3 hide-on-small-only table-padding">
                   <div class="row tutor-grades">
-
-                      <table>
-                        <tbody>
+                    <table>
+                      <tbody>
                         <tr>
-                          <td class="course-grade-display"><b>Avg. Course Review</b></td>
-                          <td>:</td>
-                          <td
-                            *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews; else noCourseAverage">
-                            {{summary.courseReviewSummary.averageOfAllScoresAmongAllReviews}}
-                          </td>
-                          <ng-template #noCourseAverage>
-                            <td>N/A</td>
-                          </ng-template>
+                          <td class="description-display"><b>Avg. Course Review</b></td>
+                            <td>:</td>
+                            <td class="course-grade-display"
+                              *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews; else noCourseAverage">
+                              {{summary.courseReviewSummary.averageOfAllScoresAmongAllReviews}}
+                            </td>
+                            <ng-template #noCourseAverage>
+                              <td class="course-grade-display">N/A</td>
+                            </ng-template>
                         </tr>
 
                         <tr>
                           <ng-container *ngIf="summary.tutor.grade">
-                            <td class="course-grade-display"><b>Course Grade</b></td>
+                            <td class="description-display"><b>Course Grade</b></td>
                             <td>:</td>
-                            <td>
+                            <td class="course-grade-display">
                               {{summary.tutor.grade}}
                             </td>
                           </ng-container>
-                          <td class="course-grade-display" *ngIf="!summary.tutor.grade"><b>Hasn't Taken Course</b></td>
+                          <td class="course-not-taken" *ngIf="!summary.tutor.grade"><b>Hasn't Taken Course</b></td>
                         </tr>
-                        </tbody>
-                      </table>
-
+                      </tbody>
+                    </table>
                   </div>
                 </div>
 
                 <!-- TUTOR RATES -->
-                <div class="col s3 m1 right">
+                <div class="col s3 m1">
                   <span class="hide-on-small-only" *ngIf="summary.tutor.hourlyRate">
                     ${{summary.tutor.hourlyRate}}
                   </span>
