@@ -1,5 +1,6 @@
 td {
-  padding: 2px 5px 0 0;
+  padding: 2px 2px 0 0;
+  font-family: 'Quicksand', sans-serif;
 }
 
 ul {
@@ -7,9 +8,13 @@ ul {
   list-style-type: none;
 }
 
+.course-grade-display {
+  width: 60%;
+}
+
 .tutor-grades {
-  margin-bottom: 10px !important;
-  margin-top: 10px !important;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .container .row {
@@ -130,4 +135,7 @@ b {
     clear: both;
 }
 
+.btn {
+  font-size: 0.7rem;
+}
 
