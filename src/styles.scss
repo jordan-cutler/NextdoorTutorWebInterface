@@ -199,16 +199,33 @@ Makes the actual side nav brighter than everything else. Without this, the siden
   width: 106px !important;
 }
 
-.profileLinksTable {
+/*
+Used for if you want a table where the words within the table will break to the next line if they go past the width of the container.
+ */
+.word-wrap-elements-table {
   width: 100%;
   word-wrap: break-word;
   table-layout: fixed;
+}
+
+/*
+Below two classes are used because by default each td will take up the width of the container / # of td elements, so for a two td row with width
+360px, the left td will take 180px and the right td will take 180px, which is not ideal if the left td is a label of some sort like
+Email: jdc219@lehigh.edu because it would look like this instead Email:                 jdc219@lehigh.edu
+                                                                <-------- 180px --------><-------- 180px -------->
+                                                                <--------------------  360px -------------------->
+ */
+.text-label-td {
+  width: 50px;
+  white-space: nowrap;
 }
 
 .icon-td {
   width: 30px;
   white-space: nowrap;
 }
+
+/* word-wrap table classes end */
 
 .word-wrap {
   word-wrap: break-word;

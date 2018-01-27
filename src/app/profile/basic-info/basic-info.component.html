@@ -46,18 +46,18 @@
 
         <div class="row center">
           <div class="col s6">
-            <table>
+            <table class="word-wrap-elements-table">
               <tr>
-                <td class="nt-orange-text">Email:</td>
+                <td class="nt-orange-text text-label-td">Email:</td>
                 <td><span *ngIf="user.email" id="emailContact" class="center">{{user.email}}</span></td>
               </tr>
               <tr>
-                <td class="nt-orange-text">Bio:</td>
+                <td class="nt-orange-text text-label-td">Bio:</td>
                 <td><span *ngIf="user.bio">{{user.bio}}</span>
                   <span *ngIf="!user.bio">You haven't set your bio yet!</span></td>
               </tr>
               <tr>
-                <td class="nt-orange-text">Major:</td>
+                <td class="nt-orange-text text-label-td">Major:</td>
                 <td><span *ngIf="user.major">{{user.major}} </span>
                   <span *ngIf="!user.major"> You haven't set your major yet! </span></td>
               </tr>
@@ -65,7 +65,7 @@
           </div>
 
           <div class="col s6">
-            <table class="profileLinksTable">
+            <table class="word-wrap-elements-table">
               <tbody>
               <tr>
                 <td class="icon-td">

@@ -23,18 +23,18 @@
 
         <div class="row center">
           <div class="col s6">
-            <table>
+            <table class="word-wrap-elements-table">
               <tr>
-                <td class="nt-orange-text">Email:</td>
+                <td class="nt-orange-text text-label-td">Email:</td>
                 <td><span *ngIf="tutorUser.email" id="emailContact" class="center">{{tutorUser.email}}</span></td>
               </tr>
               <tr>
-                <td class="nt-orange-text">Bio:</td>
+                <td class="nt-orange-text text-label-td">Bio:</td>
                 <td><span *ngIf="tutorUser.bio">{{tutorUser.bio}}</span>
                   <span *ngIf="!tutorUser.bio">Bio not set</span></td>
               </tr>
               <tr>
-                <td class="nt-orange-text">Major:</td>
+                <td class="nt-orange-text text-label-td">Major:</td>
                 <td><span *ngIf="tutorUser.major">{{tutorUser.major}} </span>
                   <span *ngIf="!tutorUser.major">Major not set</span></td>
               </tr>
@@ -42,7 +42,7 @@
           </div>
 
           <div class="col s6">
-            <table class="profileLinksTable">
+            <table class="word-wrap-elements-table">
               <tr>
                 <td class="icon-td"><i class="fa fa-github social-icons icon-circle" aria-hidden="true"></i></td>
                 <td *ngIf="tutorUser.github?.link"><a class="nt-orange-text"
