@@ -223,7 +223,16 @@ Makes the actual side nav brighter than everything else. Without this, the siden
   margin-right: 0;
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (max-width: 992px) {
+  .left-on-med-and-down {
+    text-align: left !important;
+  }
+}
+
+/*
+Large screens
+ */
+@media only screen and (min-width: 993px) {
 
   .profilePhoto {
     border-radius: 5% !important;

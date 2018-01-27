@@ -5,8 +5,7 @@
         <li class="condensed light center collection-header">Courses Tutoring</li>
         <li *ngFor="let reviewSummary of basicTutorInfo.courseReviewSummaries" class="collection-item nt-orange-text">
           <div class="row valign-wrapper">
-            <div class="col s3"></div>
-            <div class="col s6 center">
+            <div class="col s8 l5 center left-on-med-and-down word-wrap offset-l4">
               <span class="nt-orange-text">
                 {{reviewSummary.course.courseNumber}} {{reviewSummary.course.title}} <br>
                 <span *ngIf="reviewSummary?.averageOfAllScoresAmongAllReviews; else noReviews">
@@ -15,7 +14,7 @@
                 <ng-template #noReviews><span>No reviews</span></ng-template>
               </span>
             </div>
-            <div class="col s3">
+            <div class="col s4">
               <button
                 *ngIf="currentUser.userId != basicTutorInfo.user.userId"
                 class="btn nt-orange-background white-text right" type="button"
