@@ -13,6 +13,12 @@ ul {
   margin-left: 1% !important;
 }
 
+/* Used to position tutor's rate */
+.tutor-rate-left {
+  margin-left: 1% !important;
+  color: #fc7c25;
+}
+
 /* Width used to format the avg. course review &
  * course grade titles for each tutor */
 .description-display {
@@ -42,7 +48,7 @@ ul {
 }
 
 .table-padding {
-  padding-left: 3%;
+  padding-left: 5%;
 }
 
 .container .row {

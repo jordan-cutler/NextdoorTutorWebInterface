@@ -25,12 +25,17 @@
                 </div>
 
                 <!-- TUTOR NAME -->
+                
                 <div class="col m1 tutor-name-left">
                   <span>{{summary.tutor.user.name}}</span>
+                  <div class="row tutor-rate-left">
+                  <span class="hide-on-small-only" *ngIf="summary.tutor.hourlyRate">
+                    ${{summary.tutor.hourlyRate}}
+                  </span></div>
                 </div>
 
                 <!-- TUTOR GRADES -->
-                <div class="col m3 hide-on-small-only table-padding">
+                <div class="col m4 hide-on-small-only table-padding">
                   <div class="row tutor-grades">
                     <table>
                       <tbody>
@@ -62,14 +67,11 @@
                 </div>
 
                 <!-- TUTOR RATES -->
-                <div class="col s3 m1">
-                  <span class="hide-on-small-only" *ngIf="summary.tutor.hourlyRate">
-                    ${{summary.tutor.hourlyRate}}
-                  </span>
-                  <span class="hide-on-med-and-up" *ngIf="summary.tutor.grade && summary.tutor.hourlyRate">
+                <div class="col s3 hide-on-med-and-up">
+                  <span *ngIf="summary.tutor.grade && summary.tutor.hourlyRate">
                     {{summary.tutor.grade}} / ${{summary.tutor.hourlyRate}}
                   </span>
-                  <span class="hide-on-med-and-up" *ngIf="!summary.tutor.grade && summary.tutor.hourlyRate">Not taken / ${{summary.tutor.hourlyRate}}</span>
+                  <span *ngIf="!summary.tutor.grade && summary.tutor.hourlyRate">Not taken / ${{summary.tutor.hourlyRate}}</span>
                 </div>
 
                 <!-- INSTRUCTOR ENDORSEMENT -->
