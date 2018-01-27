@@ -25,13 +25,21 @@
                 </div>
 
                 <!-- TUTOR NAME -->
-                
-                <div class="col m1 tutor-name-left">
-                  <span>{{summary.tutor.user.name}}</span>
-                  <div class="row tutor-rate-left">
-                  <span class="hide-on-small-only" *ngIf="summary.tutor.hourlyRate">
-                    ${{summary.tutor.hourlyRate}}
-                  </span></div>
+
+                <div class="col s1 tutor-name-left">
+                  <div class="row">
+                    <div class="col s12">
+                      <span>{{summary.tutor.user.name}}</span>
+                    </div>
+                    <div class="col s12">
+                      <span class="hide-on-small-only nt-orange-text" *ngIf="summary.tutor.hourlyRate">
+                        ${{summary.tutor.hourlyRate}}
+                      </span>
+                    </div>
+                  </div>
+                  <!---->
+                  <!--<div class="row tutor-rate-left">-->
+                  <!--</div>-->
                 </div>
 
                 <!-- TUTOR GRADES -->
