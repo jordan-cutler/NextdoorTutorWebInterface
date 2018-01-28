@@ -8,15 +8,9 @@ ul {
   list-style-type: none;
 }
 
-/* Used to position tutor's name */
-.tutor-name-left {
-  margin-left: 1% !important;
-}
-
-/* Used to position tutor's rate */
-.tutor-rate-left {
-  margin-left: 1% !important;
-  color: #fc7c25;
+span {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
 }
 
 /* Width used to format the avg. course review &
@@ -37,18 +31,11 @@ ul {
   width: 60%;
 }
 
-.b-black {
-  color: black !important;
-}
-
-/* Formats the whole table that displays a tutor's grades */
+/* Formats the entire table that displays a tutor's grades
+ * Centers table vertically */
 .tutor-grades {
   margin-bottom: 10px;
   margin-top: 10px;
-}
-
-.table-padding {
-  padding-left: 5%;
 }
 
 .container .row {
@@ -71,8 +58,8 @@ ul {
   width: 100px !important;
 }
 
-#tutorInfo {
-  text-align: left;
+.tutorInfo {
+  font-family: 'Quicksand', sans-serif;
 }
 
 .container {
@@ -144,23 +131,8 @@ ul {
 b {
   color: #fc7c25;
   padding-left: 1%;
-}
-
-.align-table {
-  padding-right: 77px;
-}
-
-.column {
-  float: left;
-}
-
-.left1 {
-  width: 17%;
-  padding-left: 2%;
-}
-
-.right1 {
-  width: 80%;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
 }
 
 .row:after {
@@ -169,9 +141,4 @@ b {
     clear: both;
 }
 
-/* Makes font size a bit smaller for the email tutor button
- * otherwise it takes up too much space */
-.btn {
-  font-size: 0.9rem;
-}
 
