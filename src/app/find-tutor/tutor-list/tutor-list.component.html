@@ -74,9 +74,9 @@
                 <!-- TUTOR RATES -->
                 <div class="col s3 left hide-on-med-and-up">
                   <span *ngIf="summary.tutor.grade && summary.tutor.hourlyRate">
-                    {{summary.tutor.grade}} / ${{summary.tutor.hourlyRate}}
+                    {{summary.tutor.grade}}<br>${{summary.tutor.hourlyRate}}
                   </span>
-                  <span *ngIf="!summary.tutor.grade && summary.tutor.hourlyRate">Not taken / ${{summary.tutor.hourlyRate}}</span>
+                  <span *ngIf="!summary.tutor.grade && summary.tutor.hourlyRate">Not Taken<br>${{summary.tutor.hourlyRate}}</span>
                 </div>
 
                 <!-- INSTRUCTOR ENDORSEMENT -->
