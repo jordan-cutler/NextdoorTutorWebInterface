@@ -9,7 +9,7 @@ import { FindTutorModule } from './find-tutor/find-tutor.module';
 import { CoursesUserIsTutoringModule } from '@profile/courses-user-is-tutoring-list/courses-user-is-tutoring.module';
 import { ProfileModule } from '@profile/profile.module';
 import { TutorApplicationModule } from './tutor-application/tutor-application.module';
-import { CoreModule } from './core/core.module';
+import { CoreModule } from '@core/core.module';
 import { TutorViewModule } from './tutor-view/tutor-view.module';
 
 @NgModule({

@@ -6,7 +6,8 @@
     "paths": {
       "@app/*": ["app/*"],
       "@shared/*": ["app/shared/*"],
-      "@profile/*": ["app/profile/*"]
+      "@profile/*": ["app/profile/*"],
+      "@core/*": ["app/core/*"]
     },
     "sourceMap": true,
     "declaration": false,

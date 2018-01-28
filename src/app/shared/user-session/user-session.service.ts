@@ -6,8 +6,6 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
-import 'rxjs/Rx';
-
 @Injectable()
 export class UserSessionService {
 
