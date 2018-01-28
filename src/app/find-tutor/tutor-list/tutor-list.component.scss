@@ -1,3 +1,5 @@
+$ntOrange: #fc7c25;
+
 td {
   padding: 2px 4px 2px 0;
   font-family: 'Quicksand', sans-serif;
@@ -14,11 +16,12 @@ span {
 }
 
 table {
-  width: 70%;
+  width: 100%;
 }
 
-.tutor-name {
-  text-align: center;
+.grade-description {
+  width: 100%;
+  text-align: right;
 }
 
 /* Formats the entire table that displays a tutor's grades

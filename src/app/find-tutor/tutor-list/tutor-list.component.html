@@ -25,7 +25,9 @@
                 </div>
 
                 <!-- TUTOR NAME -->
-                <div class="col s2 m2 tutor-name left">
+
+                <div class="col s2 m1 left">
+
                   <div class="col s12">
                     <span>{{summary.tutor.user.name}}</span>
                   </div>
@@ -34,15 +36,16 @@
                       ${{summary.tutor.hourlyRate}}
                     </span>
                   </div>
+
                 </div>
 
                 <!-- TUTOR GRADES -->
-                <div class="col m3 l4 offset-l1 hide-on-small-only">
+                <div class="col m4 offset-m1 hide-on-small-only">
                   <div class="row tutor-grades">
                     <table>
                       <tbody>
                         <tr>
-                          <td><b>Avg. Course Review</b></td>
+                          <td class="grade-description"><b>Avg. Course Review</b></td>
                             <td>:</td>
                             <td
                               *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews; else noCourseAverage">
@@ -55,13 +58,13 @@
 
                         <tr>
                           <ng-container *ngIf="summary.tutor.grade">
-                            <td><b>Course Grade</b></td>
+                            <td class="grade-description"><b>Course Grade</b></td>
                             <td>:</td>
                             <td>
                               {{summary.tutor.grade}}
                             </td>
                           </ng-container>
-                          <td colspan="2" *ngIf="!summary.tutor.grade"><b>Hasn't Taken Course</b></td>
+                          <td class="grade-description" colspan="2" *ngIf="!summary.tutor.grade"><b>Hasn't Taken Course</b></td>
                         </tr>
                       </tbody>
                     </table>
@@ -77,7 +80,7 @@
                 </div>
 
                 <!-- INSTRUCTOR ENDORSEMENT -->
-                <div class="col m1 hide-on-small-only">
+                <div class="col m1 offset-m1 hide-on-small-only">
                   <div *ngIf="summary.tutor.instructorNameWhoEndorsed">
 
                       <div class="col s12">
@@ -89,12 +92,12 @@
                       <div class="col s12">
                         <span>{{summary.tutor.instructorNameWhoEndorsed | professor}}</span>
                       </div>
-                   
+
                   </div>
                 </div>
 
                 <!-- BUTTONS -->
-                <div class="col s3 left">
+                <div class="col s3 offset-s1 left">
                   <!-- Only displayed for normal users -->
                   <button
                     class="btn nt-orange-background"
