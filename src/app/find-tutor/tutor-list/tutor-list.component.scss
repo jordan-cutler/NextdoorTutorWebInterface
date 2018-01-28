@@ -19,9 +19,17 @@ table {
   width: 100%;
 }
 
-.grade-description {
+tr {
   width: 100%;
+}
+
+.grade-description {
+  width: 80%;
   text-align: right;
+}
+
+.colon {
+  width: 1%;
 }
 
 /* Formats the entire table that displays a tutor's grades

@@ -46,7 +46,7 @@
                       <tbody>
                         <tr>
                           <td class="grade-description"><b>Avg. Course Review</b></td>
-                            <td>:</td>
+                            <td class="colon">:</td>
                             <td
                               *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews; else noCourseAverage">
                               {{summary.courseReviewSummary.averageOfAllScoresAmongAllReviews}}
@@ -59,7 +59,7 @@
                         <tr>
                           <ng-container *ngIf="summary.tutor.grade">
                             <td class="grade-description"><b>Course Grade</b></td>
-                            <td>:</td>
+                            <td class="colon">:</td>
                             <td>
                               {{summary.tutor.grade}}
                             </td>
