@@ -19,7 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "stylePreprocessorOptions": {
-        "includePaths": ["./"]
+        "includePaths": ["./", "globalscss"]
       },
       "styles": [
         "styles-app-loading.scss",
