@@ -13,22 +13,12 @@ span {
   font-weight: bold;
 }
 
-/* Width used to format the avg. course review &
- * course grade titles for each tutor */
-.description-display {
-  width: 62%;
+table {
+  width: 70%;
 }
 
-/* Width used to format the avg. course review &
- * course grade for each tutor */
-.course-grade-display {
-  font-weight: bold;
-  width: 38%;
-}
-
-/* Width used to format the Haven't Taken Course title */
-.course-not-taken {
-  width: 60%;
+.tutor-name {
+  text-align: center;
 }
 
 /* Formats the entire table that displays a tutor's grades
@@ -125,6 +115,24 @@ span {
   .container {
     width: 100%;
   }
+}
+
+@media only screen and (max-width: 640px) {
+  .tutor-name {
+    text-align: left;
+  }
+
+  .btn {
+    width: 68px;
+    height: 34px;
+    font-size: 0.7rem;
+    padding: 0 0 0 0;
+  }
+
+  //.row .col {
+  //  margin-left: 0;
+  //  margin-right: 0;
+  //}
 }
 
 /* Make all descriptors such as Hourly Rate our orange color */
