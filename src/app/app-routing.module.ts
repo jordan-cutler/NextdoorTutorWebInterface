@@ -4,7 +4,7 @@ import { HomeComponent } from './core/home/home.component';
 import { FindTutorComponent } from './find-tutor/find-tutor.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { TutorApplicationComponent } from './tutor-application/tutor-application.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from '@profile/profile.component';
 import { TutorViewComponent } from './tutor-view/tutor-view.component';
 
 const appRoutes: Routes = [

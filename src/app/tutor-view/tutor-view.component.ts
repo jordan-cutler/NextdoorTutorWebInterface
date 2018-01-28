@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { TutorReviewService } from '../shared/tutor/reviews/tutor-review.service';
-import { BasicTutorInfo } from '../shared/tutor/reviews/basic-tutor-info.model';
+import { TutorReviewService } from '@shared/tutor/reviews/tutor-review.service';
+import { BasicTutorInfo } from '@shared/tutor/reviews/basic-tutor-info.model';
 
 @Component({
   selector: 'app-tutor-view',

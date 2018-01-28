@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../../shared/user/user-model/user.model';
-import { UserSessionService } from '../../shared/user-session/user-session.service';
-import { BasicTutorInfo } from '../../shared/tutor/reviews/basic-tutor-info.model';
+import { User } from '@shared/user/user-model/user.model';
+import { UserSessionService } from '@shared/user-session/user-session.service';
+import { BasicTutorInfo } from '@shared/tutor/reviews/basic-tutor-info.model';
 
 @Component({
   selector: 'app-tutor-basic-info',

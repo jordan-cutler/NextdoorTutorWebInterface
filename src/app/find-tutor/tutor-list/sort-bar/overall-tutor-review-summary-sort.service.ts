@@ -1,5 +1,5 @@
-import { OverallTutorReviewSummary } from '../../../shared/tutor/reviews/overall-tutor-review-summary.model';
-import { Grade } from '../../../shared/tutor/tutor-model/grade.model';
+import { OverallTutorReviewSummary } from '@shared/tutor/reviews/overall-tutor-review-summary.model';
+import { Grade } from '@shared/tutor/tutor-model/grade.model';
 
 export class OverallTutorReviewSummarySortService {
   private currentlySortingBy = SortOn.AverageOverallReview;

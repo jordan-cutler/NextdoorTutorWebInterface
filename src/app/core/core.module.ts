@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { NavbarModule } from './navbar/navbar.module';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { AuthService } from '../auth/auth.service';
-import { TutorService } from '../shared/tutor/tutor.service';
-import { UserService } from '../shared/user/user.service';
-import { UserSessionService } from '../shared/user-session/user-session.service';
-import { ImageService } from '../shared/image.service';
-import { CourseService } from '../shared/course/course.service';
+import { TutorService } from '@shared/tutor/tutor.service';
+import { UserService } from '@shared/user/user.service';
+import { UserSessionService } from '@shared/user-session/user-session.service';
+import { ImageService } from '@shared/image.service';
+import { CourseService } from '@shared/course/course.service';
 import { PreloaderService } from './preloader/preloader.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthInterceptor } from '../auth/auth.interceptor';
-import { TutorReviewService } from '../shared/tutor/reviews/tutor-review.service';
+import { TutorReviewService } from '@shared/tutor/reviews/tutor-review.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeModule } from './home/home.module';
 
@@ -52,5 +52,10 @@ import { HomeModule } from './home/home.module';
   ]
 })
 export class CoreModule {
-
+  /* make sure CoreModule is imported only by one NgModule the AppModule */
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    if (parentModule) {
+      throw new Error('CoreModule is already loaded. Import only in AppModule');
+    }
+  }
 }

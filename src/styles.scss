@@ -5,6 +5,7 @@ body {
   /*
   Don't listen to your IDE and "optimize". It will break it
    */
+  background: url("assets/images/backgroundshutter.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: Righteous, serif;
@@ -60,7 +61,6 @@ html, body {
   color: white !important;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   font-size: 1.0em !important;

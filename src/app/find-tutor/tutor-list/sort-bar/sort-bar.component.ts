@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { OverallTutorReviewSummarySortService, SortBy, SortOn } from './overall-tutor-review-summary-sort.service';
-import { OverallTutorReviewSummary } from '../../../shared/tutor/reviews/overall-tutor-review-summary.model';
+import { OverallTutorReviewSummary } from '@shared/tutor/reviews/overall-tutor-review-summary.model';
 
 @Component({
   selector: 'app-sort-bar',

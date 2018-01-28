@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Course } from '../shared/course/course.model';
-import { CourseService } from '../shared/course/course.service';
-import { Grade } from '../shared/tutor/tutor-model/grade.model';
-import { Semester } from '../shared/tutor/tutor-model/semester.model';
+import { Course } from '@shared/course/course.model';
+import { CourseService } from '@shared/course/course.service';
+import { Grade } from '@shared/tutor/tutor-model/grade.model';
+import { Semester } from '@shared/tutor/tutor-model/semester.model';
 import { Subscription } from 'rxjs/Subscription';
 import { PreloaderService } from '../core/preloader/preloader.service';
 import { NgForm } from '@angular/forms';
-import { TutorService } from '../shared/tutor/tutor.service';
-import { Tutor } from '../shared/tutor/tutor-model/tutor.model';
-import { UserSessionService } from '../shared/user-session/user-session.service';
+import { TutorService } from '@shared/tutor/tutor.service';
+import { Tutor } from '@shared/tutor/tutor-model/tutor.model';
+import { UserSessionService } from '@shared/user-session/user-session.service';
 import { Router } from '@angular/router';
-import { ApplicationGlobals } from '../shared/ApplicationGlobals';
+import { ApplicationGlobals } from '@shared/ApplicationGlobals';
 
 @Component({
   selector: 'app-tutor-application',

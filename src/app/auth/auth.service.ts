@@ -1,13 +1,13 @@
 import GoogleAuth = gapi.auth2.GoogleAuth;
 import GoogleUser = gapi.auth2.GoogleUser;
 import { HttpClient } from '@angular/common/http';
-import { UserSession } from '../shared/user-session/user-session.model';
+import { UserSession } from '@shared/user-session/user-session.model';
 import { Injectable, NgZone } from '@angular/core';
-import { UserSessionService } from '../shared/user-session/user-session.service';
+import { UserSessionService } from '@shared/user-session/user-session.service';
 import { Router } from '@angular/router';
 
 import 'rxjs/Rx';
-import { ApplicationGlobals } from '../shared/ApplicationGlobals';
+import { ApplicationGlobals } from '@shared/ApplicationGlobals';
 import { PreloaderService } from '../core/preloader/preloader.service';
 
 @Injectable()

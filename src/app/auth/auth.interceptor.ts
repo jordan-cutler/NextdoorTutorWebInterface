@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { ApplicationGlobals } from '../shared/ApplicationGlobals';
+import { ApplicationGlobals } from '@shared/ApplicationGlobals';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { PreloaderService } from '../core/preloader/preloader.service';

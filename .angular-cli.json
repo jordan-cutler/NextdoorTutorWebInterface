@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "styles-app-loading.scss",
         "../external/materializedist/css/materialize.min.scss",
         "../external/cropperdist/cropper.min.scss",
         "../external/font-awesome/css/font-awesome.min.scss",

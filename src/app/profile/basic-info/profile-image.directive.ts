@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ImageService } from '../../shared/image.service';
+import { ImageService } from '@shared/image.service';
 import { CropImageService } from './crop-image-modal/crop-image.service';
 import { Subscription } from 'rxjs/Subscription';
 

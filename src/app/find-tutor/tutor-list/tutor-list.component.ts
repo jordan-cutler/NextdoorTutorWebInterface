@@ -1,15 +1,14 @@
 import { Component, ComponentFactoryResolver, Input, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
-import { Tutor } from '../../shared/tutor/tutor-model/tutor.model';
-import { UserSessionService } from '../../shared/user-session/user-session.service';
+import { Tutor } from '@shared/tutor/tutor-model/tutor.model';
+import { UserSessionService } from '@shared/user-session/user-session.service';
 import { DataNeededToFormEmailToTutor } from './email-tutor-modal/DataNeededToFormEmailToTutor';
 import { EmailTutorModalComponent } from './email-tutor-modal/email-tutor-modal.component';
 import { Subscription } from 'rxjs/Subscription';
-import { TutorService } from '../../shared/tutor/tutor.service';
-import { User } from '../../shared/user/user-model/user.model';
-import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
-import { OverallTutorReviewSummary } from '../../shared/tutor/reviews/overall-tutor-review-summary.model';
-import { ApplicationGlobals } from '../../shared/ApplicationGlobals';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { TutorService } from '@shared/tutor/tutor.service';
+import { User } from '@shared/user/user-model/user.model';
+import { DynamicComponentGenerator } from '@shared/dynamic-component-generator';
+import { OverallTutorReviewSummary } from '@shared/tutor/reviews/overall-tutor-review-summary.model';
+import { ApplicationGlobals } from '@shared/ApplicationGlobals';
 
 @Component({
   selector: 'app-tutor-list',

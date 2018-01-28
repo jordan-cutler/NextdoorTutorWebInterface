@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
-import { User } from '../../../shared/user/user-model/user.model';
-import { TutorReviewService } from '../../../shared/tutor/reviews/tutor-review.service';
-import { PreloaderService } from '../../../core/preloader/preloader.service';
+import { User } from '@shared/user/user-model/user.model';
+import { TutorReviewService } from '@shared/tutor/reviews/tutor-review.service';
+import { PreloaderService } from '@app/core/preloader/preloader.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { MaterializeAction } from 'angular2-materialize';

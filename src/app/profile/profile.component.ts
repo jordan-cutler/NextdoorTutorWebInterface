@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UserSessionService } from '../shared/user-session/user-session.service';
-import { User } from '../shared/user/user-model/user.model';
-import { TutorReviewService } from '../shared/tutor/reviews/tutor-review.service';
+import { UserSessionService } from '@shared/user-session/user-session.service';
+import { User } from '@shared/user/user-model/user.model';
+import { TutorReviewService } from '@shared/tutor/reviews/tutor-review.service';
 import { Subscription } from 'rxjs/Subscription';
-import { BasicTutorInfo } from '../shared/tutor/reviews/basic-tutor-info.model';
+import { BasicTutorInfo } from '@shared/tutor/reviews/basic-tutor-info.model';
 
 @Component({
   selector: 'app-profile',

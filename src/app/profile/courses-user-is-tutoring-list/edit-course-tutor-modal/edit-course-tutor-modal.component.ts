@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Tutor } from '../../../shared/tutor/tutor-model/tutor.model';
+import { Tutor } from '@shared/tutor/tutor-model/tutor.model';
 import { NgForm } from '@angular/forms';
-import { TutorService } from '../../../shared/tutor/tutor.service';
+import { TutorService } from '@shared/tutor/tutor.service';
 import { Subject } from 'rxjs/Subject';
-import { PreloaderService } from '../../../core/preloader/preloader.service';
-import { TutorUpdateData } from '../../../shared/tutor/TutorUpdateData';
+import { PreloaderService } from '@app/core/preloader/preloader.service';
+import { TutorUpdateData } from '@shared/tutor/TutorUpdateData';
 import { Observable } from 'rxjs/Observable';
 import { MaterializeAction } from 'angular2-materialize';
 

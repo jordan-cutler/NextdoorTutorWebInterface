@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit } from '@angular/core';
-import { ImageService } from '../../../shared/image.service';
-import { PreloaderService } from '../../../core/preloader/preloader.service';
+import { ImageService } from '@shared/image.service';
+import { PreloaderService } from '@app/core/preloader/preloader.service';
 import { CropImageService } from './crop-image.service';
 import { MaterializeAction } from 'angular2-materialize';
 
