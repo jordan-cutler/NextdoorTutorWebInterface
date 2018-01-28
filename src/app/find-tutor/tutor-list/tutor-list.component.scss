@@ -74,7 +74,7 @@ table {
 .overlay {
   opacity: 0;
   transition: .5s ease;
-  background-color: $ntOrange;
+  background-color: #fc7c25;
   border-radius: 5%;
 }
 
@@ -102,7 +102,7 @@ table {
   bottom: 2px;
   right: -15px;
   opacity: 1;
-  color: $ntOrange;
+  color: #fc7c25;
   font-size: 1.8rem;
 }
 
@@ -137,7 +137,7 @@ table {
 
 /* Make all descriptors such as Hourly Rate our orange color */
 b {
-  color: $ntOrange;
+  color: #fc7c25;
   padding-left: 1%;
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;

@@ -1,3 +1,5 @@
+@import 'variables';
+
 .container {
   margin: 0 auto;
   max-width: 1280px;
@@ -25,7 +27,7 @@
 }
 
 .cardBody {
-  color: $ntOrange;
+  color: #fc7c25;
   font-size: 16pt;
   font-family: 'Quicksand', sans-serif;
 }
@@ -65,7 +67,7 @@ hr {
 }
 
 #teamCardPanel {
-  background-color: $ntOrange;
+  background-color: #fc7c25;
   padding-top: 2%;
   padding-bottom: 4%;
 }
@@ -98,7 +100,7 @@ hr {
 }
 
 .header {
-  color: $ntOrange !important;
+  color: #fc7c25 !important;
   font-size: 12pt;
 }
 
@@ -148,12 +150,12 @@ p {
 }
 
 h1 {
-  color: $ntOrange;
+  color: #fc7c25;
   font-size: 38pt;
 }
 
 h2 {
-  color: $ntOrange;
+  color: #fc7c25;
   font-size: 34pt;
 }
 
@@ -164,7 +166,7 @@ h3 {
 
 h4 {
   font-size: 14pt;
-  color: $ntOrange;
+  color: #fc7c25;
 }
 
 @media only screen and (max-width: 992px) {
