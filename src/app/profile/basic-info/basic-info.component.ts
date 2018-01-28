@@ -1,11 +1,11 @@
 import { Component, ComponentFactoryResolver, Input, OnInit, ViewContainerRef } from '@angular/core';
-import { User } from '../../shared/user/user-model/user.model';
+import { User } from '@shared/user/user-model/user.model';
 import { Subscription } from 'rxjs/Subscription';
 import { CropImageModalComponent } from './crop-image-modal/crop-image-modal.component';
 import { EditBasicInfoModalComponent } from './edit-basic-info-modal/edit-basic-info-modal.component';
-import { UserSessionService } from '../../shared/user-session/user-session.service';
-import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
-import { BasicTutorInfo } from '../../shared/tutor/reviews/basic-tutor-info.model';
+import { UserSessionService } from '@shared/user-session/user-session.service';
+import { DynamicComponentGenerator } from '@shared/dynamic-component-generator';
+import { BasicTutorInfo } from '@shared/tutor/reviews/basic-tutor-info.model';
 
 @Component({
   selector: 'app-basic-info',

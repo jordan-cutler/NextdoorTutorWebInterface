@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Course } from '../../shared/course/course.model';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Course } from '@shared/course/course.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

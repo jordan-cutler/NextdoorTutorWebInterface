@@ -1,11 +1,11 @@
 import { Component, ComponentFactoryResolver, Input, OnInit, ViewContainerRef } from '@angular/core';
-import { DynamicComponentGenerator } from '../../shared/dynamic-component-generator';
+import { DynamicComponentGenerator } from '@shared/dynamic-component-generator';
 import { TutorReviewModalComponent } from './tutor-review-modal/tutor-review-modal.component';
-import { BasicTutorInfo } from '../../shared/tutor/reviews/basic-tutor-info.model';
-import { CourseReviewSummary } from '../../shared/tutor/reviews/course-review-summary.model';
-import { User } from '../../shared/user/user-model/user.model';
-import { UserSessionService } from '../../shared/user-session/user-session.service';
-import { Course } from '../../shared/course/course.model';
+import { BasicTutorInfo } from '@shared/tutor/reviews/basic-tutor-info.model';
+import { CourseReviewSummary } from '@shared/tutor/reviews/course-review-summary.model';
+import { User } from '@shared/user/user-model/user.model';
+import { UserSessionService } from '@shared/user-session/user-session.service';
+import { Course } from '@shared/course/course.model';
 
 @Component({
   selector: 'app-courses-tutor-is-tutoring',

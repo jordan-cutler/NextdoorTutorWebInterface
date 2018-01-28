@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { OverallTutorReviewSummary } from './overall-tutor-review-summary.model';
-
-import 'rxjs/Rx';
 import { BasicTutorInfo } from './basic-tutor-info.model';
 import { Subject } from 'rxjs/Subject';
 import { CourseReviewSummary } from './course-review-summary.model';

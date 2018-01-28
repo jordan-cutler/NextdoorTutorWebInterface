@@ -18,7 +18,11 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
+      "stylePreprocessorOptions": {
+        "includePaths": ["./"]
+      },
       "styles": [
+        "styles-app-loading.scss",
         "../external/materializedist/css/materialize.min.scss",
         "../external/cropperdist/cropper.min.scss",
         "../external/font-awesome/css/font-awesome.min.scss",

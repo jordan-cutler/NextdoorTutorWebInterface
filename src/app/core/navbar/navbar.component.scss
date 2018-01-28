@@ -22,11 +22,11 @@ li a{
 
 a {
   text-decoration: none;
-  color: #fc7c25;
+  color: $ntOrange;
 }
 
 .header {
-  color: #fc7c25 !important;
+  color: $ntOrange !important;
   font-size: 12pt;
 }
 
@@ -44,7 +44,7 @@ nav .brand-logo {
 }
 
 #icon {
-  padding-right: 0% !important;
+  padding-right: 0 !important;
 }
 
 @media only screen and (max-width: 992px) {

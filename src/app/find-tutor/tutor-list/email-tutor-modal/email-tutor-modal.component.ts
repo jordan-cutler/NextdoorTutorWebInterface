@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
-import { UserSessionService } from '../../../shared/user-session/user-session.service';
+import { UserSessionService } from '@shared/user-session/user-session.service';
 import { EmailTutorService } from './email-tutor.service';
 import { NgForm } from '@angular/forms';
-import { PreloaderService } from '../../../core/preloader/preloader.service';
+import { PreloaderService } from '@app/core/preloader/preloader.service';
 import { DataNeededToFormEmailToTutor } from './DataNeededToFormEmailToTutor';
-import { FormValidity } from '../../../shared/FormValidity';
+import { FormValidity } from '@shared/FormValidity';
 import { MaterializeAction } from 'angular2-materialize';
 import { HttpErrorResponse } from '@angular/common/http';
 

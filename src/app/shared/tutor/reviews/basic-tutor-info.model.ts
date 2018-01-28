@@ -1,8 +1,6 @@
 import { User } from '../../user/user-model/user.model';
 import { CourseReviewSummary } from './course-review-summary.model';
 
-import 'rxjs/Rx';
-
 export class BasicTutorInfo {
 
   constructor(public averageOfAllReviewsForAllCourses: number,

@@ -13,7 +13,7 @@ export class ApplicationGlobals {
   }
 
   static getJwtFromLocalStorage(): string {
-    return localStorage.getItem(ApplicationGlobals.JWT_LOCAL_STORAGE_KEY)
+    return localStorage.getItem(ApplicationGlobals.JWT_LOCAL_STORAGE_KEY);
   }
 
   static jwtPresentInLocalStorage(): boolean {

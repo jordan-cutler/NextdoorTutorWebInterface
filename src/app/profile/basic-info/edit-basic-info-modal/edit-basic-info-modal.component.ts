@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
-import { User } from '../../../shared/user/user-model/user.model';
+import { User } from '@shared/user/user-model/user.model';
 import { NgForm } from '@angular/forms';
-import { UserService } from '../../../shared/user/user.service';
-import { UserSessionService } from '../../../shared/user-session/user-session.service';
+import { UserService } from '@shared/user/user.service';
+import { UserSessionService } from '@shared/user-session/user-session.service';
 import { Observable } from 'rxjs/Observable';
-import { ProfilePageLink, Site } from '../../../shared/user/user-model/profile-page-link.model';
+import { ProfilePageLink, Site } from '@shared/user/user-model/profile-page-link.model';
 import { MaterializeAction } from 'angular2-materialize';
 
 @Component({

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CoursesTutorIsTutoringComponent } from './courses-tutor-is-tutoring.component';
 import { TutorReviewModalComponent } from './tutor-review-modal/tutor-review-modal.component';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [

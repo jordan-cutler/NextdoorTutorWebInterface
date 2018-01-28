@@ -1,10 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+$ntOrange: #fc7c25;
+
 body {
   -webkit-text-size-adjust: 100%;
   /*
   Don't listen to your IDE and "optimize". It will break it
    */
+  background: url("assets/images/backgroundshutter.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: Righteous, serif;
@@ -25,19 +28,19 @@ html, body {
 
 /* label focus color */
 .input-field input[type=text]:focus + label {
-  color: #fc7c25 !important;
+  color: $ntOrange !important;
 }
 
 /* label underline focus color */
 .input-field input[type=text]:focus {
-  border-bottom: 1px solid #fc7c25 !important;
-  box-shadow: 0 1px 0 0 #fc7c25 !important;
+  border-bottom: 1px solid $ntOrange !important;
+  box-shadow: 0 1px 0 0 $ntOrange !important;
 }
 
 /* valid color */
 .input-field input[type=text].valid {
-  border-bottom: 1px solid #fc7c25 !important;
-  box-shadow: 0 1px 0 0 #fc7c25 !important;
+  border-bottom: 1px solid $ntOrange !important;
+  box-shadow: 0 1px 0 0 $ntOrange !important;
 }
 
 /* invalid color */
@@ -48,7 +51,7 @@ html, body {
 
 /* icon prefix focus color */
 .input-field .prefix.active {
-  color: #fc7c25 !important;
+  color: $ntOrange !important;
 }
 
 /* for facebook, github, & linkedin icons */
@@ -60,7 +63,6 @@ html, body {
   color: white !important;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   font-size: 1.0em !important;
@@ -103,13 +105,13 @@ textarea {
 
 [type="radio"].with-gap:checked + label:before {
   border-radius: 50%;
-  border: 2px solid #fc7c25 !important;
+  border: 2px solid $ntOrange !important;
 }
 
 [type="radio"].with-gap:checked + label:after {
   border-radius: 50%;
-  border: 2px solid #fc7c25 !important;
-  background-color: #fc7c25 !important;
+  border: 2px solid $ntOrange !important;
+  background-color: $ntOrange !important;
   z-index: 0;
   -webkit-transform: scale(.5);
   -moz-transform: scale(.5);
@@ -130,36 +132,36 @@ ul.dropdown-content.select-dropdown li span {
 
 /* Edit slider colors */
 input[type=range]::-webkit-slider-thumb {
-  background-color: #fc7c25 !important;
+  background-color: $ntOrange !important;
 }
 
 input[type=range]::-moz-range-thumb {
-  background-color: #fc7c25 !important;
+  background-color: $ntOrange !important;
 }
 
 input[type=range]::-ms-thumb {
-  background-color: #fc7c25 !important;
+  background-color: $ntOrange !important;
 }
 
 /***** These are to edit the thumb and the text inside the thumb *****/
 input[type=range] + .thumb {
-  background-color: #fc7c25 !important;
+  background-color: $ntOrange !important;
 }
 
 .input[type=range] + .thumb {
-  background-color: #fc7c25 !important;
+  background-color: $ntOrange !important;
 }
 
 .range-field + .thumb {
-  background-color: #fc7c25 !important;
+  background-color: $ntOrange !important;
 }
 
 .noUI-background {
-  background: #fc7c25 !important;
+  background: $ntOrange !important;
 }
 
 .range-label {
-  background-color: #fc7c25 !important;
+  background-color: $ntOrange !important;
 }
 
 /*
@@ -170,11 +172,11 @@ Makes the actual side nav brighter than everything else. Without this, the siden
 }
 
 .nt-orange-background {
-  background-color: #fc7c25 !important;
+  background-color: $ntOrange !important;
 }
 
 .nt-orange-text {
-  color: #fc7c25 !important;
+  color: $ntOrange !important;
 }
 
 .cursorPointer {

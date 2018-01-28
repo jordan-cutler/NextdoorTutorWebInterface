@@ -2,14 +2,10 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { ApplicationGlobals } from '../shared/ApplicationGlobals';
-import { UserSessionService } from '../shared/user-session/user-session.service';
-import { PreloaderService } from '../core/preloader/preloader.service';
-import { UserSession } from '../shared/user-session/user-session.model';
-import { User } from '../shared/user/user-model/user.model';
-import { HttpClient } from '@angular/common/http';
-
-import 'rxjs/Rx';
+import { ApplicationGlobals } from '@shared/ApplicationGlobals';
+import { UserSessionService } from '@shared/user-session/user-session.service';
+import { PreloaderService } from '@core/preloader/preloader.service';
+import { UserSession } from '@shared/user-session/user-session.model';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

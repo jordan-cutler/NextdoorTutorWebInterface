@@ -1,12 +1,10 @@
 import { UserSession } from './user-session.model';
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { ApplicationGlobals } from '../ApplicationGlobals';
 import { User } from '../user/user-model/user.model';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-
-import 'rxjs/Rx';
 
 @Injectable()
 export class UserSessionService {
@@ -37,7 +35,7 @@ export class UserSessionService {
     }
   }
 
-  getCurrentUser() {
+  getCurrentUser(): User | null {
     if (this.currentUserSession) {
       return this.currentUserSession.getUser();
     } else {
