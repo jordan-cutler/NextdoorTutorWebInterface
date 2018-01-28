@@ -2,7 +2,7 @@ import { OverallTutorReviewSummary } from '@shared/tutor/reviews/overall-tutor-r
 import { Grade } from '@shared/tutor/tutor-model/grade.model';
 
 export class OverallTutorReviewSummarySortService {
-  private currentlySortingBy = SortOn.AverageOverallReview;
+  private currentlySortingBy = SortOn.AverageCourseReview;
   private ascendingOrDescending = SortBy.Descending;
 
   constructor() {
