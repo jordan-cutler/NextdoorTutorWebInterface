@@ -205,10 +205,17 @@
       <div class="col l4 offset-l2 s12">
         <h4>Links</h4>
         <ul>
-          <li><a class="footer cursorPointer"><b>Contact Us</b></a></li>
-          <li><a class="footer cursorPointer"><b>Terms &amp; Conditions</b></a></li>
+          <li (click)="openContactModalSubject.next()">
+            <a class="footer cursorPointer"><b>Contact Us</b></a>
+          </li>
+          <li (click)="openTermsAndConditionsModalSubject.next()">
+            <a class="footer cursorPointer"><b>Terms &amp; Conditions</b></a>
+          </li>
         </ul>
       </div>
     </div>
   </div>
 </footer>
+
+<app-contact-us-modal [openModalSubject]="openContactModalSubject"></app-contact-us-modal>
+<app-terms-and-conditions-modal [openModalSubject]="openTermsAndConditionsModalSubject"></app-terms-and-conditions-modal>
