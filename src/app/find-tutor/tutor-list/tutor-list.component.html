@@ -97,14 +97,16 @@
                 </div>
 
                 <!-- BUTTONS -->
-                <div class="col s3 m3 offset-m1 left">
+                <div class="col s3 m2 offset-m1 left">
                   <!-- Only displayed for normal users -->
-                  <button
-                    class="btn nt-orange-background"
-                    (click)="onBookTutor($event, summary.tutor.user.email, summary.tutor.course.courseNumber, summary.tutor.user.name)"
-                    *ngIf="!currentUser.isInstructor">
-                    Email Tutor<i class="material-icons right">contact_mail</i>
-                  </button>
+                  <!--<button-->
+                    <!--class="btn nt-orange-background"-->
+                    <!--(click)="onBookTutor($event, summary.tutor.user.email, summary.tutor.course.courseNumber, summary.tutor.user.name)"-->
+                    <!--*ngIf="!currentUser.isInstructor">-->
+                    <!--<i class="material-icons">contact_mail</i>-->
+                  <!--</button>-->
+
+                  <i class="medium material-icons nt-orange-text">contact_mail</i>
 
                   <!-- Only displayed if tutor has not already been endorsed and the current user is an instructor -->
                   <button
