@@ -26,7 +26,7 @@
 
                 <!-- TUTOR NAME -->
 
-                <div class="col s2 m1 left">
+                <div class="col s4 m1 left">
 
                   <div class="col s12">
                     <span>{{summary.tutor.user.name}}</span>
@@ -72,7 +72,7 @@
                 </div>
 
                 <!-- TUTOR RATES -->
-                <div class="col s3 offset-s1 left hide-on-med-and-up">
+                <div class="col s3 left hide-on-med-and-up">
                   <span *ngIf="summary.tutor.grade && summary.tutor.hourlyRate">
                     {{summary.tutor.grade}} / ${{summary.tutor.hourlyRate}}
                   </span>
@@ -97,7 +97,7 @@
                 </div>
 
                 <!-- BUTTONS -->
-                <div class="col s3 offset-s1 left">
+                <div class="col s3 m3 offset-m1 left">
                   <!-- Only displayed for normal users -->
                   <button
                     class="btn nt-orange-background"
