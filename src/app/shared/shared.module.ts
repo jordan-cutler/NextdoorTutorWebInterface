@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpImageDirective } from './http-image.directive';
 import { ProfessorPipe } from './professor.pipe';
 import { MaterializeModule } from 'angular2-materialize';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MaterializeModule } from 'angular2-materialize';
     FormsModule,
     MaterializeModule,
     HttpImageDirective,
-    ProfessorPipe
+    ProfessorPipe,
+    Ng2PageScrollModule
   ]
 })
 export class SharedModule {
