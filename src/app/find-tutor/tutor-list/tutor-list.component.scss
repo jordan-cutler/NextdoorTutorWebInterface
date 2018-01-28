@@ -115,6 +115,10 @@ table {
   .container {
     width: 100%;
   }
+
+  table {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 640px) {
@@ -128,11 +132,6 @@ table {
     font-size: 0.7rem;
     padding: 0 0 0 0;
   }
-
-  //.row .col {
-  //  margin-left: 0;
-  //  margin-right: 0;
-  //}
 }
 
 /* Make all descriptors such as Hourly Rate our orange color */
