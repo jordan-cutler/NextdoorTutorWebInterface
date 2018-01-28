@@ -1,13 +1,14 @@
+@import 'variables';
 
 #githubInput + label:before {
   border: 2px solid transparent;
 }
 
 .input-field input:focus + label {
-	color: #fc7c25 !important;
+	color: $ntOrange !important;
 }
 
 .row .input-field input:focus {
-	border-bottom: 2px solid #fc7c25 !important;
-	box-shadow: 0 1px 0 0 #fc7c25 !important;
+	border-bottom: 2px solid $ntOrange !important;
+	box-shadow: 0 1px 0 0 $ntOrange !important;
 }

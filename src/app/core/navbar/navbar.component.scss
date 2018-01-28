@@ -1,3 +1,5 @@
+@import 'variables';
+
 nav {
   font-family: Righteous, serif; /* TODO: Change generic font based on what @stephanie thinks */
   color: #333;
@@ -22,11 +24,11 @@ li a{
 
 a {
   text-decoration: none;
-  color: #fc7c25;
+  color: $ntOrange;
 }
 
 .header {
-  color: #fc7c25 !important;
+  color: $ntOrange !important;
   font-size: 12pt;
 }
 
