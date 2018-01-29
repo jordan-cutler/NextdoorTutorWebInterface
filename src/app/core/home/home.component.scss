@@ -178,9 +178,51 @@ h4 {
   .welcome-card {
     height: 280px;
   }
+
+  .becomeTutorParagraph {
+    font-size: 16px;
+  }
 }
 
+@media only screen and (min-width: 600px) and (max-width: 750px) {
+  .become-tutor-title {
+    font-size: 130%;
+  }
+
+  #whoWeAreParagraph {
+    font-size: 10pt !important;
+  }
+
+
+}
+
+@media only screen and (min-width: 750px) and (max-width: 900px) {
+  #whoWeAreParagraph {
+    font-size: 12pt !important;
+  }
+}
+
+
+@media only screen and (min-width: 900px) and (max-width: 992px) {
+  #whoWeAreParagraph {
+    font-size: 15pt !important;
+  }
+}
+
+
 @media only screen and (max-width: 600px) {
+  #findTutorHeader, #becomeTutorHeader {
+    text-align: center;
+  }
+
+  .becomeTutorParagraph {
+    font-size: 18px;
+  }
+
+  .become-tutor-card {
+    height: 100%;
+  }
+
   h1 {
     font-size: 22pt;
   }
@@ -203,10 +245,6 @@ h4 {
 
   .container {
     width: 95%;
-  }
-
-  .becomeTutorParagraph {
-    font-size: 10pt !important;
   }
 
   .team1 {
