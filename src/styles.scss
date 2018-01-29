@@ -247,6 +247,11 @@ Email: jdc219@lehigh.edu because it would look like this instead Email:         
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .small-icon-on-small {
+    font-size: 2rem !important;
+  }
+}
 /*
 Large screens
  */
