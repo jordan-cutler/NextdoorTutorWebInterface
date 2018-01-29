@@ -1,5 +1,6 @@
 import { OverallTutorReviewSummary } from '@shared/tutor/reviews/overall-tutor-review-summary.model';
 import { Grade } from '@shared/tutor/tutor-model/grade.model';
+import { ReviewGrade } from '@shared/tutor/reviews/review-grade.model';
 
 export class OverallTutorReviewSummarySortService {
   private currentlySortingBy = SortOn.AverageCourseReview;
@@ -9,38 +10,57 @@ export class OverallTutorReviewSummarySortService {
   }
 
   private static getGradeSort(summary1: OverallTutorReviewSummary, summary2: OverallTutorReviewSummary): number {
-    if (!summary1.tutor || !summary1.tutor.grade) {
+    const summary1MissingInfo = !summary1.tutor || !summary1.tutor.grade;
+    const summary2MissingInfo = !summary2.tutor || !summary2.tutor.grade;
+    if (summary1MissingInfo && summary2MissingInfo) {
+      return 0;
+    }
+    if (summary1MissingInfo) {
       return -1;
     }
-    if (!summary2.tutor || !summary2.tutor.grade) {
+    if (summary2MissingInfo) {
       return 1;
     }
-    return Grade.getRank((new Grade(summary2.tutor.grade))) - Grade.getRank(new Grade(summary1.tutor.grade));
+    return ReviewGrade.getRank((new Grade(summary2.tutor.grade))) - ReviewGrade.getRank(new Grade(summary1.tutor.grade));
   }
 
   private static getHourlyRateSort(summary1: OverallTutorReviewSummary, summary2: OverallTutorReviewSummary): number {
-    if (!summary1.tutor || !summary1.tutor.grade) {
+    const summary1MissingInfo = !summary1.tutor || !summary1.tutor.hourlyRate;
+    const summary2MissingInfo = !summary2.tutor || !summary2.tutor.hourlyRate;
+    if (summary1MissingInfo && summary2MissingInfo) {
+      return 0;
+    }
+    if (summary1MissingInfo) {
       return -1;
     }
-    if (!summary2.tutor || !summary2.tutor.grade) {
+    if (summary2MissingInfo) {
       return 1;
     }
     return summary1.tutor.hourlyRate - summary2.tutor.hourlyRate;
   }
 
-  private static getAverageOverallReviewSort(a: OverallTutorReviewSummary, b: OverallTutorReviewSummary): number {
-    return Grade.getRank(new Grade(b.averageOfAllReviewsForAllCourses)) - Grade.getRank(new Grade(a.averageOfAllReviewsForAllCourses));
+  private static getAverageOverallReviewSort(summary1: OverallTutorReviewSummary, summary2: OverallTutorReviewSummary): number {
+    return (
+      ReviewGrade.getRank(new Grade(summary2.averageOfAllReviewsForAllCourses))
+      -
+      ReviewGrade.getRank(new Grade(summary1.averageOfAllReviewsForAllCourses))
+    );
   }
 
-  private static getAverageCourseReviewSort(a: OverallTutorReviewSummary, b: OverallTutorReviewSummary): number {
-    if (!a.courseReviewSummary || !a.courseReviewSummary.averageOfAllScoresAmongAllReviews) {
+  private static getAverageCourseReviewSort(summary1: OverallTutorReviewSummary, summary2: OverallTutorReviewSummary): number {
+    const summary1MissingInfo = !summary1.courseReviewSummary || !summary1.courseReviewSummary.averageOfAllScoresAmongAllReviews;
+    const summary2MissingInfo = !summary2.courseReviewSummary || !summary2.courseReviewSummary.averageOfAllScoresAmongAllReviews;
+    if (summary1MissingInfo && summary2MissingInfo) {
+      return 0;
+    }
+    if (summary1MissingInfo) {
       return -1;
     }
-    if (!b.courseReviewSummary || !b.courseReviewSummary.averageOfAllScoresAmongAllReviews) {
+    if (summary2MissingInfo) {
       return 1;
     }
-    return Grade.getRank(new Grade(b.courseReviewSummary.averageOfAllScoresAmongAllReviews)) -
-      Grade.getRank(new Grade(a.courseReviewSummary.averageOfAllScoresAmongAllReviews));
+    return ReviewGrade.getRank(new Grade(summary2.courseReviewSummary.averageOfAllScoresAmongAllReviews)) -
+      ReviewGrade.getRank(new Grade(summary1.courseReviewSummary.averageOfAllScoresAmongAllReviews));
   }
 
 
@@ -87,6 +107,10 @@ export class OverallTutorReviewSummarySortService {
   private static sortByPriorityFieldFirstAscending(priorityNumber: number,
                                                    summary1: OverallTutorReviewSummary,
                                                    summary2: OverallTutorReviewSummary) {
+    console.log(summary1);
+    console.log(summary2);
+    console.log(priorityNumber);
+    console.log('subtraction = ' + (summary1.tutor.hourlyRate - summary2.tutor.hourlyRate));
     if (priorityNumber !== 0) {
       return priorityNumber;
     }
