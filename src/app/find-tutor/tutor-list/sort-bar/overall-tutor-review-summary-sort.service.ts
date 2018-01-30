@@ -64,34 +64,34 @@ export class OverallTutorReviewSummarySortService {
   }
 
 
-  private static sortByHourlyRateAscending(summaries: OverallTutorReviewSummary[]): OverallTutorReviewSummary[] {
+  private sortByHourlyRateAscending(summaries: OverallTutorReviewSummary[]): OverallTutorReviewSummary[] {
     summaries.sort((summary1: OverallTutorReviewSummary, summary2: OverallTutorReviewSummary) => {
       const rateSort = OverallTutorReviewSummarySortService.getHourlyRateSort(summary1, summary2);
-      return OverallTutorReviewSummarySortService.sortByPriorityFieldFirstAscending(rateSort, summary1, summary2);
+      return this.sortByPriorityFieldFirst(rateSort, summary1, summary2);
     });
     return summaries;
   }
 
-  private static sortByGradeAscending(summaries: OverallTutorReviewSummary[]): OverallTutorReviewSummary[] {
+  private sortByGradeAscending(summaries: OverallTutorReviewSummary[]): OverallTutorReviewSummary[] {
     summaries.sort((summary1: OverallTutorReviewSummary, summary2: OverallTutorReviewSummary) => {
       const gradeSort = OverallTutorReviewSummarySortService.getGradeSort(summary1, summary2);
-      return OverallTutorReviewSummarySortService.sortByPriorityFieldFirstAscending(gradeSort, summary1, summary2);
+      return this.sortByPriorityFieldFirst(gradeSort, summary1, summary2);
     });
     return summaries;
   }
 
-  private static sortByAverageCourseReviewAscending(summaries: OverallTutorReviewSummary[]): OverallTutorReviewSummary[] {
+  private sortByAverageCourseReviewAscending(summaries: OverallTutorReviewSummary[]): OverallTutorReviewSummary[] {
     summaries.sort((summary1: OverallTutorReviewSummary, summary2: OverallTutorReviewSummary) => {
       const averageCourseReviewSort = OverallTutorReviewSummarySortService.getAverageCourseReviewSort(summary1, summary2);
-      return OverallTutorReviewSummarySortService.sortByPriorityFieldFirstAscending(averageCourseReviewSort, summary1, summary2);
+      return this.sortByPriorityFieldFirst(averageCourseReviewSort, summary1, summary2);
     });
     return summaries;
   }
 
-  private static sortByAverageOverallReviewAscending(summaries: OverallTutorReviewSummary[]): OverallTutorReviewSummary[] {
+  private sortByAverageOverallReviewAscending(summaries: OverallTutorReviewSummary[]): OverallTutorReviewSummary[] {
     summaries.sort((summary1: OverallTutorReviewSummary, summary2: OverallTutorReviewSummary) => {
       const averageOverallReviewSort = OverallTutorReviewSummarySortService.getAverageOverallReviewSort(summary1, summary2);
-      return OverallTutorReviewSummarySortService.sortByPriorityFieldFirstAscending(averageOverallReviewSort, summary1, summary2);
+      return this.sortByPriorityFieldFirst(averageOverallReviewSort, summary1, summary2);
     });
     return summaries;
   }
@@ -104,29 +104,27 @@ export class OverallTutorReviewSummarySortService {
    * @param {OverallTutorReviewSummary} summary2
    * @returns {number}
    */
-  private static sortByPriorityFieldFirstAscending(priorityNumber: number,
-                                                   summary1: OverallTutorReviewSummary,
-                                                   summary2: OverallTutorReviewSummary) {
-    console.log(summary1);
-    console.log(summary2);
-    console.log(priorityNumber);
-    console.log('subtraction = ' + (summary1.tutor.hourlyRate - summary2.tutor.hourlyRate));
+  private sortByPriorityFieldFirst(priorityNumber: number,
+                                   summary1: OverallTutorReviewSummary,
+                                   summary2: OverallTutorReviewSummary): number {
     if (priorityNumber !== 0) {
-      return priorityNumber;
+      return this.currentlyAscending() ? priorityNumber : -priorityNumber;
     }
     const averageCourseReviewSort = OverallTutorReviewSummarySortService.getAverageCourseReviewSort(summary1, summary2);
     if (averageCourseReviewSort !== 0) {
-      return averageCourseReviewSort;
+      return this.currentlyAscending() ? averageCourseReviewSort : -averageCourseReviewSort;
     }
     const averageOverallReviewSort = OverallTutorReviewSummarySortService.getAverageOverallReviewSort(summary1, summary2);
     if (averageOverallReviewSort !== 0) {
-      return averageOverallReviewSort;
+      return this.currentlyAscending() ? averageOverallReviewSort : -averageOverallReviewSort;
     }
+    // If hourly rate is a secondary sort, put the lower hourly rate people first
     const hourlyRateSort = OverallTutorReviewSummarySortService.getHourlyRateSort(summary1, summary2);
     if (hourlyRateSort !== 0) {
       return hourlyRateSort;
     }
-    return OverallTutorReviewSummarySortService.getGradeSort(summary1, summary2);
+    // if grade is a secondary sort, put the higher grade people first
+    return OverallTutorReviewSummarySortService.getGradeSort(summary2, summary1);
   }
 
   sortAscending(summaries: OverallTutorReviewSummary[]) {
@@ -161,18 +159,22 @@ export class OverallTutorReviewSummarySortService {
 
   sortByCurrent(summaries: OverallTutorReviewSummary[]) {
     if (this.currentlySortingBy === SortOn.HourlyRate) {
-      OverallTutorReviewSummarySortService.sortByHourlyRateAscending(summaries);
+      this.sortByHourlyRateAscending(summaries);
     } else if (this.currentlySortingBy === SortOn.Grade) {
-      OverallTutorReviewSummarySortService.sortByGradeAscending(summaries);
+      this.sortByGradeAscending(summaries);
     } else if (this.currentlySortingBy === SortOn.AverageOverallReview) {
-      OverallTutorReviewSummarySortService.sortByAverageOverallReviewAscending(summaries);
+      this.sortByAverageOverallReviewAscending(summaries);
     } else if (this.currentlySortingBy === SortOn.AverageCourseReview) {
-      OverallTutorReviewSummarySortService.sortByAverageCourseReviewAscending(summaries);
+      this.sortByAverageCourseReviewAscending(summaries);
     }
+  }
 
-    if (this.ascendingOrDescending === SortBy.Descending) {
-      summaries.reverse();
-    }
+  currentlyAscending(): boolean {
+    return this.ascendingOrDescending === SortBy.Ascending;
+  }
+
+  currentlyDescending(): boolean {
+    return this.ascendingOrDescending === SortBy.Descending;
   }
 }
 
