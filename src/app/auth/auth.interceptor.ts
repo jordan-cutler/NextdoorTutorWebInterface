@@ -26,14 +26,15 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const jwt = ApplicationGlobals.getJwtFromLocalStorage();
-
+    let headers = req.headers.append('X-Requested-With', '');
     if (jwt) {
-      const requestClone = req.clone({
-        headers: req.headers.append('X-AUTH-TOKEN', jwt)
-      });
-      return next.handle(requestClone).catch(err => this.handleAuthError(err));
+      headers = headers.append('X-AUTH-TOKEN', jwt);
     }
-    return next.handle(req).catch(err => this.handleAuthError(err));
+
+    const requestClone = req.clone({
+      headers: headers
+    });
+    return next.handle(requestClone).catch(err => this.handleAuthError(err));
   }
 
 }
