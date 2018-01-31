@@ -168,7 +168,7 @@ h4 {
   }
 
   .card-title {
-    font-size: 20px !important;
+    font-size: 18px !important;
   }
 
   .card.small.become-tutor-card {
@@ -181,6 +181,10 @@ h4 {
     font-size: 130%;
   }
 
+  .card-title {
+    font-size: 16px !important;
+  }
+
   #whoWeAreParagraph {
     font-size: 10pt !important;
   }
@@ -191,6 +195,10 @@ h4 {
 @media only screen and (min-width: 750px) and (max-width: 900px) {
   #whoWeAreParagraph {
     font-size: 12pt !important;
+  }
+
+  .card-title {
+    font-size: 17px !important;
   }
 }
 
