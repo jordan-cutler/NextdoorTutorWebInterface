@@ -1,5 +1,16 @@
 @import 'variables';
 
+hr {
+  border: 1px solid $ntOrange;
+  width: 80%;
+}
+
+.material-icons {
+  padding-top: 1%;
+  padding-bottom: 2%;
+  color: $ntOrange;
+}
+
 .container {
   margin: 0 auto;
   max-width: 1280px;
@@ -39,7 +50,6 @@
 
 .become-tutor-title {
   color: #333;
-  text-align: center !important;
 }
 
 #whoWeAreCardPanel {
@@ -49,13 +59,12 @@
 
 #becomeTutorContainer {
   padding-top: 2%;
-  text-align: left;
 }
 
 #findTutorContainer {
   padding-top: 2%;
   padding-bottom: 4%;
-  text-align: left;
+
 }
 
 #findTutorHeader {
@@ -65,10 +74,6 @@
 
 .card-reveal-image {
   width: 100%;
-}
-
-hr {
-  width: 80%;
 }
 
 #teamCardPanel {
@@ -123,7 +128,8 @@ hr {
 p.becomeTutorParagraph {
   font-size: 14pt;
   width: 100%;
-  padding-left: 1%;
+  padding-top: 1%;
+
 }
 
 img.keep-calm {
