@@ -17,7 +17,7 @@
               id="{{courseDropdownId}}"
               name="course"
               materialize="material_select"
-              [(ngModel)]="selectedCourse"
+              [ngModel]="selectedCourse"
               [materializeSelectOptions]="coursesUserIsNotTutoring"
               required
             >
@@ -70,7 +70,7 @@
               name="grade"
               materialize="material_select"
               [materializeSelectOptions]="validGrades"
-              [(ngModel)]="selectedGrade"
+              [ngModel]="selectedGrade"
               [required]="hasTakenCourse.checked"
             >
               <option *ngFor="let grade of validGrades" [value]="grade.grade">{{grade.grade}}</option>
@@ -92,7 +92,7 @@
               name="term"
               materialize="material_select"
               [materializeSelectOptions]="validTerms"
-              [(ngModel)]="validTerms[0]"
+              [ngModel]="validTerms[0]"
             >
               <option *ngFor="let term of validTerms" [value]="term">{{term}}</option>
             </select>
@@ -104,7 +104,7 @@
               name="year"
               materialize="material_select"
               [materializeSelectOptions]="validYears"
-              [(ngModel)]="validYears[0]"
+              [ngModel]="validYears[0]"
             >
               <option *ngFor="let year of validYears" [value]="year">{{year}}</option>
             </select>

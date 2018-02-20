@@ -72,7 +72,7 @@ export class TutorApplicationComponent implements OnInit, OnDestroy {
     const pastExperience = controls['pastExperience'].value;
     const notes = controls['notes'].value;
     const term = controls['whenPersonTookCourse']['controls']['term'].value;
-    const year = controls['whenPersonTookCourse']['controls']['year'].value;
+    const year: number = +controls['whenPersonTookCourse']['controls']['year'].value;
     let semester = new Semester(term, year);
     const instructorNameWhoEndorsed: string = null;
 
