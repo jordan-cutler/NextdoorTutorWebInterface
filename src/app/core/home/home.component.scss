@@ -76,7 +76,6 @@
 
 /* Format team member descriptions */
 
-
 #teamDescription {
   color: white;
   padding-left: 8%;
@@ -129,7 +128,7 @@ footer {
   margin: 0;
 }
 
-.page-footer  {
+.page-footer {
   width: 100%;
 }
 
@@ -189,7 +188,6 @@ h4 {
     font-size: 10pt !important;
   }
 
-
 }
 
 @media only screen and (min-width: 750px) and (max-width: 900px) {
@@ -202,13 +200,11 @@ h4 {
   }
 }
 
-
 @media only screen and (min-width: 900px) and (max-width: 992px) {
   #whoWeAreParagraph {
     font-size: 15pt !important;
   }
 }
-
 
 @media only screen and (max-width: 600px) {
   .card.small.become-tutor-card {

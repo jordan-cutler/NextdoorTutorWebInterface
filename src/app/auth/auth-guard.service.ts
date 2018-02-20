@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
           this.preloaderService.hide();
           return true;
         }
-      ).catch( () => {
+      ).catch(() => {
         ApplicationGlobals.clearJwtFromLocalStorage();
         this.preloaderService.hide();
         this.router.navigate(['/']);

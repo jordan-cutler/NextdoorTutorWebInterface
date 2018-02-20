@@ -21,7 +21,8 @@ export class CoursesTutorIsTutoringComponent implements OnInit {
 
   constructor(private userSessionService: UserSessionService,
               private componentFactoryResolver: ComponentFactoryResolver,
-              private viewContainerRef: ViewContainerRef) { }
+              private viewContainerRef: ViewContainerRef) {
+  }
 
   ngOnInit() {
     this.currentUser = this.userSessionService.getCurrentUser();

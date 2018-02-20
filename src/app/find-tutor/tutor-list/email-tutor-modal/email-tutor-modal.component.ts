@@ -25,7 +25,7 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
 
   subject: string;
   message: string;
-  modalActions = new EventEmitter<string|MaterializeAction>();
+  modalActions = new EventEmitter<string | MaterializeAction>();
 
   private static createSubject(courseNumber: string) {
     return `NextdoorTutor - ${courseNumber}`;
@@ -65,7 +65,7 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
   }
 
   private openModal() {
-    this.modalActions.emit({action: 'modal', params: ['open']});
+    this.modalActions.emit({ action: 'modal', params: ['open'] });
   }
 
   onSubmit(event: Event) {
@@ -104,7 +104,7 @@ export class EmailTutorModalComponent implements OnInit, AfterViewInit {
         if (successful) {
           Materialize.toast('Successfully emailed tutor. They will email you back soon if interested.', 3000);
           this.sendEmailForm.reset();
-          this.modalActions.emit({action: 'modal', params: ['close']});
+          this.modalActions.emit({ action: 'modal', params: ['close'] });
         } else {
           Materialize.toast('Failed to send email. Please try again soon.', 3000);
         }

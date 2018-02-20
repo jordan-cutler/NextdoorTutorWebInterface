@@ -35,7 +35,7 @@ export class CropImageModalComponent implements OnInit, AfterViewInit {
   }
 
   openCropperModal() {
-    this.modalActions.emit({action: 'modal', params: ['open']});
+    this.modalActions.emit({ action: 'modal', params: ['open'] });
     const reader = new FileReader();
     reader.onload = (e: any) => {
       this.$cropImage = $(this.imagePreviewSelector);

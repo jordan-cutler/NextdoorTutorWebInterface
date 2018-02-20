@@ -8,7 +8,8 @@ export class PreloaderService {
 
   private preloaderSubject = new Subject<PreloaderState>();
 
-  constructor() { }
+  constructor() {
+  }
 
   show() {
     this.preloaderSubject.next({

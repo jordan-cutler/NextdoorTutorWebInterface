@@ -8,17 +8,17 @@ import { ProfileComponent } from '@profile/profile.component';
 import { TutorViewComponent } from './tutor-view/tutor-view.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'findtutor', component: FindTutorComponent, canActivate: [AuthGuard] },
   { path: 'tutorapplication', component: TutorApplicationComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'tutorview/:emailId', component: TutorViewComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: '/home'}
+  { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})],
+  imports: [RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })],
   providers: [AuthGuard],
   exports: [RouterModule]
 })

@@ -8,9 +8,9 @@ describe('SubmitBugModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubmitBugModalComponent ]
+      declarations: [SubmitBugModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

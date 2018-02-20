@@ -26,7 +26,8 @@ export class FindTutorComponent implements OnInit, OnDestroy {
               private overallTutorReviewSummarySortService: OverallTutorReviewSummarySortService,
               private tutorReviewService: TutorReviewService,
               private preloaderService: PreloaderService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(

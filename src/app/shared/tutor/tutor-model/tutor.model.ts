@@ -4,18 +4,16 @@ import { Course } from '../../course/course.model';
 
 export class Tutor {
 
-  constructor(
-    public user: User,
-    public hourlyRate: number,
-    public course: Course,
-    public grade: string,
-    public instructor: string,
-    public pastExperience: string,
-    public notes: string,
-    public semesterTaken: Semester,
-    public hasTakenCourse: boolean,
-    public instructorNameWhoEndorsed: string
-  ) {
+  constructor(public user: User,
+              public hourlyRate: number,
+              public course: Course,
+              public grade: string,
+              public instructor: string,
+              public pastExperience: string,
+              public notes: string,
+              public semesterTaken: Semester,
+              public hasTakenCourse: boolean,
+              public instructorNameWhoEndorsed: string) {
   }
 
   public static tutorJsonToTutorModel(tutorJson: any): Tutor {

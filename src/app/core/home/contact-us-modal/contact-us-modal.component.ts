@@ -10,13 +10,14 @@ import { Subject } from 'rxjs/Subject';
 export class ContactUsModalComponent implements OnInit, OnDestroy {
   @Input() openModalSubject: Subject<any>;
 
-  modalActions = new EventEmitter<string|MaterializeAction>();
+  modalActions = new EventEmitter<string | MaterializeAction>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.openModalSubject.subscribe(
-      () => this.modalActions.emit({action: 'modal', params: ['open']})
+      () => this.modalActions.emit({ action: 'modal', params: ['open'] })
     );
   }
 

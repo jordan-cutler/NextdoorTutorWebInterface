@@ -14,6 +14,7 @@ export class TutorService {
   private static readonly REMOVEINSTRUCTORENDORSEMENTROUTE = '/api/tutors/removeInstructorEndorsement';
   private static readonly DELETETUTORROUTE = '/api/tutors/delete';
   private static readonly UPDATETUTORROUTE = '/api/tutors';
+
   constructor(private httpClient: HttpClient) {
   }
 
@@ -32,20 +33,12 @@ export class TutorService {
 
   getTutorsForCourse(courseNumber: string): Observable<Tutor[]> {
     return this.httpClient.get(TutorService.GETUTORSFORCOURSEROUTE + '/' + courseNumber)
-      .map((tutors: any[]) => { return tutors.map((tutor) => {
-              return Tutor.tutorJsonToTutorModel(tutor);
-            }
-          );
-        }
-      );
+      .map((tutors: any[]) => tutors.map(Tutor.tutorJsonToTutorModel));
   }
 
   getTutorInformationForCurrentUserByCourseNumber(courseNumber: string): Observable<Tutor> {
     const params = new HttpParams().set('courseNumber', courseNumber);
-    return this.httpClient.get(TutorService.GETTUTORROUTE + '/' + courseNumber)
-      .map( (tutor) => {
-        return Tutor.tutorJsonToTutorModel(tutor);
-    });
+    return this.httpClient.get(TutorService.GETTUTORROUTE + '/' + courseNumber).map(Tutor.tutorJsonToTutorModel);
   }
 
   giveInstructorEndorsement(tutorId: string, tutorCourseNumber: string): Observable<boolean> {

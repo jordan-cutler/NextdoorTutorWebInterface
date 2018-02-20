@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({name: 'professor'})
+@Pipe({ name: 'professor' })
 export class ProfessorPipe implements PipeTransform {
   transform(name: string): string {
     const names = name.split(' ');

@@ -14,7 +14,8 @@ export class SortBarComponent implements OnInit {
   sortOnOptions: SortOn[];
   sortByOptions: SortBy[];
 
-  constructor(private overallTutorReviewSummarySortService: OverallTutorReviewSummarySortService) { }
+  constructor(private overallTutorReviewSummarySortService: OverallTutorReviewSummarySortService) {
+  }
 
   ngOnInit() {
     this.selectedSortOn = SortOn.AverageCourseReview;

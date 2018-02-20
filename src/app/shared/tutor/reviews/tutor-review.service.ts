@@ -38,19 +38,14 @@ export class TutorReviewService {
     return this.httpClient.get(
       TutorReviewService.OVERALLSUMMARYROUTE,
       { params: params }
-    ).map(
-      (overallTutorReviewSummaryJson) => {
-        return OverallTutorReviewSummary.toModelFromJson(overallTutorReviewSummaryJson);
-      }
-    );
+    ).map(OverallTutorReviewSummary.toModelFromJson);
   }
 
   getAllOverallTutorReviewSummariesForCourse(courseNumber: string): Observable<OverallTutorReviewSummary[]> {
     return this.httpClient.get(
       TutorReviewService.ALLOVERALLSUMMARIESFORCOURSEROUTE + '/' + courseNumber
     ).map(
-      (overallTutorReviewSummariesJson: any[]) => overallTutorReviewSummariesJson.map(
-        (overallTutorReviewSummaryJson) => OverallTutorReviewSummary.toModelFromJson(overallTutorReviewSummaryJson)
+      (overallTutorReviewSummariesJson: any[]) => overallTutorReviewSummariesJson.map(OverallTutorReviewSummary.toModelFromJson
       )
     );
   }
@@ -59,18 +54,14 @@ export class TutorReviewService {
     return this.httpClient.get(
       TutorReviewService.ALLCOURSEREVIEWSUMMARIESFORTUTORROUTE + '/' + userId
     ).map(
-      (courseReviewSummariesJson: any[]) => courseReviewSummariesJson.map(
-        (courseReviewSummaryJson) => CourseReviewSummary.toModelFromJson(courseReviewSummaryJson)
-      )
+      (courseReviewSummariesJson: any[]) => courseReviewSummariesJson.map(CourseReviewSummary.toModelFromJson)
     );
   }
 
   getBasicTutorInfo(email: string): Observable<BasicTutorInfo> {
     return this.httpClient.get(
       TutorReviewService.GETBASICTUTORINFOROUTE + '/' + email
-    ).map((basicTutorInfoJson) => {
-      return BasicTutorInfo.toModelFromJson(basicTutorInfoJson);
-    });
+    ).map(BasicTutorInfo.toModelFromJson);
   }
 
   submitReviewForTutor(tutorId: string, courseNumber: string,

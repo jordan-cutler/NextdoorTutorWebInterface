@@ -8,8 +8,9 @@ import { MaterializeAction } from 'angular2-materialize';
 })
 export class SubmitBugModalComponent {
   @Input() modalId: string;
-  @Input() modalActions: EventEmitter<string|MaterializeAction>;
+  @Input() modalActions: EventEmitter<string | MaterializeAction>;
 
-  constructor() { }
+  constructor() {
+  }
 
 }

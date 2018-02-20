@@ -43,7 +43,7 @@ import { HomeModule } from './home/home.module';
     PreloaderService,
     {
       provide: HTTP_INTERCEPTORS,
-      useFactory: function(router: Router, preloaderService: PreloaderService) {
+      useFactory: function (router: Router, preloaderService: PreloaderService) {
         return new AuthInterceptor(router, preloaderService);
       },
       multi: true,

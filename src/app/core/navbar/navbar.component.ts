@@ -27,14 +27,14 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   submitBugModalId = 'submitBugModal';
 
   isLoggedInSubscription: Subscription;
-  sideNavActions = new EventEmitter<string|MaterializeAction>();
-  submitBugModalActions = new EventEmitter<string|MaterializeAction>();
+  sideNavActions = new EventEmitter<string | MaterializeAction>();
+  submitBugModalActions = new EventEmitter<string | MaterializeAction>();
 
   constructor(private userSessionService: UserSessionService,
               private authService: AuthService,
               private router: Router,
-              private zone: NgZone
-  ) { }
+              private zone: NgZone) {
+  }
 
   ngOnInit() {
     this.user = this.userSessionService.getCurrentUser();
@@ -54,11 +54,11 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSubmitBugClick() {
-    this.submitBugModalActions.emit({action: 'modal', params: ['open']});
+    this.submitBugModalActions.emit({ action: 'modal', params: ['open'] });
   }
 
   onSignOutClick() {
-    this.sideNavActions.emit({action: 'sideNav', params: ['hide']});
+    this.sideNavActions.emit({ action: 'sideNav', params: ['hide'] });
     this.authService.signOutCurrentUser();
   }
 

@@ -22,7 +22,7 @@ export class EditCourseTutorModalComponent implements OnInit, AfterViewInit, OnD
   private readonly modalSelector = '#' + this.modalId;
 
   private coursesUserIsTutoringListUpdatedSubject = new Subject();
-  modalActions = new EventEmitter<string|MaterializeAction>();
+  modalActions = new EventEmitter<string | MaterializeAction>();
 
   constructor(private tutorService: TutorService,
               private preloaderService: PreloaderService) {
@@ -33,7 +33,7 @@ export class EditCourseTutorModalComponent implements OnInit, AfterViewInit, OnD
   }
 
   ngAfterViewInit() {
-    this.modalActions.emit({action: 'modal', params: ['open']});
+    this.modalActions.emit({ action: 'modal', params: ['open'] });
     setTimeout(Materialize.updateTextFields, 200);
   }
 

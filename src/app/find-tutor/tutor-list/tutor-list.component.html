@@ -44,28 +44,29 @@
                   <div class="row tutor-grades">
                     <table>
                       <tbody>
-                        <tr>
-                          <td class="grade-description"><b>Avg. Course Review</b></td>
-                            <td class="colon">:</td>
-                            <td
-                              *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews; else noCourseAverage">
-                              {{summary.courseReviewSummary.averageOfAllScoresAmongAllReviews}}
-                            </td>
-                            <ng-template #noCourseAverage>
-                              <td>N/A</td>
-                            </ng-template>
-                        </tr>
+                      <tr>
+                        <td class="grade-description"><b>Avg. Course Review</b></td>
+                        <td class="colon">:</td>
+                        <td
+                          *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews; else noCourseAverage">
+                          {{summary.courseReviewSummary.averageOfAllScoresAmongAllReviews}}
+                        </td>
+                        <ng-template #noCourseAverage>
+                          <td>N/A</td>
+                        </ng-template>
+                      </tr>
 
-                        <tr>
-                          <ng-container *ngIf="summary.tutor.grade">
-                            <td class="grade-description"><b>Course Grade</b></td>
-                            <td class="colon">:</td>
-                            <td>
-                              {{summary.tutor.grade}}
-                            </td>
-                          </ng-container>
-                          <td class="grade-description" colspan="2" *ngIf="!summary.tutor.grade"><b>Hasn't Taken Course</b></td>
-                        </tr>
+                      <tr>
+                        <ng-container *ngIf="summary.tutor.grade">
+                          <td class="grade-description"><b>Course Grade</b></td>
+                          <td class="colon">:</td>
+                          <td>
+                            {{summary.tutor.grade}}
+                          </td>
+                        </ng-container>
+                        <td class="grade-description" colspan="2" *ngIf="!summary.tutor.grade"><b>Hasn't Taken
+                          Course</b></td>
+                      </tr>
                       </tbody>
                     </table>
                   </div>
@@ -83,15 +84,15 @@
                 <div class="col m1 offset-m1 hide-on-small-only">
                   <div *ngIf="summary.tutor.instructorNameWhoEndorsed">
 
-                      <div class="col s12">
+                    <div class="col s12">
                         <span class="fa fa-stack">
                           <i class="fa fa-certificate fa-stack-2x"></i>
                           <i class="fa fa-check fa-stack-1x fa-inverse"></i>
                         </span>
-                      </div>
-                      <div class="col s12">
-                        <span>{{summary.tutor.instructorNameWhoEndorsed | professor}}</span>
-                      </div>
+                    </div>
+                    <div class="col s12">
+                      <span>{{summary.tutor.instructorNameWhoEndorsed | professor}}</span>
+                    </div>
 
                   </div>
                 </div>
@@ -169,7 +170,7 @@
                      *ngIf="summary?.courseReviewSummary?.averageOfAllScoresAmongAllReviews">
                   <div class="col s12">
                     <div class="col s4 m3 offset-m1">
-                      <b>Avg. Course Review  </b>
+                      <b>Avg. Course Review </b>
                     </div>
                     <div class="col s7">
                       {{summary.courseReviewSummary.averageOfAllScoresAmongAllReviews}}
@@ -194,7 +195,7 @@
                 <div class="row" *ngIf="summary.tutor.pastExperience">
                   <div class="col s12">
                     <div class="col s4 m3 offset-m1">
-                      <b>Past Experience  </b>
+                      <b>Past Experience </b>
                     </div>
                     <div class="col s7">
                       {{summary.tutor.pastExperience}}
@@ -205,7 +206,7 @@
                 <div class="row" *ngIf="summary.tutor.notes">
                   <div class="col s12">
                     <div class="col s4 m3 offset-m1">
-                      <b>Other Notes  </b>
+                      <b>Other Notes </b>
                     </div>
                     <div class="col s7">
                       {{summary.tutor.notes}}
@@ -216,7 +217,7 @@
                 <div class="row" *ngIf="summary.tutor.user.major">
                   <div class="col s12">
                     <div class="col s4 m3 offset-m1">
-                      <b>Major  </b>
+                      <b>Major </b>
                     </div>
                     <div class="col s7">
                       {{summary.tutor.user.major}}
@@ -227,7 +228,7 @@
                 <div class="row" *ngIf="summary.tutor.user.bio">
                   <div class="col s12">
                     <div class="col s4 m3 offset-m1">
-                      <b>Bio  </b>
+                      <b>Bio </b>
                     </div>
                     <div class="col s7">
                       {{summary.tutor.user.bio}}
@@ -238,7 +239,7 @@
                 <div class="row hide-on-med-and-up" *ngIf="summary.tutor.instructorNameWhoEndorsed">
                   <div class="col s12">
                     <div class="col s4 m3 offset-m1">
-                      <b>Endorsed by  </b>
+                      <b>Endorsed by </b>
                     </div>
                     <div class="col s7">
                       {{summary.tutor.instructorNameWhoEndorsed | professor}}

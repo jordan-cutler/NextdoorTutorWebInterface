@@ -2,19 +2,17 @@ import { ProfilePageLink } from './profile-page-link.model';
 
 export class User {
 
-  constructor(
-    public userId: string,
-    public email: string,
-    public name: string,
-    public profilePhotoId: string,
-    public bio: string,
-    public major: string,
-    public github: ProfilePageLink,
-    public facebook: ProfilePageLink,
-    public linkedin: ProfilePageLink,
-    public creationDate: Date,
-    public isInstructor: boolean
-  ) {
+  constructor(public userId: string,
+              public email: string,
+              public name: string,
+              public profilePhotoId: string,
+              public bio: string,
+              public major: string,
+              public github: ProfilePageLink,
+              public facebook: ProfilePageLink,
+              public linkedin: ProfilePageLink,
+              public creationDate: Date,
+              public isInstructor: boolean) {
   }
 
   public static userJsonToUserModel(userJson: any): User {

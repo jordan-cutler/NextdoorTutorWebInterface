@@ -13,7 +13,9 @@ export class TutorBasicInfoComponent implements OnInit {
   tutorUser: User;
   currentUser: User;
   hasProfilePhoto: boolean;
-  constructor(private userSessionService: UserSessionService) { }
+
+  constructor(private userSessionService: UserSessionService) {
+  }
 
   ngOnInit() {
     this.currentUser = this.userSessionService.getCurrentUser();

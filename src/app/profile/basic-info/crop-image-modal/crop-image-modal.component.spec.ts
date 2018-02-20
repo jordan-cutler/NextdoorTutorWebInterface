@@ -8,9 +8,9 @@ describe('CropImageModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CropImageModalComponent ]
+      declarations: [CropImageModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

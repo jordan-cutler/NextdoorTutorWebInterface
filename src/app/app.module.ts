@@ -30,4 +30,5 @@ import { TutorViewModule } from './tutor-view/tutor-view.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

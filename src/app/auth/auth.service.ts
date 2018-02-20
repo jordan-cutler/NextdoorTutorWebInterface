@@ -42,11 +42,7 @@ export class AuthService {
         const idToken = googleUser.getAuthResponse().id_token;
         this.preloaderService.show();
         this.httpClient.post(AuthService.SIGNINROUTE, { idToken: idToken })
-          .map(
-            (userSession) => {
-              return UserSession.toModelFromJson(userSession);
-            }
-          )
+          .map(UserSession.toModelFromJson)
           .subscribe(
             (userSession: UserSession) => {
               this.preloaderService.hide();

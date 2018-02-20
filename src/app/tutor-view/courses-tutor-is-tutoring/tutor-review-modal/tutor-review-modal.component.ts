@@ -17,7 +17,7 @@ export class TutorReviewModalComponent implements OnInit, AfterViewInit {
   @Input() courseNumber: string;
   readonly modalId = 'courseReview';
 
-  modalActions = new EventEmitter<string|MaterializeAction>();
+  modalActions = new EventEmitter<string | MaterializeAction>();
 
   readonly validReviewGrades = [
     'A+',
@@ -43,7 +43,8 @@ export class TutorReviewModalComponent implements OnInit, AfterViewInit {
   defaultDropdownValue: string;
 
   constructor(private tutorReviewService: TutorReviewService,
-              private preloaderService: PreloaderService) { }
+              private preloaderService: PreloaderService) {
+  }
 
   ngOnInit() {
     this.defaultDropdownValue = 'N/A';
@@ -51,7 +52,7 @@ export class TutorReviewModalComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.modalActions.emit({action: 'modal', params: ['open']});
+    this.modalActions.emit({ action: 'modal', params: ['open'] });
   }
 
   onSubmitReview() {
@@ -90,7 +91,7 @@ export class TutorReviewModalComponent implements OnInit, AfterViewInit {
         }
       }
     );
-    this.modalActions.emit({action: 'modal', params: ['close']});
+    this.modalActions.emit({ action: 'modal', params: ['close'] });
   }
 
 }

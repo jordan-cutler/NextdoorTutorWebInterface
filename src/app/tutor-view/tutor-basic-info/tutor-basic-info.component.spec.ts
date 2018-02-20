@@ -8,9 +8,9 @@ describe('TutorBasicInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TutorBasicInfoComponent ]
+      declarations: [TutorBasicInfoComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

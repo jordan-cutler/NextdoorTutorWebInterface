@@ -12,9 +12,7 @@ export class BasicTutorInfo {
   public static toModelFromJson(basicTutorInfoJson: any) {
     const averageOfAllReviewsForAllCourses = basicTutorInfoJson.averageOfAllReviewsForAllCourses;
     const user = User.userJsonToUserModel(basicTutorInfoJson.user);
-    const courseReviewSummaries = basicTutorInfoJson.courseReviewSummaries.map(
-      (courseReviewSummaryJson) => CourseReviewSummary.toModelFromJson(courseReviewSummaryJson)
-    );
+    const courseReviewSummaries = basicTutorInfoJson.courseReviewSummaries.map(CourseReviewSummary.toModelFromJson);
     const reviewNotes = basicTutorInfoJson.reviewNotes;
     return new BasicTutorInfo(
       averageOfAllReviewsForAllCourses, user,

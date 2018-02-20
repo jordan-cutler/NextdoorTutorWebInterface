@@ -13,7 +13,8 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
   searchBarId: string;
   searchBarText = '';
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.searchBarId = 'searchBar';
@@ -24,7 +25,7 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
   }
 
   initializeSearchBar() {
-    const searchObject = { }; // will contain the info we pass to autocomplete so we can populate the search bar
+    const searchObject = {}; // will contain the info we pass to autocomplete so we can populate the search bar
     this.courses.forEach((course: Course) => {
       searchObject[course.courseNumber + ' ' + course.title] = null;
     });
@@ -51,7 +52,7 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
   onSearchBarClick() {
     if (this.searchBarText) {
       this.searchBarText = '';
-      setTimeout( () => {
+      setTimeout(() => {
         this.searchBarRef.nativeElement.blur();
         this.searchBarRef.nativeElement.focus();
       }, 10);

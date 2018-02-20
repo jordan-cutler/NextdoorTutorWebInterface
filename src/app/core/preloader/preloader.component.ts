@@ -7,7 +7,8 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class PreloaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

@@ -17,7 +17,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   basicInfoSubscription: Subscription;
 
-  constructor(private userSessionService: UserSessionService, private tutorReviewService: TutorReviewService) { }
+  constructor(private userSessionService: UserSessionService, private tutorReviewService: TutorReviewService) {
+  }
 
   ngOnInit() {
     this.currentUser = this.userSessionService.getCurrentUser();

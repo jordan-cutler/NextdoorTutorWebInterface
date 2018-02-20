@@ -8,9 +8,9 @@ describe('TermsAndConditionsModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TermsAndConditionsModalComponent ]
+      declarations: [TermsAndConditionsModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
 import { UserSession } from './user-session.model';
-import { Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ApplicationGlobals } from '../ApplicationGlobals';
 import { User } from '../user/user-model/user.model';
 import { Subject } from 'rxjs/Subject';

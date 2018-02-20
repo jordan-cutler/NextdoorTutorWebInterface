@@ -8,9 +8,9 @@ describe('FindTutorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FindTutorComponent ]
+      declarations: [FindTutorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -16,7 +16,7 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
   @ViewChild('editBasicInfoForm') basicInfoForm: NgForm;
   @Input() user: User;
   readonly modalId = 'editBasicInfoModal';
-  modalActions = new EventEmitter<string|MaterializeAction>();
+  modalActions = new EventEmitter<string | MaterializeAction>();
 
   constructor(private userService: UserService,
               private userSessionService: UserSessionService) {
@@ -26,7 +26,7 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.modalActions.emit({action: 'modal', params: ['open']});
+    this.modalActions.emit({ action: 'modal', params: ['open'] });
     setTimeout(Materialize.updateTextFields, 200);
   }
 
@@ -68,37 +68,47 @@ export class EditBasicInfoModalComponent implements OnInit, AfterViewInit {
     if (linkedinControl.dirty) {
       this.updateLinkedin(linkedin);
     }
-    this.modalActions.emit({action: 'modal', params: ['close']});
+    this.modalActions.emit({ action: 'modal', params: ['close'] });
   }
 
   updateMajor(major: string) {
     this.updateField('major',
       () => this.userService.updateMajor(major),
-      () => { this.user.major = major; });
+      () => {
+        this.user.major = major;
+      });
   }
 
   updateBio(bio: string) {
     this.updateField('bio',
       () => this.userService.updateBio(bio),
-      () => { this.user.bio = bio; });
+      () => {
+        this.user.bio = bio;
+      });
   }
 
   updateGithub(github: string) {
     this.updateField('GitHub',
       () => this.userService.updateGithub(github),
-      () => { this.user.github = new ProfilePageLink(github, Site.GITHUB); });
+      () => {
+        this.user.github = new ProfilePageLink(github, Site.GITHUB);
+      });
   }
 
   updateFacebook(facebook: string) {
     this.updateField('Facebook',
       () => this.userService.updateFacebook(facebook),
-      () => { this.user.facebook = new ProfilePageLink(facebook, Site.FACEBOOK); });
+      () => {
+        this.user.facebook = new ProfilePageLink(facebook, Site.FACEBOOK);
+      });
   }
 
   updateLinkedin(linkedin: string) {
     this.updateField('LinkedIn',
       () => this.userService.updateLinkedin(linkedin),
-      () => { this.user.linkedin = new ProfilePageLink(linkedin, Site.LINKEDIN); });
+      () => {
+        this.user.linkedin = new ProfilePageLink(linkedin, Site.LINKEDIN);
+      });
   }
 
   updateField(fieldName: string,

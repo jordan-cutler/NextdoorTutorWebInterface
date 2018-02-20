@@ -8,9 +8,9 @@ describe('EditBasicInfoModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditBasicInfoModalComponent ]
+      declarations: [EditBasicInfoModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -19,7 +19,8 @@ export class AppComponent implements OnInit, OnDestroy {
   userSessionObservable: Observable<UserSession>;
   userSessionObservableSubscription: Subscription;
 
-  constructor(private preloaderService: PreloaderService, private userSessionService: UserSessionService) { }
+  constructor(private preloaderService: PreloaderService, private userSessionService: UserSessionService) {
+  }
 
   ngOnInit() {
     this.preloaderService.show();

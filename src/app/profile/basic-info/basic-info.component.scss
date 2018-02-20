@@ -1,5 +1,5 @@
 .image-upload > input {
-  display:none;
+  display: none;
 }
 
 #userName {
@@ -43,7 +43,9 @@ Hover effect for images
   border-radius: 5% !important;
 }
 
-.media__body:hover { opacity: 1; }
+.media__body:hover {
+  opacity: 1;
+}
 
 .media__body:after,
 .media__body:before {
