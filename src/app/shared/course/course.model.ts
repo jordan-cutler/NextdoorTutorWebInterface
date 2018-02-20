@@ -4,8 +4,7 @@ export class Course {
   }
 
   static toModelFromJson(courseJson: any) {
-    const courseNumber = courseJson.courseNumber;
-    const title = courseJson.title;
+    const { courseNumber, title } = courseJson;
     return new Course(courseNumber, title);
   }
 }

@@ -24,7 +24,7 @@ export class Semester {
   }
 
   public static isYearValid(year: number): boolean {
-    return Semester.VALID_YEARS.some(function(element: number, index: number, array: number[]){
+    return Semester.VALID_YEARS.some(function(element: number, index: number, array: number[]) {
       return element === year;
     });
   }
