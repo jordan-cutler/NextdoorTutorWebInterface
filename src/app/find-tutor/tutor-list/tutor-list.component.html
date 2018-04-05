@@ -35,6 +35,9 @@
                     <span class="hide-on-small-only nt-orange-text" *ngIf="summary.tutor.hourlyRate">
                       ${{summary.tutor.hourlyRate}}
                     </span>
+                    <span class="hide-on-small-only nt-orange-text" *ngIf="!summary.tutor.hourlyRate">
+                      Free
+                    </span>
                   </div>
 
                 </div>
